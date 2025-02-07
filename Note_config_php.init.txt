@@ -1,0 +1,104 @@
+======== Thông tin các config trong file php.ini ==========
+
+** Tác dụng các extension
+1. extension=curl
+- Hỗ trợ giao thức cURL để gửi HTTP requests, tải dữ liệu từ API, trang web. Dùng để gọi API từ PHP.
+Ví dụ: curl_init(), curl_exec().
+
+2. extension=fileinfo
+- Dùng để xác định loại tệp dựa trên nội dung thay vì chỉ dựa vào phần mở rộng. Hữu ích khi cần kiểm tra kiểu MIME của tệp tải lên.
+
+3. extension=gd
+- Cung cấp thư viện GD để xử lý hình ảnh (cắt, ghép, tạo ảnh, thêm chữ, vẽ đồ họa, v.v.).
+Ví dụ: imagecreate(), imagepng(), imagettftext().
+
+4. extension=mbstring
+- Hỗ trợ xử lý chuỗi đa byte (UTF-8, Unicode), quan trọng khi làm việc với tiếng Việt hoặc các ngôn ngữ không phải ASCII.
+Ví dụ: mb_strlen(), mb_substr().
+
+5. extension=exif
+Hỗ trợ đọc metadata EXIF từ hình ảnh (thường dùng cho ảnh JPEG, TIFF).Cần bật sau mbstring vì nó phụ thuộc vào nó.
+Ví dụ: Lấy thông tin về máy ảnh, ngày chụp từ ảnh.
+
+6. extension=mysqli
+Cung cấp kết nối đến MySQL bằng MySQLi (MySQL Improved).
+Ví dụ: mysqli_connect(), mysqli_query().
+
+7. extension=openssl
+- Hỗ trợ mã hóa OpenSSL, dùng cho HTTPS, JWT, OAuth, tạo chứng chỉ SSL.
+Ví dụ: Mã hóa dữ liệu, tạo cặp khóa RSA.
+
+8. extension=pdo_mysql
+- Hỗ trợ PDO (PHP Data Objects) với MySQL, giúp kết nối MySQL theo cách bảo mật hơn. Dùng trong Laravel khi kết nối MySQL với DB facade hoặc Eloquent ORM.
+
+9. extension=pdo_pgsql
+- Hỗ trợ PDO với PostgreSQL, tương tự như pdo_mysql nhưng dành cho PostgreSQL.
+
+10. extension=pgsql
+- Hỗ trợ kết nối PostgreSQL theo cách cổ điển (pg_connect(), pg_query()), không thông qua PDO.
+
+11. extension=bz2
+- Hỗ trợ nén dữ liệu bằng Bzip2. Dùng khi muốn nén file hoặc tạo backup cơ sở dữ liệu dạng .bz2.
+
+12. extension=ffi 
+- Hỗ trợ Foreign Function Interface (FFI), cho phép gọi code từ C/C++ trong PHP. Ít khi cần trừ khi bạn muốn gọi các thư viện C từ PHP.
+
+13. extension=ftp
+- Cung cấp chức năng FTP, cho phép PHP kết nối và quản lý tệp trên máy chủ FTP.
+Ví dụ: ftp_connect(), ftp_put().
+
+14. extension=gettext
+- Dùng để hỗ trợ đa ngôn ngữ (i18n) trong PHP. Nếu làm ứng dụng đa ngôn ngữ, có thể cần bật lên.
+
+15. extension=gmp
+- Hỗ trợ xử lý số lớn (Big Integer), dùng trong mật mã và tính toán số lớn.
+Ví dụ: gmp_add(), gmp_powm().
+
+16. extension=intl
+- Hỗ trợ xử lý chuỗi và địa phương hóa (ví dụ: chuẩn hóa Unicode, so sánh chuỗi ngôn ngữ khác nhau).Quan trọng nếu cần xử lý ngôn ngữ tự nhiên.
+Ví dụ: IntlDateFormatter, collator_compare().
+
+17. extension=imap
+- Hỗ trợ giao thức IMAP để làm việc với email (nhận, đọc email từ máy chủ). Dùng nếu bạn đang tạo ứng dụng đọc email từ hộp thư.
+
+18. extension=ldap
+- Hỗ trợ LDAP (Lightweight Directory Access Protocol), dùng để xác thực người dùng từ máy chủ LDAP (ví dụ: Active Directory).
+
+19. extension=oci8_12c, extension=oci8_19
+- Hỗ trợ kết nối Oracle Database, cần cài Oracle Instant Client.
+oci8_12c: Dành cho Oracle 12c.
+oci8_19: Dành cho Oracle 19c.
+
+20. extension=odbc, extension=pdo_odbc
+- Hỗ trợ ODBC (Open Database Connectivity), kết nối với các loại cơ sở dữ liệu qua ODBC. Ít dùng trừ khi kết nối với hệ thống cũ như Microsoft Access.
+
+21. extension=pdo_firebird
+- Hỗ trợ PDO với Firebird, cơ sở dữ liệu ít phổ biến.
+
+22. extension=pdo_oci
+- Hỗ trợ PDO với Oracle, cần thiết nếu dùng Oracle Database với PDO.
+
+23. extension=pdo_sqlite
+Hỗ trợ PDO với SQLite, cần bật nếu sử dụng SQLite làm cơ sở dữ liệu.
+
+24. extension=shmop
+- Hỗ trợ Shared Memory Operations, dùng để chia sẻ bộ nhớ giữa các tiến trình PHP. Hiếm khi cần trừ khi làm việc với hệ thống đa tiến trình.
+
+25. extension=snmp
+- Hỗ trợ Simple Network Management Protocol (SNMP), dùng để giám sát thiết bị mạng như router, switch. Nếu không làm về quản lý hệ thống mạng, không cần bật.
+
+26. extension=soap
+- Hỗ trợ SOAP (Simple Object Access Protocol), một giao thức để gọi API web service XML. Nếu làm việc với SOAP API (thay vì REST API), cần bật nó.
+
+27. extension=sockets
+- Cung cấp chức năng lập trình socket để tạo kết nối mạng TCP/UDP từ PHP.
+- Cần bật nếu làm ứng dụng chat, server real-time hoặc giao tiếp socket.
+
+28. extension=sodium
+- Hỗ trợ mã hóa hiện đại (Libsodium), bảo mật dữ liệu tốt hơn OpenSSL trong nhiều trường hợp.Nếu làm về bảo mật mạnh hoặc mã hóa dữ liệu, nên bật.
+
+29. extension=sqlite3
+- Hỗ trợ SQLite 3, một cơ sở dữ liệu nhỏ gọn lưu trữ trong tệp .sqlite. Nếu dùng Laravel với SQLite, cần bật.
+
+20. extension=tidy
+- Dùng để chuẩn hóa mã HTML, giúp định dạng lại HTML bị lỗi hoặc không chuẩn. Nếu xử lý HTML thô hoặc làm web scraping, có thể cần bật.
