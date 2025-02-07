@@ -1,0 +1,48 @@
+====== CÀI ĐẶT MÔI TRƯỜNG VỚI PHP LARAVEL ======
+1. Cài đặt PHP: https://windows.php.net/download/
+2. Cài đặt composer (quản lý thư viện): https://getcomposer.org/Composer-Setup.exe
+3. Cài đặt laragon hoặc xampp: (để chạy Apache HTTP Server (httpd)) 
+ - Laragon: https://github.com/leokhoa/laragon/releases/download/6.0.0/laragon-wamp.exe
+   + Bản 6.0 đổ xuống free, còn từ 7.0 trở lên mất phí
+ - Xampp: https://sourceforge.net/projects/xampp/files/XAMPP%20Windows/
+4. Công cụ code:
+ - Visual Studio Code (VS code)
+ - PHPStorm
+
+
+====== Cấu hình Laragon để chạy PHP ngoài thư mục www ======
+1. Thêm Virtual Host (domain ảo)
+ + B1: Mở Laragon và vào Menu > Apache > sites-enabled > auto.vhost.conf
+
+ + B2: Kiểm tra xem auto.vhost.conf có được bật chưa, nếu có thì chỉ cần đặt thư mục dự án vào đâu cũng được, 
+   Laragon sẽ tự tạo domain ảo theo tên thư mục.
+
+ + B3: Nếu không muốn auto vhost, có thể chỉnh file C:\laragon\etc\apache2\sites-enabled\00-default.conf và thêm:
+	<VirtualHost *:80>
+		#thêm root folder chứa dự án
+		DocumentRoot "D:/du_an_cua_ban"  
+		
+		#sửa cả Directory
+		<Directory "D:/du_an_cua_ban">
+			AllowOverride All
+			Require all granted
+		</Directory>
+	</VirtualHost>
+
+ + Lưu ý: tạo 1 file .conf khác trong sites-enabled mà không muốn đổi host mà đổi cổng thì thêm Listen <number_port> trong httpd.conf 
+
+2. Chạy Dự Án Bằng PHP Built-in Server
+ - Mở cmd: cd "D:/du_an_cua_ban" , chạy lệnh: php -S localhost:8000
+	trong đó: 
+		+ -S (viết tắt của --server) là flag dùng để khởi chạy PHP's Built-in Web Server. (có từ PHP 5.4 trở lên).
+
+3. Chỉnh Sửa Apache httpd.conf
+ - Thay đổi thư mục gốc (Document Root) của Laragon mà không dùng Virtual Hosts:
+	+ B1: Mở file C:\laragon\etc\apache2\httpd.conf
+	+ B2: 
+		Tìm dòng: DocumentRoot "C:/laragon/www"
+		Sửa thành thư mục muốn: DocumentRoot "D:/du_an_cua_ban"
+	+ B3: 
+		Tìm dòng: <Directory "C:/laragon/www">
+		Sửa thành thư mục muốn: <Directory "D:/du_an_cua_ban">
+	+ B4: Lưu file và restart Apache.

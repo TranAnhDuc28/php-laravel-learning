@@ -1,0 +1,38 @@
+===== Comment (Chú thích) =====
+<?php
+// this is comment
+
+# this is comment
+
+/**
+ * This is comment in multiline
+ */
+>
+
+====== VARIABLE (biến) ======
+ - Là một khái niệm cơ bản được sử dụng để lưu trữ và quản lý dữ liệu trong quá trình thực thi chương trình. 
+ Biến giống như một "hộp" hoặc "nhãn" mà bạn có thể gán cho một giá trị để sử dụng sau này trong chương trình.
+ - Khai báo biến: Biến trong PHP được khai báo bằng ký hiệu $ trước tên biến. Tên biến phải bắt đầu bằng một ký tự chữ 
+  hoặc dấu gạch dưới (_), theo sau là các ký tự chữ, số hoặc dấu gạch dưới.
+ - Tính động của biến: PHP là ngôn ngữ dynamically typed (kiểu dữ liệu động) hay loose typing language (ngôn ngữ có kiểu dữ liệu lỏng lẻo)
+ nghĩa là bạn không cần khai báo kiểu dữ liệu của biến. 
+	+ PHP không yêu cầu khai báo kiểu dữ liệu rõ ràng cho biến.
+	+ Kiểu dữ liệu của biến sẽ được xác định tự động dựa trên giá trị mà bạn gán cho biến đó.
+	+ PHP thực hiện ép kiểu ngầm định (implicit type conversion) khi cần thiết.
+
+
+====== Dấu nháy đơn ('') và dấu nháy đôi ("") trong PHP =======
+
+|Loại				|	Xử lý biến ($var)				|	Xử lý ký tự đặc biệt (\n, \t)
+----------------------------------------------------------------------------------------------------------
+|Nháy đôi ("")		|✅ Có thay thế giá trị biến		|✅ Hiểu ký tự đặc biệt
+|Nháy đơn ('')		|❌ Không thay thế biến				|❌ Không hiểu ký tự đặc biệt (trừ \' và \\)
+
+** Nên dùng khi
+- Nháy đôi (""): khi cần nội suy biến hoặc dùng ký tự đặc biệt.
+	VD: $name = "John";
+		echo "Xin chào, $name\n";  // Kết quả: Xin chào, John (xuống dòng)
+
+- Nháy đơn (''): khi chuỗi không cần xử lý biến → Hiệu suất tốt hơn một chút.
+	VD: $name = "John";
+		echo 'Xin chào, $name\n';  // Kết quả: Xin chào, $name\n (không thay đổi)
