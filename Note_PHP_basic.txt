@@ -36,3 +36,7 @@
 - Nháy đơn (''): khi chuỗi không cần xử lý biến → Hiệu suất tốt hơn một chút.
 	VD: $name = "John";
 		echo 'Xin chào, $name\n';  // Kết quả: Xin chào, $name\n (không thay đổi)
+
+
+======= Debug với câu lệnh trong PHP =======
+var-dump($varisable);die;
