@@ -1,0 +1,52 @@
+[
+    {
+        "class_name": "L\u1edbp 10A1",
+        "students": [
+            {
+                "name": "Anh",
+                "age": 16,
+                "score": 8.5
+            },
+            {
+                "name": "B\u00ecnh",
+                "age": 17,
+                "score": 9
+            },
+            {
+                "name": "Ch\u00e2u",
+                "age": 16,
+                "score": 6.5
+            },
+            {
+                "name": "D\u01b0\u01a1ng",
+                "age": 17,
+                "score": 7
+            }
+        ]
+    },
+    {
+        "class_name": "L\u1edbp 10A2",
+        "students": [
+            {
+                "name": "Ho\u00e0ng",
+                "age": 16,
+                "score": 9.5
+            },
+            {
+                "name": "Minh",
+                "age": 16,
+                "score": 5
+            },
+            {
+                "name": "Lan",
+                "age": 17,
+                "score": 7.5
+            },
+            {
+                "name": "T\u00f9ng",
+                "age": 16,
+                "score": 6
+            }
+        ]
+    }
+]
