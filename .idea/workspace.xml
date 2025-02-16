@@ -5,15 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bc2cf34-ff55-4329-8252-c2c6eadbbc44" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/delete.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/insert.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/join.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/pagination.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/select_fetch.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/select_fetchAll.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/update.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/admin/HomeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/admin/TestController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/client/HomeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/client/TestController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/models/BaseModel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/routes/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/routes/client.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/views/admin/home.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/views/client/home.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/ConnectDB.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/ConnectDB.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PHP_Basic/UploadFile/uploads/1739604564-z6220625341359_1b0a4f67c6219c5aef7cb49002b5490b.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/configs/env.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/configs/env.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/configs/helper.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/configs/helper.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +28,13 @@
   <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <execution />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -31,12 +43,16 @@
   &quot;associatedIndex&quot;: 2
 }</component>
   <component name="ProjectId" id="2spD9ikm9esAA5AavURGfBZlBgr" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "PHPUnit.HelloPHP.executor": "Run",
     "PHPUnit.ProductService.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -95,7 +111,7 @@
       <workItem from="1739144053452" duration="131000" />
       <workItem from="1739144299823" duration="166000" />
       <workItem from="1739585564924" duration="495000" />
-      <workItem from="1739606006983" duration="19661000" />
+      <workItem from="1739606006983" duration="23355000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -129,7 +145,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739668095630</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update">
+      <option name="closed" value="true" />
+      <created>1739676127892</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1739676127892</updated>
+    </task>
+    <task id="LOCAL-00006" summary="update">
+      <option name="closed" value="true" />
+      <created>1739676223416</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1739676223416</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
