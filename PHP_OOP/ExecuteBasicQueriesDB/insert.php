@@ -3,7 +3,7 @@
 global $pdo;
 require_once './connectDB.php';
 
-$name = "New Product";
+$name = "New Item";
 $price = 99.99;
 
 $sql = "INSERT INTO products (name, price) VALUES (:name, :price)";
@@ -15,4 +15,4 @@ $stmt->bindParam(':price', $price, PDO::PARAM_STR);
 
 $stmt->execute();
 
-echo "Product inserted successfully with ID: " . $pdo->lastInsertId();
+echo "Item inserted successfully with ID: " . $pdo->lastInsertId();

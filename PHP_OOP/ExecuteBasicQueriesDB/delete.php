@@ -13,4 +13,4 @@ $stmt->bindParam(':id', $productId, PDO::PARAM_INT);
 
 $stmt->execute();
 
-echo "Product deleted successfully.";
+echo "Item deleted successfully.";

@@ -4,12 +4,15 @@
  * Hàm spl_autoload_register() trong PHP được sử dụng để tự động tải các class hoặc interface
  * khi chúng chưa được định nghĩa, giúp tránh việc phải require hoặc include thủ công.
  */
+
+use ExerciseOOP\Item;
+
 spl_autoload_register(function ($class) {
 //    echo $class;die;
 
     $fileName = "$class.php";
-
     $fileModel = PATH_MODEL . $fileName;
+    print_r($fileModel);die();
     $fileControllerClient = PATH_CONTROLLER_CLIENT . $fileName;
     $fileControllerAdmin = PATH_CONTROLLER_ADMIN . $fileName;
 
@@ -28,6 +31,9 @@ spl_autoload_register(function ($class) {
 
 require_once './configs/env.php';
 require_once './configs/helper.php';
+
+$product = new Item();
+debug($product);
 
 // điều hướng
 $mode = $_GET['mode'] ?? 'client';

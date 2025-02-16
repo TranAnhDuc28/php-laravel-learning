@@ -19,7 +19,7 @@ define('PATH_CONTROLLER_ADMIN', PATH_ROOT . 'controllers/admin/');
 define('PATH_CONTROLLER_CLIENT', PATH_ROOT . 'controllers/client/');
 
 // models
-define('PATH_MODEL', PATH_ROOT . 'models');
+define('PATH_MODEL', PATH_ROOT . 'models/');
 
 // connection DB
 define('DB_HOST', 'localhost');

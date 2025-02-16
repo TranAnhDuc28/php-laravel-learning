@@ -1,13 +1,15 @@
 <?php
 
-class Product
+namespace ExerciseOOP;
+class Item
 {
     public function __construct(
-        private int $id,
+        private int    $id,
         private string $name,
-        private float $price = 0
+        private float  $price = 0
     )
-    {}
+    {
+    }
 
     public function getId(): int
     {

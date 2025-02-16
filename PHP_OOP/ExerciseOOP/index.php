@@ -1,26 +1,29 @@
 <?php
 
 // import các class cần sử dụng (import tuần tự theo thự tự cần sử dụng)
-require_once './Product.php';
+use ExerciseOOP\Cart;
+use ExerciseOOP\Item;
+
+require_once './Item.php';
 require_once './CartItem.php';
 require_once './Cart.php';
 
 echo '<pre>';
 
 // create product
-$product1 = new Product(1, 'MacBook Pro', 1000);
-$product2 = new Product(2, 'Iphone Pro', 1500);
+$item1 = new Item(1, 'MacBook Pro', 1000);
+$item2 = new Item(2, 'Iphone Pro', 1500);
 
 // hiển thị product đang có
 echo 'Danh sách sản phẩm: ' . PHP_EOL;
-print_r($product1);
-print_r($product2);
+print_r($item1);
+print_r($item2);
 
 // create cart
 $cart = new Cart();
-$cart->addProduct($product1, 2);
-$cart->addProduct($product2, 1);
-$cart->addProduct($product1, 1);
+$cart->addProduct($item1, 2);
+$cart->addProduct($item2, 1);
+$cart->addProduct($item1, 1);
 
 // hiển thị cart
 $cart->displayCart();

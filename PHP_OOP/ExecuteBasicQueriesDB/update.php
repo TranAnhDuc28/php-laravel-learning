@@ -21,4 +21,4 @@ $stmt->execute([
     'id' => $productId
 ]);
 
-echo "Product updated successfully.";
+echo "Item updated successfully.";
