@@ -5,6 +5,6 @@ class TestController
 {
     public function show()
     {
-        echo 'Đây là trang test CLIENT có ID = ' . $_GET['id'];
+        echo 'Đây là trang test ADMIN có ID = ' . $_GET['id'];
     }
 }

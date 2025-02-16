@@ -12,7 +12,6 @@ spl_autoload_register(function ($class) {
 
     $fileName = "$class.php";
     $fileModel = PATH_MODEL . $fileName;
-    print_r($fileModel);die();
     $fileControllerClient = PATH_CONTROLLER_CLIENT . $fileName;
     $fileControllerAdmin = PATH_CONTROLLER_ADMIN . $fileName;
 
@@ -32,9 +31,6 @@ spl_autoload_register(function ($class) {
 require_once './configs/env.php';
 require_once './configs/helper.php';
 
-$product = new Item();
-debug($product);
-
 // điều hướng
 $mode = $_GET['mode'] ?? 'client';
 
@@ -45,3 +41,56 @@ if ($mode == 'admin') {
     // require đường dẫn client
     require_once './routes/client.php';
 }
+
+
+$product = new Product();
+
+/**
+ * danh sách bản ghi table products
+ */
+$data = $product->select();
+//$data = $product->select('id, name', 'id > :id AND price > :price', ['id' => 3, 'price' => 36000]);
+
+
+/**
+ * số bản ghi table products
+ */
+//$data = $product->count();
+//$data = $product->count('id > :id', ['id' => 5]);
+
+
+/**
+ * lấy danh sách phân trang
+ */
+//$data = $product->paginate($_GET['page'] ?? 1);
+
+/**
+ * lấy 1 bản ghi
+ */
+//$data = $product->find( '*','id >= :id', ['id' => 5]);
+
+/**
+ * thêm bản ghi mới
+ */
+//$data = $product->insert(['name' => 'Example','price' => 50000]);
+
+/**
+ * cập nhật bản ghi
+ */
+//$data = $product->update(
+//    [
+//        'name' => 'Example2',
+//        'price' => 99999
+//    ],
+//    'id = :id',
+//    ['id' => 2]
+//);
+
+
+/**
+ * xóa bản ghi
+ */
+//$data = $product->delete( 'id >= :id', ['id' => 5]);
+
+debug($data);
+

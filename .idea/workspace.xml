@@ -5,21 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bc2cf34-ff55-4329-8252-c2c6eadbbc44" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/models/Product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PHP_Laravel.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PHP_Laravel.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/delete.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/insert.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/insert.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/update.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/ExecuteBasicQueriesDB/update.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHP_OOP/ExerciseOOP/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/ExerciseOOP/Cart.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHP_OOP/ExerciseOOP/CartItem.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/ExerciseOOP/CartItem.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHP_OOP/ExerciseOOP/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/ExerciseOOP/Item.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHP_OOP/ExerciseOOP/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/ExerciseOOP/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/configs/env.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/configs/env.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/admin/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/admin/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/admin/TestController.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/admin/TestController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/client/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/client/HomeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/models/BaseModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/models/BaseModel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/views/admin/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/views/admin/dashboard.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/models/Product.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/models/Product.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +105,7 @@
       <workItem from="1739144299823" duration="166000" />
       <workItem from="1739585564924" duration="495000" />
       <workItem from="1739606006983" duration="24549000" />
-      <workItem from="1739701109649" duration="1540000" />
+      <workItem from="1739701109649" duration="8206000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -171,7 +163,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739679842114</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="update">
+      <option name="closed" value="true" />
+      <created>1739702716171</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1739702716171</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
