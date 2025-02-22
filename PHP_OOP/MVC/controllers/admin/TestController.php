@@ -1,6 +1,5 @@
 <?php
 
-namespace admin;
 class TestController
 {
     public function show()

@@ -46,7 +46,7 @@ class BaseModel
             $sql .= " WHERE $condition";
         }
 
-        echo $sql . PHP_EOL;
+//        echo $sql . PHP_EOL;
         $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute($paramsCondition);
@@ -72,7 +72,7 @@ class BaseModel
             $sql .= " WHERE $condition";
         }
 
-        echo $sql . PHP_EOL;
+//        echo $sql . PHP_EOL;
         $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute($paramsCondition);
@@ -108,7 +108,7 @@ class BaseModel
         // vì vậy ta phải sử dụng bindValue or truyền thẳng giá trị luôn cũng được.
         $sql .= " LIMIT $size OFFSET $offset";
 
-        echo $sql . PHP_EOL;
+//        echo $sql . PHP_EOL;
         $stmt = $this->pdo->prepare($sql);
 
         // Chỉ dùng cách này được khi KHÔNG CÓ param của limit và offset
@@ -128,7 +128,7 @@ class BaseModel
      *
      * Khi dùng: $obj->select('id >= :id', ['id' => 5])
      */
-    public function find(string $columns = '*', ?string $condition = null, array $paramsCondition = []): array
+    public function find(string $columns = '*', ?string $condition = null, array $paramsCondition = [])
     {
         $sql = "SELECT $columns FROM {$this->table}";
 
@@ -136,7 +136,7 @@ class BaseModel
             $sql .= " WHERE $condition";
         }
 
-        echo $sql . PHP_EOL;
+//        echo $sql . PHP_EOL;
         $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute($paramsCondition);
@@ -168,7 +168,7 @@ class BaseModel
         $placeholders = ':' . implode(', :', $keys);
 
         $sql = "INSERT INTO {$this->table} ({$columns}) VALUES ({$placeholders})";
-        echo $sql . PHP_EOL;
+//        echo $sql . PHP_EOL;
 
         $stmt = $this->pdo->prepare($sql);
 
@@ -242,7 +242,7 @@ class BaseModel
             $sql .= " WHERE $condition";
         }
 
-        echo $sql . PHP_EOL;
+//        echo $sql . PHP_EOL;
         $stmt = $this->pdo->prepare($sql);
 
         $stmt->execute($paramsCondition);

@@ -5,8 +5,5 @@
     <title>Home Client</title>
 </head>
 <body>
-<h1>
-    Trang chủ Admin
-</h1>
 </body>
 </html>

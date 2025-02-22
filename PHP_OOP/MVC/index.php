@@ -1,14 +1,13 @@
 <?php
 
+session_start();
+
 /**
  * Hàm spl_autoload_register() trong PHP được sử dụng để tự động tải các class hoặc interface
  * khi chúng chưa được định nghĩa, giúp tránh việc phải require hoặc include thủ công.
  */
-
-use ExerciseOOP\Item;
-
 spl_autoload_register(function ($class) {
-//    echo $class;die;
+//    echo $class . PHP_EOL;
 
     $fileName = "$class.php";
     $fileModel = PATH_MODEL . $fileName;
@@ -20,10 +19,13 @@ spl_autoload_register(function ($class) {
      * hoặc thư mục (directory) có thể đọc được hay không.
      */
     if (is_readable($fileModel)) {
+//        echo $fileModel;
         require_once $fileModel;
     } else if (is_readable($fileControllerClient)) {
+//        echo $fileControllerClient;
         require_once $fileControllerClient;
     } else if (is_readable($fileControllerAdmin)) {
+//        echo $fileControllerClient;
         require_once $fileControllerAdmin;
     }
 });
@@ -48,7 +50,7 @@ $product = new Product();
 /**
  * danh sách bản ghi table products
  */
-$data = $product->select();
+//$data = $product->select();
 //$data = $product->select('id, name', 'id > :id AND price > :price', ['id' => 3, 'price' => 36000]);
 
 
@@ -92,5 +94,5 @@ $data = $product->select();
  */
 //$data = $product->delete( 'id >= :id', ['id' => 5]);
 
-debug($data);
+//debug($data);
 
