@@ -9,9 +9,12 @@
 
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="<?= BASE_ASSETS_ADMIN . 'css/style.css' ?>" rel="stylesheet">
 
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
 <!-- menu -->
@@ -26,6 +29,18 @@
         <li class="nav-item">
             <a class="nav-link text-uppercase" href="<?= BASE_URL_ADMIN . '&action=books-index' ?>"><b>Quản lý Book</b></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link text-uppercase" href="<?= BASE_URL_ADMIN . '&action=change-password' ?>"><b>Test</b></a>
+        </li>
+        <?php if (!empty($_SESSION['user'])): ?>
+            <li class="nav-item">
+                <a class="nav-link text-uppercase text-danger"
+                   href="<?= BASE_URL_ADMIN . '&action=logout' ?>"
+                   onclick="return confirm('Bạn có chắc đăng xuất không?')"
+                >
+                    <b>Đăng xuất</b></a>
+            </li>
+        <?php endif; ?>
     </ul>
 </nav>
 
@@ -43,6 +58,8 @@
         ?>
     </div>
 </div>
+
+<script src="<?= BASE_ASSETS_ADMIN . 'js/main.js' ?>"></script>
 
 </body>
 </html>

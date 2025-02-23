@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Client</title>
+    <title>Dashboard</title>
 </head>
 <body>
+<h3>Nội dung Dashboard</h3>
 </body>
 </html>

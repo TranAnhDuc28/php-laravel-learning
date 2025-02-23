@@ -1,0 +1,25 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+
+}
+
+.show-password-toggle-icon {
+    position: absolute;
+    right: calc(.375em + .1875rem);
+    top: 49%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 22px;
+    opacity: 50%;
+    display: none;
+}
+
+.show-password-input.is-invalid ~ .show-password-toggle-icon{
+    right: 35px;
+}
+

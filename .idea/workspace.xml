@@ -5,17 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3bc2cf34-ff55-4329-8252-c2c6eadbbc44" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/admin/BookController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/models/Book.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/models/Category.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/views/admin/books/create.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/views/admin/books/edit.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/views/admin/books/index.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/views/admin/books/show.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/assets/admin/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/assets/admin/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/admin/AuthenticationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/views/admin/auth/change_password.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHP_OOP/MVC/views/admin/auth/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/admin/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/controllers/admin/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/routes/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/views/admin/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/views/admin/dashboard.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PHP_OOP/MVC/views/admin/main.php" beforeDir="false" afterPath="$PROJECT_DIR$/PHP_OOP/MVC/views/admin/main.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -58,6 +57,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "D:/TU_HOC/PHP_Laravel",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -120,7 +120,7 @@
       <workItem from="1739828647957" duration="232000" />
       <workItem from="1739828887927" duration="1613000" />
       <workItem from="1740000534734" duration="6147000" />
-      <workItem from="1740194705499" duration="21231000" />
+      <workItem from="1740194705499" duration="35342000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <option name="closed" value="true" />
@@ -202,7 +202,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740220043543</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="update">
+      <option name="closed" value="true" />
+      <created>1740317933433</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1740317933433</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
