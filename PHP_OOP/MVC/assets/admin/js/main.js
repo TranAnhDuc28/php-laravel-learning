@@ -3,12 +3,31 @@
 
     if (passwordInputs) {
         passwordInputs.forEach(passwordInput => {
-            // Tạo icon <i> và chèn vào
+            // nếu chưa có thẻ cha có class position-relative
+            if (!passwordInput.parentElement.classList.contains('position-relative')) {
+                // Tạo wrapper mới
+                const wrapper = document.createElement('div');
+                wrapper.classList.add('position-relative');
+
+                // Chèn wrapper vào trước input
+                /** Phương thức insertBefore() được sử dụng để chèn một phần tử (newNode) vào trước một phần tử con (referenceNode) trong DOM.
+                 * Cú pháp: [ parentNode.insertBefore(newNode, referenceNode); ]
+                 *      trong đó:
+                 *          + parentNode: Phần tử cha chứa referenceNode.
+                 *          + newNode: Phần tử mới cần chèn.
+                 *          + referenceNode: Phần tử con mà newNode sẽ được chèn vào trước nó.
+                 *              Nếu referenceNode là null, newNode sẽ được chèn vào cuối danh sách con.
+                 */
+                passwordInput.parentNode.insertBefore(wrapper, passwordInput);
+
+                // Đưa input vào trong wrapper
+                wrapper.appendChild(passwordInput);
+            }
+
+            // Tạo icon toggle password <i> và chèn vào
             const toggleIcon = document.createElement('i');
             toggleIcon.classList.add('bi', 'bi-eye', 'show-password-toggle-icon');
-            passwordInput.parentNode.appendChild(toggleIcon);
-
-            console.log(passwordInput.parentNode);
+            passwordInput.parentElement.appendChild(toggleIcon);
 
             // Sự kiện pointerdown để ẩn/hiện password
             toggleIcon.addEventListener('pointerdown', (e) => {

@@ -13,11 +13,7 @@ if (isset($_SESSION['success'])) {
     </div>
     <div class="mb-3 ">
         <label for="password" class="form-label">Password:</label>
-        <div class="position-relative">
-            <input type="password"
-                   class="form-control show-password-input <?= isset($_SESSION['success']) ? 'is-invalid' : '' ?>"
-                   id="password" name="password">
-        </div>
+        <input type="password" class="form-control show-password-input <?= isset($_SESSION['success']) ? 'is-invalid' : '' ?>" id="password" name="password">
     </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
