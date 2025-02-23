@@ -176,6 +176,10 @@ class UserController
 
             $user = $this->user->find('*', 'id = :id', ['id' => $id]);
 
+            if (empty($user)) {
+                throw new Exception("User có ID = $id không tồn tại.");
+            }
+
             $view = 'users/edit';
             $title = 'Cập nhật User có ID = ' . $id;
             require_once PATH_VIEW_ADMIN_MAIN;
@@ -245,14 +249,17 @@ class UserController
             // avatar
             if ($data['avatar']['size'] > 0) {
                 if ($data['avatar']['size'] > (2 * 1024 * 1024)) {
-                    $_SESSION['errors']['name'] = 'Trường avatar có dung lượng tối đa 2MB.';
+                    $_SESSION['errors']['avatar'] = 'Trường avatar có dung lượng tối đa 2MB.';
                 }
 
                 $fileType = $data['avatar']['type'];
                 $allowTypes = ['image/jpg', 'image/gif', 'image/jpeg', 'image/png'];
                 if (!in_array($fileType, $allowTypes)) {
-                    $_SESSION['errors']['name'] = 'Xin lỗi, chỉ chấp nhận các loại file JPG, JPEG, PNG, GIF.';
+                    $_SESSION['errors']['avatar'] = 'Xin lỗi, chỉ chấp nhận các loại file JPG, JPEG, PNG, GIF.';
                 }
+            } else {
+                // khi edit không chọn thì sẽ gán avatar từ 1
+                $data['avatar'] = $user['avatar'];
             }
 
             if (!empty($_SESSION['errors'])) {
@@ -260,7 +267,7 @@ class UserController
                 throw new Exception('Dữ liệu lỗi!');
             }
 
-            if ($data['avatar']['size'] > 0) {
+            if (is_array($data['avatar']) && $data['avatar']['size'] > 0) {
                 $data['avatar'] = upload_file('users', $data['avatar']);
             }
 
