@@ -1,17 +1,18 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::get('/', function () {
+    return view('welcome');
+})->middleware(EnsureTokenIsValid::class); // gán middleware xác thực mỗi lần client gửi request lên server
 
 Route::controller(Controller::class)
     ->name('posts.')
     ->prefix('posts')
     ->group(function () {
-        Route::get('/', 'index')->name('index');
+//        Route::get('/', 'index')->name('index');
         Route::get('show/{id}', 'show')->name('show');;
         Route::delete('/create', 'create')->name('create');;
         Route::post('/store', 'store')->name('store');;

@@ -19,6 +19,10 @@ class RouteServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap services.
+     *
+     *  - Định nghĩa giới hạn tốc độ (Rate Limiting) cho API.
+     *  - Cho phép tối đa 3 request/phút trên mỗi user hoặc địa chỉ IP.
+     *  - Nếu user đã đăng nhập, giới hạn theo `user_id`, nếu chưa thì theo `IP`.
      */
     public function boot(): void
     {
