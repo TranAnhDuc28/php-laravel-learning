@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-})->middleware(EnsureTokenIsValid::class); // gán middleware xác thực mỗi lần client gửi request lên server
+})
+//    ->middleware(EnsureTokenIsValid::class) // Assigning Middleware to Routes
+    ->middleware(\App\Http\Middleware\EnsureUserHasRole::class.':user,admin');
 
 Route::controller(Controller::class)
     ->name('posts.')
@@ -19,3 +21,14 @@ Route::controller(Controller::class)
         Route::put('edit/{id}', 'edit')->name('edit');;
         Route::put('update/{id}', 'update')->name('update');;
     });
+
+
+/*
+ * Excluding Middleware
+ * Note: The withoutMiddleware method can only remove route middleware and does not apply to global middleware.
+ */
+Route::withoutMiddleware([EnsureTokenIsValid::class])->group(function () {
+    Route::get('/abc', function () {
+        // ...
+    });
+});

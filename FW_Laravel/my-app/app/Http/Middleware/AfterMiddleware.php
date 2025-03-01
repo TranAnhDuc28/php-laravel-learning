@@ -11,10 +11,16 @@ class AfterMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * Middleware thực hiện một số tác vụ sau khi request đã được xử lý bởi ứng dụng.
+     * @param Request $request Request từ client.
+     * @param Closure(Request): (Response) $next Hàm callback để xử lý request.
      */
     public function handle(Request $request, Closure $next): Response
     {
+        $response = $next($request);
+
+        \Log::info('AfterMiddleware');
+
         return $next($request);
     }
 }
