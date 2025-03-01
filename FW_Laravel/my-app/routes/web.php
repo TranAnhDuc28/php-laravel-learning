@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\Test\PhotoController;
+use App\Http\Controllers\Test\ProvisionServer;
+use App\Http\Controllers\TestController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
@@ -36,8 +38,6 @@ Route::withoutMiddleware([EnsureTokenIsValid::class])->group(function () {
     });
 });
 
-use App\Http\Controllers\ProvisionServer;
-
 /*
  * Single Action Controllers
  */
@@ -49,3 +49,8 @@ Route::post('/server', ProvisionServer::class);
  */
 Route::resource('photos', PhotoController::class);
 
+/*
+ * Test
+ */
+//Route::resource('/test', TestController::class);
+Route::match(['get', 'post'], '/test', [TestController::class, 'index']);

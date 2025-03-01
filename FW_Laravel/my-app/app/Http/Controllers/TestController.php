@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Photo2;
-use App\Http\Requests\StorePhoto2Request;
-use App\Http\Requests\UpdatePhoto2Request;
+use Illuminate\Http\Request;
 
-class Photo3Controller extends Controller
+class TestController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request->method() == 'POST') {
+            dd($request->all());
+        }
+        return view('hello');
     }
 
     /**
@@ -27,7 +28,7 @@ class Photo3Controller extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePhoto2Request $request)
+    public function store(Request $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class Photo3Controller extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Photo2 $photo2)
+    public function show(string $id)
     {
         //
     }
@@ -43,7 +44,7 @@ class Photo3Controller extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Photo2 $photo2)
+    public function edit(string $id)
     {
         //
     }
@@ -51,7 +52,7 @@ class Photo3Controller extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePhoto2Request $request, Photo2 $photo2)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -59,7 +60,7 @@ class Photo3Controller extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Photo2 $photo2)
+    public function destroy(string $id)
     {
         //
     }
