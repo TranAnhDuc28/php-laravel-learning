@@ -1,14 +1,17 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PhotoController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+//    $token = csrf_token();
     return view('welcome');
 })
 //    ->middleware(EnsureTokenIsValid::class) // Assigning Middleware to Routes
     ->middleware(\App\Http\Middleware\EnsureUserHasRole::class.':user,admin');
+
 
 Route::controller(Controller::class)
     ->name('posts.')
@@ -32,3 +35,17 @@ Route::withoutMiddleware([EnsureTokenIsValid::class])->group(function () {
         // ...
     });
 });
+
+use App\Http\Controllers\ProvisionServer;
+
+/*
+ * Single Action Controllers
+ */
+Route::post('/server', ProvisionServer::class);
+
+
+/*
+ * Resource Controllers
+ */
+Route::resource('photos', PhotoController::class);
+

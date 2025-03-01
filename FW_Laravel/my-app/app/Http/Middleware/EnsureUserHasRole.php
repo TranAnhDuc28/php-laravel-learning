@@ -15,7 +15,6 @@ class EnsureUserHasRole
      */
     public function handle(Request $request, Closure $next, string ...$role): Response
     {
-        dd($role);
         return $next($request);
     }
 }
