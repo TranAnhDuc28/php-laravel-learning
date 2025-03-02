@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\Test\PhotoController;
 use App\Http\Controllers\Test\ProvisionServer;
 use App\Http\Controllers\TestController;
@@ -54,3 +55,9 @@ Route::resource('photos', PhotoController::class);
  */
 //Route::resource('/test', TestController::class);
 Route::match(['get', 'post'], '/test', [TestController::class, 'index']);
+
+
+/*
+ * Template
+ */
+Route::get('/template', [TemplateController::class, 'index'])->name('template.index');
