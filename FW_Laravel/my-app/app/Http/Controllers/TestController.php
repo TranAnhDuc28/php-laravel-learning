@@ -11,10 +11,11 @@ class TestController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->method() == 'POST') {
-            dd($request->all());
-        }
-        return view('hello');
+//        if ($request->method() == 'POST') {
+//            dd($request->all());
+//        }
+//        return view('hello');
+        return [1, 2, 3];
     }
 
     /**
