@@ -7,6 +7,7 @@ use App\Http\Controllers\Test\ProvisionServer;
 use App\Http\Controllers\TestController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
 //    $token = csrf_token();
@@ -61,3 +62,11 @@ Route::match(['get', 'post'], '/test', [TestController::class, 'index']);
  * Template
  */
 Route::get('/template', [TemplateController::class, 'index'])->name('template.index');
+
+
+/*
+ * PostController
+ */
+Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
+Route::post('/post', [PostController::class, 'store'])->name('post.store');

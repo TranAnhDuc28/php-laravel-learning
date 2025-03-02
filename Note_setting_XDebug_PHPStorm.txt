@@ -1,0 +1,8 @@
+[xDebug]
+zend_extension=<path_file_php_xdebug>*.dll
+xdebug.mode = debug
+xdebug.start_with_request = yes
+xdebug.client_host = 127.0.0.1
+xdebug.client_port = 9003
+xdebug.log = <path_file_write_log_php_xdebug>*.log
+xdebug.log_level = 3

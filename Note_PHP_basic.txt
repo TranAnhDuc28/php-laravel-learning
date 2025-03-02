@@ -40,3 +40,4 @@
 
 ======= Debug với câu lệnh trong PHP =======
 var-dump($varisable);die;
+dd($varisable);
