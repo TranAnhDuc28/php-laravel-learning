@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,6 +16,19 @@ use Illuminate\View\View;
 
 class PostController extends Controller
 {
+    /**
+     * Show all application users.
+     */
+    public function index(): View
+    {
+//        $posts = DB::table('users')->paginate();
+//        $posts = DB::table('users')->paginate(2, ['*'], 'pageUser');
+        $posts = DB::table('posts')->paginate(2)->withQueryString();
+
+        return view('post.index', compact('posts'));
+    }
+
+
     /**
      * Show the form to create a new blog post.
      */
@@ -41,7 +55,7 @@ class PostController extends Controller
                 $query->where('email', $keyword);
             });
 
-        $query->ddRawSql();
+        $query->get();
 
         Log::info('View Create Post');
         return view('post.create');
