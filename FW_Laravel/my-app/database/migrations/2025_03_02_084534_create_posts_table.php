@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Author;
+use App\Models\Category;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,9 +15,17 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Category::class)->constrained();
+            $table->foreignIdFor(Author::class)->constrained();
+
             $table->string('title')->unique();
-            $table->text('body')->nullable();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->text('excerpt')->nullable();
+            $table->string('img_thumbnail')->nullable();
+            $table->string('img_cover')->nullable();
+            $table->longText('content')->nullable();
+            $table->boolean('is_trending')->nullable()->default(false);
+            $table->unsignedInteger('view_count')->default(0);
+            $table->enum('status', ['draft', 'published'])->default('draft');
             $table->timestamps();
         });
     }
