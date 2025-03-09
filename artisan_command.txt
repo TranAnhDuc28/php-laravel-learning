@@ -37,3 +37,42 @@ php artisan migrate:fresh
 php artisan migrate:fresh --seed
 
 php artisan migrate:fresh --database=admin
+
+
+###Generating Model Classes
+# If you would like to generate a database migration when you generate the model, you may use the --migration or -m option:
+php artisan make:model Flight --migration
+
+- Generate various other types of classes when generating a model, such as factories, seeders, policies, controllers, and form requests.
+// Generate a model and a FlightFactory class...
+php artisan make:model Flight --factory
+php artisan make:model Flight -f
+
+// Generate a model and a FlightSeeder class...
+php artisan make:model Flight --seed
+php artisan make:model Flight -s
+
+// Generate a model and a FlightController class...
+php artisan make:model Flight --controller
+php artisan make:model Flight -c
+
+// Generate a model, FlightController resource class, and form request classes...
+php artisan make:model Flight --controller --resource --requests
+php artisan make:model Flight -crR
+
+// Generate a model and a FlightPolicy class...
+php artisan make:model Flight --policy
+
+// Generate a model and a migration, factory, seeder, and controller...
+php artisan make:model Flight -mfsc
+
+// Shortcut to generate a model, migration, factory, seeder, policy, controller, and form requests...
+php artisan make:model Flight --all
+php artisan make:model Flight -a
+
+// Generate a pivot model...
+php artisan make:model Member --pivot
+php artisan make:model Member -p
+
+// The model:show Artisan command, which provides a convenient overview of all the model's attributes and relations:
+php artisan model:show Flight
