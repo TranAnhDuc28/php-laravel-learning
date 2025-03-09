@@ -6,6 +6,7 @@ use App\Http\Controllers\Test\PhotoController;
 use App\Http\Controllers\Test\ProvisionServer;
 use App\Http\Controllers\TestController;
 use App\Http\Middleware\EnsureTokenIsValid;
+use App\Models\Flight;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -71,3 +72,14 @@ Route::get('/post/index', [PostController::class, 'index'])->name('post.index');
 Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
 Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
 Route::post('/post', [PostController::class, 'store'])->name('post.store');
+
+/*
+ * Flight
+ */
+Route::get('/flight', function () {
+   Flight::query()->create([
+       'name' => 'Flight 1',
+   ]);
+
+   return view('welcome');
+});
