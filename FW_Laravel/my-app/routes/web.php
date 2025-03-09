@@ -12,6 +12,11 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
 //    $token = csrf_token();
+
+    $post = \App\Models\Post::query()->find(5);
+
+    dd($post->comments);
+
     return view('welcome');
 })
 //    ->middleware(EnsureTokenIsValid::class) // Assigning Middleware to Routes

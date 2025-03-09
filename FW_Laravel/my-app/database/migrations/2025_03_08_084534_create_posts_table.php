@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Category::class)->constrained();
-            $table->foreignIdFor(Author::class)->constrained();
+            $table->foreignIdFor(Category::class)->nullable()->constrained();
+            $table->foreignIdFor(Author::class)->nullable()->constrained();
 
             $table->string('title')->unique();
             $table->text('excerpt')->nullable();

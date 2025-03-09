@@ -5,19 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Post extends Model
+class Comment extends Model
 {
-    protected $table = 'posts';
-
-    /**
-     * Làm việc với Eloquent
-     * @var string[]
-     */
     protected $fillable = [
-        'id',
-        'title',
-        'body',
-        'user_id',
+        'post_id',
+        'message'
     ];
 
     public function comments(): HasMany
