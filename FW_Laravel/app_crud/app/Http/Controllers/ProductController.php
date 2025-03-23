@@ -105,7 +105,6 @@ class ProductController extends Controller
     {
         try {
             DB::beginTransaction();
-            $product = new Product();
             $product->category_id = $request->category;
             $product->name = $request->name;
             $product->price = $request->price;
@@ -117,7 +116,7 @@ class ProductController extends Controller
 
             $product->save();
 
-            foreach ($request->galleries as $id => $image) {
+            foreach ($request->galleries ?? [] as $id => $image) {
                 $gallery = Gallery::query()->find($id);
                 $gallery->image_path = Storage::put('galleries', $image);
 

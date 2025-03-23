@@ -13,14 +13,14 @@ use App\Http\Controllers\PostController;
 Route::get('/', function () {
 //    $token = csrf_token();
 
-    $post = \App\Models\Post::query()->find(5);
+//    $post = \App\Models\Post::query()->find(5);
 
-    dd($post->comments);
+    event(new \App\Events\PodcastProcessed('hello'));
 
     return view('welcome');
-})
+});
 //    ->middleware(EnsureTokenIsValid::class) // Assigning Middleware to Routes
-    ->middleware(\App\Http\Middleware\EnsureUserHasRole::class.':user,admin');
+//    ->middleware(\App\Http\Middleware\EnsureUserHasRole::class.':user,admin');
 
 
 Route::controller(Controller::class)
@@ -82,9 +82,20 @@ Route::post('/post', [PostController::class, 'store'])->name('post.store');
  * Flight
  */
 Route::get('/flight', function () {
-   Flight::query()->create([
-       'name' => 'Flight 1',
-   ]);
+    Flight::query()->create([
+        'name' => 'Flight 1',
+    ]);
 
-   return view('welcome');
+    return view('welcome');
+});
+
+
+/**
+ * send mail with event queue
+ */
+Route::get('/send-mail', function () {
+
+    \App\Events\OrderSuccess::dispatch(array('name' => "ABC"));
+
+    return view('welcome');
 });
