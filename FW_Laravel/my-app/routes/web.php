@@ -15,7 +15,10 @@ Route::get('/', function () {
 
 //    $post = \App\Models\Post::query()->find(5);
 
-    event(new \App\Events\PodcastProcessed('hello'));
+//    event(new \App\Events\PodcastProcessed('hello'));
+
+    \App\Events\EventTest1::dispatch();
+    \App\Events\EventTest2::dispatch();
 
     return view('welcome');
 });
