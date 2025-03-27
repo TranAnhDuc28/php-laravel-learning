@@ -58,6 +58,6 @@ class User extends Authenticatable
 
     public function isMember(): bool
     {
-        return $this->type = self::TYPE_MEMBER;
+        return $this->type == self::TYPE_MEMBER;
     }
 }

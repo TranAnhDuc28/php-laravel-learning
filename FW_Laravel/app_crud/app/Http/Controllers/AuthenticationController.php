@@ -15,12 +15,44 @@ class AuthenticationController extends Controller
 {
     public function login()
     {
-
+        return view('auth.login');
     }
 
-    public function processLogin()
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function processLogin(Request $request): RedirectResponse
     {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
+        // Hàm attempt() dùng để xác thực thông tin đăng nhập của người dùng
+        // Nó sẽ kiểm tra email/password trong $credentials có khớp với bản ghi trong DB không
+        // Nếu đúng:
+        // - Tự động đăng nhập user đó vào hệ thống
+        // - Hàm sẽ trả về true
+        // - Đồng thời khởi tạo session cho user
+        // Nếu sai: trả về false
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            /* @var User $user */
+            $user = Auth::user();
+            if ($user->isAdmin()) {
+                return redirect()->route('admin.dashboard');
+            }
+
+            return redirect()->route('member.dashboard');
+        }
+
+        return back()
+            ->withErrors([
+                'email' => 'The provided credentials do not match our records.',
+            ])
+            ->onlyInput('email');
     }
 
     /**
