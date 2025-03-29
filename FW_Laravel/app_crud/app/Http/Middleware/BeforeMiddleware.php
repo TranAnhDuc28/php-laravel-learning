@@ -4,10 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsMember
+class BeforeMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,6 +16,9 @@ class IsMember
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return Auth::user()->isMember() ? $next($request) : abort(Response::HTTP_FORBIDDEN);
+        // Perform action
+        Log::debug('BeforeMiddleware', $request->toArray());
+
+        return $next($request);
     }
 }
