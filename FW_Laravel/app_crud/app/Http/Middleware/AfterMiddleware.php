@@ -19,7 +19,7 @@ class AfterMiddleware
         $response = $next($request);
 
         // Perform action
-        Log::debug('AfterMiddleware', $response->getContent());
+        Log::debug('AfterMiddleware', [$response]);
 
         return $response;
     }

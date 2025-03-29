@@ -17,7 +17,7 @@ class BeforeMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         // Perform action
-        Log::debug('BeforeMiddleware', $request->toArray());
+        Log::debug('BeforeMiddleware', [$request]);
 
         return $next($request);
     }
