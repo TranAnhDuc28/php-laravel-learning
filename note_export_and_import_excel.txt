@@ -1,0 +1,4 @@
+Documentation:
+- Laravel-excel: https://laravel-excel.com/
+- phpspreadsheet: https://phpspreadsheet.readthedocs.io/
+- phpoffice-phpspreadsheet-chart: https://phpoffice.github.io/PhpSpreadsheet/namespaces/phpoffice-phpspreadsheet-chart.html
