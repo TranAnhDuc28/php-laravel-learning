@@ -1,16 +1,7 @@
 <table>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
-    <tr></tr>
+    @for($i = 1; $i <= 12; $i++)
+        <tr></tr>
+    @endfor
 
     {{--  Header table  --}}
     <tr>

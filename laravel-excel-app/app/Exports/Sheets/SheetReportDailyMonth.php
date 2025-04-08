@@ -14,8 +14,10 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class SheetDemo implements WithTitle, withEvents, FromView, withStyles
+class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyles
 {
+
+
     private $month;
     private $year;
     private $data;
@@ -32,12 +34,12 @@ class SheetDemo implements WithTitle, withEvents, FromView, withStyles
      */
     public function title(): string
     {
-        return $this->month . '_' . $this->year;
+        return '2.' . $this->month . '_' . $this->year;
     }
 
     public function view(): View
     {
-        return view('report_daily_month.blade.php', ['data' => $this->data]);
+        return view('export.report_daily_month', ['data' => $this->data]);
     }
 
     /**
@@ -60,14 +62,15 @@ class SheetDemo implements WithTitle, withEvents, FromView, withStyles
         return [
             AfterSheet::class => function (AfterSheet $event) {
                 $sheet = $event->sheet->getDelegate();
+                $month = Carbon::parse($this->month)->format('m');
 
                 // Title report.
-                $sheet->setCellValue('A1', "稼働報告書({$this->year}年{$this->month}月分)");
+                $sheet->setCellValue('A1', "稼働報告書({$this->year}年{$month}月分)");
                 $sheet->getStyle('A1')->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                     ->setVertical(Alignment::VERTICAL_BOTTOM);
                 $sheet->getRowDimension(1)->setRowHeight(20);
-                $sheet->getStyle('A1')->getFont()->setSize(14);
+                $sheet->getStyle('A1')->getFont()->setName('ＭＳ Ｐゴシック')->setSize(14);
                 $sheet->mergeCells('A1:J1');
 
                 // Name company.
@@ -77,20 +80,34 @@ class SheetDemo implements WithTitle, withEvents, FromView, withStyles
                 //
                 $sheet->setCellValue('J4', Carbon::now()->format('Y年n月j日'));
                 $sheet->getStyle('J4')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_RIGHT);
+                $sheet->mergeCells('J4:H4');
 
                 // Description.
                 $sheet->setCellValue('B5', '下記のとおり実施しましたので報告致します。');
 
                 // "記"
-                $sheet->setCellValue('E7', '記');
-                $sheet->getStyle('E7')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER);
+                $sheet->setCellValue('A7', '記');
+                $sheet->mergeCells('B7:J7');
+                $sheet->getStyle('B7:J7')
+                    ->getAlignment()
+                    ->setHorizontal(Alignment::HORIZONTAL_CENTER)
+                    ->setVertical(Alignment::VERTICAL_BOTTOM);
 
                 // 1. 稼働期間
-                $sheet->setCellValue('B9', '１ 稼働期間');
+                $sheet->setCellValue('A9', '１');
+                $sheet->setCellValue('B9', '稼働期間');
                 $sheet->setCellValue('C9', '2024年10月1日～10月31日');
 
                 // 2. 作業報告書及びご請求金額.
-                $sheet->setCellValue('B11', '２ 作業報告書及びご請求金額');
+                $sheet->setCellValue('A12', '２');
+                $sheet->setCellValue('B12', '作業報告書及びご請求金額');
+
+                // (単位：円・時間).
+                $sheet->setCellValue('J12', '(単位：円・時間)');
+                $sheet->getStyle('J12')
+                    ->getAlignment()
+                    ->setHorizontal(Alignment::HORIZONTAL_RIGHT)
+                    ->setVertical(Alignment::VERTICAL_BOTTOM);
 
                 //
                 $countData = count($this->data);

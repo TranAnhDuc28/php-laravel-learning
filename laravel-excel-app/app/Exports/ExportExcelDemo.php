@@ -2,7 +2,8 @@
 
 namespace App\Exports;
 
-use App\Exports\Sheets\SheetDemo;
+use App\Exports\Sheets\SheetBilling;
+use App\Exports\Sheets\SheetReportDailyMonth;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
@@ -161,11 +162,16 @@ class ExportExcelDemo implements WithMultipleSheets
         ];
 
         $sheets = [];
-        $year = Carbon::now()->year;
+        $titleSheets = [];
+        $year = 2024;
 
-        for ($month = 1; $month <= 12; $month++) {
-            $sheets[] = new SheetDemo($year, Carbon::now()->month($month)->format('M'), $data);
+        for ($month = 9; $month <= 12; $month++) {
+            $month_M = Carbon::now()->month($month)->format('M');
+            $sheets[] = new SheetReportDailyMonth($year, $month_M, $data);
+            $titleSheets[] = '2.' . $month_M . '_' . $year;
         }
+
+        $sheets[] = new SheetBilling($titleSheets);
 
         return $sheets;
     }
