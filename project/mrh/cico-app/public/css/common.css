@@ -1,0 +1,224 @@
+/*body{*/
+/*    background-color: #fcffe0;*/
+/*}*/
+/*#336ea5*/
+
+
+body {
+    /*background: linear-gradient(to bottom, #fcffe0, #f4e8b5);*/
+    /*background: linear-gradient(to bottom, #fcffe038, #f4e8b5)*/
+    /*background: linear-gradient(to bottom, #ffe0e0, #f4e8b5);*/
+    background: linear-gradient(to bottom, #128dd6, #0080cb);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-skyblue-custom {
+    background: #71bbee !important;
+    background-color: #71bbee !important;
+}
+/*body {*/
+/*    background: linear-gradient(180deg, #fcffe0 0%, rgba(252, 255, 224, 0.8) 100%);*/
+/*}*/
+
+/*.card-body {*/
+/*    background: rgba(255, 255, 255, 0.2);  !* Màu nền trong suốt *!*/
+/*    backdrop-filter: blur(10px);           !* Tạo hiệu ứng mờ phía sau *!*/
+/*    -webkit-backdrop-filter: blur(10px);   !* Cho Safari *!*/
+/*    border-radius: 10px;                   !* Bo tròn góc *!*/
+/*    border: 1px solid rgba(255, 255, 255, 0.3);*/
+/*    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+/*    padding: 20px;*/
+/*}*/
+
+.card-body input {
+    background: rgba(255, 255, 255, 0.1);
+    /*border: 1px solid rgba(255, 255, 255, 0.2);*/
+    border-radius: 5px;
+    padding: 10px;
+    color: #333;
+    backdrop-filter: blur(5px);
+}
+
+.card-body input::placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/*.form-container input:focus {*/
+/*    outline: none;*/
+/*    border-color: rgba(255, 255, 255, 0.5);*/
+/*    background: rgba(255, 255, 255, 0.2);*/
+/*}*/
+
+/*.form-check-input:checked {*/
+/*    background-color: #ff9a9a;*/
+/*    border-color: #bf8d8d;*/
+/*}*/
+
+/*.form-check-input:checked {*/
+/*    background-color: #0040cb;*/
+/*    border-color: #002f8f;*/
+/*}*/
+
+/*.btn-primary {*/
+/*    --bs-btn-color: #fff;*/
+/*    --bs-btn-bg: #0040cb;*/
+/*    --bs-btn-border-color: #002f8f;*/
+/*    --bs-btn-hover-color: #fff;*/
+/*    --bs-btn-hover-bg: #002f8f;*/
+/*    --bs-btn-hover-border-color: #0040cb;*/
+/*    --bs-btn-focus-shadow-rgb: 49, 132, 253;*/
+/*    --bs-btn-active-color: #fff;*/
+/*    --bs-btn-active-bg: #0040cb;*/
+/*    --bs-btn-active-border-color: #0040cb;*/
+/*    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);*/
+/*    --bs-btn-disabled-color: #fff;*/
+/*    --bs-btn-disabled-bg: #525875;*/
+/*    --bs-btn-disabled-border-color: #222430;*/
+/*}*/
+
+/*.btn-primary {*/
+/*    --bs-btn-color: #fff;*/
+/*    --bs-btn-bg: #ff9a9a;*/
+/*    --bs-btn-border-color: #bf8d8d;*/
+/*    --bs-btn-hover-color: #fff;*/
+/*    --bs-btn-hover-bg: #bf8d8d;*/
+/*    --bs-btn-hover-border-color: #ff9a9a;*/
+/*    --bs-btn-focus-shadow-rgb: 49, 132, 253;*/
+/*    --bs-btn-active-color: #fff;*/
+/*    --bs-btn-active-bg: #ff9a9a;*/
+/*    --bs-btn-active-border-color: #ff9a9a;*/
+/*    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);*/
+/*    --bs-btn-disabled-color: #fff;*/
+/*    --bs-btn-disabled-bg: #eccece;*/
+/*    --bs-btn-disabled-border-color: #eccece;*/
+/*}*/
+
+#backToTop {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: none;
+}
+
+/*menubar style*/
+/* Overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    display: none;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px; /* Ẩn sidebar ban đầu */
+    width: 280px;
+    height: 100%;
+    /*background: white;*/
+    z-index: 1050;
+    transition: left 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom, #128dd6, #0080cb);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+/*.sidebar-header {*/
+/*    padding: 1rem;*/
+/*    border-bottom: 1px solid #dee2e6;*/
+/*}*/
+
+.sidebar-content {
+    padding: 1rem;
+}
+
+/*!* Button đóng *!*/
+/*.btn-close {*/
+/*    float: right;*/
+/*}*/
+
+/* Style cho các menu item */
+.sidebar .nav-link {
+    color: #333;
+    padding: 0.5rem 0;
+}
+
+.sidebar .nav-link:hover {
+    color: #0d6efd;
+}
+
+/* Style cho header của sidebar */
+.sidebar-header {
+    padding: 1rem;
+    /*border-bottom: 1px solid #002f8f;*/
+    display: flex;           /* Thêm display flex */
+    justify-content: flex-end; /* Đẩy nút close về bên phải */
+    align-items: center;     /* Căn giữa theo chiều dọc */
+    background: #0d6efd;
+}
+
+/* Style cho nút close */
+.btn-close {
+    padding: 0.5rem;        /* Thêm padding để dễ bấm hơn */
+    margin: 0;              /* Xóa margin mặc định */
+    float: none;            /* Bỏ float right */
+}
+
+/* Thêm hover effect cho nút close (tùy chọn) */
+.btn-close:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+}
+
+.btn-menu {
+    top: 50%;
+    background-color: #71bbee;
+    border: 2px solid #000;
+    border-radius: 0;
+    color: white;
+    padding: 0.5rem 1rem;
+    position: relative;        /* định vị tam giác */
+    display: inline-flex;      /* Để chữ và tam giác nằm cùng hàng */
+    align-items: center;       /* Căn giữa theo chiều dọc */
+}
+
+/* Tạo hình tam giác bên phải */
+.btn-menu::after {
+    content: '';
+    position: absolute;
+    right: -15.5px;             /* Điều chỉnh vị trí tam giác */
+    top: -1px;
+    width: 0;
+    height: 0;
+    border-top: 19px solid transparent;    /* Điều chỉnh kích thước tam giác */
+    border-bottom: 19px solid transparent;
+    border-left: 15px solid #71bbee;          /* Màu tam giác */
+}
+
+.short-input {
+    max-width: 35%;
+    width: 100%;
+}
+
+ul > li.nav-item > a {
+    /*display: block;*/
+    width: 100% !important;
+    /*padding: 0.5rem 1rem; !* tùy chỉnh khoảng cách theo ý muốn *!*/
+}
+
+ul > li.nav-item > form > a {
+    /*display: block;*/
+    width: 100% !important;
+    /*padding: 0.5rem 1rem; !* tùy chỉnh khoảng cách theo ý muốn *!*/
+}

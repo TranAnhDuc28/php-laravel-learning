@@ -1,0 +1,51 @@
+<x-app-layout>
+    <div class="container min-vh-100 mt-5 mb-5 pt-5 pb-5">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">Team Management</h6>
+                        <a href="{{ route('teams.create') }}" class="btn btn-primary">Create New Team</a>
+                    </div>
+
+                    <div class="card-body">
+                        <x-alert-status/>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Team ID</th>
+                                    <th>Team Name</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($forms as $form)
+                                    <tr>
+                                        <td>{{ ($forms->currentPage() - 1) * $forms->perPage() + $loop->iteration }}</td>
+                                        <td>{{ $form->id }}</td>
+                                        <td>{{ $form->team_name }}</td>
+                                        <td>
+                                            <a href="{{ route('teams.edit', $form) }}" class="btn btn-sm btn-info">Edit</a>
+                                            <form action="{{ route('teams.destroy', $form) }}" method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {{ $forms->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Menu Bar -->
+    @include('layouts.menubar')
+</x-app-layout>
