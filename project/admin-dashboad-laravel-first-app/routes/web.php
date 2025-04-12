@@ -1,7 +1,190 @@
 <?php
 
+use App\Http\Controllers\Apps\ApiKeyAppController;
+use App\Http\Controllers\Apps\CalendarAppController;
+use App\Http\Controllers\Apps\ChatAppController;
+use App\Http\Controllers\Apps\CrmAppController;
+use App\Http\Controllers\Apps\CryptoAppController;
+use App\Http\Controllers\Apps\EcommerceAppController;
+use App\Http\Controllers\Apps\EmailAppController;
+use App\Http\Controllers\Apps\FileManagerAppController;
+use App\Http\Controllers\Apps\InvoiceAppController;
+use App\Http\Controllers\Apps\JobAppController;
+use App\Http\Controllers\Apps\NftMarketPlaceAppController;
+use App\Http\Controllers\Apps\ProjectAppController;
+use App\Http\Controllers\Apps\SupportTicketAppController;
+use App\Http\Controllers\Apps\TaskAppController;
+use App\Http\Controllers\Apps\ToDoAppController;
+use App\Http\Controllers\Dashboards\AnalyticDashboardController;
+use App\Http\Controllers\Dashboards\CrmDashboardController;
+use App\Http\Controllers\Dashboards\CryptoDashboardController;
+use App\Http\Controllers\Dashboards\EcommerceDashboardController;
+use App\Http\Controllers\Dashboards\JobDashboardController;
+use App\Http\Controllers\Dashboards\NftDashboardController;
+use App\Http\Controllers\Dashboards\ProjectsDashboardController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+/* Dashboard. */
+Route::prefix('dashboard')->name('dashboard.')->group(function () {
+    Route::get('/analytics', [AnalyticDashboardController::class, 'showAnalyticDashboard'])->name('showAnalyticDashboard');
+    Route::get('/crm', [CrmDashboardController::class, 'showCrmDashboard'])->name('showCrmDashboard');
+    Route::get('/ecommerce', [EcommerceDashboardController::class, 'showEcommerceDashboard'])->name('showEcommerceDashboard');
+    Route::get('/crypto', [CryptoDashboardController::class, 'showCryptoDashboard'])->name('showCryptoDashboard');
+    Route::get('/projects', [ProjectsDashboardController::class, 'showProjectsDashboard'])->name('showProjectsDashboard');
+    Route::get('/nft', [NftDashboardController::class, 'showNftDashboard'])->name('showNftDashboard');
+    Route::get('/job', [JobDashboardController::class, 'showJobDashboard'])->name('showJobDashboard');
 });
+
+/* Apps. */
+Route::prefix('apps')->name('app.')->group(function () {
+    /* Calendar. */
+    Route::prefix('calendar')->name('calendar.')->group(function () {
+        Route::get('/', [CalendarAppController::class, 'showMainCalendar'])->name('main');
+        Route::get('/month-grid', [CalendarAppController::class, 'showCalendarMonthGrid'])->name('monthGrid');
+    });
+
+    /* Chat. */
+    Route::get('/chat', [ChatAppController::class, 'showChat'])->name('showChat');
+
+    /* Email. */
+    Route::get('/mailbox', [EmailAppController::class, 'showMailbox'])->name('email.showMailbox');
+    Route::prefix('email-templates')->name('email.')->group(function () {
+        Route::get('/basic', [EmailAppController::class, 'showEmailTemplateBasic'])->name('basic');
+        Route::get('/ecommerce', [EmailAppController::class, 'showEmailTemplateEcommerce'])->name('ecommerce');
+    });
+
+    /* Ecommerce. */
+    Route::prefix('ecommerce')->name('ecommerce.')->group(function () {
+        Route::get('/products', [EcommerceAppController::class, 'showProducts'])->name('products');
+        Route::get('/product-detail', [EcommerceAppController::class, 'showProductDetails'])->name('productDetails');
+        Route::get('/create-product', [EcommerceAppController::class, 'showCreateProduct'])->name('createProduct');
+        Route::get('/orders', [EcommerceAppController::class, 'showOrders'])->name('orders');
+        Route::get('/order-details', [EcommerceAppController::class, 'showOrderDetails'])->name('orderDetails');
+        Route::get('/customers', [EcommerceAppController::class, 'showCustomers'])->name('customers');
+        Route::get('/shopping-cart', [EcommerceAppController::class, 'showShoppingCart'])->name('shoppingCart');
+        Route::get('/checkout', [EcommerceAppController::class, 'showCheckout'])->name('checkout');
+        Route::get('/sellers', [EcommerceAppController::class, 'showSellers'])->name('sellers');
+        Route::get('/seller-details', [EcommerceAppController::class, 'showSellerDetails'])->name('sellerDetails');
+    });
+
+    /* Project. */
+    Route::prefix('project')->name('project.')->group(function () {
+        Route::get('/list', [ProjectAppController::class, 'showProjectList'])->name('list');
+        Route::get('/overview', [ProjectAppController::class, 'showProjectOverview'])->name('overview');
+        Route::get('/create', [ProjectAppController::class, 'showCreateProject'])->name('create');
+    });
+
+    /* Tasks. */
+    Route::prefix('task')->name('task.')->group(function () {
+        Route::get('/kanban-board', [TaskAppController::class, 'showKanbanBoard'])->name('kanbanBoard');
+        Route::get('/list', [TaskAppController::class, 'showTaskList'])->name('list');
+        Route::get('/details', [TaskAppController::class, 'showTaskDetails'])->name('details');
+    });
+
+    /* CRM. */
+    Route::prefix('crm')->name('crm.')->group(function () {
+        Route::get('/contacts', [CrmAppController::class, 'showCrmContacts'])->name('contacts');
+        Route::get('/companies', [CrmAppController::class, 'showCrmCompanies'])->name('companies');
+        Route::get('/deals', [CrmAppController::class, 'showCrmDeals'])->name('deals');
+        Route::get('/leads', [CrmAppController::class, 'showCrmLeads'])->name('leads');
+    });
+
+    /* Crypto. */
+    Route::prefix('crypto')->name('crypto.')->group(function () {
+        Route::get('/transactions', [CryptoAppController::class, 'showCryptoTransactions'])->name('transactions');
+        Route::get('/buy-sell', [CryptoAppController::class, 'showCryptoBuyAndSell'])->name('buySell');
+        Route::get('/orders', [CryptoAppController::class, 'showCryptoOrders'])->name('orders');
+        Route::get('/my-wallet', [CryptoAppController::class, 'showCryptoMyWallet'])->name('myWallet');
+        Route::get('/ico-list', [CryptoAppController::class, 'showCryptoIcoList'])->name('icoList');
+        Route::get('/kyc-application', [CryptoAppController::class, 'showKycApplication'])->name('kycApplication');
+    });
+
+    /* Invoice. */
+    Route::prefix('invoice')->name('invoice.')->group(function () {
+        Route::get('/list', [InvoiceAppController::class, 'showInvoiceList'])->name('list');
+        Route::get('/details', [InvoiceAppController::class, 'showInvoiceDetails'])->name('details');
+        Route::get('/create', [InvoiceAppController::class, 'showCreateInvoice'])->name('create');
+    });
+
+    /* Support Ticket. */
+    Route::prefix('support-ticket')->name('supportTicket.')->group(function () {
+        Route::get('/list', [SupportTicketAppController::class, 'showList'])->name('list');
+        Route::get('/details', [SupportTicketAppController::class, 'showTicketDetails'])->name('details');
+    });
+
+    /* NFT Marketplace. */
+    Route::prefix('nft')->name('nft.')->group(function () {
+        Route::get('/marketplace', [NftMarketPlaceAppController::class, 'showMarketPlace'])->name('marketplace');
+        Route::get('/explore', [NftMarketPlaceAppController::class, 'showExploreNow'])->name('explore');
+        Route::get('/auction', [NftMarketPlaceAppController::class, 'showLiveAuction'])->name('auction');
+        Route::get('/item-details', [NftMarketPlaceAppController::class, 'showItemDetails'])->name('itemDetails');
+        Route::get('/collections', [NftMarketPlaceAppController::class, 'showCollections'])->name('collections');
+        Route::get('/creators', [NftMarketPlaceAppController::class, 'showCreators'])->name('creators');
+        Route::get('/ranking', [NftMarketPlaceAppController::class, 'showRanking'])->name('ranking');
+        Route::get('/wallet', [NftMarketPlaceAppController::class, 'showWalletConnect'])->name('wallet');
+        Route::get('/create', [NftMarketPlaceAppController::class, 'showCreateNFT'])->name('create');
+    });
+
+    /* File Manager. */
+    Route::get('/file-manager', [FileManagerAppController::class, 'showFileManager'])->name('fileManager');
+
+    /* To Do. */
+    Route::get('/to-do', [ToDoAppController::class, 'showToDo'])->name('todo');
+
+    /* Jobs. */
+    Route::prefix('job')->name('job.')->group(function () {
+        Route::get('/statistics', [JobAppController::class, 'showStatistics'])->name('statistics');
+        Route::get('/list', [JobAppController::class, 'showJobList'])->name('list');
+        Route::get('/grid', [JobAppController::class, 'showJobGridList'])->name('grid');
+        Route::get('/details', [JobAppController::class, 'showJobOverview'])->name('overview');
+        Route::get('/candidate-list', [JobAppController::class, 'showCandidateListView'])->name('candidateList');
+        Route::get('/candidate-grid', [JobAppController::class, 'showCandidateGridView'])->name('candidateGrid');
+        Route::get('/application', [JobAppController::class, 'showApplication'])->name('application');
+        Route::get('/new-job', [JobAppController::class, 'showNewJob'])->name('newJob');
+        Route::get('/companies-list', [JobAppController::class, 'showCompaniesList'])->name('companies');
+        Route::get('/categories', [JobAppController::class, 'showJobCategories'])->name('categories');
+    });
+
+    /* API Key. */
+    Route::get('/api-key', [ApiKeyAppController::class, 'showApiKey'])->name('apiKey');
+});
+
+/* Layouts. */
+Route::prefix('layouts')->name('layout.')->group(function () {});
+
+
+/* Authentication. */
+Route::prefix('auth')->name('auth.')->group(function () {});
+
+/* Pages. */
+Route::prefix('pages')->name('page.')->group(function () {});
+
+/* Landing. */
+Route::prefix('landing')->name('landing.')->group(function () {});
+
+
+/* Base UI. */
+Route::prefix('base-ui')->name('baseUi.')->group(function () {});
+
+/* Advance UI. */
+Route::prefix('advance-ui')->name('advanceUi.')->group(function () {});
+
+/* Widgets. */
+
+
+/* Forms. */
+Route::prefix('forms')->name('form.')->group(function () {});
+
+/* Tables. */
+Route::prefix('tables')->name('table.')->group(function () {});
+
+/* Charts. */
+Route::prefix('charts')->name('chart.')->group(function () {});
+
+/* Icons. */
+Route::prefix('icons')->name('icon.')->group(function () {});
+
+/* Maps. */
+Route::prefix('maps')->name('map.')->group(function () {});
+
+/* Multi Level. */
