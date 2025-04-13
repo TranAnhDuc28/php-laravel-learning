@@ -15,11 +15,15 @@ use App\Http\Controllers\Apps\ProjectAppController;
 use App\Http\Controllers\Apps\SupportTicketAppController;
 use App\Http\Controllers\Apps\TaskAppController;
 use App\Http\Controllers\Apps\ToDoAppController;
+use App\Http\Controllers\Auth\ErrorsController;
 use App\Http\Controllers\Auth\LockScreenController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\PasswordCreateController;
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\SignInController;
 use App\Http\Controllers\Auth\SignUpController;
+use App\Http\Controllers\Auth\SuccessMsgController;
+use App\Http\Controllers\Auth\TwoStepVerificationController;
 use App\Http\Controllers\Dashboards\AnalyticDashboardController;
 use App\Http\Controllers\Dashboards\CrmDashboardController;
 use App\Http\Controllers\Dashboards\CryptoDashboardController;
@@ -27,6 +31,10 @@ use App\Http\Controllers\Dashboards\EcommerceDashboardController;
 use App\Http\Controllers\Dashboards\JobDashboardController;
 use App\Http\Controllers\Dashboards\NftDashboardController;
 use App\Http\Controllers\Dashboards\ProjectsDashboardController;
+use App\Http\Controllers\Landing\LandingPageController;
+use App\Http\Controllers\Pages\BlogController;
+use App\Http\Controllers\Pages\PageController;
+use App\Http\Controllers\Pages\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /* Dashboard. */
@@ -193,18 +201,67 @@ Route::prefix('auth')->name('auth.')->group(function () {
     });
 
     /* Log Out. */
-    Route::name('lockScreen.')->group(function () {
-        Route::get('/lock-screen-basic', [LockScreenController::class, 'showLockScreenBasic'])->name('basic');
-        Route::get('/lock-screen-cover', [LockScreenController::class, 'showLockScreenCover'])->name('cover');
+    Route::name('logout.')->group(function () {
+        Route::get('/logout-basic', [LogoutController::class, 'showLogoutBasic'])->name('basic');
+        Route::get('/logout-cover', [LogoutController::class, 'showLogoutCover'])->name('cover');
+    });
+
+    /* Success Message. */
+    Route::name('successMsg.')->group(function () {
+        Route::get('/success-msg-basic', [SuccessMsgController::class, 'showSuccessMessageBasic'])->name('basic');
+        Route::get('/success-msg-cover', [SuccessMsgController::class, 'showSuccessMessageCover'])->name('cover');
+    });
+
+    /* Two Step Verification. */
+    Route::name('twoStepVerification.')->group(function () {
+        Route::get('/two-step-verification-basic', [TwoStepVerificationController::class, 'showTwoStepVerificationBasic'])->name('basic');
+        Route::get('/two-step-verification-cover', [TwoStepVerificationController::class, 'showTwoStepVerificationCover'])->name('cover');
+    });
+
+    /* Errors. */
+    Route::name('errors.')->group(function () {
+        Route::get('/400-basic', [ErrorsController::class, 'showTwoStepVerificationBasic'])->name('400basic');
+        Route::get('/400-cover', [ErrorsController::class, 'showTwoStepVerificationCover'])->name('400cover');
+        Route::get('/400-alt', [ErrorsController::class, 'showTwoStepVerificationCover'])->name('400alt');
+        Route::get('/500', [ErrorsController::class, 'showTwoStepVerificationCover'])->name('500');
+        Route::get('/offline-page', [ErrorsController::class, 'showTwoStepVerificationCover'])->name('offlinePage');
     });
 });
 
 /* Pages. */
 Route::prefix('pages')->name('page.')->group(function () {
+    Route::get('/starter', [PageController::class, 'showStarterPage'])->name('starter');
+    Route::get('/team', [PageController::class, 'showTeamPage'])->name('team');
+    Route::get('/timeline', [PageController::class, 'showTimelinePage'])->name('timeline');
+    Route::get('/faqs', [PageController::class, 'showFrequentlyAskedQuestionsPage'])->name('faqs');
+    Route::get('/pricing', [PageController::class, 'showPricingPage'])->name('pricing');
+    Route::get('/gallery', [PageController::class, 'showGalleryPage'])->name('gallery');
+    Route::get('/maintenance', [PageController::class, 'showMaintenancePage'])->name('maintenance');
+    Route::get('/coming-soon', [PageController::class, 'showComingSoonPage'])->name('comingSoon');
+    Route::get('/sitemap', [PageController::class, 'showSitemapPage'])->name('sitemap');
+    Route::get('/search-results', [PageController::class, 'showSearchResultPage'])->name('searchResults');
+    Route::get('/privacy-policy', [PageController::class, 'showPrivacyPolicyPage'])->name('privacyPolicy');
+    Route::get('/term-conditions', [PageController::class, 'showTermAndConditionsPage'])->name('termConditions');
+
+    /* Profile. */
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/simple-page', [ProfileController::class, 'showProfileSimplePage'])->name('simplePage');
+        Route::get('/settings', [ProfileController::class, 'showProfileSettings'])->name('settings');
+    });
+
+    /* Blog. */
+    Route::prefix('blog')->name('blog.')->group(function () {
+        Route::get('/list', [BlogController::class, 'showBlogListView'])->name('list');
+        Route::get('/grid', [BlogController::class, 'showBlogGridView'])->name('grid');
+        Route::get('/overview', [BlogController::class, 'showBlogOverView'])->name('settings');
+    });
 });
 
 /* Landing. */
 Route::prefix('landing')->name('landing.')->group(function () {
+    Route::get('/', [LandingPageController::class, 'showLandingPage'])->name('landingPage');
+    Route::get('/nft', [LandingPageController::class, 'showNFTLandingPage'])->name('landingPageNFT');
+    Route::get('/job', [LandingPageController::class, 'showJobLandingPage'])->name('landingPageJob');
 });
 
 
