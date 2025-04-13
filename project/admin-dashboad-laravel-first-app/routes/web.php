@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdvanceUIController;
 use App\Http\Controllers\Apps\ApiKeyAppController;
 use App\Http\Controllers\Apps\CalendarAppController;
 use App\Http\Controllers\Apps\ChatAppController;
@@ -24,6 +25,10 @@ use App\Http\Controllers\Auth\SignInController;
 use App\Http\Controllers\Auth\SignUpController;
 use App\Http\Controllers\Auth\SuccessMsgController;
 use App\Http\Controllers\Auth\TwoStepVerificationController;
+use App\Http\Controllers\BaseUIController;
+use App\Http\Controllers\Charts\ApexChartUIController;
+use App\Http\Controllers\Charts\ChartJsUIController;
+use App\Http\Controllers\Charts\EChartUIController;
 use App\Http\Controllers\Dashboards\AnalyticDashboardController;
 use App\Http\Controllers\Dashboards\CrmDashboardController;
 use App\Http\Controllers\Dashboards\CryptoDashboardController;
@@ -31,10 +36,14 @@ use App\Http\Controllers\Dashboards\EcommerceDashboardController;
 use App\Http\Controllers\Dashboards\JobDashboardController;
 use App\Http\Controllers\Dashboards\NftDashboardController;
 use App\Http\Controllers\Dashboards\ProjectsDashboardController;
+use App\Http\Controllers\FormUIController;
+use App\Http\Controllers\IconController;
 use App\Http\Controllers\Landing\LandingPageController;
 use App\Http\Controllers\Pages\BlogController;
 use App\Http\Controllers\Pages\PageController;
 use App\Http\Controllers\Pages\ProfileController;
+use App\Http\Controllers\TableUIController;
+use App\Http\Controllers\WidgetController;
 use Illuminate\Support\Facades\Route;
 
 /* Dashboard. */
@@ -267,29 +276,113 @@ Route::prefix('landing')->name('landing.')->group(function () {
 
 /* Base UI. */
 Route::prefix('base-ui')->name('baseUi.')->group(function () {
+    Route::get('/alerts', [BaseUIController::class, 'showAlerts'])->name('alerts');
+    Route::get('/badges', [BaseUIController::class, 'showBadges'])->name('badges');
+    Route::get('/buttons', [BaseUIController::class, 'showButtons'])->name('buttons');
+    Route::get('/colors', [BaseUIController::class, 'showColors'])->name('colors');
+    Route::get('/cards', [BaseUIController::class, 'showCards'])->name('cards');
+    Route::get('/carousel', [BaseUIController::class, 'showCarousel'])->name('carousel');
+    Route::get('/alerts', [BaseUIController::class, 'showDropdowns'])->name('dropdowns');
+    Route::get('/alerts', [BaseUIController::class, 'showGrid'])->name('grid');
+    Route::get('/alerts', [BaseUIController::class, 'showImages'])->name('images');
+    Route::get('/alerts', [BaseUIController::class, 'showTabs'])->name('tabs');
+    Route::get('/alerts', [BaseUIController::class, 'showAccordions'])->name('accordions');
+    Route::get('/alerts', [BaseUIController::class, 'showModals'])->name('modals');
+    Route::get('/alerts', [BaseUIController::class, 'showOffcanvas'])->name('offcanvas');
+    Route::get('/alerts', [BaseUIController::class, 'showPlaceholders'])->name('placeholders');
+    Route::get('/alerts', [BaseUIController::class, 'showProgress'])->name('progress');
+    Route::get('/alerts', [BaseUIController::class, 'showNotifications'])->name('notifications');
+    Route::get('/alerts', [BaseUIController::class, 'showMediaObject'])->name('mediaObject');
+    Route::get('/alerts', [BaseUIController::class, 'showEmbedVideo'])->name('embedVideo');
+    Route::get('/alerts', [BaseUIController::class, 'showTypography'])->name('typography');
+    Route::get('/alerts', [BaseUIController::class, 'showLists'])->name('lists');
+    Route::get('/alerts', [BaseUIController::class, 'showLinks'])->name('links');
+    Route::get('/alerts', [BaseUIController::class, 'showGeneral'])->name('general');
+    Route::get('/alerts', [BaseUIController::class, 'showRibbons'])->name('ribbons');
+    Route::get('/alerts', [BaseUIController::class, 'showUtilities'])->name('utilities');
 });
 
 /* Advance UI. */
 Route::prefix('advance-ui')->name('advanceUi.')->group(function () {
+    Route::get('/sweet-alerts', [AdvanceUIController::class, 'showSweetAlerts'])->name('sweetAlerts');
+    Route::get('/nestable-list', [AdvanceUIController::class, 'showNestableList'])->name('nestableList');
+    Route::get('/scrollbar', [AdvanceUIController::class, 'showScrollbar'])->name('scrollbar');
+    Route::get('/animation', [AdvanceUIController::class, 'showAnimation'])->name('animation');
+    Route::get('/tour', [AdvanceUIController::class, 'showTour'])->name('tour');
+    Route::get('/swiper-slider', [AdvanceUIController::class, 'showSwiperSlider'])->name('swiperSlider');
+    Route::get('/ratings', [AdvanceUIController::class, 'showRatings'])->name('ratings');
+    Route::get('/highlight', [AdvanceUIController::class, 'showHighlight'])->name('highlight');
+    Route::get('/scrollspy', [AdvanceUIController::class, 'showScrollSpy'])->name('scrollspy');
 });
 
 /* Widgets. */
-
+Route::get('/widgets', [WidgetController::class, 'showWidgets'])->name('widgets');
 
 /* Forms. */
 Route::prefix('forms')->name('form.')->group(function () {
+    Route::get('/elements-basic', [FormUIController::class, 'showBasicElements'])->name('basic');
+    Route::get('/select', [FormUIController::class, 'showFormSelect'])->name('formSelect');
+    Route::get('/checkboxs-radios', [FormUIController::class, 'showCheckboxsAndRadios'])->name('checkboxsAndRadios');
+    Route::get('/pickers', [FormUIController::class, 'showPickers'])->name('pickers');
+    Route::get('/masks', [FormUIController::class, 'showInputMasks'])->name('masks');
+    Route::get('/advance', [FormUIController::class, 'showFormAdvance'])->name('advance');
+    Route::get('/range-slider', [FormUIController::class, 'showRangeSlider'])->name('rangeSlider');
+    Route::get('/validation', [FormUIController::class, 'showFromValidation'])->name('validation');
+    Route::get('/wizard', [FormUIController::class, 'showWizards'])->name('wizard');
+    Route::get('/editors', [FormUIController::class, 'showEditors'])->name('editors');
+    Route::get('/file-uploads', [FormUIController::class, 'showFileUpload'])->name('fileUpload');
+    Route::get('/layouts', [FormUIController::class, 'showFormLayouts'])->name('layouts');
+    Route::get('/select2', [FormUIController::class, 'showSelect2'])->name('select2');
 });
 
 /* Tables. */
 Route::prefix('tables')->name('table.')->group(function () {
+    Route::get('/basic', [TableUIController::class, 'showTableBasic'])->name('basic');
+    Route::get('/gridjs', [TableUIController::class, 'showTableGridJs'])->name('gridjs');
+    Route::get('/listjs', [TableUIController::class, 'showTableListJs'])->name('listjs');
+    Route::get('/datatables', [TableUIController::class, 'showDataTables'])->name('datatables');
 });
 
 /* Charts. */
 Route::prefix('charts')->name('chart.')->group(function () {
+    /* Chart JS. */
+    Route::get('/chartjs', [ChartJsUIController::class, 'showTableBasic'])->name('chartjs');
+
+    /* ECharts. */
+    Route::get('/echarts', [EChartUIController::class, 'showTableBasic'])->name('echarts');
+
+    /* Apexcharts. */
+    Route::name('apex.')->group(function () {
+        Route::get('/apex-line', [ApexChartUIController::class, 'showTableBasic'])->name('line');
+        Route::get('/apex-area', [ApexChartUIController::class, 'showAreaChart'])->name('area');
+        Route::get('/apex-column', [ApexChartUIController::class, 'showColumnChart'])->name('column');
+        Route::get('/apex-bar', [ApexChartUIController::class, 'showBarChart'])->name('bar');
+        Route::get('/apex-mixed', [ApexChartUIController::class, 'showMixedChart'])->name('mixed');
+        Route::get('/apex-timeline', [ApexChartUIController::class, 'showTimelineChart'])->name('timeline');
+        Route::get('/apex-range-area', [ApexChartUIController::class, 'showRangeAreaChart'])->name('rangeArea');
+        Route::get('/apex-funnel', [ApexChartUIController::class, 'showFunnelChart'])->name('funnel');
+        Route::get('/apex-candlestick', [ApexChartUIController::class, 'showCandlestickChart'])->name('candlestick');
+        Route::get('/apex-boxplot', [ApexChartUIController::class, 'showBoxplotChart'])->name('boxplot');
+        Route::get('/apex-bubble', [ApexChartUIController::class, 'showBubbleChart'])->name('bubble');
+        Route::get('/apex-scatter', [ApexChartUIController::class, 'showScatterChart'])->name('scatter');
+        Route::get('/apex-heatmap', [ApexChartUIController::class, 'showHeatmapChart'])->name('heatmap');
+        Route::get('/apex-treemap', [ApexChartUIController::class, 'showTreemapChart'])->name('treemap');
+        Route::get('/apex-pie', [ApexChartUIController::class, 'showPieChart'])->name('pie');
+        Route::get('/apex-radialbar', [ApexChartUIController::class, 'showRadialbarChart'])->name('radialbar');
+        Route::get('/apex-radar', [ApexChartUIController::class, 'showRadarChart'])->name('radar');
+        Route::get('/apex-polar-area', [ApexChartUIController::class, 'showPolarAreaChart'])->name('polarArea');
+        Route::get('/apex-slope', [ApexChartUIController::class, 'showSlopeChart'])->name('slope');
+    });
 });
 
 /* Icons. */
 Route::prefix('icons')->name('icon.')->group(function () {
+    Route::get('/remix', [IconController::class, 'showRemixIcons'])->name('remix');
+    Route::get('/boxicons', [IconController::class, 'showBoxicons'])->name('boxicons');
+    Route::get('/material-design', [IconController::class, 'showMaterialIcons'])->name('material');
+    Route::get('/line-awesome', [IconController::class, 'showLineAwesomeIcons'])->name('lineAwesome');
+    Route::get('/feather', [IconController::class, 'showFeatherIcons'])->name('feather');
+    Route::get('/crypto', [IconController::class, 'showCryptoIcons'])->name('crypto');
 });
 
 /* Maps. */

@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Charts;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 
-class WidgetController extends Controller
+class ChartJsUIController extends Controller
 {
     /**
      * @return Factory|View|Application|object
      */
-    public function showWidgets()
+    public function showChartsJS()
     {
-        return view('widgets');
+        return view('charts.chartjs');
     }
 }
