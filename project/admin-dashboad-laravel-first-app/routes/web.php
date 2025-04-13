@@ -15,6 +15,11 @@ use App\Http\Controllers\Apps\ProjectAppController;
 use App\Http\Controllers\Apps\SupportTicketAppController;
 use App\Http\Controllers\Apps\TaskAppController;
 use App\Http\Controllers\Apps\ToDoAppController;
+use App\Http\Controllers\Auth\LockScreenController;
+use App\Http\Controllers\Auth\PasswordCreateController;
+use App\Http\Controllers\Auth\PasswordResetController;
+use App\Http\Controllers\Auth\SignInController;
+use App\Http\Controllers\Auth\SignUpController;
 use App\Http\Controllers\Dashboards\AnalyticDashboardController;
 use App\Http\Controllers\Dashboards\CrmDashboardController;
 use App\Http\Controllers\Dashboards\CryptoDashboardController;
@@ -25,6 +30,7 @@ use App\Http\Controllers\Dashboards\ProjectsDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /* Dashboard. */
+Route::get('/', [EcommerceDashboardController::class, 'showEcommerceDashboard'])->name('default');
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/analytics', [AnalyticDashboardController::class, 'showAnalyticDashboard'])->name('showAnalyticDashboard');
     Route::get('/crm', [CrmDashboardController::class, 'showCrmDashboard'])->name('showCrmDashboard');
@@ -150,41 +156,87 @@ Route::prefix('apps')->name('app.')->group(function () {
 });
 
 /* Layouts. */
-Route::prefix('layouts')->name('layout.')->group(function () {});
+Route::prefix('layouts')->name('layout.')->group(function () {
+});
 
 
 /* Authentication. */
-Route::prefix('auth')->name('auth.')->group(function () {});
+Route::prefix('auth')->name('auth.')->group(function () {
+    /* Sign In. */
+    Route::name('signIn.')->group(function () {
+        Route::get('/sign-in-basic', [SignInController::class, 'showSignInBasic'])->name('basic');
+        Route::get('/sign-in-cover', [SignInController::class, 'showSignInCover'])->name('cover');
+    });
+
+    /* Sign Up. */
+    Route::name('signUp.')->group(function () {
+        Route::get('/sign-up-basic', [SignUpController::class, 'showSignUpBasic'])->name('basic');
+        Route::get('/sign-up-cover', [SignUpController::class, 'showSignUpCover'])->name('cover');
+    });
+
+    /* Password Reset. */
+    Route::name('pwdReset.')->group(function () {
+        Route::get('/pwd-reset-basic', [PasswordResetController::class, 'showPasswordResetBasic'])->name('basic');
+        Route::get('/pwd-reset-cover', [PasswordResetController::class, 'showPasswordResetCover'])->name('cover');
+    });
+
+    /* Password Create. */
+    Route::name('pwdCreate.')->group(function () {
+        Route::get('/pwd-create-basic', [PasswordCreateController::class, 'showPasswordCreateBasic'])->name('basic');
+        Route::get('/pwd-create-cover', [PasswordCreateController::class, 'showPasswordCreateCover'])->name('cover');
+    });
+
+    /* Look Screen. */
+    Route::name('lockScreen.')->group(function () {
+        Route::get('/lock-screen-basic', [LockScreenController::class, 'showLockScreenBasic'])->name('basic');
+        Route::get('/lock-screen-cover', [LockScreenController::class, 'showLockScreenCover'])->name('cover');
+    });
+
+    /* Log Out. */
+    Route::name('lockScreen.')->group(function () {
+        Route::get('/lock-screen-basic', [LockScreenController::class, 'showLockScreenBasic'])->name('basic');
+        Route::get('/lock-screen-cover', [LockScreenController::class, 'showLockScreenCover'])->name('cover');
+    });
+});
 
 /* Pages. */
-Route::prefix('pages')->name('page.')->group(function () {});
+Route::prefix('pages')->name('page.')->group(function () {
+});
 
 /* Landing. */
-Route::prefix('landing')->name('landing.')->group(function () {});
+Route::prefix('landing')->name('landing.')->group(function () {
+});
 
 
 /* Base UI. */
-Route::prefix('base-ui')->name('baseUi.')->group(function () {});
+Route::prefix('base-ui')->name('baseUi.')->group(function () {
+});
 
 /* Advance UI. */
-Route::prefix('advance-ui')->name('advanceUi.')->group(function () {});
+Route::prefix('advance-ui')->name('advanceUi.')->group(function () {
+});
 
 /* Widgets. */
 
 
 /* Forms. */
-Route::prefix('forms')->name('form.')->group(function () {});
+Route::prefix('forms')->name('form.')->group(function () {
+});
 
 /* Tables. */
-Route::prefix('tables')->name('table.')->group(function () {});
+Route::prefix('tables')->name('table.')->group(function () {
+});
 
 /* Charts. */
-Route::prefix('charts')->name('chart.')->group(function () {});
+Route::prefix('charts')->name('chart.')->group(function () {
+});
 
 /* Icons. */
-Route::prefix('icons')->name('icon.')->group(function () {});
+Route::prefix('icons')->name('icon.')->group(function () {
+});
 
 /* Maps. */
-Route::prefix('maps')->name('map.')->group(function () {});
+Route::prefix('maps')->name('map.')->group(function () {
+});
 
 /* Multi Level. */
