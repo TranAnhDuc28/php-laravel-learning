@@ -1,7 +1,9 @@
 'use strict';
 
 import { upcomingEvents } from './upcoming-events.js';
-import { showNewEventForm } from './event-modal.js';
+import {modalInstance, showNewEventForm} from './event-modal.js';
+import {elements} from "./dom-elements.js";
+import {convertTo12HourFormat, formatDateForPicker, formatDateToReadableString, getTimeFromDate} from "./date-time-utils.js";
 
 /**
  * Determines the FullCalendar view mode based on the current screen width.
@@ -27,7 +29,7 @@ const getCalendarViewByScreenWidth = () => {
 export const initializeCalendar = (calendarElement, externalEventElement) => {
     // Create a Draggable object for external events
     new FullCalendar.Draggable(externalEventElement, {
-        itemSelector: 'external-events',
+        itemSelector: `.external-event`,
         eventData: (eventEl) => ({
             id: Math.floor(10000 * Math.random()),
             title: eventEl.innerText,
@@ -73,7 +75,7 @@ export const initializeCalendar = (calendarElement, externalEventElement) => {
         },
         eventClick: (info) => {
             info.jsEvent.preventDefault();
-            showNewEventForm(info.event, 'overview');
+            showNewEventForm(info, 'edit');
         },
         dateClick: (info) => {
             showNewEventForm(info, 'create');

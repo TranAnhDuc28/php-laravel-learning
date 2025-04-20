@@ -83,7 +83,7 @@ export const setupEventForm = () => {
         upcomingEvents(window.eventList);
     });
 
-    // Handle delete event
+    // Handle delete event.
     elements.btnDeleteEvent.addEventListener('click', () => {
         if (selectedEvent) {
             window.eventList = window.eventList.filter(event => event.id !== selectedEvent.id);
@@ -94,9 +94,9 @@ export const setupEventForm = () => {
         }
     });
 
-    // Handle save event button
+    // Handle save event.
     elements.btnSaveEvent.addEventListener('click', () => {
-        elements.selectedEvent = null;
+        selectedEvent = null;
         elements.formEvent.reset();
         elements.formEvent.classList.remove('was-validated');
     });

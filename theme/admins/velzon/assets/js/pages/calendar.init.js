@@ -433,7 +433,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }),
       document.getElementById("calendar"));
 
-  function o(e) {
+  function  o(e) {
     document.getElementById("form-event").reset(),
       document.getElementById("btn-delete-event").setAttribute("hidden", !0),
       g.show(),
@@ -703,24 +703,20 @@ document.addEventListener("DOMContentLoaded", function () {
           g.hide(),
           upcomingEvent(y));
     }),
-    document
-      .getElementById("btn-delete-event")
-      .addEventListener("click", function (e) {
+    
+    document.getElementById("btn-delete-event").addEventListener("click", function (e) {
         if (v) {
           for (var t = 0; t < y.length; t++)
             y[t].id == v.id && (y.splice(t, 1), t--);
           upcomingEvent(y), v.remove(), (v = null), g.hide();
         }
       }),
-    document
-      .getElementById("btn-new-event")
-      .addEventListener("click", function (e) {
+
+    document.getElementById("btn-new-event").addEventListener("click", function (e) {
         flatpicekrValueClear(),
           flatPickrInit(),
           o(),
-          document
-            .getElementById("edit-event-btn")
-            .setAttribute("data-id", "new-event"),
+          document.getElementById("edit-event-btn").setAttribute("data-id", "new-event"),
           document.getElementById("edit-event-btn").click(),
           document.getElementById("edit-event-btn").setAttribute("hidden", !0);
       });

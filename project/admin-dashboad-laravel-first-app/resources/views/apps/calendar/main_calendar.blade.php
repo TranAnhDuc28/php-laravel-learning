@@ -46,10 +46,14 @@
                                         <div class="external-event fc-event bg-danger-subtle text-danger" data-class="bg-danger-subtle">
                                             <i class="mdi mdi-checkbox-blank-circle me-2"></i>Create New theme
                                         </div>
+                                        <div class="external-event fc-event bg-primary-subtle text-primary" data-class="bg-primary-subtle">
+                                            <i class="mdi mdi-checkbox-blank-circle me-2"></i>Create New normal
+                                        </div>
                                     </div>
 
                                 </div>
                             </div>
+
                             <div>
                                 <h5 class="mb-1">Upcoming Events</h5>
                                 <p class="text-muted">Don't miss scheduled events</p>
@@ -139,7 +143,7 @@
                                                 <div class="mb-3">
                                                     <label class="form-label">Type</label>
                                                     <select class="form-select d-none" name="category" id="event-category" required>
-                                                        <option value="bg-danger-subtle">Danger</option>
+                                                        <option value="bg-danger-subtle" class="bg-danger-subtle">Danger</option>
                                                         <option value="bg-success-subtle">Success</option>
                                                         <option value="bg-primary-subtle">Primary</option>
                                                         <option value="bg-info-subtle">Info</option>

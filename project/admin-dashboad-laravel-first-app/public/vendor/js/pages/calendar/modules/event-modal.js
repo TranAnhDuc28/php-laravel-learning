@@ -198,3 +198,20 @@ export const showModalEventType = (el) => {
         overViewEventClicked();
     }
 };
+//
+// /**
+//  *
+//  * @param event
+//  */
+// const showNewEventForm = (event) => {
+//     elements.formEvent.reset();
+//     elements.btnDeleteEvent.setAttribute('hidden', 'true');
+//     modalInstance.show();
+//     elements.formEvent.classList.remove('was-validated');
+//     selectedEvent = null;
+//     elements.modalTitle.innerText = 'Add Event';
+//     newEventData = event;
+//     elements.btnEditEvent.setAttribute('data-id', 'new-event');
+//     elements.btnEditEvent.click();
+//     elements.btnEditEvent.setAttribute('hidden', 'true');
+// }

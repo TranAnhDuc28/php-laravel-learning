@@ -8,6 +8,7 @@ use App\Models\Event;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\JsonResponse;
 
 class CalendarAppController extends Controller
 {

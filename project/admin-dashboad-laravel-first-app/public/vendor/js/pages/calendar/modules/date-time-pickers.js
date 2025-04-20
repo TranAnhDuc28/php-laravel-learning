@@ -1,6 +1,5 @@
 'use strict';
 import {elements} from './dom-elements.js';
-import el from "../../../../../assets/libs/moment/src/locale/el.js";
 
 /**
  * Initialize flatpickr for date and time pickers.

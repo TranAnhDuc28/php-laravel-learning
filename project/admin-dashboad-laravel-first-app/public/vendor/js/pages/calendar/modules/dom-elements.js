@@ -1,3 +1,4 @@
+'use strict';
 export const elements = {
     calendarElement: document.getElementById('calendar'),
     externalEventElement: document.getElementById('external-events'),
@@ -15,7 +16,8 @@ export const elements = {
     inpEventDescription: document.getElementById('event-description'),
     btnSaveEvent: document.getElementById('btn-save-event'),
     btnDeleteEvent: document.getElementById('btn-delete-event'),
-    btnEditEvent: document.getElementById('btn-edit-event'),
+    btnEditEvent: document.getElementById('edit-event-btn'),
+    btnShowModalNewEvent: document.getElementById('btn-new-event'),
     tagInfoEventStartDate: document.getElementById('event-start-date-tag'),
     tagInfoTimeStartEvent: document.getElementById('event-timepicker1-tag'),
     tagInfoTimeEndEvent: document.getElementById('event-timepicker2-tag'),
