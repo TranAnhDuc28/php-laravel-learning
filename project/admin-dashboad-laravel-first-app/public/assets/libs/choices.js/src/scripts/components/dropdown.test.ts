@@ -3,7 +3,7 @@ import sinon from 'sinon';
 import { DEFAULT_CLASSNAMES } from '../defaults';
 import Dropdown from './dropdown';
 
-describe('components/dropdown', () => {
+describe('menu_item_components/dropdown', () => {
   let instance;
   let choicesElement;
 

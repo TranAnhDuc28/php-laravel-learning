@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import List from './list';
 
-describe('components/list', () => {
+describe('menu_item_components/list', () => {
   let instance;
   let choicesElement;
 

@@ -4,7 +4,7 @@ import { DEFAULT_CLASSNAMES } from '../defaults';
 import WrappedElement from './wrapped-element';
 import WrappedInput from './wrapped-input';
 
-describe('components/wrappedInput', () => {
+describe('menu_item_components/wrappedInput', () => {
   let instance;
   let element;
   const delimiter = '-';

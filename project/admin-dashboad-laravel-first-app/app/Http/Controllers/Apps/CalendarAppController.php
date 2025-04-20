@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Apps;
 
+use App\Dto\EventDto;
 use App\Http\Controllers\Controller;
+use App\Models\Event;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -13,7 +15,17 @@ class CalendarAppController extends Controller
      * @return Factory|View|Application|object
      */
     public function showMainCalendar() {
-        return view('apps.calendar.main_calendar');
+        $rawEvents = Event::all()->toArray();
+        $formattedEvents = [];
+        foreach ($rawEvents as $rawEvent) {
+            $formattedEvents[] = EventDto::fromArray($rawEvent);
+        }
+
+        $data = [
+            'eventList' => $formattedEvents
+        ];
+
+        return view('apps.calendar.main_calendar', $data);
     }
 
     /**

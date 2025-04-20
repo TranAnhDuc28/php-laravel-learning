@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { DEFAULT_CLASSNAMES } from '../defaults';
 import WrappedElement from './wrapped-element';
 
-describe('components/wrappedElement', () => {
+describe('menu_item_components/wrappedElement', () => {
   let instance;
   let element;
 

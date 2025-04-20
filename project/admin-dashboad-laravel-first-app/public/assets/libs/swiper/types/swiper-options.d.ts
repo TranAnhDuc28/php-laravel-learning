@@ -714,7 +714,7 @@ export interface SwiperOptions {
    *
    * @default 'window'
    *
-   * @note Currently in beta and not supported by Swiper React and Vue components
+   * @note Currently in beta and not supported by Swiper React and Vue menu_item_components
    */
   breakpointsBase?: string;
 
@@ -753,7 +753,7 @@ export interface SwiperOptions {
    *
    * @note By changing classes you will also need to change Swiper's CSS to reflect changed classes
    *
-   * @note Not supported in Swiper React/Vue components
+   * @note Not supported in Swiper React/Vue menu_item_components
    */
   slideClass?: string;
 
@@ -764,7 +764,7 @@ export interface SwiperOptions {
    *
    * @note By changing classes you will also need to change Swiper's CSS to reflect changed classes
    *
-   * @note Not supported in Swiper React/Vue components
+   * @note Not supported in Swiper React/Vue menu_item_components
    */
   slideActiveClass?: string;
 

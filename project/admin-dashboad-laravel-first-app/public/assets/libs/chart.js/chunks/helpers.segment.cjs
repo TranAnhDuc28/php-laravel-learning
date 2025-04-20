@@ -1530,7 +1530,7 @@ function _readValueToProps(value, props) {
 }
 /**
  * Converts the given value into a TRBL corners object (similar with css border-radius).
- * @param value - If a number, set the value to all TRBL corner components,
+ * @param value - If a number, set the value to all TRBL corner menu_item_components,
  *  else, if an object, use defined properties and sets undefined ones to 0.
  * @returns The TRBL corner values (topLeft, topRight, bottomLeft, bottomRight)
  * @since 3.0.0

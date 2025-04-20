@@ -39,6 +39,7 @@ use App\Http\Controllers\Dashboards\ProjectsDashboardController;
 use App\Http\Controllers\FormUIController;
 use App\Http\Controllers\IconController;
 use App\Http\Controllers\Landing\LandingPageController;
+use App\Http\Controllers\MapController;
 use App\Http\Controllers\Pages\BlogController;
 use App\Http\Controllers\Pages\PageController;
 use App\Http\Controllers\Pages\ProfileController;
@@ -67,7 +68,7 @@ Route::prefix('apps')->name('app.')->group(function () {
     });
 
     /* Chat. */
-    Route::get('/chat', [ChatAppController::class, 'showChat'])->name('showChat');
+    Route::get('/chat', [ChatAppController::class, 'showChat'])->name('chat');
 
     /* Email. */
     Route::get('/mailbox', [EmailAppController::class, 'showMailbox'])->name('email.showMailbox');
@@ -238,7 +239,7 @@ Route::prefix('auth')->name('auth.')->group(function () {
 });
 
 /* Pages. */
-Route::prefix('pages')->name('page.')->group(function () {
+Route::prefix('menu_item_pages')->name('page.')->group(function () {
     Route::get('/starter', [PageController::class, 'showStarterPage'])->name('starter');
     Route::get('/team', [PageController::class, 'showTeamPage'])->name('team');
     Route::get('/timeline', [PageController::class, 'showTimelinePage'])->name('timeline');
@@ -387,6 +388,9 @@ Route::prefix('icons')->name('icon.')->group(function () {
 
 /* Maps. */
 Route::prefix('maps')->name('map.')->group(function () {
+    Route::get('/google', [MapController::class, 'showGoogleMaps'])->name('google');
+    Route::get('/vector', [MapController::class, 'showVectorMaps'])->name('vector');
+    Route::get('/leaflet', [MapController::class, 'showLeafletMaps'])->name('leaflet');
 });
 
 /* Multi Level. */

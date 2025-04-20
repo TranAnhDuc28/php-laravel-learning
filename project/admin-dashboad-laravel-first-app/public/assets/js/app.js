@@ -12,7 +12,7 @@
     }
 
     function n(e) {
-        document.getElementById("header-lang-img") && ("en" == e ? document.getElementById("header-lang-img").src = `${PATH_ROOT}/assets/images/flags/us.svg` : "sp" == e ? document.getElementById("header-lang-img").src = "assets/images/flags/spain.svg" : "gr" == e ? document.getElementById("header-lang-img").src = "assets/images/flags/germany.svg" : "it" == e ? document.getElementById("header-lang-img").src = "assets/images/flags/italy.svg" : "ru" == e ? document.getElementById("header-lang-img").src = "assets/images/flags/russia.svg" : "ch" == e ? document.getElementById("header-lang-img").src = "assets/images/flags/china.svg" : "fr" == e ? document.getElementById("header-lang-img").src = "assets/images/flags/french.svg" : "ar" == e && (document.getElementById("header-lang-img").src = "assets/images/flags/ae.svg"), localStorage.setItem("language", e), null == (a = localStorage.getItem("language")) && n(t), (e = new XMLHttpRequest).open("GET", `${PATH_ROOT}/assets/lang/` + a + ".json"), e.onreadystatechange = function () {
+        document.getElementById("header-lang-img") && ("en" == e ? document.getElementById("header-lang-img").src = `/assets/images/flags/us.svg` : "sp" == e ? document.getElementById("header-lang-img").src = "assets/images/flags/spain.svg" : "gr" == e ? document.getElementById("header-lang-img").src = "assets/images/flags/germany.svg" : "it" == e ? document.getElementById("header-lang-img").src = "assets/images/flags/italy.svg" : "ru" == e ? document.getElementById("header-lang-img").src = "assets/images/flags/russia.svg" : "ch" == e ? document.getElementById("header-lang-img").src = "assets/images/flags/china.svg" : "fr" == e ? document.getElementById("header-lang-img").src = "assets/images/flags/french.svg" : "ar" == e && (document.getElementById("header-lang-img").src = "assets/images/flags/ae.svg"), localStorage.setItem("language", e), null == (a = localStorage.getItem("language")) && n(t), (e = new XMLHttpRequest).open("GET", `/assets/lang/` + a + ".json"), e.onreadystatechange = function () {
             var a;
             4 === this.readyState && 200 === this.status && (a = JSON.parse(this.responseText), Object.keys(a).forEach(function (t) {
                 var e = document.querySelectorAll("[data-key='" + t + "']");
@@ -416,7 +416,7 @@
                 (e.innerHTML +=
                     '<div class="empty-notification-elem">\t\t\t\t\t\t\t' +
                     '<div class="w-25 w-sm-50 pt-3 mx-auto">\t\t\t\t\t\t\t\t' +
-                    `<img src="${PATH_ROOT}/assets/images/svg/bell.svg" class="img-fluid" alt="user-pic">\t\t\t\t\t\t\t` +
+                    `<img src="/assets/images/svg/bell.svg" class="img-fluid" alt="user-pic">\t\t\t\t\t\t\t` +
                     '</div>\t\t\t\t\t\t\t<div class="text-center pb-5 mt-2">\t\t\t\t\t\t\t\t<h6 class="fs-18 fw-semibold lh-base">Hey! You have no any notifications </h6>\t\t\t\t\t\t\t</div>\t\t\t\t\t\t</div>'))
         })
     }

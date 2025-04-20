@@ -3,7 +3,7 @@ import { stub } from 'sinon';
 import { DEFAULT_CLASSNAMES } from '../defaults';
 import Container from './container';
 
-describe('components/container', () => {
+describe('menu_item_components/container', () => {
   let instance;
   let element;
 

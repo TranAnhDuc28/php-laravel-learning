@@ -5,7 +5,7 @@ import WrappedSelect from './wrapped-select';
 import Templates from '../templates';
 import { DEFAULT_CLASSNAMES } from '../defaults';
 
-describe('components/wrappedSelect', () => {
+describe('menu_item_components/wrappedSelect', () => {
   let instance;
   let element;
 

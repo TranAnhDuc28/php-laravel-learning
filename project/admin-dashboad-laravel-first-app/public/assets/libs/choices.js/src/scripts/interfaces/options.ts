@@ -470,7 +470,7 @@ export interface Options {
   callbackOnInit: ((this: Choices) => void) | null;
 
   /**
-   * Function to run on template creation. Through this callback it is possible to provide custom templates for the various components of Choices (see terminology). For Choices to work with custom templates, it is important you maintain the various data attributes defined here [https://github.com/jshjohnson/Choices/blob/67f29c286aa21d88847adfcd6304dc7d068dc01f/assets/scripts/src/choices.js#L1993-L2067].
+   * Function to run on template creation. Through this callback it is possible to provide custom templates for the various menu_item_components of Choices (see terminology). For Choices to work with custom templates, it is important you maintain the various data attributes defined here [https://github.com/jshjohnson/Choices/blob/67f29c286aa21d88847adfcd6304dc7d068dc01f/assets/scripts/src/choices.js#L1993-L2067].
    *
    * **Input types affected:** text, select-one, select-multiple
    *
