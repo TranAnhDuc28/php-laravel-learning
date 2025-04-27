@@ -1,0 +1,66 @@
+@use '../variables' as vars;
+
+.fg-emoji-picker {
+    width: 250px !important;
+    box-shadow: vars.$box-shadow !important;
+    top: auto !important;
+    bottom: 130px;
+
+    * {
+        font-family: vars.$font-family-base !important;
+        color: var(--#{vars.$prefix}body-color) !important;
+    }
+
+    @media (max-width: 991.98px) {
+        left: 14px !important;
+        top: auto !important;
+        bottom: 118px;
+    }
+
+    .fg-emoji-picker-container-title {
+        color: vars.$dark !important;
+    }
+
+    .fg-emoji-picker-search {
+        height: 40px !important;
+
+        input {
+            background-color: vars.$input-bg !important;
+            color: vars.$input-color !important;
+            padding: vars.$input-btn-padding-y vars.$input-btn-padding-x !important;
+            font-size: vars.$font-size-base !important;
+
+            &::placeholder {
+                color: vars.$input-placeholder-color !important;
+            }
+        }
+
+        svg {
+            fill: var(--#{vars.$prefix}body-color) !important;
+            right: 11px;
+            top: 12px;
+        }
+    }
+
+    .fg-emoji-picker-categories {
+        background-color: vars.$light !important;
+
+        li.active {
+            background-color: rgba(var(--bs-primary-rgb), 0.2);
+        }
+
+        a {
+            &:hover {
+                background-color: rgba(var(--bs-primary-rgb), 0.2);
+            }
+        }
+    }
+}
+
+.fg-emoji-picker-grid > li:hover {
+    background-color: rgba(var(--bs-primary-rgb), 0.2) !important;
+}
+
+a.fg-emoji-picker-close-button {
+    background-color: darken(vars.$light, 4%) !important;
+}

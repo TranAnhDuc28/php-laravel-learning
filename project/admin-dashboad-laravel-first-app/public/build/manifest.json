@@ -1,0 +1,947 @@
+{
+  "resources/fonts/boxicons.eot": {
+    "file": "icons/boxicons.eot",
+    "src": "resources/fonts/boxicons.eot"
+  },
+  "resources/fonts/boxicons.svg": {
+    "file": "icons/boxicons.svg",
+    "src": "resources/fonts/boxicons.svg"
+  },
+  "resources/fonts/boxicons.ttf": {
+    "file": "icons/boxicons.ttf",
+    "src": "resources/fonts/boxicons.ttf"
+  },
+  "resources/fonts/boxicons.woff": {
+    "file": "icons/boxicons.woff",
+    "src": "resources/fonts/boxicons.woff"
+  },
+  "resources/fonts/boxicons.woff2": {
+    "file": "icons/boxicons.woff2",
+    "src": "resources/fonts/boxicons.woff2"
+  },
+  "resources/fonts/hkgrotesk-bold.woff": {
+    "file": "icons/hkgrotesk-bold.woff",
+    "src": "resources/fonts/hkgrotesk-bold.woff"
+  },
+  "resources/fonts/hkgrotesk-light.woff": {
+    "file": "icons/hkgrotesk-light.woff",
+    "src": "resources/fonts/hkgrotesk-light.woff"
+  },
+  "resources/fonts/hkgrotesk-medium.woff": {
+    "file": "icons/hkgrotesk-medium.woff",
+    "src": "resources/fonts/hkgrotesk-medium.woff"
+  },
+  "resources/fonts/hkgrotesk-regular.woff": {
+    "file": "icons/hkgrotesk-regular.woff",
+    "src": "resources/fonts/hkgrotesk-regular.woff"
+  },
+  "resources/fonts/hkgrotesk-semibold.woff": {
+    "file": "icons/hkgrotesk-semibold.woff",
+    "src": "resources/fonts/hkgrotesk-semibold.woff"
+  },
+  "resources/fonts/la-brands-400.eot": {
+    "file": "icons/la-brands-400.eot",
+    "src": "resources/fonts/la-brands-400.eot"
+  },
+  "resources/fonts/la-brands-400.svg": {
+    "file": "icons/la-brands-400.svg",
+    "src": "resources/fonts/la-brands-400.svg"
+  },
+  "resources/fonts/la-brands-400.ttf": {
+    "file": "icons/la-brands-400.ttf",
+    "src": "resources/fonts/la-brands-400.ttf"
+  },
+  "resources/fonts/la-brands-400.woff": {
+    "file": "icons/la-brands-400.woff",
+    "src": "resources/fonts/la-brands-400.woff"
+  },
+  "resources/fonts/la-brands-400.woff2": {
+    "file": "icons/la-brands-400.woff2",
+    "src": "resources/fonts/la-brands-400.woff2"
+  },
+  "resources/fonts/la-regular-400.eot": {
+    "file": "icons/la-regular-400.eot",
+    "src": "resources/fonts/la-regular-400.eot"
+  },
+  "resources/fonts/la-regular-400.svg": {
+    "file": "icons/la-regular-400.svg",
+    "src": "resources/fonts/la-regular-400.svg"
+  },
+  "resources/fonts/la-regular-400.ttf": {
+    "file": "icons/la-regular-400.ttf",
+    "src": "resources/fonts/la-regular-400.ttf"
+  },
+  "resources/fonts/la-regular-400.woff": {
+    "file": "icons/la-regular-400.woff",
+    "src": "resources/fonts/la-regular-400.woff"
+  },
+  "resources/fonts/la-regular-400.woff2": {
+    "file": "icons/la-regular-400.woff2",
+    "src": "resources/fonts/la-regular-400.woff2"
+  },
+  "resources/fonts/la-solid-900.eot": {
+    "file": "icons/la-solid-900.eot",
+    "src": "resources/fonts/la-solid-900.eot"
+  },
+  "resources/fonts/la-solid-900.svg": {
+    "file": "icons/la-solid-900.svg",
+    "src": "resources/fonts/la-solid-900.svg"
+  },
+  "resources/fonts/la-solid-900.ttf": {
+    "file": "icons/la-solid-900.ttf",
+    "src": "resources/fonts/la-solid-900.ttf"
+  },
+  "resources/fonts/la-solid-900.woff": {
+    "file": "icons/la-solid-900.woff",
+    "src": "resources/fonts/la-solid-900.woff"
+  },
+  "resources/fonts/la-solid-900.woff2": {
+    "file": "icons/la-solid-900.woff2",
+    "src": "resources/fonts/la-solid-900.woff2"
+  },
+  "resources/fonts/materialdesignicons-webfont.eot": {
+    "file": "icons/materialdesignicons-webfont.eot",
+    "src": "resources/fonts/materialdesignicons-webfont.eot"
+  },
+  "resources/fonts/materialdesignicons-webfont.ttf": {
+    "file": "icons/materialdesignicons-webfont.ttf",
+    "src": "resources/fonts/materialdesignicons-webfont.ttf"
+  },
+  "resources/fonts/materialdesignicons-webfont.woff": {
+    "file": "icons/materialdesignicons-webfont.woff",
+    "src": "resources/fonts/materialdesignicons-webfont.woff"
+  },
+  "resources/fonts/materialdesignicons-webfont.woff2": {
+    "file": "icons/materialdesignicons-webfont.woff2",
+    "src": "resources/fonts/materialdesignicons-webfont.woff2"
+  },
+  "resources/fonts/remixicon.eot": {
+    "file": "icons/remixicon.eot",
+    "src": "resources/fonts/remixicon.eot"
+  },
+  "resources/fonts/remixicon.svg": {
+    "file": "icons/remixicon.svg",
+    "src": "resources/fonts/remixicon.svg"
+  },
+  "resources/fonts/remixicon.ttf": {
+    "file": "icons/remixicon.ttf",
+    "src": "resources/fonts/remixicon.ttf"
+  },
+  "resources/fonts/remixicon.woff": {
+    "file": "icons/remixicon.woff",
+    "src": "resources/fonts/remixicon.woff"
+  },
+  "resources/fonts/remixicon.woff2": {
+    "file": "icons/remixicon.woff2",
+    "src": "resources/fonts/remixicon.woff2"
+  },
+  "resources/images/auth-one-bg.jpg": {
+    "file": "icons/auth-one-bg.jpg",
+    "src": "resources/images/auth-one-bg.jpg"
+  },
+  "resources/images/chat-bg-pattern.png": {
+    "file": "icons/chat-bg-pattern.png",
+    "src": "resources/images/chat-bg-pattern.png"
+  },
+  "resources/images/cover-pattern.png": {
+    "file": "icons/cover-pattern.png",
+    "src": "resources/images/cover-pattern.png"
+  },
+  "resources/images/file.png": {
+    "file": "icons/file.png",
+    "src": "resources/images/file.png"
+  },
+  "resources/images/flags/us.svg": {
+    "file": "icons/us.svg",
+    "src": "resources/images/flags/us.svg"
+  },
+  "resources/images/landing/bg-pattern.png": {
+    "file": "icons/bg-pattern.png",
+    "src": "resources/images/landing/bg-pattern.png"
+  },
+  "resources/images/modal-bg.png": {
+    "file": "icons/modal-bg.png",
+    "src": "resources/images/modal-bg.png"
+  },
+  "resources/images/new.png": {
+    "file": "icons/new.png",
+    "src": "resources/images/new.png"
+  },
+  "resources/images/nft/bg-home.jpg": {
+    "file": "icons/bg-home.jpg",
+    "src": "resources/images/nft/bg-home.jpg"
+  },
+  "resources/images/nft/marketplace.png": {
+    "file": "icons/marketplace.png",
+    "src": "resources/images/nft/marketplace.png"
+  },
+  "resources/images/sidebar/img-1.jpg": {
+    "file": "icons/img-1.jpg",
+    "src": "resources/images/sidebar/img-1.jpg"
+  },
+  "resources/images/sidebar/img-2.jpg": {
+    "file": "icons/img-2.jpg",
+    "src": "resources/images/sidebar/img-2.jpg"
+  },
+  "resources/images/sidebar/img-3.jpg": {
+    "file": "icons/img-3.jpg",
+    "src": "resources/images/sidebar/img-3.jpg"
+  },
+  "resources/images/sidebar/img-4.jpg": {
+    "file": "icons/img-4.jpg",
+    "src": "resources/images/sidebar/img-4.jpg"
+  },
+  "resources/js/layout.js": {
+    "file": "js/layout.min.js",
+    "name": "layout",
+    "src": "resources/js/layout.js",
+    "isEntry": true
+  },
+  "resources/js/main.js": {
+    "file": "js/main.min.js",
+    "name": "main",
+    "src": "resources/js/main.js",
+    "isEntry": true
+  },
+  "resources/js/pages/animation-aos.init.js": {
+    "file": "js/pages/animation-aos.init.min.js",
+    "name": "animation-aos.init",
+    "src": "resources/js/pages/animation-aos.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-area.init.js": {
+    "file": "js/pages/apexcharts-area.init.min.js",
+    "name": "apexcharts-area.init",
+    "src": "resources/js/pages/apexcharts-area.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-bar.init.js": {
+    "file": "js/pages/apexcharts-bar.init.min.js",
+    "name": "apexcharts-bar.init",
+    "src": "resources/js/pages/apexcharts-bar.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-boxplot.init.js": {
+    "file": "js/pages/apexcharts-boxplot.init.min.js",
+    "name": "apexcharts-boxplot.init",
+    "src": "resources/js/pages/apexcharts-boxplot.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-bubble.init.js": {
+    "file": "js/pages/apexcharts-bubble.init.min.js",
+    "name": "apexcharts-bubble.init",
+    "src": "resources/js/pages/apexcharts-bubble.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-candlestick.init.js": {
+    "file": "js/pages/apexcharts-candlestick.init.min.js",
+    "name": "apexcharts-candlestick.init",
+    "src": "resources/js/pages/apexcharts-candlestick.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-column.init.js": {
+    "file": "js/pages/apexcharts-column.init.min.js",
+    "name": "apexcharts-column.init",
+    "src": "resources/js/pages/apexcharts-column.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-funnel.init.js": {
+    "file": "js/pages/apexcharts-funnel.init.min.js",
+    "name": "apexcharts-funnel.init",
+    "src": "resources/js/pages/apexcharts-funnel.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-heatmap.init.js": {
+    "file": "js/pages/apexcharts-heatmap.init.min.js",
+    "name": "apexcharts-heatmap.init",
+    "src": "resources/js/pages/apexcharts-heatmap.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-line.init.js": {
+    "file": "js/pages/apexcharts-line.init.min.js",
+    "name": "apexcharts-line.init",
+    "src": "resources/js/pages/apexcharts-line.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-mixed.init.js": {
+    "file": "js/pages/apexcharts-mixed.init.min.js",
+    "name": "apexcharts-mixed.init",
+    "src": "resources/js/pages/apexcharts-mixed.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-pie.init.js": {
+    "file": "js/pages/apexcharts-pie.init.min.js",
+    "name": "apexcharts-pie.init",
+    "src": "resources/js/pages/apexcharts-pie.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-polararea.init.js": {
+    "file": "js/pages/apexcharts-polararea.init.min.js",
+    "name": "apexcharts-polararea.init",
+    "src": "resources/js/pages/apexcharts-polararea.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-radar.init.js": {
+    "file": "js/pages/apexcharts-radar.init.min.js",
+    "name": "apexcharts-radar.init",
+    "src": "resources/js/pages/apexcharts-radar.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-radialbar.init.js": {
+    "file": "js/pages/apexcharts-radialbar.init.min.js",
+    "name": "apexcharts-radialbar.init",
+    "src": "resources/js/pages/apexcharts-radialbar.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-range-area.init.js": {
+    "file": "js/pages/apexcharts-range-area.init.min.js",
+    "name": "apexcharts-range-area.init",
+    "src": "resources/js/pages/apexcharts-range-area.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-scatter.init.js": {
+    "file": "js/pages/apexcharts-scatter.init.min.js",
+    "name": "apexcharts-scatter.init",
+    "src": "resources/js/pages/apexcharts-scatter.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-timeline.init.js": {
+    "file": "js/pages/apexcharts-timeline.init.min.js",
+    "name": "apexcharts-timeline.init",
+    "src": "resources/js/pages/apexcharts-timeline.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apexcharts-treemap.init.js": {
+    "file": "js/pages/apexcharts-treemap.init.min.js",
+    "name": "apexcharts-treemap.init",
+    "src": "resources/js/pages/apexcharts-treemap.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/api-key.init.js": {
+    "file": "js/pages/api-key.init.min.js",
+    "name": "api-key.init",
+    "src": "resources/js/pages/api-key.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apps-nft-auction.init.js": {
+    "file": "js/pages/apps-nft-auction.init.min.js",
+    "name": "apps-nft-auction.init",
+    "src": "resources/js/pages/apps-nft-auction.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apps-nft-create.init.js": {
+    "file": "js/pages/apps-nft-create.init.min.js",
+    "name": "apps-nft-create.init",
+    "src": "resources/js/pages/apps-nft-create.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apps-nft-explore.init.js": {
+    "file": "js/pages/apps-nft-explore.init.min.js",
+    "name": "apps-nft-explore.init",
+    "src": "resources/js/pages/apps-nft-explore.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apps-nft-item-details.init.js": {
+    "file": "js/pages/apps-nft-item-details.init.min.js",
+    "name": "apps-nft-item-details.init",
+    "src": "resources/js/pages/apps-nft-item-details.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/apps-nft-ranking.init.js": {
+    "file": "js/pages/apps-nft-ranking.init.min.js",
+    "name": "apps-nft-ranking.init",
+    "src": "resources/js/pages/apps-nft-ranking.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/calendar-month-grid.init.js": {
+    "file": "js/pages/calendar-month-grid.init.min.js",
+    "name": "calendar-month-grid.init",
+    "src": "resources/js/pages/calendar-month-grid.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/calendar.js": {
+    "file": "js/pages/calendar.min.js",
+    "name": "calendar",
+    "src": "resources/js/pages/calendar.js",
+    "isEntry": true
+  },
+  "resources/js/pages/card.init.js": {
+    "file": "js/pages/card.init.min.js",
+    "name": "card.init",
+    "src": "resources/js/pages/card.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/chartjs.init.js": {
+    "file": "js/pages/chartjs.init.min.js",
+    "name": "chartjs.init",
+    "src": "resources/js/pages/chartjs.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/chat.init.js": {
+    "file": "js/pages/chat.init.min.js",
+    "name": "chat.init",
+    "src": "resources/js/pages/chat.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/coming-soon.init.js": {
+    "file": "js/pages/coming-soon.init.min.js",
+    "name": "coming-soon.init",
+    "src": "resources/js/pages/coming-soon.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/crm-companies.init.js": {
+    "file": "js/pages/crm-companies.init.min.js",
+    "name": "crm-companies.init",
+    "src": "resources/js/pages/crm-companies.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/crm-contact.init.js": {
+    "file": "js/pages/crm-contact.init.min.js",
+    "name": "crm-contact.init",
+    "src": "resources/js/pages/crm-contact.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/crm-deals.init.js": {
+    "file": "js/pages/crm-deals.init.min.js",
+    "name": "crm-deals.init",
+    "src": "resources/js/pages/crm-deals.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/crm-leads.init.js": {
+    "file": "js/pages/crm-leads.init.min.js",
+    "name": "crm-leads.init",
+    "src": "resources/js/pages/crm-leads.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/crypto-buy-sell.init.js": {
+    "file": "js/pages/crypto-buy-sell.init.min.js",
+    "name": "crypto-buy-sell.init",
+    "src": "resources/js/pages/crypto-buy-sell.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/crypto-kyc.init.js": {
+    "file": "js/pages/crypto-kyc.init.min.js",
+    "name": "crypto-kyc.init",
+    "src": "resources/js/pages/crypto-kyc.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/crypto-orders.init.js": {
+    "file": "js/pages/crypto-orders.init.min.js",
+    "name": "crypto-orders.init",
+    "src": "resources/js/pages/crypto-orders.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/crypto-transactions.init.js": {
+    "file": "js/pages/crypto-transactions.init.min.js",
+    "name": "crypto-transactions.init",
+    "src": "resources/js/pages/crypto-transactions.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/crypto-wallet.init.js": {
+    "file": "js/pages/crypto-wallet.init.min.js",
+    "name": "crypto-wallet.init",
+    "src": "resources/js/pages/crypto-wallet.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/dashboard-analytics.init.js": {
+    "file": "js/pages/dashboard-analytics.init.min.js",
+    "name": "dashboard-analytics.init",
+    "src": "resources/js/pages/dashboard-analytics.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/dashboard-crm.init.js": {
+    "file": "js/pages/dashboard-crm.init.min.js",
+    "name": "dashboard-crm.init",
+    "src": "resources/js/pages/dashboard-crm.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/dashboard-crypto.init.js": {
+    "file": "js/pages/dashboard-crypto.init.min.js",
+    "name": "dashboard-crypto.init",
+    "src": "resources/js/pages/dashboard-crypto.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/dashboard-ecommerce.init.js": {
+    "file": "js/pages/dashboard-ecommerce.init.min.js",
+    "name": "dashboard-ecommerce.init",
+    "src": "resources/js/pages/dashboard-ecommerce.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/dashboard-job.init.js": {
+    "file": "js/pages/dashboard-job.init.min.js",
+    "name": "dashboard-job.init",
+    "src": "resources/js/pages/dashboard-job.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/dashboard-nft.init.js": {
+    "file": "js/pages/dashboard-nft.init.min.js",
+    "name": "dashboard-nft.init",
+    "src": "resources/js/pages/dashboard-nft.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/dashboard-projects.init.js": {
+    "file": "js/pages/dashboard-projects.init.min.js",
+    "name": "dashboard-projects.init",
+    "src": "resources/js/pages/dashboard-projects.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/datatables.init.js": {
+    "file": "js/pages/datatables.init.min.js",
+    "name": "datatables.init",
+    "src": "resources/js/pages/datatables.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/echarts.init.js": {
+    "file": "js/pages/echarts.init.min.js",
+    "name": "echarts.init",
+    "src": "resources/js/pages/echarts.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/ecommerce-cart.init.js": {
+    "file": "js/pages/ecommerce-cart.init.min.js",
+    "name": "ecommerce-cart.init",
+    "src": "resources/js/pages/ecommerce-cart.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/ecommerce-customer-list.init.js": {
+    "file": "js/pages/ecommerce-customer-list.init.min.js",
+    "name": "ecommerce-customer-list.init",
+    "src": "resources/js/pages/ecommerce-customer-list.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/ecommerce-order.init.js": {
+    "file": "js/pages/ecommerce-order.init.min.js",
+    "name": "ecommerce-order.init",
+    "src": "resources/js/pages/ecommerce-order.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/ecommerce-product-checkout.init.js": {
+    "file": "js/pages/ecommerce-product-checkout.init.min.js",
+    "name": "ecommerce-product-checkout.init",
+    "src": "resources/js/pages/ecommerce-product-checkout.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/ecommerce-product-create.init.js": {
+    "file": "js/pages/ecommerce-product-create.init.min.js",
+    "name": "ecommerce-product-create.init",
+    "src": "resources/js/pages/ecommerce-product-create.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/ecommerce-product-details.init.js": {
+    "file": "js/pages/ecommerce-product-details.init.min.js",
+    "name": "ecommerce-product-details.init",
+    "src": "resources/js/pages/ecommerce-product-details.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/ecommerce-product-list.init.js": {
+    "file": "js/pages/ecommerce-product-list.init.min.js",
+    "name": "ecommerce-product-list.init",
+    "src": "resources/js/pages/ecommerce-product-list.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/file-manager.init.js": {
+    "file": "js/pages/file-manager.init.min.js",
+    "name": "file-manager.init",
+    "src": "resources/js/pages/file-manager.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/flag-input.init.js": {
+    "file": "js/pages/flag-input.init.min.js",
+    "name": "flag-input.init",
+    "src": "resources/js/pages/flag-input.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/form-advanced.init.js": {
+    "file": "js/pages/form-advanced.init.min.js",
+    "name": "form-advanced.init",
+    "src": "resources/js/pages/form-advanced.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/form-editor.init.js": {
+    "file": "js/pages/form-editor.init.min.js",
+    "name": "form-editor.init",
+    "src": "resources/js/pages/form-editor.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/form-file-upload.init.js": {
+    "file": "js/pages/form-file-upload.init.min.js",
+    "name": "form-file-upload.init",
+    "src": "resources/js/pages/form-file-upload.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/form-input-spin.init.js": {
+    "file": "js/pages/form-input-spin.init.min.js",
+    "name": "form-input-spin.init",
+    "src": "resources/js/pages/form-input-spin.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/form-masks.init.js": {
+    "file": "js/pages/form-masks.init.min.js",
+    "name": "form-masks.init",
+    "src": "resources/js/pages/form-masks.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/form-pickers.init.js": {
+    "file": "js/pages/form-pickers.init.min.js",
+    "name": "form-pickers.init",
+    "src": "resources/js/pages/form-pickers.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/form-validation.init.js": {
+    "file": "js/pages/form-validation.init.min.js",
+    "name": "form-validation.init",
+    "src": "resources/js/pages/form-validation.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/form-wizard.init.js": {
+    "file": "js/pages/form-wizard.init.min.js",
+    "name": "form-wizard.init",
+    "src": "resources/js/pages/form-wizard.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/gallery.init.js": {
+    "file": "js/pages/gallery.init.min.js",
+    "name": "gallery.init",
+    "src": "resources/js/pages/gallery.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/gmaps.init.js": {
+    "file": "js/pages/gmaps.init.min.js",
+    "name": "gmaps.init",
+    "src": "resources/js/pages/gmaps.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/gridjs.init.js": {
+    "file": "js/pages/gridjs.init.min.js",
+    "name": "gridjs.init",
+    "src": "resources/js/pages/gridjs.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/invoicecreate.init.js": {
+    "file": "js/pages/invoicecreate.init.min.js",
+    "name": "invoicecreate.init",
+    "src": "resources/js/pages/invoicecreate.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/invoicedetails.js": {
+    "file": "js/pages/invoicedetails.min.js",
+    "name": "invoicedetails",
+    "src": "resources/js/pages/invoicedetails.js",
+    "isEntry": true
+  },
+  "resources/js/pages/invoiceslist.init.js": {
+    "file": "js/pages/invoiceslist.init.min.js",
+    "name": "invoiceslist.init",
+    "src": "resources/js/pages/invoiceslist.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/job-application.init.js": {
+    "file": "js/pages/job-application.init.min.js",
+    "name": "job-application.init",
+    "src": "resources/js/pages/job-application.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/job-candidate-grid.init.js": {
+    "file": "js/pages/job-candidate-grid.init.min.js",
+    "name": "job-candidate-grid.init",
+    "src": "resources/js/pages/job-candidate-grid.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/job-candidate-lists.init.js": {
+    "file": "js/pages/job-candidate-lists.init.min.js",
+    "name": "job-candidate-lists.init",
+    "src": "resources/js/pages/job-candidate-lists.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/job-companies-lists.init.js": {
+    "file": "js/pages/job-companies-lists.init.min.js",
+    "name": "job-companies-lists.init",
+    "src": "resources/js/pages/job-companies-lists.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/job-grid-list.init.js": {
+    "file": "js/pages/job-grid-list.init.min.js",
+    "name": "job-grid-list.init",
+    "src": "resources/js/pages/job-grid-list.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/job-lading.init.js": {
+    "file": "js/pages/job-lading.init.min.js",
+    "name": "job-lading.init",
+    "src": "resources/js/pages/job-lading.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/job-list.init.js": {
+    "file": "js/pages/job-list.init.min.js",
+    "name": "job-list.init",
+    "src": "resources/js/pages/job-list.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/job-statistics.init.js": {
+    "file": "js/pages/job-statistics.init.min.js",
+    "name": "job-statistics.init",
+    "src": "resources/js/pages/job-statistics.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/landing.init.js": {
+    "file": "js/pages/landing.init.min.js",
+    "name": "landing.init",
+    "src": "resources/js/pages/landing.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/leaflet-map.init.js": {
+    "file": "js/pages/leaflet-map.init.min.js",
+    "name": "leaflet-map.init",
+    "src": "resources/js/pages/leaflet-map.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/leaflet-us-states.js": {
+    "file": "js/pages/leaflet-us-states.min.js",
+    "name": "leaflet-us-states",
+    "src": "resources/js/pages/leaflet-us-states.js",
+    "isEntry": true
+  },
+  "resources/js/pages/listjs.init.js": {
+    "file": "js/pages/listjs.init.min.js",
+    "name": "listjs.init",
+    "src": "resources/js/pages/listjs.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/mailbox.init.js": {
+    "file": "js/pages/mailbox.init.min.js",
+    "name": "mailbox.init",
+    "src": "resources/js/pages/mailbox.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/materialdesign.list.js": {
+    "file": "js/pages/materialdesign.list.min.js",
+    "name": "materialdesign.list",
+    "src": "resources/js/pages/materialdesign.list.js",
+    "isEntry": true
+  },
+  "resources/js/pages/modal.init.js": {
+    "file": "js/pages/modal.init.min.js",
+    "name": "modal.init",
+    "src": "resources/js/pages/modal.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/month-grid.js": {
+    "file": "js/pages/month-grid.min.js",
+    "name": "month-grid",
+    "src": "resources/js/pages/month-grid.js",
+    "isEntry": true
+  },
+  "resources/js/pages/nestable.init.js": {
+    "file": "js/pages/nestable.init.min.js",
+    "name": "nestable.init",
+    "src": "resources/js/pages/nestable.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/nft-landing.init.js": {
+    "file": "js/pages/nft-landing.init.min.js",
+    "name": "nft-landing.init",
+    "src": "resources/js/pages/nft-landing.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/notifications.init.js": {
+    "file": "js/pages/notifications.init.min.js",
+    "name": "notifications.init",
+    "src": "resources/js/pages/notifications.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/particles.app.js": {
+    "file": "js/pages/particles.app.min.js",
+    "name": "particles.app",
+    "src": "resources/js/pages/particles.app.js",
+    "isEntry": true
+  },
+  "resources/js/pages/passowrd-create.init.js": {
+    "file": "js/pages/passowrd-create.init.min.js",
+    "name": "passowrd-create.init",
+    "src": "resources/js/pages/passowrd-create.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/password-addon.init.js": {
+    "file": "js/pages/password-addon.init.min.js",
+    "name": "password-addon.init",
+    "src": "resources/js/pages/password-addon.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/pricing.init.js": {
+    "file": "js/pages/pricing.init.min.js",
+    "name": "pricing.init",
+    "src": "resources/js/pages/pricing.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/profile-setting.init.js": {
+    "file": "js/pages/profile-setting.init.min.js",
+    "name": "profile-setting.init",
+    "src": "resources/js/pages/profile-setting.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/profile.init.js": {
+    "file": "js/pages/profile.init.min.js",
+    "name": "profile.init",
+    "src": "resources/js/pages/profile.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/project-create.init.js": {
+    "file": "js/pages/project-create.init.min.js",
+    "name": "project-create.init",
+    "src": "resources/js/pages/project-create.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/project-list.init.js": {
+    "file": "js/pages/project-list.init.min.js",
+    "name": "project-list.init",
+    "src": "resources/js/pages/project-list.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/project-overview.init.js": {
+    "file": "js/pages/project-overview.init.min.js",
+    "name": "project-overview.init",
+    "src": "resources/js/pages/project-overview.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/range-sliders.init.js": {
+    "file": "js/pages/range-sliders.init.min.js",
+    "name": "range-sliders.init",
+    "src": "resources/js/pages/range-sliders.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/rating.init.js": {
+    "file": "js/pages/rating.init.min.js",
+    "name": "rating.init",
+    "src": "resources/js/pages/rating.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/remix-icons-listing.js": {
+    "file": "js/pages/remix-icons-listing.min.js",
+    "name": "remix-icons-listing",
+    "src": "resources/js/pages/remix-icons-listing.js",
+    "isEntry": true
+  },
+  "resources/js/pages/search-result.init.js": {
+    "file": "js/pages/search-result.init.min.js",
+    "name": "search-result.init",
+    "src": "resources/js/pages/search-result.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/select2.init.js": {
+    "file": "js/pages/select2.init.min.js",
+    "name": "select2.init",
+    "src": "resources/js/pages/select2.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/seller-details.init.js": {
+    "file": "js/pages/seller-details.init.min.js",
+    "name": "seller-details.init",
+    "src": "resources/js/pages/seller-details.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/sellers.init.js": {
+    "file": "js/pages/sellers.init.min.js",
+    "name": "sellers.init",
+    "src": "resources/js/pages/sellers.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/sweetalerts.init.js": {
+    "file": "js/pages/sweetalerts.init.min.js",
+    "name": "sweetalerts.init",
+    "src": "resources/js/pages/sweetalerts.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/swiper.init.js": {
+    "file": "js/pages/swiper.init.min.js",
+    "name": "swiper.init",
+    "src": "resources/js/pages/swiper.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/tasks-kanban.init.js": {
+    "file": "js/pages/tasks-kanban.init.min.js",
+    "name": "tasks-kanban.init",
+    "src": "resources/js/pages/tasks-kanban.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/tasks-list.init.js": {
+    "file": "js/pages/tasks-list.init.min.js",
+    "name": "tasks-list.init",
+    "src": "resources/js/pages/tasks-list.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/team.init.js": {
+    "file": "js/pages/team.init.min.js",
+    "name": "team.init",
+    "src": "resources/js/pages/team.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/ticketdetail.init.js": {
+    "file": "js/pages/ticketdetail.init.min.js",
+    "name": "ticketdetail.init",
+    "src": "resources/js/pages/ticketdetail.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/ticketlist.init.js": {
+    "file": "js/pages/ticketlist.init.min.js",
+    "name": "ticketlist.init",
+    "src": "resources/js/pages/ticketlist.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/timeline.init.js": {
+    "file": "js/pages/timeline.init.min.js",
+    "name": "timeline.init",
+    "src": "resources/js/pages/timeline.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/todo.init.js": {
+    "file": "js/pages/todo.init.min.js",
+    "name": "todo.init",
+    "src": "resources/js/pages/todo.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/tour.init.js": {
+    "file": "js/pages/tour.init.min.js",
+    "name": "tour.init",
+    "src": "resources/js/pages/tour.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/two-step-verification.init.js": {
+    "file": "js/pages/two-step-verification.init.min.js",
+    "name": "two-step-verification.init",
+    "src": "resources/js/pages/two-step-verification.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/vector-maps.init.js": {
+    "file": "js/pages/vector-maps.init.min.js",
+    "name": "vector-maps.init",
+    "src": "resources/js/pages/vector-maps.init.js",
+    "isEntry": true
+  },
+  "resources/js/pages/widgets.init.js": {
+    "file": "js/pages/widgets.init.min.js",
+    "name": "widgets.init",
+    "src": "resources/js/pages/widgets.init.js",
+    "isEntry": true
+  },
+  "resources/js/plugins.js": {
+    "file": "js/plugins.min.js",
+    "name": "plugins",
+    "src": "resources/js/plugins.js",
+    "isEntry": true
+  },
+  "resources/scss/app.scss": {
+    "file": "css/app.min.css",
+    "src": "resources/scss/app.scss",
+    "isEntry": true
+  },
+  "resources/scss/bootstrap.scss": {
+    "file": "css/bootstrap.min.css",
+    "src": "resources/scss/bootstrap.scss",
+    "isEntry": true
+  },
+  "resources/scss/icons.scss": {
+    "file": "css/icons.min.css",
+    "src": "resources/scss/icons.scss",
+    "isEntry": true
+  }
+}

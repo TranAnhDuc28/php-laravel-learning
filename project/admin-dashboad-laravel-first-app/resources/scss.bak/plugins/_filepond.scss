@@ -1,0 +1,32 @@
+@use '../variables' as vars;
+
+.filepond--root {
+    margin-bottom: 0;
+
+    &[data-style-panel-layout~=circle] {
+        .filepond--drop-label label {
+            font-size: 14px;
+        }
+    }
+}
+
+.filepond--panel-root {
+    border: 2px dashed var(--#{vars.$prefix}border-color);
+    background: var(--#{vars.$prefix}secondary-bg);
+}
+
+.filepond--drop-label {
+    color: var(--#{vars.$prefix}body-color);
+
+    label {
+        font-weight: vars.$font-weight-medium;
+    }
+}
+
+.filepond--credits {
+    display: none;
+}
+
+.filepond--item-panel {
+    background-color: vars.$primary !important;
+}

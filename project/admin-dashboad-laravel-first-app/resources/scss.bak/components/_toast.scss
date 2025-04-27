@@ -1,0 +1,20 @@
+@use '../variables' as vars;
+
+.toast {
+    &:not(:last-child) {
+      margin-bottom: vars.$toast-padding-x;
+    }
+}
+
+@mixin toast-border-variant($bg) {
+    .toast-body{
+        color: $bg;
+        border-bottom: 3px solid $bg;
+    }
+}
+
+@each $color, $value in vars.$theme-colors {
+    .toast-border-#{$color} {
+        @include toast-border-variant($value);
+    }
+}

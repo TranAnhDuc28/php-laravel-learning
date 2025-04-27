@@ -1,0 +1,55 @@
+@use '../variables' as vars;
+
+/* _badge.scss */
+
+.badge {
+    line-height: 0.95;
+}
+
+@each $color, $value in vars.$theme-colors {
+    .badge-label {
+        &.bg-#{$color} {
+            &:before {
+                border-right-color: $value;
+            }
+        }
+    }
+}
+
+.badge-border {
+    border-left: 2px solid;
+}
+
+.badge-label {
+    margin-left: 8px;
+    position: relative;
+    &:before {
+        content: "";
+        position: absolute;
+        border: 8px solid transparent;
+        border-right-color: vars.$primary;
+        left: -14px;
+        top: 0;
+    }
+}
+
+/* Badge Gradient Style. */
+$gradients: ();
+$gradients: map-merge((primary: linear-gradient(135deg, vars.$primary 0%, vars.$success 100%),
+        secondary: linear-gradient(135deg, vars.$secondary 0%, vars.$info 100%),
+        success: linear-gradient(135deg, vars.$success 0%, vars.$warning 100%),
+        danger: linear-gradient(135deg, vars.$danger 0%, vars.$secondary 100%),
+        warning: linear-gradient(135deg, vars.$warning 0%, darken(vars.$warning, 15%) 100%),
+        info: linear-gradient(135deg, vars.$info 0%, vars.$success 100%),
+        dark: linear-gradient(135deg, vars.$dark 0%, vars.$primary 100%)),
+    $gradients);
+
+@mixin badge-gradient($parent, $gradient) {
+    #{$parent} {
+        background: $gradient;
+    }
+}
+
+@each $gradient, $value in $gradients {
+    @include badge-gradient(".badge-gradient-#{$gradient}", $value);
+}

@@ -227,8 +227,8 @@
 
 @push('body_js')
     <!-- Calendar min js. -->
-    <script src="{{ asset('assets/libs/fullcalendar/index.global.min.js')  }}"></script>
+    <script src="{{ asset('build/libs/fullcalendar/index.global.min.js')  }}"></script>
 
     <!-- Calendar init. -->
-    <script src="{{ asset('assets/js/pages/calendar-month-grid.init.js') }}"></script>
+    <script src="{{ asset('build/js/pages/calendar-month-grid.init.js') }}"></script>
 @endpush

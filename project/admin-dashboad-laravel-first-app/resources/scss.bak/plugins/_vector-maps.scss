@@ -1,0 +1,21 @@
+@use '../variables' as vars;
+
+.jvm-tooltip {
+    border-radius: 3px;
+    background-color: var(--#{vars.$prefix}primary);
+    font-family: vars.$font-family-base;
+    box-shadow: vars.$box-shadow-lg;
+    padding: 5px 9px;
+}
+
+.jvm-container {
+    text {
+        font-family: vars.$font-family-base;
+        font-size: vars.$font-size-base;
+        fill: var(--#{vars.$prefix}body-color);
+    }
+}
+
+.jvm-zoom-btn {
+    background-color: var(--#{vars.$prefix}primary);
+}

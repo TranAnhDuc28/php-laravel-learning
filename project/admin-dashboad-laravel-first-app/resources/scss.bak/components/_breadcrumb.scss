@@ -1,0 +1,17 @@
+@use '../variables' as vars;
+
+/* _breadcrumb.scss */
+
+/* Breadcrumb item arrow. */
+.breadcrumb-item {
+    > a {
+        color: var(--#{vars.$prefix}body-color);
+    }
+    +.breadcrumb-item {
+        &::before {
+            font-family: 'Material Design Icons', sans-serif;
+            font-size: 15px;
+            line-height: 20px;
+        }
+    }
+}

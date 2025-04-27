@@ -223,13 +223,14 @@
 @endsection
 
 @push('body_js')
-    <script type='text/javascript' src="{{ asset('vendor/libs/fullcalendar/index.global.min.js') }}"></script>
-    <script type='text/javascript' src="{{ asset('vendor/libs/flatpickr/flatpickr.min.js') }}"></script>
-    <script type='text/javascript' src="{{ asset('vendor/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('build/libs/fullcalendar/index.global.min.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('build/libs/flatpickr/dist/flatpickr.min.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('build/libs/choices.js/public/assets/scripts/choices.min.js') }}"></script>
 
     <script>
         window.eventList = {{ \Illuminate\Support\Js::from($eventList) }};
     </script>
+
     <!-- Calendar init. -->
-    <script type='module' src="{{ asset('vendor/js/pages/calendar/main.js') }}"></script>
+    @vite(['resources/js/pages/calendar.js'])
 @endpush

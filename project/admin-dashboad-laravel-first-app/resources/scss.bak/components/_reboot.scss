@@ -1,0 +1,45 @@
+@use '../variables' as vars;
+
+/* _reboot.scss */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+:is(.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6) {
+    font-family: vars.$headings-font-family;
+}
+
+label {
+    font-weight: vars.$font-weight-medium;
+    margin-bottom: vars.$form-label-margin-bottom;
+}
+
+b, strong {
+    font-weight: vars.$font-weight-semibold;
+}
+
+/* Blockquote. */
+.blockquote {
+    padding: 10px 20px;
+    border-left: 4px solid var(--#{vars.$prefix}border-color);
+}
+
+.blockquote-reverse {
+    border-left: 0;
+    border-right: 4px solid var(--#{vars.$prefix}border-color);
+    text-align: right;
+}
+
+/* Container */
+:is(.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl) {
+    @media (min-width: 1200px) {
+        max-width: 1140px;
+    }
+}
+
+/* Row. */
+.row > * {
+    position: relative;
+}

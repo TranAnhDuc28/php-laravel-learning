@@ -1,0 +1,32 @@
+@use 'bootstrap/scss/functions' as fn_bt;
+@use '../variables' as vars;
+
+@each $color, $value in vars.$theme-colors {
+    .list-group-fill-#{$color} {
+        &.list-group-item {
+            color: fn_bt.color-contrast($value);
+            background-color: var(--#{vars.$prefix}#{$color}) !important;
+            border-color: var(--#{vars.$prefix}#{$color});
+        }
+    }
+}
+
+.list-group-item {
+    margin-bottom: 0;
+
+    .list-text {
+        color: var(--#{vars.$prefix}secondary-color);
+    }
+
+    &.active {
+        box-shadow: vars.$element-shadow;
+
+        .list-title {
+            color: vars.$white;
+        }
+
+        .list-text {
+            color: rgba(vars.$white, 0.50);
+        }
+    }
+}

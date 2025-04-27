@@ -1,0 +1,5 @@
+@use '../variables' as vars;
+
+.popover {
+    box-shadow: vars.$popover-box-shadow;
+}

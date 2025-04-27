@@ -1,0 +1,60 @@
+@use '../variables' as vars;
+@use 'bootstrap/scss/mixins' as mixins_bt;
+
+.listjs-pagination {
+    margin-bottom: 0;
+    justify-content: flex-end;
+    gap: 8px;
+
+    li {
+        .page {
+            display: block;
+            padding: vars.$pagination-padding-y vars.$pagination-padding-x;
+            color: vars.$pagination-color;
+            background-color: vars.$pagination-bg;
+            border: vars.$pagination-border-width solid vars.$pagination-border-color;
+            border-radius: vars.$border-radius;
+        }
+
+        &.active {
+            .page {
+                color: vars.$pagination-active-color;
+                @include mixins_bt.gradient-bg(vars.$pagination-active-bg);
+                border-color: vars.$pagination-active-border-color;
+            }
+        }
+    }
+}
+
+.pagination-wrap {
+    user-select: none;
+    display: flex;
+    align-items: center;
+
+    a {
+        text-decoration: none;
+        display: inline-block;
+    }
+}
+
+.pagination-next, .pagination-prev {
+    color: vars.$primary;
+    font-weight: vars.$font-weight-medium;
+    padding: vars.$pagination-padding-y vars.$pagination-padding-x;
+    background-color: vars.$pagination-bg;
+    border: vars.$pagination-border-width solid vars.$pagination-border-color;
+    border-radius: vars.$border-radius;
+
+    &:hover {
+        color: lighten(vars.$primary, 20%);
+    }
+
+    &.disabled {
+        color: var(--#{vars.$prefix}secondary-color);
+        cursor: default;
+
+        &:hover {
+            color: var(--#{vars.$prefix}secondary-color);
+        }
+    }
+}

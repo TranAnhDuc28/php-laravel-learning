@@ -1,0 +1,197 @@
+@use '../variables' as vars;
+
+.ck {
+    font-family: vars.$font-family-base !important;
+
+    &.ck-reset_all, &.ck-reset_all * {
+        color: var(--#{vars.$prefix}body-color) !important;
+    }
+
+    &.ck-toolbar {
+        background: #{rgba(var(--#{vars.$prefix}light-rgb), .75)} !important;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    &.ck-toolbar {
+        border: 1px solid vars.$input-border-color !important;
+
+        &.ck-toolbar_grouping > .ck-toolbar__items {
+            flex-wrap: wrap !important;
+        }
+
+        .ck.ck-toolbar__separator {
+            background: transparent !important;
+        }
+    }
+
+    &.ck-editor__main > .ck-editor__editable {
+        border-top: 0 !important;
+        background-color: var(--#{vars.$prefix}secondary-bg) !important;
+        border-color: vars.$input-border-color !important;
+        box-shadow: none !important;
+    }
+
+    &.ck-dropdown__panel {
+        background: var(--#{vars.$prefix}secondary-bg) !important;
+        box-shadow: vars.$box-shadow-lg;
+        animation-name: DropDownSlide;
+        animation-duration: .3s;
+        animation-fill-mode: both;
+        border-radius: vars.$dropdown-border-radius;
+    }
+
+    &.ck-list {
+        background: var(--#{vars.$prefix}secondary-bg) !important;
+    }
+
+    &.ck-dropdown {
+        .ck-dropdown__panel {
+            &.ck-dropdown__panel_ne,
+            &.ck-dropdown__panel_se {
+                left: 0;
+                right: auto !important;
+            }
+        }
+    }
+
+    &.ck-editor__editable_inline {
+        &[dir=ltr] {
+            text-align: left !important;
+        }
+    }
+
+    &.ck-dropdown__panel {
+        box-shadow: vars.$dropdown-box-shadow !important;
+        border-radius: vars.$dropdown-border-radius !important;
+        border: 1px solid vars.$dropdown-border-color !important;
+    }
+}
+
+.ck.ck-button,
+a.ck.ck-button {
+
+    &:focus, &:active {
+        box-shadow: none !important;
+        border: 1px solid var(--#{vars.$prefix}light) !important;
+    }
+
+    &:not(.ck-disabled) {
+        &:hover {
+            background: var(--#{vars.$prefix}light) !important;
+        }
+    }
+
+    &.ck-on {
+        background: var(--#{vars.$prefix}light) !important;
+    }
+}
+
+.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar,
+.ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+    border-radius: vars.$border-radius !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.ck-rounded-corners .ck.ck-editor__main > .ck-editor__editable,
+.ck.ck-editor__main > .ck-editor__editable.ck-rounded-corners {
+    border-radius: vars.$border-radius !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.ck-editor__editable {
+    min-height: 245px !important;
+}
+
+.ck[class*=ck-heading_heading] {
+    font-weight: vars.$font-weight-medium !important;
+}
+
+.ck,
+a.ck {
+    &.ck-button {
+        &.ck-on:not(.ck-disabled) {
+            &:hover,
+            &:active {
+                box-shadow: none !important;
+            }
+        }
+    }
+}
+
+.ck {
+    &.ck-tooltip {
+        .ck-tooltip__text {
+            background: vars.$dark !important;
+            color: vars.$light !important;
+        }
+    }
+
+    &.ck-input-text {
+        background: vars.$input-bg !important;
+        border: 1px solid vars.$input-border-color !important;
+
+        &:focus {
+            border: 1px solid vars.$input-focus-border-color !important;
+            box-shadow: none !important;
+        }
+    }
+
+    &.ck-balloon-panel {
+        background: vars.$dropdown-bg !important;
+        border: 1px solid vars.$dropdown-border-color !important;
+
+        &[class*=arrow_n] {
+            &:after {
+                border-bottom-color: vars.$dropdown-bg !important;
+            }
+
+            &::before {
+                border-bottom-color: vars.$dropdown-border-color !important;
+            }
+        }
+    }
+}
+
+
+.ck.ck-labeled-field-view > .ck.ck-labeled-field-view__input-wrapper > .ck.ck-label {
+    background: vars.$dropdown-bg !important;
+}
+
+.ck-editor-reverse {
+    .ck-editor {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .ck {
+        &.ck-editor__main > .ck-editor__editable {
+            border: 1px solid vars.$input-border-color !important;
+            border-bottom: 0 !important;
+        }
+    }
+
+    .ck-rounded-corners .ck.ck-editor__main > .ck-editor__editable,
+    .ck.ck-editor__main > .ck-editor__editable.ck-rounded-corners {
+        border-radius: vars.$border-radius !important;
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+
+    .ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar,
+    .ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+        border-radius: vars.$border-radius !important;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+    }
+}
+
+[dir="rtl"] {
+    .ck.ck-toolbar > .ck-toolbar__items {
+        flex-direction: row-reverse;
+    }
+}

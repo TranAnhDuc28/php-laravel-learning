@@ -1,0 +1,332 @@
+@use 'bootstrap/scss/functions' as fn_bt;
+@use 'bootstrap/scss/mixins' as mixins_bt;
+@use '../variables' as vars;
+@use '../variables-custom' as vars_cs;
+@use '../variables-dark' as vars_dark;
+
+:root {
+    /* Card. */
+    --#{vars.$prefix}card-logo-dark:                                     block;
+    --#{vars.$prefix}card-logo-light:                                    none;
+
+    /* Vertical menu. */
+    --#{vars.$prefix}vertical-menu-width:                                #{vars_cs.$vertical-menu-width};
+    --#{vars.$prefix}vertical-menu-width-md:                             #{vars_cs.$vertical-menu-width-md};
+    --#{vars.$prefix}vertical-menu-width-sm:                             #{vars_cs.$vertical-menu-width-sm};
+
+    /* Topbar - (Default Light). */
+    --#{vars.$prefix}header-bg:                                          #{vars_cs.$header-bg};
+    --#{vars.$prefix}header-border:                                      #{vars_cs.$header-border};
+    --#{vars.$prefix}header-item-color:                                  #{vars_cs.$header-item-color};
+    --#{vars.$prefix}header-item-bg:                                     #{vars_cs.$header-item-bg};
+    --#{vars.$prefix}header-item-sub-color:                              #{vars_cs.$header-item-sub-color};
+    --#{vars.$prefix}topbar-search-bg:                                   #{vars_cs.$topbar-search-bg};
+    --#{vars.$prefix}topbar-search-color:                                #{vars_cs.$topbar-search-color};
+    --#{vars.$prefix}topbar-user-bg:                                     #{vars_cs.$topbar-user-bg};
+
+    /* Page title. */
+    --#{vars.$prefix}page-title-box-shadow:                              #{vars_cs.$page-title-box-shadow};
+    --#{vars.$prefix}page-title-border:                                  #{vars_cs.$page-title-border};
+
+    /* Topbar - Dark. */
+    &[data-topbar="dark"] {
+        --#{vars.$prefix}header-bg:                                      #{vars_cs.$dark-header-bg};
+        --#{vars.$prefix}header-item-color:                              #{vars_cs.$dark-header-item-color};
+        --#{vars.$prefix}header-item-bg:                                 #{vars_cs.$dark-header-item-bg};
+        --#{vars.$prefix}header-item-sub-color:                          #{vars_cs.$dark-header-item-sub-color};
+        --#{vars.$prefix}topbar-user-bg:                                 #{vars_cs.$dark-topbar-user-bg};
+        --#{vars.$prefix}topbar-search-bg:                               #{vars_cs.$dark-topbar-search-bg};
+        --#{vars.$prefix}topbar-search-color:                            #{vars_cs.$dark-topbar-search-color};
+        --#{vars.$prefix}header-border:                                  #{vars_cs.$dark-header-border};
+    }
+
+    /* Horizontal nav. */
+    --#{vars.$prefix}topnav-bg:                                          #{vars_cs.$twocolumn-menu-iconview-bg};
+    --#{vars.$prefix}topnav-item-color:                                  #{vars_cs.$topnav-item-color};
+    --#{vars.$prefix}topnav-item-active-color:                           #{vars_cs.$topnav-item-active-color};
+
+    /* Twocolumn menu. */
+    --#{vars.$prefix}twocolumn-menu-iconview-bg:                         #{vars_cs.$twocolumn-menu-iconview-bg};
+    --#{vars.$prefix}twocolumn-menu-box-shadow:                          #{vars_cs.$twocolumn-menu-box-shadow};
+
+    /* Boxed. */
+    --#{vars.$prefix}boxed-layout-width:                                 #{vars_cs.$boxed-layout-width};
+    --#{vars.$prefix}boxed-body-bg:                                      #{vars_cs.$boxed-body-bg};
+
+    /* Semibox layout. */
+    --#{vars.$prefix}semibox-width:                                      #{vars_cs.$semibox-width};
+
+    /* Footer. */
+    --#{vars.$prefix}footer-bg:                                          #{vars_cs.$footer-bg};
+    --#{vars.$prefix}footer-color:                                       #{vars_cs.$footer-color};
+
+    /* Form. */
+    --#{vars.$prefix}input-bg-custom:                                #{vars_cs.$input-bg-custom};
+    --#{vars.$prefix}input-border-custom:                            #{vars_cs.$input-border-custom};
+}
+
+/* Sidebar light theme. */
+@if (vars.$sidebar-mode) {
+    :root {
+        --#{vars.$prefix}vertical-menu-bg:                                   #{vars_cs.$vertical-menu-bg};
+        --#{vars.$prefix}vertical-menu-border:                               #{vars_cs.$vertical-menu-border};
+        --#{vars.$prefix}vertical-menu-item-color:                           #{vars_cs.$vertical-menu-item-color};
+        --#{vars.$prefix}vertical-menu-item-bg:                              #{vars_cs.$vertical-menu-item-bg};
+        --#{vars.$prefix}vertical-menu-item-hover-color:                     #{vars_cs.$vertical-menu-item-hover-color};
+        --#{vars.$prefix}vertical-menu-item-active-color:                    #{vars_cs.$vertical-menu-item-active-color};
+        --#{vars.$prefix}vertical-menu-item-active-bg:                       #{vars_cs.$vertical-menu-item-active-bg};
+        --#{vars.$prefix}vertical-menu-sub-item-color:                       #{vars_cs.$vertical-menu-sub-item-color};
+        --#{vars.$prefix}vertical-menu-sub-item-hover-color:                 #{vars_cs.$vertical-menu-sub-item-hover-color};
+        --#{vars.$prefix}vertical-menu-sub-item-active-color:                #{vars_cs.$vertical-menu-sub-item-active-color};
+        --#{vars.$prefix}vertical-menu-title-color:                          #{vars_cs.$vertical-menu-title-color};
+        --#{vars.$prefix}vertical-menu-box-shadow:                           #{vars_cs.$vertical-menu-box-shadow};
+        --#{vars.$prefix}vertical-menu-dropdown-box-shadow:                  #{vars_cs.$vertical-menu-dropdown-box-shadow};
+
+        &[data-sidebar="dark"] {
+            /* Vertical dark. */
+            --#{vars.$prefix}vertical-menu-bg:                               #{vars_cs.$dark-vertical-menu-bg};
+            --#{vars.$prefix}vertical-menu-border:                           #{vars_cs.$dark-vertical-menu-border};
+            --#{vars.$prefix}vertical-menu-item-color:                       #{vars_cs.$dark-vertical-menu-item-color};
+            --#{vars.$prefix}vertical-menu-item-bg:                          #{vars_cs.$dark-vertical-menu-item-bg};
+            --#{vars.$prefix}vertical-menu-item-hover-color:                 #{vars_cs.$dark-vertical-menu-item-hover-color};
+            --#{vars.$prefix}vertical-menu-item-active-color:                #{vars_cs.$dark-vertical-menu-item-active-color};
+            --#{vars.$prefix}vertical-menu-item-active-bg:                   #{vars_cs.$dark-vertical-menu-item-active-bg};
+            --#{vars.$prefix}vertical-menu-sub-item-color:                   #{vars_cs.$dark-vertical-menu-sub-item-color};
+            --#{vars.$prefix}vertical-menu-sub-item-hover-color:             #{vars_cs.$dark-vertical-menu-sub-item-hover-color};
+            --#{vars.$prefix}vertical-menu-sub-item-active-color:            #{vars_cs.$dark-vertical-menu-sub-item-active-color};
+            --#{vars.$prefix}vertical-menu-title-color:                      #{vars_cs.$dark-vertical-menu-title-color};
+            --#{vars.$prefix}twocolumn-menu-iconview-bg:                     #{vars_cs.$dark-twocolumn-menu-iconview-bg};
+            --#{vars.$prefix}vertical-menu-box-shadow:                       #{vars_cs.$dark-vertical-menu-box-shadow};
+            --#{vars.$prefix}vertical-menu-dropdown-box-shadow:              #{vars_cs.$dark-vertical-menu-dropdown-box-shadow};
+        }
+    }
+}
+
+/* Sidebar gradient light theme. */
+@if (vars.$sidebar-gradient-mode) {
+    :root {
+        &:is([data-sidebar="gradient"], [data-sidebar="gradient-2"], [data-sidebar="gradient-3"], [data-sidebar="gradient-4"]) {
+            --#{vars.$prefix}vertical-menu-item-color:                       #{vars_cs.$vertical-menu-item-color-gradient};
+            --#{vars.$prefix}vertical-menu-item-bg:                          #{vars_cs.$vertical-menu-item-bg-gradient};
+            --#{vars.$prefix}vertical-menu-item-hover-color:                 #{vars_cs.$vertical-menu-item-hover-color-gradient};
+            --#{vars.$prefix}vertical-menu-item-active-color:                #{vars_cs.$vertical-menu-item-active-color-gradient};
+            --#{vars.$prefix}vertical-menu-item-active-bg:                   #{vars_cs.$vertical-menu-item-active-bg-gradient};
+            --#{vars.$prefix}vertical-menu-sub-item-color:                   #{vars_cs.$vertical-menu-sub-item-color-gradient};
+            --#{vars.$prefix}vertical-menu-sub-item-hover-color:             #{vars_cs.$vertical-menu-sub-item-hover-color-gradient};
+            --#{vars.$prefix}vertical-menu-sub-item-active-color:            #{vars_cs.$vertical-menu-sub-item-active-color-gradient};
+            --#{vars.$prefix}vertical-menu-title-color:                      #{vars_cs.$vertical-menu-title-color-gradient};
+            --#{vars.$prefix}vertical-menu-box-shadow:                       #{vars_cs.$vertical-menu-box-shadow-gradient};
+            --#{vars.$prefix}vertical-menu-dropdown-box-shadow:              #{vars_cs.$vertical-menu-dropdown-box-shadow-gradient};
+        }
+
+        &[data-sidebar="gradient"] {
+            --#{vars.$prefix}vertical-menu-bg:                               #{vars_cs.$vertical-menu-bg-gradient};
+            --#{vars.$prefix}vertical-menu-border:                           #{vars_cs.$vertical-menu-border-gradient};
+            --#{vars.$prefix}twocolumn-menu-iconview-bg:                     #{vars_cs.$twocolumn-menu-iconview-bg-gradient};
+        }
+
+        &[data-sidebar="gradient-2"] {
+            --#{vars.$prefix}vertical-menu-bg:                               #{vars_cs.$vertical-menu-bg-gradient-2};
+            --#{vars.$prefix}vertical-menu-border:                           #{vars_cs.$vertical-menu-border-gradient-2};
+            --#{vars.$prefix}twocolumn-menu-iconview-bg:                     #{vars_cs.$twocolumn-menu-iconview-bg-gradient-2};
+        }
+
+        &[data-sidebar="gradient-3"] {
+            --#{vars.$prefix}vertical-menu-bg:                               #{vars_cs.$vertical-menu-bg-gradient-3};
+            --#{vars.$prefix}vertical-menu-border:                           #{vars_cs.$vertical-menu-border-gradient-3};
+            --#{vars.$prefix}twocolumn-menu-iconview-bg:                     #{vars_cs.$twocolumn-menu-iconview-bg-gradient-3};
+        }
+
+        &[data-sidebar="gradient-4"] {
+            --#{vars.$prefix}vertical-menu-bg:                               #{vars_cs.$vertical-menu-bg-gradient-4};
+            --#{vars.$prefix}vertical-menu-border:                           #{vars_cs.$vertical-menu-border-gradient-4};
+            --#{vars.$prefix}twocolumn-menu-iconview-bg:                     #{vars_cs.$twocolumn-menu-iconview-bg-gradient-4};
+        }
+    }
+}
+
+/* Theme dark. */
+@if (vars.$enable-dark-mode) {
+    @include mixins_bt.color-mode(dark, true) {
+        --#{vars.$prefix}light:                                          #{vars_dark.$light-dark};
+        --#{vars.$prefix}light-rgb:                                      #{fn_bt.to-rgb(vars_dark.$light-dark)};
+        --#{vars.$prefix}light-text-emphasis:                            #{vars_dark.$light-text-emphasis-dark};
+        --#{vars.$prefix}light-bg-subtle:                                #{vars_dark.$light-bg-subtle-dark};
+        --#{vars.$prefix}light-border-subtle:                            #{vars_dark.$light-border-subtle-dark};
+
+        --#{vars.$prefix}dark:                                           #{vars_dark.$dark-color};
+        --#{vars.$prefix}dark-rgb:                                       #{fn_bt.to-rgb(vars_dark.$dark-color)};
+        --#{vars.$prefix}dark-text-emphasis:                             #{vars_dark.$dark-text-emphasis-dark};
+        --#{vars.$prefix}dark-bg-subtle:                                 #{vars_dark.$dark-bg-subtle-dark};
+        --#{vars.$prefix}dark-border-subtle:                             #{vars_dark.$dark-border-subtle-dark};
+
+        /* Card. */
+        --#{vars.$prefix}card-logo-dark:                                 none;
+        --#{vars.$prefix}card-logo-light:                                block;
+
+        /* Footer. */
+        --#{vars.$prefix}footer-bg:                                      #{vars_dark.$footer-bg-dark};
+        --#{vars.$prefix}footer-color:                                   #{vars_dark.$footer-color-dark};
+
+        /* Horizontal nav. */
+        --#{vars.$prefix}topnav-bg:                                      #{vars_dark.$topnav-bg-dark};
+        --#{vars.$prefix}topnav-item-color:                              #{vars_dark.$topnav-item-color-dark};
+        --#{vars.$prefix}topnav-item-active-color:                       #{vars_dark.$topnav-item-active-color-dark};
+
+        /* Page title. */
+        --#{vars.$prefix}page-title-box-shadow:                          #{vars_dark.$page-title-box-shadow-dark};
+        --#{vars.$prefix}page-title-border:                              #{vars_dark.$page-title-border-dark};
+
+        /* Two columns. */
+        --#{vars.$prefix}twocolumn-menu-box-shadow:                      #{vars_dark.$twocolumn-menu-box-shadow-dark};
+
+        /* Boxed. */
+        --#{vars.$prefix}boxed-body-bg:                                  #{vars_dark.$boxed-body-bg-dark};
+
+        .table-light {
+            --#{vars.$prefix}table-color:                                #{lighten(vars_dark.$light-dark, 100%)};
+            --#{vars.$prefix}table-bg:                                   var(--#{vars.$prefix}light);
+            --#{vars.$prefix}table-border-color:                         var(--#{vars.$prefix}border-color);
+            --#{vars.$prefix}table-striped-bg:                           var(--#{vars.$prefix}light);
+            --#{vars.$prefix}table-striped-color:                        #{lighten(vars_dark.$light-dark, 100%)};
+            --#{vars.$prefix}table-active-bg:                            var(--#{vars.$prefix}light);
+            --#{vars.$prefix}table-active-color:                         #{lighten(vars_dark.$light-dark, 100%)};
+            --#{vars.$prefix}table-hover-bg:                             var(--#{vars.$prefix}light);
+            --#{vars.$prefix}table-hover-color:                          #{lighten(vars_dark.$light-dark, 100%)};
+        }
+
+        .btn-light,
+        .btn-outline-light {
+            --#{vars.$prefix}btn-color:                                  #{fn_bt.tint-color(vars_dark.$body-bg-dark, 50%)};
+            --#{vars.$prefix}btn-active-color:                           #{vars.$white};
+            --#{vars.$prefix}btn-hover-color:                            #{vars.$white};
+        }
+
+        .btn-outline-dark,
+        .btn-soft-dark, .btn-ghost-dark {
+            --#{vars.$prefix}btn-color:                                  #{vars.$white};
+        }
+
+        .btn-ghost-dark {
+            --#{vars.$prefix}btn-active-color:                           #{vars.$white};
+            --#{vars.$prefix}btn-hover-color:                            #{vars.$white};
+        }
+
+        .dropdown-menu {
+            --#{vars.$prefix}dropdown-bg:                                #{vars_dark.$dropdown-bg-dark};
+            --#{vars.$prefix}dropdown-link-color:                        #{vars_dark.$dropdown-link-color-dark};
+            --#{vars.$prefix}dropdown-link-hover-color:                  #{vars_dark.$dropdown-link-hover-color-dark};
+            --#{vars.$prefix}dropdown-link-hover-bg:                     #{vars_dark.$dropdown-link-hover-bg-dark};
+            --#{vars.$prefix}dropdown-border-width:                      #{vars_dark.$dropdown-border-width-dark};
+            --#{vars.$prefix}dropdown-link-active-color:                 #{vars_dark.$dropdown-link-active-color-dark};
+            --#{vars.$prefix}dropdown-link-active-bg:                    #{vars_dark.$dropdown-link-active-bg-dark};
+        }
+
+        /* Form */
+        --#{vars.$prefix}input-bg-custom:                                #{vars_dark.$input-bg-custom-dark};
+        --#{vars.$prefix}input-border-custom:                            #{vars_dark.$input-border-custom-dark};
+    }
+}
+
+/* Topbar dark mode. */
+@if (vars.$topbar-dark-mode) {
+    @include mixins_bt.color-mode(dark, true) {
+        /* Topbar. */
+        --#{vars.$prefix}header-bg:                                      #{vars_dark.$header-bg-dark};
+        --#{vars.$prefix}header-border:                                  #{vars_dark.$header-border-dark};
+        --#{vars.$prefix}header-item-color:                              #{vars_dark.$header-item-color-dark};
+        --#{vars.$prefix}header-item-bg:                                 #{vars_dark.$header-item-bg-dark};
+        --#{vars.$prefix}header-item-sub-color:                          #{vars_dark.$header-item-sub-color-dark};
+        --#{vars.$prefix}topbar-user-bg:                                 #{vars_dark.$topbar-user-bg-dark};
+        --#{vars.$prefix}topbar-search-bg:                               #{vars_dark.$topbar-search-bg-dark};
+        --#{vars.$prefix}topbar-search-color:                            #{vars_dark.$topbar-search-color-dark};
+
+        /* Topbar - Dark. */
+        &[data-topbar="dark"] {
+            --#{vars.$prefix}header-bg:                                  #{vars_dark.$dark-header-bg-dark};
+            --#{vars.$prefix}header-border:                              #{vars_dark.$dark-header-border-dark};
+            --#{vars.$prefix}header-item-color:                          #{vars_dark.$dark-header-item-color-dark};
+            --#{vars.$prefix}header-item-bg:                             #{vars_dark.$dark-header-item-bg-dark};
+            --#{vars.$prefix}header-item-sub-color:                      #{vars_dark.$dark-header-item-sub-color-dark};
+            --#{vars.$prefix}topbar-user-bg:                             #{vars_dark.$dark-topbar-user-bg-dark};
+            --#{vars.$prefix}topbar-search-bg:                           #{vars_dark.$dark-topbar-search-bg-dark};
+            --#{vars.$prefix}topbar-search-color:                        #{vars_dark.$dark-topbar-search-color-dark};
+        }
+    }
+}
+
+/* Sidebar dark mode. */
+@if (vars.$topbar-dark-mode) {
+    @include mixins_bt.color-mode(dark, true) {
+
+        /* Sidebar light. */
+        --#{vars.$prefix}vertical-menu-bg:                               #{vars_dark.$vertical-menu-bg-dark};
+        --#{vars.$prefix}vertical-menu-border:                           #{vars_dark.$vertical-menu-border-dark};
+        --#{vars.$prefix}vertical-menu-item-color:                       #{vars_dark.$vertical-menu-item-color-dark};
+        --#{vars.$prefix}vertical-menu-item-bg:                          #{vars_dark.$vertical-menu-item-bg-dark};
+        --#{vars.$prefix}vertical-menu-item-hover-color:                 #{vars_dark.$vertical-menu-item-hover-color-dark};
+        --#{vars.$prefix}vertical-menu-item-active-color:                #{vars_dark.$vertical-menu-item-active-color-dark};
+        --#{vars.$prefix}vertical-menu-item-active-bg:                   #{vars_dark.$vertical-menu-item-active-bg-dark};
+        --#{vars.$prefix}vertical-menu-sub-item-color:                   #{vars_dark.$vertical-menu-sub-item-color-dark};
+        --#{vars.$prefix}vertical-menu-sub-item-hover-color:             #{vars_dark.$vertical-menu-sub-item-hover-color-dark};
+        --#{vars.$prefix}vertical-menu-sub-item-active-color:            #{vars_dark.$vertical-menu-sub-item-active-color-dark};
+        --#{vars.$prefix}vertical-menu-title-color:                      #{vars_dark.$vertical-menu-title-color-dark};
+
+        &[data-sidebar="dark"] {
+            /* Vertical dark. */
+            --#{vars.$prefix}vertical-menu-bg:                           #{vars_dark.$dark-vertical-menu-bg-dark};
+            --#{vars.$prefix}vertical-menu-border:                       #{vars_dark.$dark-vertical-menu-border-dark};
+            --#{vars.$prefix}vertical-menu-item-color:                   #{vars_dark.$dark-vertical-menu-item-color-dark};
+            --#{vars.$prefix}vertical-menu-item-bg:                      #{vars_dark.$dark-vertical-menu-item-bg-dark};
+            --#{vars.$prefix}vertical-menu-item-hover-color:             #{vars_dark.$dark-vertical-menu-item-hover-color-dark};
+            --#{vars.$prefix}vertical-menu-item-active-color:            #{vars_dark.$dark-vertical-menu-item-active-color-dark};
+            --#{vars.$prefix}vertical-menu-item-active-bg:               #{vars_dark.$dark-vertical-menu-item-active-bg-dark};
+            --#{vars.$prefix}vertical-menu-sub-item-color:               #{vars_dark.$dark-vertical-menu-sub-item-color-dark};
+            --#{vars.$prefix}vertical-menu-sub-item-hover-color:         #{vars_dark.$dark-vertical-menu-sub-item-hover-color-dark};
+            --#{vars.$prefix}vertical-menu-sub-item-active-color:        #{vars_dark.$dark-vertical-menu-sub-item-active-color-dark};
+            --#{vars.$prefix}vertical-menu-title-color:                  #{vars_dark.$dark-vertical-menu-title-color-dark};
+            --#{vars.$prefix}twocolumn-menu-iconview-bg:                 #{vars_dark.$dark-twocolumn-menu-iconview-bg-dark};
+        }
+    }
+}
+
+/* Sidebar gradient dark mode. */
+@if (vars.$sidebar-gradient-dark-mode) {
+    @include mixins_bt.color-mode(dark, true) {
+        &:is([data-sidebar="gradient"], [data-sidebar="gradient-2"], [data-sidebar="gradient-3"], [data-sidebar="gradient-4"]) {
+            --#{vars.$prefix}vertical-menu-item-color:                   #{vars_dark.$vertical-menu-item-color-gradient-dark};
+            --#{vars.$prefix}vertical-menu-item-bg:                      #{vars_dark.$vertical-menu-item-bg-gradient-dark};
+            --#{vars.$prefix}vertical-menu-item-hover-color:             #{vars_dark.$vertical-menu-item-hover-color-gradient-dark};
+            --#{vars.$prefix}vertical-menu-item-active-color:            #{vars_dark.$vertical-menu-item-active-color-gradient-dark};
+            --#{vars.$prefix}vertical-menu-item-active-bg:               #{vars_dark.$vertical-menu-item-active-bg-gradient-dark};
+            --#{vars.$prefix}vertical-menu-sub-item-color:               #{vars_dark.$vertical-menu-sub-item-color-gradient-dark};
+            --#{vars.$prefix}vertical-menu-sub-item-hover-color:         #{vars_dark.$vertical-menu-sub-item-hover-color-gradient-dark};
+            --#{vars.$prefix}vertical-menu-sub-item-active-color:        #{vars_dark.$vertical-menu-sub-item-active-color-gradient-dark};
+            --#{vars.$prefix}vertical-menu-title-color:                  #{vars_dark.$vertical-menu-title-color-gradient-dark};
+        }
+
+        &[data-sidebar="gradient"] {
+            --#{vars.$prefix}vertical-menu-bg:                           #{vars_dark.$vertical-menu-bg-gradient-dark};
+            --#{vars.$prefix}vertical-menu-border:                       #{vars_dark.$vertical-menu-border-gradient-dark};
+            --#{vars.$prefix}twocolumn-menu-iconview-bg:                 #{vars_dark.$twocolumn-menu-iconview-bg-gradient-dark};
+        }
+
+        &[data-sidebar="gradient-2"] {
+            --#{vars.$prefix}vertical-menu-bg:                           #{vars_dark.$vertical-menu-bg-gradient-2-dark};
+            --#{vars.$prefix}vertical-menu-border:                       #{vars_dark.$vertical-menu-border-gradient-2-dark};
+            --#{vars.$prefix}twocolumn-menu-iconview-bg:                 #{vars_dark.$twocolumn-menu-iconview-bg-gradient-2-dark};
+        }
+
+        &[data-sidebar="gradient-3"] {
+            --#{vars.$prefix}vertical-menu-bg:                           #{vars_dark.$vertical-menu-bg-gradient-3-dark};
+            --#{vars.$prefix}vertical-menu-border:                       #{vars_dark.$vertical-menu-border-gradient-3-dark};
+            --#{vars.$prefix}twocolumn-menu-iconview-bg:                 #{vars_dark.$twocolumn-menu-iconview-bg-gradient-3-dark};
+        }
+
+        &[data-sidebar="gradient-4"] {
+            --#{vars.$prefix}vertical-menu-bg:                           #{vars_dark.$vertical-menu-bg-gradient-4-dark};
+            --#{vars.$prefix}vertical-menu-border:                       #{vars_dark.$vertical-menu-border-gradient-4-dark};
+            --#{vars.$prefix}twocolumn-menu-iconview-bg:                 #{vars_dark.$twocolumn-menu-iconview-bg-gradient-4-dark};
+        }
+    }
+}

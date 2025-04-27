@@ -1,0 +1,58 @@
+@use '../variables' as vars;
+@use '../variables-custom' as vars_cs;
+
+/* Product list. */
+#selection-element {
+    display: none;
+}
+
+.filter-choices-input {
+    .choices__inner {
+        padding: 0;
+        border: none;
+        background-color: var(--#{vars.$prefix}secondary-bg);
+    }
+
+    .choices__input {
+        background-color: var(--#{vars.$prefix}secondary-bg);
+    }
+}
+
+/* Product detail. */
+.sticky-side-div {
+    @media (min-width: 992px) {
+        position: sticky;
+        top: calc(#{vars_cs.$header-height} + #{vars.$grid-gutter-width});
+    }
+}
+
+.product-img-slider {
+    .product-nav-slider {
+        .nav-slide-item {
+            border: 1px solid var(--#{vars.$prefix}border-color);
+            border-radius: vars.$border-radius;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+
+        .swiper-slide-thumb-active {
+            .nav-slide-item {
+                background-color: var(--#{vars.$prefix}light);
+            }
+        }
+    }
+}
+
+.filter-list {
+    a {
+        &.active {
+            .listname {
+                color: var(--#{vars.$prefix}success);
+            }
+        }
+    }
+}
+
+#remove-actions {
+    display: none;
+}

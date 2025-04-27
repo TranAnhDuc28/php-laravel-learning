@@ -1,0 +1,79 @@
+@use '../variables' as vars;
+@use 'bootstrap/scss/mixins' as mixins_bt;
+
+.autoComplete_wrapper {
+    display: block;
+
+    > input {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: vars.$input-padding-y vars.$input-padding-x;
+        font-family: vars.$input-font-family;
+        font-size: vars.$input-font-size;
+        font-weight: vars.$input-font-weight;
+        line-height: vars.$input-line-height;
+        color: vars.$input-color;
+        background-color: vars.$input-bg;
+        background-clip: padding-box;
+        border: vars.$input-border-width solid vars.$input-border-color;
+        border-radius: vars.$input-border-radius;
+        background-image: none;
+
+        &::placeholder {
+            padding: 0 !important;
+            color: vars.$input-placeholder-color !important;
+            font-size: vars.$input-font-size !important;
+        }
+
+        &:focus {
+            border: vars.$input-border-width solid vars.$input-focus-border-color;
+            color: vars.$input-focus-color;
+        }
+
+        &:hover {
+            color: vars.$input-color;
+        }
+    }
+
+    > ul {
+        border-radius: vars.$border-radius;
+        border-color: vars.$dropdown-border-color;
+        background-color: vars.$dropdown-bg;
+        box-shadow: vars.$dropdown-box-shadow;
+        padding: 0;
+        overflow: auto;
+        max-height: 160px;
+        margin: 0;
+        animation-name: DropDownSlide;
+        animation-duration: .3s;
+        animation-fill-mode: both;
+
+        > li {
+            font-size: vars.$dropdown-font-size;
+            margin: 0;
+            padding: vars.$dropdown-item-padding-y vars.$dropdown-item-padding-x;
+            border-radius: 0;
+            background-color: vars.$dropdown-bg;
+            color: vars.$dropdown-color;
+
+            mark {
+                color: vars.$danger;
+                font-weight: vars.$font-weight-semibold;
+                padding: 1px;
+            }
+
+            &[aria-selected=true],
+            &:hover {
+                color: vars.$dropdown-link-hover-color;
+                @include mixins_bt.gradient-bg(vars.$dropdown-link-hover-bg);
+            }
+        }
+
+        .no_result {
+            padding: vars.$dropdown-item-padding-y * 2 vars.$dropdown-item-padding-x;
+            font-style: italic;
+            font-weight: vars.$font-weight-medium;
+        }
+    }
+}

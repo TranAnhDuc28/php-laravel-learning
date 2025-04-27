@@ -1,0 +1,77 @@
+@use '../variables' as vars;
+
+.shepherd-element{
+    background: var(--#{vars.$prefix}secondary-bg);
+    box-shadow: vars.$box-shadow;
+}
+
+.shepherd-has-title{
+    .shepherd-content{
+        .shepherd-header{
+            background-color: var(--#{vars.$prefix}light);
+            padding: vars.$toast-padding-y vars.$toast-padding-x;
+        }
+
+        .shepherd-cancel-icon{
+            color: rgba(var(--#{vars.$prefix}body-color-rgb), .75);
+            &:hover{
+                color: rgba(var(--#{vars.$prefix}body-color-rgb), 1);
+            }
+        }
+    }
+}
+
+.shepherd-element.shepherd-has-title[data-popper-placement^=bottom]>.shepherd-arrow:before{
+    background-color: var(--#{vars.$prefix}light);
+}
+
+.shepherd-title{
+    font-size: 15px;
+    font-weight: vars.$font-weight-medium;
+    color: var(--#{vars.$prefix}body-color);
+}
+
+.shepherd-text{
+    padding: vars.$toast-padding-x;
+    font-size: vars.$font-size-base;
+    color: var(--#{vars.$prefix}body-color);
+}
+
+.shepherd-button{
+    &.btn-success:not(:disabled):hover{
+        background: darken(vars.$success, 2.5%);
+        color: vars.$white;
+    }
+
+    &.btn-light:not(:disabled):hover{
+        background: rgba(var(--#{vars.$prefix}light-rgb), .75);
+        color: var(--#{vars.$prefix}body-color);
+    }
+
+    &.btn-primary:not(:disabled):hover{
+        background: darken(vars.$primary, 2.5%);
+        color: vars.$white;
+    }
+}
+
+.shepherd-footer{
+    padding: 0 vars.$toast-padding-x vars.$toast-padding-x;
+}
+.shepherd-arrow,
+.shepherd-arrow:before{
+    content: "\ea75";
+    font-family: 'remixicon', sans-serif;
+    font-size: 24px;
+    z-index: 1;
+    background-color: transparent !important;
+    transform: rotate(0deg);
+    color: var(--#{vars.$prefix}primary);
+}
+
+.shepherd-element[data-popper-placement^=bottom]>.shepherd-arrow{
+    top: -18px;
+}
+
+.shepherd-button{
+    margin-right: 0.5rem;
+}

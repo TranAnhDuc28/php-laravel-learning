@@ -1,0 +1,97 @@
+@use '../variables' as vars;
+
+.multi-wrapper {
+    border: none;
+    position: relative;
+
+    &::before {
+        content: "\ea61";
+        position: absolute;
+        font-family: 'remixicon', sans-serif;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 86px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 16px;
+        border-radius: 50%;
+        color: var(--#{vars.$prefix}secondary-color);
+        background-color: var(--#{vars.$prefix}light);
+        z-index: 1;
+    }
+
+    .non-selected-wrapper {
+        border: 1px solid vars.$input-border-color;
+        background-color: vars.$input-bg;
+        border-top-left-radius: vars.$border-radius;
+        border-bottom-left-radius: vars.$border-radius;
+    }
+
+    .selected-wrapper, .non-selected-wrapper {
+        &::-webkit-scrollbar {
+            -webkit-appearance: none;
+        }
+
+        &::-webkit-scrollbar:vertical {
+            width: 10px;
+        }
+
+        &::-webkit-scrollbar:horizontal {
+            height: 9px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(var(--#{vars.$prefix}dark-rgb), .2);
+            border-radius: 10px;
+            border: 2px solid vars.$input-bg;
+        }
+
+        &::-webkit-scrollbar-track {
+            border-radius: 10px;
+            background-color: vars.$input-bg;
+        }
+    }
+
+    .item-group .group-label {
+        font-size: 12px;
+    }
+
+    .item {
+        color: vars.$input-color;
+
+        &:hover {
+            background-color: rgba(vars.$primary, 0.1);
+        }
+    }
+
+    .selected-wrapper {
+        border: 1px solid vars.$input-border-color;
+        background: vars.$input-bg;
+        border-top-right-radius: vars.$border-radius;
+        border-bottom-right-radius: vars.$border-radius;
+    }
+
+    .search-input {
+        flex: 0 0 auto;
+        padding: vars.$input-padding-y vars.$input-padding-x;
+        font-family: vars.$input-font-family;
+        font-size: vars.$input-font-size;
+        color: vars.$input-color;
+        background-color: vars.$input-bg;
+        border: vars.$input-border-width solid vars.$input-border-color;
+        border-radius: vars.$input-border-radius;
+        margin-bottom: 16px;
+
+        &::placeholder {
+            color: vars.$input-placeholder-color;
+        }
+    }
+
+    .header {
+        font-weight: vars.$font-weight-semibold;
+        color: var(--#{vars.$prefix}gray-600);
+    }
+}

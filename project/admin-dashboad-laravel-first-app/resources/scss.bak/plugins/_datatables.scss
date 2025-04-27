@@ -1,0 +1,213 @@
+@use '../variables' as vars;
+
+table.dataTable td.dataTables_empty,
+table.dataTable th.dataTables_empty {
+    text-align: center;
+    padding: 50px;
+    font-weight: vars.$font-weight-semibold;
+    --vz-table-accent-bg: var(--#{vars.$prefix}secondary-bg);
+}
+
+table.dataTable > thead .sorting:before,
+table.dataTable > thead .sorting_asc:before,
+table.dataTable > thead .sorting_desc:before,
+table.dataTable > thead .sorting_asc_disabled:before,
+table.dataTable > thead .sorting_desc_disabled:before {
+    content: "\f0360";
+    position: absolute;
+    right: 0.5rem;
+    top: 12px;
+    font-size: .8rem;
+    font-family: 'Material Design Icons', sans-serif;
+}
+
+table.dataTable > thead .sorting:after,
+table.dataTable > thead .sorting_asc:after,
+table.dataTable > thead .sorting_desc:after,
+table.dataTable > thead .sorting_asc_disabled:after,
+table.dataTable > thead .sorting_desc_disabled:after {
+    content: "\f035d";
+    position: absolute;
+    right: 0.5rem;
+    top: 18px;
+    font-size: .8rem;
+    font-family: 'Material Design Icons', sans-serif;
+}
+
+table.dataTable > tbody > tr.child span.dtr-title {
+    font-weight: vars.$font-weight-semibold;
+    min-width: 150px;
+}
+
+/* Responsive. */
+table {
+    &.dataTable {
+        &.dtr-inline {
+            &.collapsed {
+                > tbody {
+                    > tr {
+
+                        > th,
+                        > td {
+                            &.dtr-control {
+                                &::before {
+                                    background-color: vars.$primary;
+                                    border-color: var(--#{vars.$prefix}secondary-bg);
+                                }
+                            }
+                        }
+
+                        &.parent {
+                            &.parent {
+                                > th {
+                                    &.dtr-control {
+                                        &::before {
+                                            background-color: vars.$danger;
+                                        }
+                                    }
+                                }
+                            }
+
+                            > td {
+                                &.dtr-control {
+                                    &::before {
+                                        background-color: vars.$danger;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        > tbody {
+            > tr {
+                &.child {
+                    span {
+                        &.dtr-title {
+                            min-width: 135px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.table-card {
+
+    .dataTables_length, .dataTables_filter {
+        padding: vars.$card-cap-padding-y vars.$card-cap-padding-x 0;
+    }
+
+    .dataTables_info,
+    .dataTables_paginate {
+        padding: vars.$card-cap-padding-y vars.$card-cap-padding-x;
+    }
+
+    div.dataTables_wrapper {
+        .col-md-6 {
+            width: 100%;
+        }
+
+        div {
+            &.dataTables_filter {
+                input {
+                    width: calc(100% - 52px);
+                }
+
+                label {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+div {
+    &.dtr-modal {
+        div {
+            &.dtr-modal-display {
+                background-color: vars.$modal-content-bg;
+                border-color: var(--#{vars.$prefix}border-color);
+                box-shadow: none;
+                height: 70%;
+            }
+
+            &.dtr-modal-content {
+                padding: vars.$modal-inner-padding;
+
+                h2 {
+                    font-size: vars.$font-size-lg;
+                    font-weight: vars.$font-weight-semibold;
+                    margin-bottom: 15px;
+                }
+
+                .dtr-details {
+                    tr {
+                        td {
+                            padding: vars.$table-cell-padding-y vars.$table-cell-padding-x;
+                        }
+                    }
+                }
+            }
+
+            &.dtr-modal-close {
+                font-size: 24px;
+                top: 9px;
+                right: 11px;
+                width: 30px;
+                height: 30px;
+                line-height: 30px;
+                background-color: var(--#{vars.$prefix}secondary-bg);
+                border-color: var(--#{vars.$prefix}border-color);
+
+                &:hover {
+                    background-color: var(--#{vars.$prefix}light);
+                }
+            }
+        }
+    }
+}
+
+
+.dt-buttons {
+    :is(button.dt-button, div.dt-button, a.dt-button, input.dt-button) {
+        border-color: var(--#{vars.$prefix}border-color);
+        background: var(--#{vars.$prefix}light);
+        color: var(--#{vars.$prefix}body-color);
+    }
+}
+
+:is(button, div, a, input):is(.dt-button:hover:not(.disabled)) {
+    border-color: var(--#{vars.$prefix}border-color);
+    background: var(--#{vars.$prefix}light);
+    color: var(--#{vars.$prefix}body-color);
+}
+
+:is(button, div, a, input):is(.dt-button:active:not(.disabled)),
+:is(button, div, a, input):is(.dt-button.active:not(.disabled)) {
+    border-color: var(--#{vars.$prefix}border-color);
+    background: var(--#{vars.$prefix}light);
+    color: var(--#{vars.$prefix}body-color);
+    box-shadow: none;
+}
+
+:is(button, div, a, input):is(.dt-button:focus:not(.disabled)) {
+    border-color: var(--#{vars.$prefix}border-color);
+    background: var(--#{vars.$prefix}light);
+    color: var(--#{vars.$prefix}body-color);
+    text-shadow: none;
+    box-shadow: none;
+}
+
+:is(button, div, a, input):is(.dt-button:active:not(.disabled):hover:not(.disabled)),
+:is(button, div, a, input):is(.dt-button.active:not(.disabled):hover:not(.disabled)) {
+    border-color: var(--#{vars.$prefix}border-color);
+    background: var(--#{vars.$prefix}light);
+    color: var(--#{vars.$prefix}body-color);
+    text-shadow: none;
+    box-shadow: none;
+}

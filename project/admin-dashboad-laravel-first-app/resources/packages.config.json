@@ -1,0 +1,58 @@
+{
+    "packagesToCopy": [
+        {
+            "name": "bootstrap",
+            "copyAll": true,
+            "files": [
+                "dist/js",
+                "dist/css"
+            ]
+        },
+        {
+            "name": "simplebar",
+            "copyAll": true,
+            "files": [
+                "dist/simplebar.min.js",
+                "dist/simplebar.min.css"
+            ]
+        },
+        {
+            "name": "fullcalendar",
+            "copyAll": true,
+            "files": [
+                "index.global.min.js"
+            ]
+        },
+        {
+            "name": "flatpickr",
+            "copyAll": true,
+            "files": [
+                "dist/flatpickr.min.js"
+            ]
+        },
+        {
+            "name": "choices.js",
+            "copyAll": true,
+            "files": [
+                "public/assets/scripts/choices.min.js",
+                "public/assets/styles/choices.min.css"
+            ]
+        },
+        {
+            "name": "feather-icons",
+            "copyAll": true,
+            "files": [
+                "dist/feather.min.js"
+            ]
+        },
+        {
+            "name": "node-waves",
+            "copyAll": true,
+            "files": [
+                "dist/waves.min.css",
+                "dist/waves.min.js"
+            ]
+        }
+    ]
+}
+

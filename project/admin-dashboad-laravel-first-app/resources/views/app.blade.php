@@ -9,18 +9,14 @@
     <title>@yield('title') | Laravel Admin & Dashboard Template</title>
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
-    @stack('head_css')
-    <!-- Layout config Js -->
-    <script src="{{ asset('assets/js/layout.js') }}"></script>
-    <!-- Bootstrap Css -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-    <!-- Icons Css -->
-    <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css"/>
-    <!-- App Css-->
-    <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="{{ asset('build/images/favicon.ico') }}">
+
+    @vite('resources/js/layout.js')
+
+    @vite(['resources/scss/bootstrap.scss', 'resources/scss/icons.scss', 'resources/scss/app.scss'])
+
     <!-- Custom Css-->
-    <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css"/>
+    @stack('head_css')
     @stack('head_js')
 </head>
 <body>
@@ -34,7 +30,7 @@
     </div>
 </div>
 <!--start back-to-top-->
-<button onclick="scrollToTop()" class="btn btn-danger btn-icon" id="back-to-top">
+<button class="btn btn-danger btn-icon" id="back-to-top">
     <i class="ri-arrow-up-line"></i>
 </button>
 <!--end back-to-top-->
@@ -58,16 +54,16 @@
 @include('common.theme_settings')
 
 {{-- JAVASCRIPT COMMON --}}
-<script type='text/javascript' src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script type='text/javascript' src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
-<script type='text/javascript' src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
-<script type='text/javascript' src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
-<script type='text/javascript' src="{{ asset('assets/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>
+<script type='text/javascript' src="{{ asset('build/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+<script type='text/javascript' src="{{ asset('build/libs/simplebar/dist/simplebar.min.js') }}"></script>
+<script type='text/javascript' src="{{ asset('build/libs/node-waves/dist/waves.min.js') }}"></script>
+<script type='text/javascript' src="{{ asset('build/libs/feather-icons/dist/feather.min.js') }}"></script>
+{{--<script type='text/javascript' src="{{ asset('build/js/pages/plugins/lord-icon-2.1.0.js') }}"></script>--}}
 
 @stack('body_js')
 
 {{-- App js --}}
-<script type='text/javascript' src="{{ asset('assets/js/app.js') }}"></script>
-<script type='text/javascript' src="{{ asset('vendor/js/app.js') }}"></script>
+@vite(['resources/js/main.js'])
+
 </body>
 </html>

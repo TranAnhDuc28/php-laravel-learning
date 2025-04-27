@@ -30,7 +30,7 @@
                 </div>
                 <div class="d-block dropdown-item dropdown-item-cart text-wrap px-3 py-2">
                     <div class="d-flex align-items-center">
-                        <img src="{{ asset('assets/images/products/img-1.png') }}" class="me-3 rounded-circle avatar-sm p-2 bg-light" alt="user-pic">
+                        <img src="{{ asset('build/images/products/img-1.png') }}" class="me-3 rounded-circle avatar-sm p-2 bg-light" alt="user-pic">
                         <div class="flex-grow-1">
                             <h6 class="mt-0 mb-1 fs-14">
                                 <a href="apps-ecommerce-product-details.html" class="text-reset">Branded T-Shirts</a>
@@ -52,7 +52,7 @@
 
                 <div class="d-block dropdown-item dropdown-item-cart text-wrap px-3 py-2">
                     <div class="d-flex align-items-center">
-                        <img src="{{ asset('assets/images/products/img-2.png') }}" class="me-3 rounded-circle avatar-sm p-2 bg-light" alt="user-pic">
+                        <img src="{{ asset('build/images/products/img-2.png') }}" class="me-3 rounded-circle avatar-sm p-2 bg-light" alt="user-pic">
                         <div class="flex-grow-1">
                             <h6 class="mt-0 mb-1 fs-14">
                                 <a href="apps-ecommerce-product-details.html" class="text-reset">Bentwood Chair</a>
@@ -72,7 +72,7 @@
 
                 <div class="d-block dropdown-item dropdown-item-cart text-wrap px-3 py-2">
                     <div class="d-flex align-items-center">
-                        <img src="{{ asset('assets/images/products/img-3.png') }}" class="me-3 rounded-circle avatar-sm p-2 bg-light" alt="user-pic">
+                        <img src="{{ asset('build/images/products/img-3.png') }}" class="me-3 rounded-circle avatar-sm p-2 bg-light" alt="user-pic">
                         <div class="flex-grow-1">
                             <h6 class="mt-0 mb-1 fs-14">
                                 <a href="apps-ecommerce-product-details.html" class="text-reset">Borosil Paper Cup</a>
@@ -92,7 +92,7 @@
 
                 <div class="d-block dropdown-item dropdown-item-cart text-wrap px-3 py-2">
                     <div class="d-flex align-items-center">
-                        <img src="{{ asset('assets/images/products/img-6.png') }}" class="me-3 rounded-circle avatar-sm p-2 bg-light" alt="user-pic">
+                        <img src="{{ asset('build/images/products/img-6.png') }}" class="me-3 rounded-circle avatar-sm p-2 bg-light" alt="user-pic">
                         <div class="flex-grow-1">
                             <h6 class="mt-0 mb-1 fs-14">
                                 <a href="apps-ecommerce-product-details.html" class="text-reset">Gray Styled T-Shirt</a>
@@ -112,7 +112,7 @@
 
                 <div class="d-block dropdown-item dropdown-item-cart text-wrap px-3 py-2">
                     <div class="d-flex align-items-center">
-                        <img src="{{ asset('assets/images/products/img-5.png') }}" class="me-3 rounded-circle avatar-sm p-2 bg-light" alt="user-pic">
+                        <img src="{{ asset('build/images/products/img-5.png') }}" class="me-3 rounded-circle avatar-sm p-2 bg-light" alt="user-pic">
                         <div class="flex-grow-1">
                             <h6 class="mt-0 mb-1 fs-14">
                                 <a href="apps-ecommerce-product-details.html" class="text-reset">Stillbird Helmet</a>
