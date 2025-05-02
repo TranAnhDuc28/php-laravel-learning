@@ -26,6 +26,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@reduxjs/toolkit": "^2.7.0",
         "bootstrap": "^5.3.5",
         "choices.js": "^11.1.0",
         "feather-icons": "^4.29.2",
@@ -34,8 +35,10 @@
         "fullcalendar": "^6.1.17",
         "node-waves": "^0.7.6",
         "path": "^0.12.7",
+        "prismjs": "^1.30.0",
         "sass": "^1.87.0",
         "sass-migrator": "^2.3.1",
-        "simplebar": "^6.3.0"
+        "simplebar": "^6.3.0",
+        "toastify-js": "^1.12.0"
     }
 }

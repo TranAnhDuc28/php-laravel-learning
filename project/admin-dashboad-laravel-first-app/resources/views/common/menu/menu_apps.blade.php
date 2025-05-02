@@ -18,7 +18,7 @@
                 <div class="collapse menu-dropdown" id="sidebarEmail">
                     <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a href="apps-mailbox.html" class="nav-link" data-key="t-mailbox">Mailbox </a>
+                            <a href="apps-mailbox.html" class="nav-link" data-key="t-mailbox">Mailbox</a>
                         </li>
                         <li class="nav-item">
                             <a href="#sidebaremailTemplates" class="nav-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebaremailTemplates" data-key="t-email-templates">
@@ -27,10 +27,10 @@
                             <div class="collapse menu-dropdown" id="sidebaremailTemplates">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="apps-email-basic.html" class="nav-link" data-key="t-basic-action"> Basic Action </a>
+                                        <a href="apps-email-basic.html" class="nav-link" data-key="t-basic-action">Basic Action</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="apps-email-ecommerce.html" class="nav-link" data-key="t-ecommerce-action"> Ecommerce Action </a>
+                                        <a href="apps-email-ecommerce.html" class="nav-link" data-key="t-ecommerce-action">Ecommerce Action</a>
                                     </li>
                                 </ul>
                             </div>

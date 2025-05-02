@@ -1,0 +1,65 @@
+{
+    "packagesToCopy": [
+        {
+            "folderNameNodeModule": "bootstrap",
+            "chunkFileName": "bootstrap",
+            "copyAll": true,
+            "files": [
+                "dist/js",
+                "dist/css"
+            ]
+        },
+        {
+            "folderNameNodeModule": "simplebar",
+            "chunkFileName": "simplebar",
+            "copyAll": true,
+            "files": [
+                "dist/simplebar.min.js",
+                "dist/simplebar.min.css"
+            ]
+        },
+        {
+            "folderNameNodeModule": "fullcalendar",
+            "chunkFileName": "fullcalendar",
+            "copyAll": true,
+            "files": [
+                "index.global.min.js"
+            ]
+        },
+        {
+            "folderNameNodeModule": "flatpickr",
+            "chunkFileName": "name",
+            "copyAll": true,
+            "files": [
+                "dist/flatpickr.min.js"
+            ]
+        },
+        {
+            "folderNameNodeModule": "choices.js",
+            "chunkFileName": "choices",
+            "copyAll": true,
+            "files": [
+                "public/assets/scripts/choices.min.js",
+                "public/assets/styles/choices.min.css"
+            ]
+        },
+        {
+            "folderNameNodeModule": "feather-icons",
+            "chunkFileName": "feather-icons",
+            "copyAll": true,
+            "files": [
+                "dist/feather.min.js"
+            ]
+        },
+        {
+            "folderNameNodeModule": "node-waves",
+            "chunkFileName": "node-waves",
+            "copyAll": true,
+            "files": [
+                "dist/waves.min.css",
+                "dist/waves.min.js"
+            ]
+        }
+    ]
+}
+

@@ -1,8 +1,5 @@
-/**
- * prism.js default theme for JavaScript, CSS and HTML
- * Based on dabblet (http://dabblet.com)
- * @author Lea Verou
- */
+@import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+@import 'prismjs/plugins/toolbar/prism-toolbar.css';
 
 code[class*="language-"],
 pre[class*="language-"] {
@@ -63,7 +60,7 @@ pre[class*="language-"] {
     background: var(--#{$prefix}light) !important;
 }
 
-/* Inline code */
+/* Inline code. */
 :not(pre) > code[class*="language-"] {
     padding: 0.1em;
     border-radius: 0.3em;
@@ -157,9 +154,8 @@ pre[class*="language-"] {
 }
 
 
-// Scrollbar
-
-.language-markup {
+/* Srollbar. */
+.language-markup, .language-javascript {
     &::-webkit-scrollbar {
         -webkit-appearance: none;
     }
@@ -182,11 +178,16 @@ pre[class*="language-"] {
         border-radius: 10px;
         background-color: var(--#{$prefix}light)
     }
+
+    &:hover {
+        .copy-to-clipboard-button {
+            display: block;
+        }
+    }
 }
 
 
-// Scroll-top
-
+/* Scroll-top. */
 #scroll-top {
     width: 30px;
     height: 30px;
@@ -201,13 +202,6 @@ pre[class*="language-"] {
 }
 
 // Toolbar (Copy button)
-
-.btn-clipboard {
-    position: absolute !important;
-    right: 15px !important;
-    z-index: 1 !important;
-}
-
 div.code-toolbar > .toolbar {
     opacity: 1 !important;
 
@@ -231,5 +225,12 @@ div.code-toolbar > .toolbar {
             background-color: $primary !important;
             color: $white !important;
         }
+    }
+}
+
+/* Copy to clipboard button */
+div.code-toolbar > .toolbar {
+    .copy-to-clipboard-button {
+        border-radius: $border-radius-pill !important;
     }
 }

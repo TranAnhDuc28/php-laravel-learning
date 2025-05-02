@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Dto\EventDto;
 use App\Enums\ResponseCodeEnums\EventResponseCodeEnums;
 use App\Enums\ResponseCodeEnums\GenericResponseCodeEnums;
 use App\Http\Controllers\Controller;
@@ -22,8 +23,12 @@ class EventController extends Controller
     public function index(): JsonResponse
     {
         try {
-            $events = Event::all();
-            return $this->sendDataResponse(EventResponseCodeEnums::EVENT_LIST, $events);
+            $rawEvents = Event::all()->toArray();
+            $formattedEvents = [];
+            foreach ($rawEvents as $rawEvent) {
+                $formattedEvents[] = EventDto::fromArray($rawEvent);
+            }
+            return $this->sendDataResponse(EventResponseCodeEnums::EVENT_LIST, $formattedEvents);
         } catch (Throwable $th) {
             return $this->sendErrorResponse(GenericResponseCodeEnums::SERVER_ERROR, message: $th->getMessage());
         }

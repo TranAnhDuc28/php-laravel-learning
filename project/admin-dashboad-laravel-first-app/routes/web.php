@@ -283,24 +283,24 @@ Route::prefix('base-ui')->name('baseUi.')->group(function () {
     Route::get('/colors', [BaseUIController::class, 'showColors'])->name('colors');
     Route::get('/cards', [BaseUIController::class, 'showCards'])->name('cards');
     Route::get('/carousel', [BaseUIController::class, 'showCarousel'])->name('carousel');
-    Route::get('/alerts', [BaseUIController::class, 'showDropdowns'])->name('dropdowns');
-    Route::get('/alerts', [BaseUIController::class, 'showGrid'])->name('grid');
-    Route::get('/alerts', [BaseUIController::class, 'showImages'])->name('images');
-    Route::get('/alerts', [BaseUIController::class, 'showTabs'])->name('tabs');
-    Route::get('/alerts', [BaseUIController::class, 'showAccordions'])->name('accordions');
-    Route::get('/alerts', [BaseUIController::class, 'showModals'])->name('modals');
-    Route::get('/alerts', [BaseUIController::class, 'showOffcanvas'])->name('offcanvas');
-    Route::get('/alerts', [BaseUIController::class, 'showPlaceholders'])->name('placeholders');
-    Route::get('/alerts', [BaseUIController::class, 'showProgress'])->name('progress');
-    Route::get('/alerts', [BaseUIController::class, 'showNotifications'])->name('notifications');
-    Route::get('/alerts', [BaseUIController::class, 'showMediaObject'])->name('mediaObject');
-    Route::get('/alerts', [BaseUIController::class, 'showEmbedVideo'])->name('embedVideo');
-    Route::get('/alerts', [BaseUIController::class, 'showTypography'])->name('typography');
-    Route::get('/alerts', [BaseUIController::class, 'showLists'])->name('lists');
-    Route::get('/alerts', [BaseUIController::class, 'showLinks'])->name('links');
-    Route::get('/alerts', [BaseUIController::class, 'showGeneral'])->name('general');
-    Route::get('/alerts', [BaseUIController::class, 'showRibbons'])->name('ribbons');
-    Route::get('/alerts', [BaseUIController::class, 'showUtilities'])->name('utilities');
+    Route::get('/dropdowns', [BaseUIController::class, 'showDropdowns'])->name('dropdowns');
+    Route::get('/grid', [BaseUIController::class, 'showGrid'])->name('grid');
+    Route::get('/images', [BaseUIController::class, 'showImages'])->name('images');
+    Route::get('/tabs', [BaseUIController::class, 'showTabs'])->name('tabs');
+    Route::get('/accordions', [BaseUIController::class, 'showAccordions'])->name('accordions');
+    Route::get('/modals', [BaseUIController::class, 'showModals'])->name('modals');
+    Route::get('/offcanvas', [BaseUIController::class, 'showOffcanvas'])->name('offcanvas');
+    Route::get('/placeholders', [BaseUIController::class, 'showPlaceholders'])->name('placeholders');
+    Route::get('/progress', [BaseUIController::class, 'showProgress'])->name('progress');
+    Route::get('/notifications', [BaseUIController::class, 'showNotifications'])->name('notifications');
+    Route::get('/mediaObject', [BaseUIController::class, 'showMediaObject'])->name('mediaObject');
+    Route::get('/embedVideo', [BaseUIController::class, 'showEmbedVideo'])->name('embedVideo');
+    Route::get('/typography', [BaseUIController::class, 'showTypography'])->name('typography');
+    Route::get('/lists', [BaseUIController::class, 'showLists'])->name('lists');
+    Route::get('/links', [BaseUIController::class, 'showLinks'])->name('links');
+    Route::get('/general', [BaseUIController::class, 'showGeneral'])->name('general');
+    Route::get('/ribbons', [BaseUIController::class, 'showRibbons'])->name('ribbons');
+    Route::get('/utilities', [BaseUIController::class, 'showUtilities'])->name('utilities');
 });
 
 /* Advance UI. */
@@ -393,4 +393,7 @@ Route::prefix('maps')->name('map.')->group(function () {
     Route::get('/leaflet', [MapController::class, 'showLeafletMaps'])->name('leaflet');
 });
 
-/* Multi Level. */
+/* Demo. */
+Route::get('/demo', function () {
+    return view('demo.index');
+});

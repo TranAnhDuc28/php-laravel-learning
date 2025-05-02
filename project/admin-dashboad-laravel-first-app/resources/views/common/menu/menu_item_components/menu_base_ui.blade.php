@@ -1,8 +1,9 @@
 <li class="nav-item">
-    <a class="nav-link menu-link" href="#sidebarUI" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarUI">
+    <a class="nav-link menu-link {{ request()->is('base-ui*') ? '' : 'collapsed' }}" href="#sidebarUI"
+       data-bs-toggle="collapse" role="button" aria-expanded="{{ request()->is('base-ui*') ? 'true' : 'false' }}" aria-controls="sidebarUI">
         <i class="ri-pencil-ruler-2-line"></i> <span data-key="t-base-ui">Base UI</span>
     </a>
-    <div class="collapse menu-dropdown mega-dropdown-menu" id="sidebarUI">
+    <div class="collapse menu-dropdown mega-dropdown-menu {{ request()->routeIs('baseUi.*') ? 'show' : '' }}" id="sidebarUI">
         <div class="row">
             <div class="col-lg-4">
                 <ul class="nav nav-sm flex-column">
@@ -56,7 +57,7 @@
                         <a href="ui-progress.html" class="nav-link" data-key="t-progress">Progress</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-notifications.html" class="nav-link" data-key="t-notifications">Notifications</a>
+                        <a href="{{ route('baseUi.notifications') }}" class="nav-link {{ request()->routeIs('baseUi.notifications') ? 'active' : '' }}" data-key="t-notifications">Notifications</a>
                     </li>
                 </ul>
             </div>

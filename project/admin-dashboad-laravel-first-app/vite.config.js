@@ -7,7 +7,7 @@ import path from 'path';
 
 const folder = {
     src_assets: 'resources', // source assets files
-    dist_assets: 'public/build'  //build assets files
+    dist_assets: 'public/build',  // build assets files
 };
 
 export default defineConfig({
@@ -25,24 +25,42 @@ export default defineConfig({
                     const originalName = asset.names?.[0] || '';
                     const ext = originalName.split('.').pop();
 
+                    const imageExtensions = ['png', 'jpg', 'jpeg', 'gif', 'svg'];
+                    const fontExtensions = ['woff', 'woff2', 'ttf', 'otf', 'eot'];
+
                     if (ext === 'css') {
                         return 'css/[name].min.css';
+                    } else if (fontExtensions.includes(ext)) {
+                        return `fonts/[name].[ext]`;
+                    } else if (imageExtensions.includes(ext)) {
+                        return `css/assets/images/[name].[ext]`;
                     } else {
-                        return `icons/${originalName}`;
+                        return `css/assets/${originalName}`;
                     }
                 },
                 entryFileNames: (chunkInfo) => {
-                    const filePath = chunkInfo.facadeModuleId || '';
-
-                    if (!filePath.includes('resources/js/')) {
-                        const relativePath = path.relative(path.resolve('resources/js'), filePath);
-
-                        if (relativePath.includes('pages')) {
-                            return `js/pages/[name].min.js`;
+                    const filePath = chunkInfo.facadeModuleId;
+                    if (filePath && filePath.includes('resources\\js')) {
+                        if (filePath.includes('pages')) {
+                            return 'js/pages/[name].min.js';
                         }
-                        return `js/[name].min.js`;
                     }
+                    return 'js/[name].min.js';
                 },
+                chunkFileNames: () => {
+                    return 'js/vendor/[name].js';
+                },
+                manualChunks: (id) => {
+                    if (id.includes('node_modules')) {
+                        if (id.includes('bootstrap')) return 'bootstrap';
+                        if (id.includes('flatpickr')) return 'flatpickr';
+                        if (id.includes('choices')) return 'choices';
+                        if (id.includes('fullcalendar')) return 'fullcalendar';
+                        if (id.includes('feather-icons')) return 'feather-icons';
+                        return 'vendor';
+                    }
+                    return undefined;
+                }
             },
         },
     },
@@ -72,7 +90,7 @@ export default defineConfig({
                     console.error('Error copying assets:', error);
                 }
 
-                const configPath = path.resolve(__dirname, `${folder.src_assets}/packages.config.json`);
+                const configPath = path.resolve(__dirname, `${folder.src_assets}/vite.config.json`);
                 const inputPath = path.resolve(__dirname, 'node_modules');
                 const outputPath = path.resolve(__dirname, `${folder.dist_assets}/libs`);
 
@@ -81,12 +99,12 @@ export default defineConfig({
                     const {packagesToCopy} = JSON.parse(configContent);
 
                     for (const item of packagesToCopy) {
-                        const sourcePath = path.join(inputPath, item.name);
+                        const sourcePath = path.join(inputPath, item.folderNameNodeModule);
 
                         if (item.copyAll) {
                             try {
                                 await fs.access(sourcePath, fs.constants.F_OK);
-                                const destPackagePath = path.join(outputPath, item.name);
+                                const destPackagePath = path.join(outputPath, item.folderNameNodeModule);
                                 await fs.copy(sourcePath, destPackagePath);
                                 console.log(`✅ Copied entire folder: ${sourcePath} to ${destPackagePath}`);
                             } catch (error) {
@@ -95,7 +113,7 @@ export default defineConfig({
                         } else {
                             for (const fileOrFolder of item.files) {
                                 const sourceFileOrFolderPath = path.join(sourcePath, fileOrFolder);
-                                const destFileOrFolderPath = path.join(outputPath, item.name, fileOrFolder);
+                                const destFileOrFolderPath = path.join(outputPath, item.folderNameNodeModule, fileOrFolder);
 
                                 try {
                                     const stats = await fs.stat(sourceFileOrFolderPath);
@@ -120,21 +138,25 @@ export default defineConfig({
             }
         }
     ],
-    resolve: {
-        alias: {
-            '@': 'resources/js/',
-            '@css': '/resources/css',
+    resolve:
+        {
+            alias: {
+                '_': path.resolve(__dirname, 'node_modules'),
+                '@': path.resolve(__dirname, 'resources/js'),
+                '@css': '/resources/css',
+            }
         }
-    },
+    ,
     css: {
         preprocessorOptions: {
             scss: {
                 silenceDeprecations: [
                     'import',
-                    'global-builtin',
+                    'mixed-decls',
                     'color-functions',
-                    'mixed-decls'
-                ]
+                    'global-builtin',
+                    'legacy-js-api',
+                ],
             }
         }
     }

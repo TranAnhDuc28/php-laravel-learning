@@ -2,15 +2,16 @@
     'use strict';
 
     if (sessionStorage.getItem('defaultAttribute')) {
-
         let attributesValue = document.documentElement.attributes;
         let currentLayoutAttributes = {};
+
         Object.entries(attributesValue).forEach(function (key) {
             if (key[1] && key[1].nodeName && key[1].nodeName !== 'undefined') {
                 let nodeKey = key[1].nodeName;
                 currentLayoutAttributes[nodeKey] = key[1].nodeValue;
             }
         });
+
         if (sessionStorage.getItem('defaultAttribute') !== JSON.stringify(currentLayoutAttributes)) {
             sessionStorage.clear();
             window.location.reload();
