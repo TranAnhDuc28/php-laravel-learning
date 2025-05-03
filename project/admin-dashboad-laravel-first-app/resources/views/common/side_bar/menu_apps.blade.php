@@ -5,7 +5,7 @@
     </a>
     <div class="collapse menu-dropdown {{ request()->routeIs('app.*') ? 'show' : '' }}" id="sidebarApps">
         <ul class="nav nav-sm flex-column">
-            @include('common.menu.menu_item_apps.item_calendar')
+            @include('common.side_bar.menu_item_apps.item_calendar')
 
             <li class="nav-item">
                 <a href="{{ route('app.chat') }}" class="nav-link {{ request()->routeIs('app.chat') ? 'active' : '' }}" data-key="t-chat">Chat</a>

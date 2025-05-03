@@ -8,7 +8,7 @@
             <div class="col-lg-4">
                 <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                        <a href="ui-alerts.html" class="nav-link" data-key="t-alerts">Alerts</a>
+                        <a href="{{ route('baseUi.alerts') }}" class="nav-link {{ request()->routeIs('baseUi.alerts') ? 'active' : '' }}" data-key="t-alerts">Alerts</a>
                     </li>
                     <li class="nav-item">
                         <a href="ui-badges.html" class="nav-link" data-key="t-badges">Badges</a>
