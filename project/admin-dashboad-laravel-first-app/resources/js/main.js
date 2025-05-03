@@ -867,7 +867,7 @@ import flatpickr from 'flatpickr';
             });
             feather.replace();
         });
-
+  
         window.addEventListener('resize', windowResizeHover);
         windowResizeHover();
 
