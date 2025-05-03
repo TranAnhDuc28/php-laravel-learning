@@ -26,6 +26,7 @@ class ViteEntriesProvider extends ServiceProvider
             $viteEntries = array_merge($viteEntries, match (true) {
                 request()->routeIs('app.calendar.main') => ['resources/js/pages/calendar.js'],
                 request()->routeIs('baseUi.notifications') => ['resources/js/pages/notifications.js'],
+                request()->routeIs('baseUi.alerts') => ['resources/js/pages/alerts.js'],
                 default => [],
             });
 

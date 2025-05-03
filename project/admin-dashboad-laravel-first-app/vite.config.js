@@ -44,6 +44,9 @@ export default defineConfig({
                         if (filePath.includes('pages')) {
                             return 'js/pages/[name].min.js';
                         }
+                        if (filePath.includes('base_ui')) {
+                            return 'js/pages/base_ui/[name].min.js';
+                        }
                     }
                     return 'js/[name].min.js';
                 },
@@ -57,6 +60,7 @@ export default defineConfig({
                         if (id.includes('choices')) return 'choices';
                         if (id.includes('fullcalendar')) return 'fullcalendar';
                         if (id.includes('feather-icons')) return 'feather-icons';
+                        if (id.includes('prismjs')) return 'prismjs';
                         return 'vendor';
                     }
                     return undefined;
@@ -70,8 +74,9 @@ export default defineConfig({
                 'resources/scss/bootstrap.scss',
                 'resources/scss/app.scss',
                 'resources/scss/icons.scss',
-                ...globSync('resources/js/pages/*.js'),
                 ...globSync('resources/js/*.js'),
+                ...globSync('resources/js/pages/*.js'),
+                ...globSync('resources/js/pages/base_ui/*.js'),
             ],
             refresh: false,
         }),

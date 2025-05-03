@@ -11,25 +11,25 @@
                         <a href="{{ route('baseUi.alerts') }}" class="nav-link {{ request()->routeIs('baseUi.alerts') ? 'active' : '' }}" data-key="t-alerts">Alerts</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-badges.html" class="nav-link" data-key="t-badges">Badges</a>
+                        <a href="{{ route('baseUi.badges') }}" class="nav-link {{ request()->routeIs('baseUi.badges') ? 'active' : '' }}" data-key="t-badges">Badges</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-buttons.html" class="nav-link" data-key="t-buttons">Buttons</a>
+                        <a href="{{ route('baseUi.buttons') }}" class="nav-link {{ request()->routeIs('baseUi.buttons') ? 'active' : '' }}" data-key="t-buttons">Buttons</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-colors.html" class="nav-link" data-key="t-colors">Colors</a>
+                        <a href="{{ route('baseUi.colors') }}" class="nav-link {{ request()->routeIs('baseUi.colors') ? 'active' : '' }}" data-key="t-colors">Colors</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-cards.html" class="nav-link" data-key="t-cards">Cards</a>
+                        <a href="{{ route('baseUi.cards') }}" class="nav-link {{ request()->routeIs('baseUi.cards') ? 'active' : '' }}" data-key="t-cards">Cards</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-carousel.html" class="nav-link" data-key="t-carousel">Carousel</a>
+                        <a href="{{ route('baseUi.carousel') }}" class="nav-link {{ request()->routeIs('baseUi.carousel') ? 'active' : '' }}" data-key="t-carousel">Carousel</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-dropdowns.html" class="nav-link" data-key="t-dropdowns">Dropdowns</a>
+                        <a href="{{ route('baseUi.dropdowns') }}" class="nav-link {{ request()->routeIs('baseUi.dropdowns') ? 'active' : '' }}" data-key="t-dropdowns">Dropdowns</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-grid.html" class="nav-link" data-key="t-grid">Grid</a>
+                        <a href="{{ route('baseUi.grid') }}" class="nav-link {{ request()->routeIs('baseUi.grid') ? 'active' : '' }}" data-key="t-grid">Grid</a>
                     </li>
                 </ul>
             </div>

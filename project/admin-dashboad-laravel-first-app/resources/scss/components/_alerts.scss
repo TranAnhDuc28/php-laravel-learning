@@ -31,6 +31,17 @@
     }
 }
 
+.rounded-label {
+    .label-icon {
+        width: 45px;
+        height: 26px;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 0 30px 30px 0;
+    }
+}
+
 .alert-border-left {
     border-left: 3px solid;
 }
@@ -57,18 +68,7 @@
     }
 }
 
-.rounded-label {
-    .label-icon {
-        width: 45px;
-        height: 26px;
-        left: 0px;
-        top: 50%;
-        transform: translateY(-50%);
-        border-radius: 0 30px 30px 0;
-    }
-}
-
-// Alert example loop.
+/* Alert example loop. */
 @each $color, $value in $theme-colors {
     .alert-border-left {
         &.alert-#{$color} {
@@ -113,7 +113,7 @@
 
     }
 
-    //alert additional example
+    /* Alert additional example. */
     .alert-additional {
         &.alert-#{$color} {
             .alert-content {

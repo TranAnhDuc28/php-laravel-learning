@@ -278,7 +278,7 @@
                                                 <img src="{{ asset('build/images/bootstrap-logo.svg') }}" class="rounded me-2" alt="..." height="20">
                                                 <strong class="me-auto">Bootstrap</strong>
                                                 <small>11 mins ago</small>
-                                                {{--                                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>--}}
+                                                {{-- <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button> --}}
                                             </div>
                                             <div class="toast-body">
                                                 Hello, world! This is a toast message.
