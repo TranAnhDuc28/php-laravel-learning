@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             /* Upcoming event list. */
             upcomingEventsComponent();
         } else if (state.status === 'failed' && state.error) {
-            BootstrapToastWrapper.error(state.error);
             ToastifyWrapper.error(state.error);
+            BootstrapToastWrapper.error(state.error);
         }
     };
 

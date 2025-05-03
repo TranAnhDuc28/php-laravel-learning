@@ -7,9 +7,6 @@ import listPlugin from '@fullcalendar/list';
 import {upcomingEventsComponent} from './UpcomingEventsComponent.js';
 import {showNewEventForm} from './EventModal.js';
 import {store} from "@/store.js";
-import BootstrapToastWrapper from "@/common/components/BootstrapToastWrapper.js";
-import ToastifyWrapper from "@/common/components/ToastifyWrapper.js";
-
 
 /**
  * Determines the FullCalendar view mode based on the current screen width.

@@ -30,26 +30,26 @@
             <div id="two-column-menu"></div>
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
-                @include('common.menu.menu_dashboards')
-                @include('common.menu.menu_apps')
-                @include('common.menu.menu_layouts')
+                @include('common.side_bar.menu_dashboards')
+                @include('common.side_bar.menu_apps')
+                @include('common.side_bar.menu_layouts')
 
                 <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Pages</span></li>
-                @include('common.menu.menu_item_pages.menu_authentication')
-                @include('common.menu.menu_item_pages.menu_pages')
-                @include('common.menu.menu_item_pages.menu_landing')
+                @include('common.side_bar.menu_item_pages.menu_authentication')
+                @include('common.side_bar.menu_item_pages.menu_pages')
+                @include('common.side_bar.menu_item_pages.menu_landing')
 
                 <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-components">Components</span></li>
-                @include('common.menu.menu_item_components.menu_base_ui')
-                @include('common.menu.menu_item_components.menu_advance_ui')
-                @include('common.menu.menu_item_components.menu_widgets')
-                @include('common.menu.menu_item_components.menu_forms')
-                @include('common.menu.menu_item_components.menu_tables')
-                @include('common.menu.menu_item_components.menu_forms')
-                @include('common.menu.menu_item_components.menu_charts')
-                @include('common.menu.menu_item_components.menu_icons')
-                @include('common.menu.menu_item_components.menu_maps')
-                @include('common.menu.menu_item_components.menu_multi_level')
+                @include('common.side_bar.menu_item_components.menu_base_ui')
+                @include('common.side_bar.menu_item_components.menu_advance_ui')
+                @include('common.side_bar.menu_item_components.menu_widgets')
+                @include('common.side_bar.menu_item_components.menu_forms')
+                @include('common.side_bar.menu_item_components.menu_tables')
+                @include('common.side_bar.menu_item_components.menu_forms')
+                @include('common.side_bar.menu_item_components.menu_charts')
+                @include('common.side_bar.menu_item_components.menu_icons')
+                @include('common.side_bar.menu_item_components.menu_maps')
+                @include('common.side_bar.menu_item_components.menu_multi_level')
             </ul>
         </div>
     </div>
