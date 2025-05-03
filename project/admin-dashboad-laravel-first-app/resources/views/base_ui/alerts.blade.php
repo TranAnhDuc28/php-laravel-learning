@@ -72,7 +72,7 @@
                             </div>
 
                             <div class="d-none code-view">
-                                <pre class="language-markup line-numbers" style="height: 385px">
+                                <pre class="language-markup" style="height: 385px">
                                     <code>
                                         &lt;!-- Primary Alert --&gt;
                                         &lt;div class=&quot;alert alert-primary&quot; role=&quot;alert&quot;&gt;

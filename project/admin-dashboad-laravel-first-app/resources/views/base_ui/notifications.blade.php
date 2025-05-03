@@ -13,6 +13,7 @@
                 ]"
             />
 
+            {{-- Bootstrap Toasts. --}}
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -157,7 +158,7 @@
                             </div>
 
                             <div class="d-none code-view">
-                                <pre class="language-markup line-numbers" style="height: 275px; white-space: pre">
+                                <pre class="language-markup" style="height: 275px; white-space: pre">
                                     <code>
                                         &lt;!-- Default Toast --&gt;
                                         &lt;div class=&quot;toast fade show&quot; role=&quot;alert&quot; aria-live=&quot;assertive&quot; data-bs-autohide=&quot;false&quot; aria-atomic=&quot;true&quot;&gt;
@@ -330,6 +331,7 @@
                 </div><!--end col-->
             </div><!--end row-->
 
+            {{-- Bordered with Icon Toast. --}}
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -494,6 +496,7 @@
                 </div><!--end col-->
             </div><!--end row-->
 
+            {{-- Toastify JS. --}}
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -812,6 +815,7 @@
                     </div>
                 </div><!-- end card-body -->
             </div><!-- end card -->
+
         </div><!-- end col -->
     </div>
 @endsection
