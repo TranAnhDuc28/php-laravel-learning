@@ -66,7 +66,7 @@
 
                     <div class="text-reset notification-item d-block dropdown-item position-relative">
                         <div class="d-flex">
-                            <img src="{{ asset('build/images/users/avatar-2.jpg') }}" class="me-3 rounded-circle avatar-xs flex-shrink-0" alt="user-pic">
+                            <img src="{{ asset('build/images/users/avatar-2.jpg') }}" class="me-3 rounded-circle avatar-xs flex-shrink-0" alt="user-pic" loading="lazy">
                             <div class="flex-grow-1">
                                 <a href="#!" class="stretched-link">
                                     <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
@@ -115,7 +115,7 @@
 
                     <div class="text-reset notification-item d-block dropdown-item position-relative">
                         <div class="d-flex">
-                            <img src="{{ asset('build/images/users/avatar-8.jpg') }}" class="me-3 rounded-circle avatar-xs flex-shrink-0" alt="user-pic">
+                            <img src="{{ asset('build/images/users/avatar-8.jpg') }}" class="me-3 rounded-circle avatar-xs flex-shrink-0" alt="user-pic" loading="lazy">
                             <div class="flex-grow-1">
                                 <a href="#!" class="stretched-link">
                                     <h6 class="mt-0 mb-1 fs-13 fw-semibold">Maureen Gibson</h6>
@@ -149,7 +149,7 @@
                 <div data-simplebar style="max-height: 300px;" class="pe-2">
                     <div class="text-reset notification-item d-block dropdown-item">
                         <div class="d-flex">
-                            <img src="{{ asset('build/images/users/avatar-3.jpg') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                            <img src="{{ asset('build/images/users/avatar-3.jpg') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic" loading="lazy">
                             <div class="flex-grow-1">
                                 <a href="#!" class="stretched-link">
                                     <h6 class="mt-0 mb-1 fs-13 fw-semibold">James Lemire</h6>
@@ -172,7 +172,7 @@
 
                     <div class="text-reset notification-item d-block dropdown-item">
                         <div class="d-flex">
-                            <img src="{{ asset('build/images/users/avatar-2.jpg') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                            <img src="{{ asset('build/images/users/avatar-2.jpg') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic" loading="lazy">
                             <div class="flex-grow-1">
                                 <a href="#!" class="stretched-link">
                                     <h6 class="mt-0 mb-1 fs-13 fw-semibold">Angela Bernier</h6>
@@ -195,7 +195,7 @@
 
                     <div class="text-reset notification-item d-block dropdown-item">
                         <div class="d-flex">
-                            <img src="{{ asset('build/images/users/avatar-6.jpg') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                            <img src="{{ asset('build/images/users/avatar-6.jpg') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic" loading="lazy">
                             <div class="flex-grow-1">
                                 <a href="#!" class="stretched-link">
                                     <h6 class="mt-0 mb-1 fs-13 fw-semibold">Kenneth Brown</h6>
@@ -218,7 +218,7 @@
 
                     <div class="text-reset notification-item d-block dropdown-item">
                         <div class="d-flex">
-                            <img src="{{ asset('build/images/users/avatar-8.jpg') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic">
+                            <img src="{{ asset('build/images/users/avatar-8.jpg') }}" class="me-3 rounded-circle avatar-xs" alt="user-pic" loading="lazy">
                             <div class="flex-grow-1">
                                 <a href="#!" class="stretched-link">
                                     <h6 class="mt-0 mb-1 fs-13 fw-semibold">Maureen Gibson</h6>

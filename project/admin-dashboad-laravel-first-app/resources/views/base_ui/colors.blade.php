@@ -5,7 +5,15 @@
 @section('content')
     <div class="page-content">
         <div class="container-fluid">
-            <p class="fs-1">Colors</p>
+            <x-breadcrumb
+                :title="'Buttons'"
+                :breadcrumbs="[
+                   ['label' => 'Base UI', 'url' => route('baseUi.buttons')],
+                   ['label' => 'Buttons', 'url' => null]
+                ]"
+            />
+
+
         </div>
     </div>
 @endsection

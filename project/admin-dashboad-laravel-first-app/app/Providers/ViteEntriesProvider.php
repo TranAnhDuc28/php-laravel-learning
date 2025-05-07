@@ -28,6 +28,7 @@ class ViteEntriesProvider extends ServiceProvider
                 request()->routeIs('baseUi.notifications') => ['resources/js/pages/base_ui/notifications.js'],
                 request()->routeIs('baseUi.alerts') => ['resources/js/pages/base_ui/alerts.js'],
                 request()->routeIs('baseUi.badges') => ['resources/js/pages/base_ui/badges.js'],
+                request()->routeIs('baseUi.buttons') => ['resources/js/pages/base_ui/buttons.js'],
                 default => [],
             });
 

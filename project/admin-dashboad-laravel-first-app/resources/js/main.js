@@ -3,10 +3,10 @@ import Tooltip from 'bootstrap/js/dist/tooltip';
 import Popover from 'bootstrap/js/dist/popover';
 import SimpleBar from 'simplebar';
 import feather from 'feather-icons';
-import Waves from 'node-waves';
 import Choices from 'choices.js';
 import Toastify from 'toastify-js';
 import flatpickr from 'flatpickr';
+import Waves from 'node-waves';
 
 (function () {
     'use strict';
@@ -871,6 +871,7 @@ import flatpickr from 'flatpickr';
         window.addEventListener('resize', windowResizeHover);
         windowResizeHover();
 
+        /* Init waves effect for tag class="waves-effect" */
         Waves.init();
 
         document.addEventListener('scroll', () => {
@@ -887,9 +888,11 @@ import flatpickr from 'flatpickr';
             isLoadBodyElement();
             addEventListenerOnSmHoverMenu();
         });
+
         if (document.getElementById('topnav-hamburger-icon')) {
             document.getElementById('topnav-hamburger-icon').addEventListener('click', toggleHamburgerMenu);
         }
+
         let isValues = sessionStorage.getItem('defaultAttribute');
         let defaultValues = JSON.parse(isValues);
         let windowSize = document.documentElement.clientWidth;

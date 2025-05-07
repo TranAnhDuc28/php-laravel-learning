@@ -37,7 +37,7 @@
                                         <!-- Basic Toasts Example -->
                                         <div class="toast fade show" role="alert" aria-live="assertive" data-bs-autohide="false" aria-atomic="true">
                                             <div class="toast-header">
-                                                <img src="{{ asset('build/images/bootstrap-logo.svg') }}" class="rounded me-2" alt="..." height="20">
+                                                <img src="{{ asset('build/images/bootstrap-logo.svg') }}" class="rounded me-2" alt="..." height="20" loading="lazy">
                                                 <span class="fw-semibold me-auto">Bootstrap</span>
                                                 <small>06 mins ago</small>
                                                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>

@@ -19,19 +19,19 @@
             <div class="row g-0">
                 <div class="col">
                     <a class="dropdown-icon-item" href="#!">
-                        <img src="{{ asset('build/images/brands/github.png') }}" alt="Github">
+                        <img src="{{ asset('build/images/brands/github.png') }}" alt="Github" loading="lazy">
                         <span>GitHub</span>
                     </a>
                 </div>
                 <div class="col">
                     <a class="dropdown-icon-item" href="#!">
-                        <img src="{{ asset('build/images/brands/bitbucket.png') }}" alt="bitbucket">
+                        <img src="{{ asset('build/images/brands/bitbucket.png') }}" alt="bitbucket" loading="lazy">
                         <span>Bitbucket</span>
                     </a>
                 </div>
                 <div class="col">
                     <a class="dropdown-icon-item" href="#!">
-                        <img src="{{ asset('build/images/brands/dribbble.png') }}" alt="dribbble">
+                        <img src="{{ asset('build/images/brands/dribbble.png') }}" alt="dribbble" loading="lazy">
                         <span>Dribbble</span>
                     </a>
                 </div>
@@ -39,19 +39,19 @@
             <div class="row g-0">
                 <div class="col">
                     <a class="dropdown-icon-item" href="#!">
-                        <img src="{{ asset('build/images/brands/dropbox.png') }}" alt="dropbox">
+                        <img src="{{ asset('build/images/brands/dropbox.png') }}" alt="dropbox" loading="lazy">
                         <span>Dropbox</span>
                     </a>
                 </div>
                 <div class="col">
                     <a class="dropdown-icon-item" href="#!">
-                        <img src="{{ asset('build/images/brands/mail_chimp.png') }}" alt="mail_chimp">
+                        <img src="{{ asset('build/images/brands/mail_chimp.png') }}" alt="mail_chimp" loading="lazy">
                         <span>Mail Chimp</span>
                     </a>
                 </div>
                 <div class="col">
                     <a class="dropdown-icon-item" href="#!">
-                        <img src="{{ asset('build/images/brands/slack.png') }}" alt="slack">
+                        <img src="{{ asset('build/images/brands/slack.png') }}" alt="slack" loading="lazy">
                         <span>Slack</span>
                     </a>
                 </div>

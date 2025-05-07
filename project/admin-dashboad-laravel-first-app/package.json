@@ -27,6 +27,7 @@
     "license": "ISC",
     "dependencies": {
         "@reduxjs/toolkit": "^2.7.0",
+        "animejs": "^4.0.2",
         "bootstrap": "^5.3.5",
         "choices.js": "^11.1.0",
         "feather-icons": "^4.29.2",

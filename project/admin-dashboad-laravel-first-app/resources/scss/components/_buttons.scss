@@ -37,6 +37,7 @@ button, a {
 // Soft Buttons.
 @each $state in map-keys($theme-colors) {
 
+    // Base Buttons.
     .btn-#{$state} {
         --#{$prefix}btn-bg: var(--#{$prefix}#{$state});
         --#{$prefix}btn-border-color: var(--#{$prefix}#{$state});
@@ -47,6 +48,7 @@ button, a {
         --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$state}-text-emphasis);
     }
 
+    // Outline Buttons.
     .btn-outline-#{$state} {
         --#{$prefix}btn-color: var(--#{$prefix}#{$state});
         --#{$prefix}btn-bg: transparent;
@@ -58,7 +60,7 @@ button, a {
         --#{$prefix}btn-active-border-color: var(--#{$prefix}#{$state});
     }
 
-    // Soft Buttons
+    // Soft Buttons.
     .btn-soft-#{$state} {
         --#{$prefix}btn-color: var(--#{$prefix}#{$state});
         --#{$prefix}btn-bg: var(--#{$prefix}#{$state}-bg-subtle);
