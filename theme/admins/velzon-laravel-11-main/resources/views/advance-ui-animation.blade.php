@@ -7,8 +7,8 @@
 @section('content')
 
     @component('components.breadcrumb')
-        @slot('li_1') Advance UI @endslot
         @slot('title') Animation @endslot
+        @slot('li_1') Advance UI @endslot
     @endcomponent
     <div class="row">
         <div class="col-lg-12">
