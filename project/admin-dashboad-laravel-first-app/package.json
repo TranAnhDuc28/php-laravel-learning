@@ -34,6 +34,8 @@
         "flatpickr": "^4.6.13",
         "fs-extra": "^11.3.0",
         "fullcalendar": "^6.1.17",
+        "imagesloaded": "^5.0.0",
+        "masonry-layout": "^4.2.2",
         "node-waves": "^0.7.6",
         "path": "^0.12.7",
         "prismjs": "^1.30.0",

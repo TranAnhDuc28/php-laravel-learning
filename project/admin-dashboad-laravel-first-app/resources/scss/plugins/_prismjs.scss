@@ -183,6 +183,8 @@ pre[class*="language-"] {
         .copy-to-clipboard-button {
             display: block;
         }
+
+
     }
 }
 
@@ -226,10 +228,8 @@ div.code-toolbar > .toolbar {
             color: $white !important;
         }
     }
-}
 
-/* Copy to clipboard button */
-div.code-toolbar > .toolbar {
+    /* Copy to clipboard button */
     .copy-to-clipboard-button {
         border-radius: $border-radius-pill !important;
     }
