@@ -293,8 +293,8 @@ Route::prefix('base-ui')->name('baseUi.')->group(function () {
     Route::get('/placeholders', [BaseUIController::class, 'showPlaceholders'])->name('placeholders');
     Route::get('/progress', [BaseUIController::class, 'showProgress'])->name('progress');
     Route::get('/notifications', [BaseUIController::class, 'showNotifications'])->name('notifications');
-    Route::get('/mediaObject', [BaseUIController::class, 'showMediaObject'])->name('mediaObject');
-    Route::get('/embedVideo', [BaseUIController::class, 'showEmbedVideo'])->name('embedVideo');
+    Route::get('/media', [BaseUIController::class, 'showMediaObject'])->name('media');
+    Route::get('/embed-video', [BaseUIController::class, 'showEmbedVideo'])->name('embedVideo');
     Route::get('/typography', [BaseUIController::class, 'showTypography'])->name('typography');
     Route::get('/lists', [BaseUIController::class, 'showLists'])->name('lists');
     Route::get('/links', [BaseUIController::class, 'showLinks'])->name('links');

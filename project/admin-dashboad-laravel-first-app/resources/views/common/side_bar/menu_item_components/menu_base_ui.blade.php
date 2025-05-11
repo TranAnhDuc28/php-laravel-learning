@@ -36,25 +36,25 @@
             <div class="col-lg-4">
                 <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                        <a href="ui-images.html" class="nav-link" data-key="t-images">Images</a>
+                        <a href="{{ route('baseUi.images') }}" class="nav-link {{ request()->routeIs('baseUi.images') ? 'active' : '' }}" data-key="t-images">Images</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-tabs.html" class="nav-link" data-key="t-tabs">Tabs</a>
+                        <a href="{{ route('baseUi.tabs') }}" class="nav-link {{ request()->routeIs('baseUi.tabs') ? 'active' : '' }}" data-key="t-tabs">Tabs</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-accordions.html" class="nav-link" data-key="t-accordion-collapse">Accordion & Collapse</a>
+                        <a href="{{ route('baseUi.accordions') }}" class="nav-link {{ request()->routeIs('baseUi.accordions') ? 'active' : '' }}" data-key="t-accordion-collapse">Accordion & Collapse</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-modals.html" class="nav-link" data-key="t-modals">Modals</a>
+                        <a href="{{ route('baseUi.modals') }}" class="nav-link {{ request()->routeIs('baseUi.modals') ? 'active' : '' }}" data-key="t-modals">Modals</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-offcanvas.html" class="nav-link" data-key="t-offcanvas">Offcanvas</a>
+                        <a href="{{ route('baseUi.offcanvas') }}" class="nav-link {{ request()->routeIs('baseUi.offcanvas') ? 'active' : '' }}" data-key="t-offcanvas">Offcanvas</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-placeholders.html" class="nav-link" data-key="t-placeholders">Placeholders</a>
+                        <a href="{{ route('baseUi.placeholders') }}" class="nav-link {{ request()->routeIs('baseUi.placeholders') ? 'active' : '' }}" data-key="t-placeholders">Placeholders</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-progress.html" class="nav-link" data-key="t-progress">Progress</a>
+                        <a href="{{ route('baseUi.progress') }}" class="nav-link {{ request()->routeIs('baseUi.progress') ? 'active' : '' }}" data-key="t-progress">Progress</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('baseUi.notifications') }}" class="nav-link {{ request()->routeIs('baseUi.notifications') ? 'active' : '' }}" data-key="t-notifications">Notifications</a>
@@ -64,28 +64,30 @@
             <div class="col-lg-4">
                 <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                        <a href="ui-media.html" class="nav-link" data-key="t-media-object">Media object</a>
+                        <a href="{{ route('baseUi.media') }}" class="nav-link {{ request()->routeIs('baseUi.media') ? 'active' : '' }}" data-key="t-media-object">Media object</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-embed-video.html" class="nav-link" data-key="t-embed-video">Embed Video</a>
+                        <a href="{{ route('baseUi.embedVideo') }}" class="nav-link {{ request()->routeIs('baseUi.embedVideo') ? 'active' : '' }}" data-key="t-embed-video">Embed Video</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-typography.html" class="nav-link" data-key="t-typography">Typography</a>
+                        <a href="{{ route('baseUi.typography') }}" class="nav-link {{ request()->routeIs('baseUi.typography') ? 'active' : '' }}" data-key="t-typography">Typography</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-lists.html" class="nav-link" data-key="t-lists">Lists</a>
+                        <a href="{{ route('baseUi.lists') }}" class="nav-link {{ request()->routeIs('baseUi.lists') ? 'active' : '' }}" data-key="t-lists">Lists</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-links.html" class="nav-link"><span data-key="t-links">Links</span> <span class="badge badge-pill bg-success" data-key="t-new">New</span></a>
+                        <a href="{{ route('baseUi.links') }}" class="nav-link {{ request()->routeIs('baseUi.links') ? 'active' : '' }}">
+                            <span data-key="t-links">Links</span> <span class="badge badge-pill bg-success" data-key="t-new">New</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-general.html" class="nav-link" data-key="t-general">General</a>
+                        <a href="{{ route('baseUi.general') }}" class="nav-link {{ request()->routeIs('baseUi.general') ? 'active' : '' }}" data-key="t-general">General</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-ribbons.html" class="nav-link" data-key="t-ribbons">Ribbons</a>
+                        <a href="{{ route('baseUi.ribbons') }}" class="nav-link {{ request()->routeIs('baseUi.ribbons') ? 'active' : '' }}" data-key="t-ribbons">Ribbons</a>
                     </li>
                     <li class="nav-item">
-                        <a href="ui-utilities.html" class="nav-link" data-key="t-utilities">Utilities</a>
+                        <a href="{{ route('baseUi.utilities') }}" class="nav-link {{ request()->routeIs('baseUi.utilities') ? 'active' : '' }}" data-key="t-utilities">Utilities</a>
                     </li>
                 </ul>
             </div>
