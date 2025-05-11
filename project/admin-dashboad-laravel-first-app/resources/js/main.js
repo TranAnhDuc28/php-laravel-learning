@@ -1142,14 +1142,14 @@ import Waves from 'node-waves';
      */
     const initComponents = () => {
         // Tooltip.
-        let tooltipTriggerList = [].slice.call(document.querySelectorAll(`[data-bs-toggle="tooltip"]`));
-        tooltipTriggerList.map((tooltipTriggerEl) => {
+        let tooltipTriggerList = document.querySelectorAll(`[data-bs-toggle="tooltip"]`);
+        [...tooltipTriggerList].map((tooltipTriggerEl) => {
             return new Tooltip(tooltipTriggerEl);
         });
 
         // Popover.
-        let popoverTriggerList = [].slice.call(document.querySelectorAll(`[data-bs-toggle="tooltip"]`));
-        popoverTriggerList.map((popoverTriggerEl) => {
+        let popoverTriggerList = document.querySelectorAll(`[data-bs-toggle="popover"]`);
+        [...popoverTriggerList].map((popoverTriggerEl) => {
             return new Popover(popoverTriggerEl);
         });
     }

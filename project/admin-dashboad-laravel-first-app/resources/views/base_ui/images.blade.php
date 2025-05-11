@@ -441,7 +441,7 @@
             </div>
 
             <div class="row">
-            {{-- Figures. --}}
+                {{-- Figures. --}}
                 <div class="col-xl-8">
                     <div class="card">
                         <div class="card-header align-items-center d-flex">
@@ -530,8 +530,6 @@
                     </div><!-- end card -->
                 </div><!-- end col -->
             </div><!--end row-->
-
-
 
         </div>
     </div>

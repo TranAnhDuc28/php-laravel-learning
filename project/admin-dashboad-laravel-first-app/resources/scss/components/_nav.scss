@@ -86,7 +86,7 @@
     }
 }
 
-.arrow-navtabs {
+.arrow-nav-tabs {
     .nav-item {
         .nav-link {
             position: relative;
@@ -126,7 +126,7 @@
                 font-size: 22px;
             }
 
-            .nav-titl {
+            .nav-title {
                 font-size: 14px;
             }
 
@@ -147,13 +147,13 @@
                     transform: translateY(-50%);
                 }
 
-                &.nav-titl {
+                &.nav-title {
                     bottom: -20px;
                 }
             }
 
             &:hover {
-                .nav-titl {
+                .nav-title {
                     bottom: 50%;
                     transform: translateY(50%);
                 }
@@ -166,7 +166,7 @@
     }
 }
 
-.custom-verti-nav-pills {
+.custom-vertical-nav-pills {
     .nav-link {
         background-color: var(--#{$prefix}light);
         margin-top: 7px;
@@ -326,7 +326,7 @@ $value in $theme-colors {
             }
         }
 
-        &.arrow-navtabs {
+        &.arrow-nav-tabs {
             .nav-link {
                 &.active {
                     &::before {
@@ -336,7 +336,7 @@ $value in $theme-colors {
             }
         }
 
-        &.custom-verti-nav-pills {
+        &.custom-vertical-nav-pills {
             .nav-link {
                 &.active {
                     &::before {

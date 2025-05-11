@@ -34,6 +34,7 @@ class ViteEntriesProvider extends ServiceProvider
                 request()->routeIs('baseUi.dropdowns') => ['resources/js/pages/base_ui/dropdowns.js'],
                 request()->routeIs('baseUi.grid') => ['resources/js/pages/base_ui/base-ui.js'],
                 request()->routeIs('baseUi.images') => ['resources/js/pages/base_ui/base-ui.js'],
+                request()->routeIs('baseUi.tabs') => ['resources/js/pages/base_ui/base-ui.js'],
                 default => [],
             });
 
