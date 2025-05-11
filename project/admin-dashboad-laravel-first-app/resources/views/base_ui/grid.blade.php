@@ -5,7 +5,16 @@
 @section('content')
     <div class="page-content">
         <div class="container-fluid">
-            <p class="fs-1">Grid</p>
+            <x-breadcrumb
+                :title="'Grid'"
+                :breadcrumbs="[
+                   ['label' => 'Base UI', 'url' => route('baseUi.grid')],
+                   ['label' => 'Grid', 'url' => null]
+                ]"
+            />
+
+
+
         </div>
     </div>
 @endsection

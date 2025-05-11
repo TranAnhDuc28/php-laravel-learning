@@ -27,10 +27,11 @@ class ViteEntriesProvider extends ServiceProvider
                 request()->routeIs('app.calendar.main') => ['resources/js/pages/calendar.js'],
                 request()->routeIs('baseUi.notifications') => ['resources/js/pages/base_ui/notifications.js'],
                 request()->routeIs('baseUi.alerts') => ['resources/js/pages/base_ui/alerts.js'],
-                request()->routeIs('baseUi.badges') => ['resources/js/pages/base_ui/badges.js'],
-                request()->routeIs('baseUi.buttons') => ['resources/js/pages/base_ui/buttons.js'],
+                request()->routeIs('baseUi.badges') => ['resources/js/pages/base_ui/base-ui.js'],
+                request()->routeIs('baseUi.buttons') => ['resources/js/pages/base_ui/base-ui.js'],
                 request()->routeIs('baseUi.cards') => ['resources/js/pages/base_ui/cards.js'],
                 request()->routeIs('baseUi.carousel') => ['resources/js/pages/base_ui/carousel.js'],
+                request()->routeIs('baseUi.dropdowns') => ['resources/js/pages/base_ui/dropdowns.js'],
                 default => [],
             });
 

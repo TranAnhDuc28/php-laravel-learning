@@ -1,5 +1,5 @@
 import './base-ui.js';
-import Toast from 'bootstrap/js/dist/toast.js';
+import Toast from 'bootstrap/js/dist/toast';
 import Toastify from "toastify-js";
 
 document.addEventListener('DOMContentLoaded', () => {

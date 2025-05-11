@@ -42,10 +42,10 @@ export default defineConfig({
                     const filePath = chunkInfo.facadeModuleId;
                     if (filePath && filePath.includes('resources\\js')) {
                         if (filePath.includes('pages')) {
+                            if (filePath.includes('base_ui')) {
+                                return 'js/pages/base_ui/[name].min.js';
+                            }
                             return 'js/pages/[name].min.js';
-                        }
-                        if (filePath.includes('base_ui')) {
-                            return 'js/pages/base_ui/[name].min.js';
                         }
                     }
                     return 'js/[name].min.js';
@@ -55,13 +55,23 @@ export default defineConfig({
                 },
                 manualChunks: (id) => {
                     if (id.includes('node_modules')) {
-                        if (id.includes('bootstrap')) return 'bootstrap';
-                        if (id.includes('flatpickr')) return 'flatpickr';
-                        if (id.includes('choices')) return 'choices';
-                        if (id.includes('fullcalendar')) return 'fullcalendar';
-                        if (id.includes('feather-icons')) return 'feather-icons';
-                        if (id.includes('prismjs')) return 'prismjs';
-                        return 'vendor';
+                        if (id.includes('bootstrap')) return 'libs/bootstrap';
+                        if (id.includes('flatpickr')) return 'libs/flatpickr';
+                        if (id.includes('choices')) return 'libs/choices';
+                        if (id.includes('fullcalendar')) return 'libs/fullcalendar';
+                        if (id.includes('feather-icons')) return 'libs/feather-icons';
+                        if (id.includes('prismjs')) return 'libs/prismjs';
+                        if (id.includes('toastify')) return 'libs/toastify-js';
+                        if (id.includes('imagesloaded')) return 'libs/imagesloaded';
+                        if (id.includes('masonry-layout')) return 'libs/masonry-layout';
+                        if (id.includes('node-waves')) return 'libs/node-waves';
+                        return 'libs/vendor';
+                    }
+                    if (id.includes('resources/js/features')) {
+                        if (id.includes('calendar')) return 'features/calendar';
+                    }
+                    if (id.includes('resources/js/common')) {
+                        return 'common';
                     }
                     return undefined;
                 }

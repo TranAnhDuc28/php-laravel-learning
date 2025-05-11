@@ -125,7 +125,7 @@
 }
 
 @each $color, $value in $theme-colors {
-    .dropdownmenu-#{$color} {
+    .dropdown-menu-#{$color} {
         .dropdown-item {
             &:is(:focus, :hover, .active) {
                 background-color: rgba(($value), 0.07);

@@ -1,6 +1,9 @@
 import Collapse from 'bootstrap/js/dist/collapse';
 import Tooltip from 'bootstrap/js/dist/tooltip';
 import Popover from 'bootstrap/js/dist/popover';
+import Tab from 'bootstrap/js/dist/tab';
+import 'bootstrap/js/dist/dropdown';
+import 'bootstrap/js/dist/button';
 import SimpleBar from 'simplebar';
 import feather from 'feather-icons';
 import Choices from 'choices.js';
@@ -285,7 +288,7 @@ import Waves from 'node-waves';
         Array.from(document.querySelectorAll('.dropdown-menu a[data-bs-toggle="tab"]')).forEach((element) => {
             element.addEventListener('click', (e) => {
                 e.stopPropagation();
-                bootstrap.Tab.getInstance(e.target).show();
+                Tab.getInstance(e.target).show();
             });
         });
     }

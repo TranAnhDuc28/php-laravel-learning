@@ -1,5 +1,5 @@
 import './base-ui.js';
-import 'bootstrap/js/dist/alert.js';
+import 'bootstrap/js/dist/alert';
 
 document.addEventListener('DOMContentLoaded', () => {
     const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
