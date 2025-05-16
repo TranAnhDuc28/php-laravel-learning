@@ -1,0 +1,45 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "axios": "^1.6.4",
+        "laravel-vite-plugin": "^1.0",
+        "sass-embedded": "^1.87.0",
+        "tailwindcss": "^3.4.13",
+        "vite": "^6.3.3"
+    },
+    "dependencies": {
+        "@reduxjs/toolkit": "^2.8.0",
+        "bootstrap": "^5.3.5",
+        "choices.js": "^11.1.0",
+        "datatables.net-autofill-bs5": "^2.7.0",
+        "datatables.net-bs5": "^2.3.0",
+        "datatables.net-buttons-bs5": "^3.2.3",
+        "datatables.net-colreorder-bs5": "^2.1.0",
+        "datatables.net-fixedcolumns-bs5": "^5.0.4",
+        "datatables.net-fixedheader-bs5": "^4.0.1",
+        "datatables.net-keytable-bs5": "^2.12.1",
+        "datatables.net-responsive-bs5": "^3.0.4",
+        "datatables.net-rowgroup-bs5": "^1.5.1",
+        "datatables.net-rowreorder-bs5": "^1.5.0",
+        "datatables.net-scroller-bs5": "^2.4.3",
+        "datatables.net-searchbuilder-bs5": "^1.8.2",
+        "datatables.net-searchpanes-bs5": "^2.3.3",
+        "datatables.net-select-bs5": "^3.0.0",
+        "datatables.net-staterestore-bs5": "^1.4.1",
+        "feather-icons": "^4.29.2",
+        "flatpickr": "^4.6.13",
+        "fs-extra": "^11.3.0",
+        "fullcalendar": "^6.1.17",
+        "particles.js": "^2.0.0",
+        "path": "^0.12.7",
+        "sass": "^1.87.0",
+        "sass-migrator": "^2.3.1",
+        "simplebar": "^6.3.0",
+        "toastify-js": "^1.12.0"
+    }
+}

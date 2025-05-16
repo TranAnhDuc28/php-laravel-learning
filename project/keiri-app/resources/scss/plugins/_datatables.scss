@@ -1,0 +1,35 @@
+@import 'datatables.net-bs5/css/dataTables.bootstrap5.min.css';
+@import 'datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.min.css';
+@import 'datatables.net-fixedcolumns-bs5/css/fixedColumns.bootstrap5.css';
+
+div.dt-container div.dt-scroll-body {
+    border-bottom: none;
+    outline: 1px solid #dee2e6;
+    outline-offset: -1px;
+}
+
+div.dt-scroll-body table thead tr:last-child th {
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+div.dt-scroll-headInner table.table-bordered tr th:first-child,
+div.dt-scroll-footInner table.table-bordered tr th:first-child {
+    border-left-color: var(--#{$prefix}border-color) !important;
+}
+
+table.dataTable.table-bordered tr:last-child th,
+table.dataTable.table-bordered tr:last-child td {
+    border-bottom-width: 0 !important;
+    border-right-width: 0 !important;
+}
+
+div.dt-scroll-headInner table.table-bordered tr th:first-child,
+div.dt-scroll-footInner table.table-bordered tr th:first-child
+{
+    border-left-color: var(--#{$prefix}border-color) !important;
+}
+
+table.table.dataTable>:not(caption)>*>* {
+    background-color: var(--#{$prefix}table-bg);
+}
+
