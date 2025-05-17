@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->nullOnDelete();
-            $table->string('project_name')->unique();
+            $table->string('project_code')->unique();
+            $table->string('project_name');
             $table->date('project_start_date');
             $table->date('project_end_date');
             $table->integer('phase')->nullable();

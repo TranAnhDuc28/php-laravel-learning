@@ -1,29 +1,38 @@
 'use strict';
 import DataTable from 'datatables.net-bs5';
 import 'datatables.net-fixedcolumns-bs5';
-import 'datatables.net-fixedcolumns';
+import 'datatables.net-fixedheader-bs5';
 
-new DataTable('#employee_list', {
-    scrollX: true,
-    layout: {
-        topStart: {
-            search: {
-                placeholder: 'Search'
-            }
+document.addEventListener('DOMContentLoaded', () => {
+    const table = new DataTable('#employee_list', {
+        scrollY: '65vh',
+        scrollX: true,
+        scrollCollapse: true,
+        layout: {
+            topStart: {
+                search: {
+                    placeholder: 'Search...'
+                }
+            },
+            bottomStart: 'info',
+            bottomEnd: [{
+                pageLength: {
+                    menu: [10, 25, 50]
+                }
+            }, 'paging']
         },
-        bottomStart: 'info',
-        bottomEnd: [{
-            pageLength: {
-                menu: [10, 25, 50]
-            }
-        }, 'paging']
-    },
-    columnDefs: [
-        {targets: 0, width: '5%', type: 'string'},
-        {targets: 3, type: 'string'},
-    ],
-    fixedColumns: {
-        start: 2
-    }
+        columnDefs: [
+            {targets: 0, width: '3%', type: 'string'},
+            {targets: 3, type: 'string'},
+            {targets: 9, orderable: false},
+        ],
+        fixedColumns: {
+            left: 2,
+            right: 1,
+        },
+        fixedHeader: true,
+    });
 });
+
+
 

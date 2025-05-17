@@ -25,6 +25,7 @@ class ViteEntriesProvider extends ServiceProvider
 
             $viteEntries = array_merge($viteEntries, match (true) {
                 request()->routeIs('employee*') => ['resources/js/pages/human-resources.js'],
+                request()->routeIs('project*') => ['resources/js/pages/project-management.js'],
                 default => [],
             });
 

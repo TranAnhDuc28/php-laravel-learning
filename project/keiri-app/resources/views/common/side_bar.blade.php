@@ -30,7 +30,7 @@
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                 <li class="nav-item">
-                    <a id="dashboard" class="nav-link menu-link {{ request()->is('dashboard') ? '' : 'collapsed' }}">
+                    <a href="{{ route('pages.dashboard') }}" id="dashboard" class="nav-link menu-link {{ request()->is('dashboard') ? '' : 'collapsed' }}">
                         <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboard">{{ __('Dashboard') }}</span>
                     </a>
                 </li>

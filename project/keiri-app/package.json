@@ -3,7 +3,10 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=livewire:assets --ansi --force"
+        ]
     },
     "devDependencies": {
         "axios": "^1.6.4",
@@ -15,6 +18,7 @@
     "dependencies": {
         "@reduxjs/toolkit": "^2.8.0",
         "bootstrap": "^5.3.5",
+        "bootstrap-icons": "^1.13.1",
         "choices.js": "^11.1.0",
         "datatables.net-autofill-bs5": "^2.7.0",
         "datatables.net-bs5": "^2.3.0",

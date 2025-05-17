@@ -28,9 +28,10 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('password');
             $table->integer('role')->default(UserRole::Employee);
-            $table->string('position')->nullable();
+            $table->string('job_position')->nullable();
             $table->date('join_date')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->text('note')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

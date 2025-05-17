@@ -7,7 +7,6 @@ import SimpleBar from 'simplebar';
 import feather from 'feather-icons';
 import DataTable from 'datatables.net-bs5';
 
-
 (function () {
     'use strict';
 
@@ -22,7 +21,68 @@ import DataTable from 'datatables.net-bs5';
         bottomEnd: null
     };
 
-    /* On click collapse menu. */
+    /**
+     * Toggle hide and show input type password.
+     */
+    const passwordInputs = document.querySelectorAll('.show-password');
+    passwordInputs && passwordInputs.forEach(passwordInput => {
+        let wrapper = passwordInput.parentElement;
+        if (!wrapper.classList.contains('position-relative')) {
+            wrapper = document.createElement('div');
+            wrapper.classList.add('position-relative');
+
+            // Insert the wrapper before the input and wrap the input inside it.
+            passwordInput.parentNode.insertBefore(wrapper, passwordInput);
+            wrapper.appendChild(passwordInput);
+
+            if (passwordInput.classList.contains('is-invalid')) {
+                wrapper.classList.add('is-invalid');
+                passwordInput.style.paddingRight = 'calc(1.5em + 2.25rem)';
+            } else {
+                wrapper.classList.remove('is-invalid');
+                passwordInput.style.paddingRight = 'calc(1.5em + .75rem)';
+            }
+        }
+
+        if (!wrapper.querySelector('.show-password-icon')) {
+            // Create icon toggle password.
+            const toggleIcon = document.createElement('i');
+            toggleIcon.classList.add('bi', 'bi-eye', 'show-password-icon');
+            wrapper.appendChild(toggleIcon);
+
+            // Event hide/show password.
+            toggleIcon.addEventListener('pointerdown', (e) => {
+                e.preventDefault();
+
+                if (passwordInput.type === 'password') {
+                    passwordInput.setAttribute('type', 'text');
+                    toggleIcon.classList.replace('bi-eye', 'bi-eye-slash');
+                } else {
+                    passwordInput.setAttribute('type', 'password');
+                    toggleIcon.classList.replace('bi-eye-slash', 'bi-eye');
+                }
+            });
+
+            // Show icon when input has value or is focused.
+            const toggleVisibility = () => {
+                if (passwordInput.value || document.activeElement === passwordInput) {
+                    toggleIcon.style.display = 'block';
+                } else {
+                    toggleIcon.style.display = 'none';
+                }
+            };
+
+            passwordInput.addEventListener('focus', toggleVisibility);
+            passwordInput.addEventListener('blur', toggleVisibility);
+            passwordInput.addEventListener('input', toggleVisibility);
+
+            toggleVisibility();
+        }
+    });
+
+    /**
+     * On click collapse menu.
+     */
     const isCollapseMenu = () => {
         /* Sidebar menu collapse.*/
         if (document.querySelectorAll('.navbar-nav .collapse')) {
