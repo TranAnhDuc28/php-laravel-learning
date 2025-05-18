@@ -45,7 +45,9 @@
                                             <td>{{ $employee->date_of_birth }}</td>
                                             <td>{{ $employee->join_date }}</td>
                                             <td>{{ $employee->status }}</td>
-                                            <td>Xóa</td>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-light btn-sm">...</button>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

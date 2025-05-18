@@ -90,14 +90,13 @@
                                 </div>
 
                                 <div class="text-end">
-                                    <button type="button" id="save-employee" class="btn btn-primary">{{ __('Save') }}</button>
+                                    <button type="button" id="btn-save-employee" class="btn btn-primary">{{ __('Save') }}</button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-
 
         </div>
     </div>

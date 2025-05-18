@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
         $admin->email = 'manager1@test.com';
         $admin->password = Hash::make('12345678');
         $admin->role = UserRole::Manager;
+        $admin->job_position = 'PM';
         $admin->save();
 
         $admin = new User();
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
         $admin->email = 'manager2@test.com';
         $admin->password = Hash::make('12345678');
         $admin->role = UserRole::Manager;
+        $admin->job_position = 'PM';
         $admin->save();
 
         /* Employee. */

@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         layout: {
             topStart: {
                 search: {
+                    text: '',
                     placeholder: 'Search...'
                 }
             },
@@ -32,6 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         fixedHeader: true,
     });
+
+    let dtInpSearch = document.querySelector('.dt-search input');
+    dtInpSearch?.classList.remove('form-control-sm');
 });
 
 
