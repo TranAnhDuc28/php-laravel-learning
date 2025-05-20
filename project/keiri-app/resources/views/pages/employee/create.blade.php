@@ -21,7 +21,7 @@
                                 @csrf
                                 <div class="row mb-3">
                                     <div class="col-sm-12 col-md-6">
-                                        <label for="id-name" class="form-label">{{ __('Full Name') }} (*)</label>
+                                        <label for="id-name" class="form-label">{{ __('Full Name') }} <span class="text-danger">*</span></label>
                                         <input type="text" id="id-full-name" name="full_name" class="form-control @error('name') is-invalid @enderror" value="{{ old('full_name') }}">
                                         @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6 mb-3">
-                                        <label for="id-api-username" class="form-label">{{ __('Email') }} (*)</label>
+                                        <label for="id-api-username" class="form-label">{{ __('Email') }} <span class="text-danger">*</span></label>
                                         <input type="text" id="id-api-username" name="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}">
                                         @error('username')
                                         <span class="invalid-feedback" role="alert">
@@ -68,7 +68,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-sm-12 col-md-6 mb-3">
-                                        <label for="id-password" class="form-label">{{ __('Password') }} (*)</label>
+                                        <label for="id-password" class="form-label">{{ __('Password') }} <span class="text-danger">*</span></label>
                                         <input type="password" id="id-password" name="password" class="form-control @error('password')is-invalid @enderror show-password" value="{{ old('password', '12345678') }}">
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">

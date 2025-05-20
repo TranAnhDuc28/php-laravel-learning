@@ -14,6 +14,7 @@
         'resources/scss/bootstrap.scss',
         'resources/scss/icons.scss',
         'resources/scss/app.scss',
+        'resources/scss/app.scss',
     ])
 
     <!-- Custom Css-->
@@ -24,7 +25,7 @@
 
 @yield('content')
 
+@vite($viteEntries)
 @stack('body_js')
-
 </body>
 </html>

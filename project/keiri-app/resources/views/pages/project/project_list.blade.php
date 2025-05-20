@@ -22,27 +22,27 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>{{ __('Project Code') }}</th>
-                                        <th>{{ __('Project Name') }}</th>
+                                        <th>{{ __('Project code') }}</th>
+                                        <th>{{ __('Project name') }}</th>
                                         <th>{{ __('Project start date') }}</th>
                                         <th>{{ __('Project end date') }}</th>
                                         <th>{{ __('Phase') }}</th>
                                         <th>{{ __('Priority') }}</th>
                                         <th>{{ __('Status') }}</th>
-                                        <th>{{ __('Note') }}</th>
+                                        <th>{{ __('Project outline') }}</th>
                                         <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($projects as $project)
                                         @php
-                                            $priorityClassStyle = 'badge bg-secondary-subtle text-secondary';
+                                            $priorityClassStyle = 'badge bg-secondary';
                                             $priorityLabel = 'Medium';
                                             if ($project->priority == \App\Enums\ProjectPriority::HIGH) {
-                                                $priorityClassStyle = 'badge bg-danger-subtle text-danger';
+                                                $priorityClassStyle = 'badge bg-danger';
                                                 $priorityLabel = 'High';
                                             } else if($project->priority == \App\Enums\ProjectPriority::LOW){
-                                                $priorityClassStyle = 'badge bg-light-subtle text-body';
+                                                $priorityClassStyle = 'badge bg-light';
                                                 $priorityLabel = 'Low';
                                             }
 
@@ -71,7 +71,9 @@
                                             </td>
                                             <td>{{ $project->note }}</td>
                                             <td>
-                                                <button type="button" class="btn btn-light btn-sm">...</button>
+                                                <button type="button" class="btn btn-light btn-sm">
+                                                    <span class="ri-more-fill"></span>
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach

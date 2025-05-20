@@ -35,6 +35,17 @@
                                     </thead>
                                     <tbody>
                                     @foreach($employees as $employee)
+                                        @php
+                                            $employeeStatusClassStyle = null;
+                                            $employeeStatusLabel = null;
+                                            if ($employee->status == \App\Enums\UserStatus::ACTIVE) {
+                                                $employeeStatusClassStyle = 'badge bg-success-subtle text-success';
+                                                $employeeStatusLabel = 'Active';
+                                            } else if($employee->status == \App\Enums\UserStatus::INACTIVE){
+                                                $employeeStatusClassStyle = 'badge bg-secondary-subtle text-secondary';
+                                                $employeeStatusLabel = 'Inactive';
+                                            }
+                                        @endphp
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $employee->full_name }}</td>
@@ -44,9 +55,13 @@
                                             <td>{{ $employee->phone_number }}</td>
                                             <td>{{ $employee->date_of_birth }}</td>
                                             <td>{{ $employee->join_date }}</td>
-                                            <td>{{ $employee->status }}</td>
+                                            <td>
+                                                <span class="{{ $employeeStatusClassStyle }} fs-12">{{ $employeeStatusLabel }}</span>
+                                            </td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-light btn-sm">...</button>
+                                                <button type="button" class="btn btn-light btn-sm">
+                                                    <span class="ri-more-fill"></span>
+                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach

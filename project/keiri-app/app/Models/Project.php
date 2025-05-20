@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\ProjectPriority;
+use App\Enums\ProjectStatus;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -39,8 +41,8 @@ class Project extends Model
         'project_start_date' => 'date',
         'project_end_date' => 'date',
         'phase' => 'integer',
-        'priority' => 'integer',
-        'status' => 'integer',
+        'priority' => ProjectPriority::class,
+        'status' => ProjectStatus::class,
     ];
 
     /**
@@ -48,9 +50,9 @@ class Project extends Model
      */
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'project_assignments')
+        return $this->belongsToMany(User::class, 'project_assignments', 'project_id', 'user_id')
             ->using(ProjectAssignment::class)
-            ->withPivot(['project_join_date', 'project_exit_date', 'effort_percentage', 'status', 'note'])
+            ->withPivot(['id', 'is_manager', 'status', 'note'])
             ->withTimestamps();
     }
 }

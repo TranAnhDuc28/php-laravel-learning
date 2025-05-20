@@ -33,15 +33,13 @@ class AuthController extends Controller
     {
         // Validate input.
         $validated = $request->validate([
-            'username' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string', 'max:255'],
         ]);
-        $username = $validated['username'];
-        $password = $validated['password'];
 
         $credentials = [
-            'username' => $username,
-            'password' => $password,
+            'email' => $validated['email'],
+            'password' => $validated['password'],
             'role' => [UserRole::Admin, UserRole::Manager],
         ];
 
@@ -52,8 +50,8 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'username' => __('auth.invalid credentials'),
-        ])->onlyInput('username');
+            'email' => __('Invalid credentials'),
+        ])->onlyInput('email');
     }
 
     /**

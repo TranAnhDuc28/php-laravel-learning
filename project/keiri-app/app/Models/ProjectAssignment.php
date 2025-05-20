@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Enums\AssignmentStatus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class ProjectAssignment extends Model
+class ProjectAssignment extends Pivot
 {
     /**
      * The table associated with the model.
@@ -22,9 +24,7 @@ class ProjectAssignment extends Model
     protected $fillable = [
         'user_id',
         'project_id',
-        'project_join_date',
-        'project_exit_date',
-        'effort_percentage',
+        'is_manager',
         'status',
         'note',
     ];
@@ -35,10 +35,8 @@ class ProjectAssignment extends Model
      * @var array
      */
     protected $casts = [
-        'project_join_date' => 'date',
-        'project_exit_date' => 'date',
-        'effort_percentage' => 'integer',
-        'status' => 'integer',
+        'is_manager' => 'boolean',
+        'status' => AssignmentStatus::class,
     ];
 
     /**
@@ -55,5 +53,13 @@ class ProjectAssignment extends Model
     public function project(): BelongsTo
     {
         return $this->belongsTo(Project::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function logs(): HasMany
+    {
+        return $this->hasMany(ProjectAssignmentLog::class);
     }
 }

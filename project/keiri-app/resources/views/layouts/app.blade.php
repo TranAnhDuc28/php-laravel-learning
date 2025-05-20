@@ -11,14 +11,12 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
-    @livewireStyles
     @vite([
         'resources/js/layout.js',
         'resources/scss/bootstrap.scss',
         'resources/scss/icons.scss',
         'resources/scss/app.scss',
     ])
-
 
     <!-- Custom Css-->
     @stack('head_css')
@@ -37,7 +35,7 @@
 @include('common.customizer')
 
 @vite($viteEntries)
-@livewireScriptConfig
+
 @stack('body_js')
 </body>
 </html>

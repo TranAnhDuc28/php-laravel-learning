@@ -3,10 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=livewire:assets --ansi --force"
-        ]
+        "build": "vite build"
     },
     "devDependencies": {
         "axios": "^1.6.4",
@@ -39,7 +36,6 @@
         "flatpickr": "^4.6.13",
         "fs-extra": "^11.3.0",
         "fullcalendar": "^6.1.17",
-        "multi.js": "^0.5.3",
         "particles.js": "^2.0.0",
         "path": "^0.12.7",
         "sass": "^1.87.0",

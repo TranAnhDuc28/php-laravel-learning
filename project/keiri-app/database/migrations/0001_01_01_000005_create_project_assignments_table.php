@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('project_assignments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->nullOnDelete();
-            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
-            $table->date('project_join_date');
-            $table->date('project_exit_date');
-            $table->unsignedInteger('effort_percentage');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('project_id')->constrained();
+            $table->boolean('is_manager')->default(false);
             $table->integer('status')->default(1);
             $table->string('note')->nullable();
 
             $table->timestamps();
+
+            $table->unique(['user_id', 'project_id']);
         });
     }
 

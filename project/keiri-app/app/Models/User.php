@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\UserRole;
+use App\Enums\UserStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -52,6 +53,7 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
+            'status' => UserStatus::class,
             'password' => 'hashed',
             'role' => UserRole::class,
             'email_verified_at' => 'datetime',

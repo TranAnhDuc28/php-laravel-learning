@@ -31,7 +31,7 @@
                                 <div class="ps-3 pe-3">
                                     {{-- Form select existing project. --}}
                                     <div class="form-select-existing-project mt-3 d-none">
-                                        <label for="project_id" class="form-label">{{ __('Project Name') }}</label>
+                                        <label for="project_id" class="form-label">{{ __('Project Name') }} <span class="text-danger">*</span></label>
                                         <select id="project_id" name="project_id" class="form-select @error('project_id') is-invalid @enderror">
                                             <option value="">-</option>
                                             @foreach($projects as $project)
@@ -49,7 +49,7 @@
                                     <div class="form-create-project">
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6 mt-3">
-                                                <label for="id-project-code" class="form-label">{{ __('Project Code') }} (*)</label>
+                                                <label for="id-project-code" class="form-label">{{ __('Project Code') }} <span class="text-danger">*</span></label>
                                                 <input type="text" id="id-project-code" name="project_code" class="form-control @error('project_code') is-invalid @enderror" value="{{ old('project_code') }}">
                                                 @error('project_code')
                                                 <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
                                                 @enderror
                                             </div>
                                             <div class="col-sm-12 col-md-6 mt-3">
-                                                <label for="id-project-name" class="form-label">{{ __('Project Name') }} (*)</label>
+                                                <label for="id-project-name" class="form-label">{{ __('Project Name') }} <span class="text-danger">*</span></label>
                                                 <input type="text" id="id-project-name" name="project_name" class="form-control @error('project_name') is-invalid @enderror" value="{{ old('project_name') }}">
                                                 @error('project_name')
                                                 <span class="invalid-feedback" role="alert">
@@ -70,7 +70,7 @@
 
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6 mt-3">
-                                                <label for="id-project-start-date" class="form-label">{{ __('Start date') }} (*)</label>
+                                                <label for="id-project-start-date" class="form-label">{{ __('Start date') }} <span class="text-danger">*</span></label>
                                                 <div class="input-group">
                                                     <input type="text" id="id-project-start-date" name="project_start_date"
                                                            class="form-control flatpickr flatpickr-input @error('project_start_date') is-invalid @enderror"
@@ -84,7 +84,7 @@
                                                 @enderror
                                             </div>
                                             <div class="col-sm-12 col-md-6 mt-3">
-                                                <label for="id-project-end-date" class="form-label">{{ __('End date') }} (*)</label>
+                                                <label for="id-project-end-date" class="form-label">{{ __('End date') }} <span class="text-danger">*</span></label>
                                                 <div class="input-group">
                                                     <input type="text" id="id-project-end-date" name="project_end_date"
                                                            class="form-control flatpickr flatpickr-input @error('project_end_date') is-invalid @enderror"
@@ -158,14 +158,17 @@
 
                                 {{-- Form project assign. --}}
                                 <div class="ps-3 pe-3">
-{{--                                    <div class="row mt-3">--}}
-{{--                                        <label for="project_id" class="form-label">{{ __('Team members') }}</label>--}}
-{{--                                        <select multiple="multiple" id="multi-select-project-assign">--}}
-{{--                                            @foreach($users as $user)--}}
-{{--                                                <option value="{{ $user->id }}">{{ $user->full_name }}</option>--}}
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
+                                    <div class="row">
+                                        <div class="col-sm-12 mt-3">
+                                            <label for="team-members" class="form-label">{{ __('Team members') }}</label>
+                                            <select id="team-members" class="form-select" multiple>
+                                                @foreach($users as $user)
+                                                    <option value="{{ $user->id }}">{{ $user->full_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div id="team-members-form" class="col-sm-12 mt-3"></div>
+                                    </div>
                                 </div>
 
                                 <div class="text-end ps-3 pe-3 mt-3">

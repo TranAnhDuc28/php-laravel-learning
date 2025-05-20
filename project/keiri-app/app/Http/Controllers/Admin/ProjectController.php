@@ -13,6 +13,8 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
@@ -48,10 +50,29 @@ class ProjectController extends Controller
         return view('pages.project.project_create', $viewData);
     }
 
-    public function showProjectAssignment()
+    /**
+     * @param Request $request
+     * @param string $id
+     * @return Factory|View|Application|object
+     */
+    public function showUpdateProjectForm(Request $request, string $id)
     {
-        return view('pages.project.project_assignment');
+        $validator = Validator::make(['id' => $id], [
+            'id' => ['required', 'numeric', 'integer', Rule::exists(Project::class, 'id')],
+        ]);
+        if ($validator->fails()) {
+            abort(404);
+        }
+
+        $project = Project::find($id);
+
+        $viewData = [
+            'project' => $project,
+        ];
+
+        return view('pages.project.update_project', $viewData);
     }
+
 
     public function showProjectReport()
     {

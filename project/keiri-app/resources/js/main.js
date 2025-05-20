@@ -11,7 +11,7 @@ import DataTable from 'datatables.net-bs5';
     'use strict';
 
     /* Global variables. */
-    let navbarMenuHTML = document.querySelector('.navbar-menu').innerHTML;
+    let navbarMenuHTML = document.querySelector('.navbar-menu')?.innerHTML;
 
     /* DataTable Init remove default. */
     DataTable.defaults.layout = {
@@ -20,6 +20,7 @@ import DataTable from 'datatables.net-bs5';
         bottomStart: null,
         bottomEnd: null
     };
+    DataTable.defaults.order = [];
 
     /**
      * Toggle hide and show input type password.
@@ -404,7 +405,7 @@ import DataTable from 'datatables.net-bs5';
         });
 
         // Popover.
-        let popoverTriggerList = [].slice.call(document.querySelectorAll(`[data-bs-toggle="tooltip"]`));
+        let popoverTriggerList = [].slice.call(document.querySelectorAll(`[data-bs-toggle="popover"]`));
         popoverTriggerList.map((popoverTriggerEl) => {
             return new Popover(popoverTriggerEl);
         });
@@ -418,8 +419,6 @@ import DataTable from 'datatables.net-bs5';
         const twoColumnMenu = document.getElementById('two-column-menu');
         const sidebarSize = document.getElementById('sidebar-size');
         const sidebarView = document.getElementById('sidebar-view');
-        const sidebarColor = document.getElementById('sidebar-color');
-        const sidebarImg = document.getElementById('sidebar-img');
         const layoutPosition = document.getElementById('layout-position');
         const layoutWidth = document.getElementById('layout-width');
         const sidebarVisibility = document.getElementById('sidebar-visibility');
@@ -431,10 +430,6 @@ import DataTable from 'datatables.net-bs5';
         if (themeSettingsOffcanvas) {
             sidebarSize.style.display = 'block';
             sidebarView.style.display = 'block';
-            sidebarColor.style.display = 'block';
-            if (sidebarImg) {
-                sidebarImg.style.display = 'block';
-            }
             layoutPosition.style.display = 'block';
             layoutWidth.style.display = 'block';
             sidebarVisibility.style.display = 'none';
@@ -449,7 +444,7 @@ import DataTable from 'datatables.net-bs5';
      */
     const addEventListenerOnSmHoverMenu = () => {
         const dataSidebarSizeAttribute = document.documentElement.getAttribute('data-sidebar-size');
-        document.getElementById('vertical-hover').addEventListener('click', () => {
+        document.getElementById('vertical-hover')?.addEventListener('click', () => {
             if (dataSidebarSizeAttribute === 'sm-hover') {
                 document.documentElement.setAttribute('data-sidebar-size', 'sm-hover-active');
             } else if (dataSidebarSizeAttribute === 'sm-hover-active') {
@@ -581,7 +576,10 @@ import DataTable from 'datatables.net-bs5';
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-        document.getElementById('current-year').textContent = new Date().getFullYear().toString();
+        const currentYear = document.getElementById('current-year');
+        if (currentYear) {
+            currentYear.innerText = new Date().getFullYear().toString();
+        }
     });
 })();
 
