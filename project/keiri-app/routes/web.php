@@ -35,8 +35,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('projects/project-assign', [ProjectAssignmentController::class, 'showProjectAssignment'])->name('project.showProjectAssignment');
     Route::get('projects/project-assign-detail/{projectId}', [ProjectAssignmentController::class, 'showProjectAssignmentDetail'])->name('project.showProjectAssignmentDetail');
 
-    Route::get('projects/project-report', [ProjectController::class, 'showProjectReport'])->name('project.showProjectReport');
-    Route::post('projects/project-report', [ProjectController::class, 'exportReport'])->name('project.exportReport');
+    Route::get('projects/project-report1', [ProjectController::class, 'showProjectReport1'])->name('project.report.showProjectReport1');
+    Route::get('projects/project-report2', [ProjectController::class, 'showProjectReport2'])->name('project.report.showProjectReport2');
+    Route::post('projects/project-report', [ProjectController::class, 'exportReport'])->name('project.report.exportReport');
 
     /* Employee. */
     Route::get('employees', [HumanResourcesController::class, 'showEmployeeList'])->name('employee.showEmployeeList');

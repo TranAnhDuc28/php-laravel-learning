@@ -20,9 +20,19 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('project.showProjectReport') }}" class="nav-link {{ request()->routeIs('project.showProjectReport') ? 'active' : '' }}">
+                <a href="#navItemReport" class="nav-link menu-link" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="navItemReport">
                     {{ __('Report') }}
                 </a>
+                <div class="menu-dropdown collapse {{ request()->routeIs('project.report*') ? 'show' : '' }}" id="navItemReport">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a href="{{ route('project.report.showProjectReport1') }}" class="nav-link {{ request()->routeIs('project.report.showProjectReport1') ? 'active' : '' }}">{{ __('Report 1') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('project.report.showProjectReport2') }}" class="nav-link {{ request()->routeIs('project.report.showProjectReport2') ? 'active' : '' }}">{{ __('Report 2') }}</a>
+                        </li>
+                    </ul>
+                </div>
             </li>
         </ul>
     </div>

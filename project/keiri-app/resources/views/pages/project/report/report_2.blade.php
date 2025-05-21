@@ -5,12 +5,11 @@
 @section('content')
     <div class="page-content">
         <div class="container-fluid">
-
             <x-breadcrumb
                 :title="'Project'"
                 :breadcrumbs="[
                    ['label' => 'Project', 'url' => null],
-                   ['label' => 'Report', 'url' => route('showViewReportDemo')],
+                   ['label' => 'Report', 'url' => route('project.report.showProjectReport2')],
                 ]"
             />
 
@@ -18,7 +17,7 @@
                 <div class="card-body">
                     <div class="mb-5 d-flex justify-content-between">
                         <div>
-                            <a href="{{ route('exportReportDemo') }}" class="btn btn-outline-success">Export</a>
+                            <a href="{{ route('project.report.exportReport') }}" class="btn btn-outline-success">Export</a>
                         </div>
 
                         <div class="d-flex gap-3">
@@ -27,7 +26,7 @@
                                 <div class="col-12">
                                     <input type="file" name="import_file" class="form-control @error('import_file') is-invalid @enderror">
                                     @error('import_file')
-                                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="col-12">

@@ -9,7 +9,7 @@
                 :title="'Project'"
                 :breadcrumbs="[
                    ['label' => 'Project', 'url' => null],
-                   ['label' => 'Report', 'url' => route('project.report.showProjectReport')],
+                   ['label' => 'Report', 'url' => route('project.report.showProjectReport1')],
                 ]"
             />
 

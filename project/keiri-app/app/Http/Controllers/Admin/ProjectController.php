@@ -73,10 +73,20 @@ class ProjectController extends Controller
         return view('pages.project.update_project', $viewData);
     }
 
-
-    public function showProjectReport()
+    /**
+     * @return Factory|View|Application|object
+     */
+    public function showProjectReport1()
     {
-        return view('pages.project.report');
+        return view('pages.project.report.report_1');
+    }
+
+    /**
+     * @return Factory|View|Application|object
+     */
+    public function showProjectReport2()
+    {
+        return view('pages.project.report.report_2');
     }
 
     /**
