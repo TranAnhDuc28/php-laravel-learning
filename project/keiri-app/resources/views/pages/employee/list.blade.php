@@ -26,11 +26,10 @@
                                         <th>Email</th>
                                         <th>Working department</th>
                                         <th>Position</th>
-                                        <th>Phone Number</th>
-                                        <th>Date Of Birth</th>
+{{--                                        <th>Phone Number</th>--}}
+{{--                                        <th>Date Of Birth</th>--}}
                                         <th>Join Date</th>
                                         <th>Status</th>
-                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -38,22 +37,24 @@
                                         @php
                                             $employeeStatusClassStyle = null;
                                             $employeeStatusLabel = null;
-                                            if ($employee->status == \App\Enums\UserStatus::ACTIVE) {
+                                            if ($employee->status === \App\Enums\UserStatus::ACTIVE) {
                                                 $employeeStatusClassStyle = 'badge bg-success-subtle text-success';
                                                 $employeeStatusLabel = 'Active';
-                                            } else if($employee->status == \App\Enums\UserStatus::INACTIVE){
+                                            } else if($employee->status === \App\Enums\UserStatus::INACTIVE){
                                                 $employeeStatusClassStyle = 'badge bg-secondary-subtle text-secondary';
                                                 $employeeStatusLabel = 'Inactive';
                                             }
                                         @endphp
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $employee->full_name }}</td>
+                                            <td>
+                                                <a href="{{ route('employee.showUpdateEmployee', ['id' => $employee->id]) }}" class="text-decoration-underline">{{ $employee->full_name }}</a>
+                                            </td>
                                             <td>{{ $employee->email }}</td>
-                                            <td>{{ $employee->department_id }}</td>
+                                            <td>{{ $employee->department->name ?? '' }}</td>
                                             <td>{{ $employee->position }}</td>
-                                            <td>{{ $employee->phone_number }}</td>
-                                            <td>{{ $employee->date_of_birth }}</td>
+{{--                                            <td>{{ $employee->phone_number }}</td>--}}
+{{--                                            <td>{{ $employee->date_of_birth }}</td>--}}
                                             <td>{{ $employee->join_date }}</td>
                                             <td>
                                                 <span class="{{ $employeeStatusClassStyle }} fs-12">{{ $employeeStatusLabel }}</span>

@@ -30,7 +30,6 @@
                                         <th>{{ __('Priority') }}</th>
                                         <th>{{ __('Status') }}</th>
                                         <th>{{ __('Project outline') }}</th>
-                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -58,8 +57,12 @@
                                         @endphp
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $project->project_code }}</td>
-                                            <td>{{ $project->project_name }}</td>
+                                            <td>
+                                                <a href="#" class="text-decoration-underline">{{ $project->project_code }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="text-decoration-underline">{{ $project->project_name }}</a>
+                                            </td>
                                             <td>{{ \Carbon\Carbon::parse($project->project_start_date)->format('d-m-Y') }}</td>
                                             <td>{{ \Carbon\Carbon::parse($project->project_end_date)->format('d-m-Y') }}</td>
                                             <td>{{ $project->phase }}</td>
@@ -70,11 +73,6 @@
                                                 <span class="{{ $statusClassStyle }} fs-12">{{ $statusLabel }}</span>
                                             </td>
                                             <td>{{ $project->note }}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-light btn-sm">
-                                                    <span class="ri-more-fill"></span>
-                                                </button>
-                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>

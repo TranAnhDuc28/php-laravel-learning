@@ -13,8 +13,6 @@
                 ]"
             />
 
-            <p class="fs-1">Dashboard</p>
-
         </div>
     </div>
 @endsection

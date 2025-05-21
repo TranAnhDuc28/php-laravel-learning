@@ -10,7 +10,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('employee.showCreateEmployeeForm') }}" class="nav-link {{ request()->routeIs('employee.showCreateEmployeeForm') ? 'active' : '' }}">
+                <a href="{{ route('employee.showCreateEmployee') }}" class="nav-link {{ request()->routeIs('employee.showCreateEmployee') ? 'active' : '' }}">
                     {{ __('Create Employee') }}
                 </a>
             </li>

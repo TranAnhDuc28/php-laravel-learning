@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
             {targets: 3, type: 'string'},
             {targets: 5, type: 'string'},
             {targets: 8, width: 500, className: 'text-wrap'},
-            {targets: 9, orderable: false},
         ],
         fixedColumns: {
             left: 3
@@ -97,20 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Submit.
-    document.getElementById('btn-save-project')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        const form = {
-            'use_existing_project': document.getElementById('switchUseExistingProject')?.checked,
-            'project_code': document.getElementById('id-project-code')?.value,
-            'project_name': document.getElementById('id-project-name')?.value,
-            'project_start_date': document.getElementById('id-project-start-date')?.value,
-            'project_end_date': document.getElementById('id-project-end-date')?.value,
-            'phase': document.getElementById('id-phase')?.value,
-            'priority': document.getElementById('id-priority')?.value,
-            'status': document.getElementById('id-project-status')?.value,
-        };
-        console.log(form);
-    });
+    // document.getElementById('btn-save-project')?.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     const form = {
+    //         'use_existing_project': document.getElementById('switchUseExistingProject')?.checked,
+    //         'project_code': document.getElementById('id-project-code')?.value,
+    //         'project_name': document.getElementById('id-project-name')?.value,
+    //         'project_start_date': document.getElementById('id-project-start-date')?.value,
+    //         'project_end_date': document.getElementById('id-project-end-date')?.value,
+    //         'phase': document.getElementById('id-phase')?.value,
+    //         'priority': document.getElementById('id-priority')?.value,
+    //         'status': document.getElementById('id-project-status')?.value,
+    //     };
+    //     console.log(form);
+    // });
 
     /* Multiple project assign. */
     const teamMembers = document.getElementById('team-members');
@@ -118,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const teamMembersChoices = new Choices(teamMembers, {
             removeItems: true,
             removeItemButton: true,
+            searchEnabled: true,
             placeholderValue: 'Select team members',
             noChoicesText: 'No members available',
         });
@@ -151,9 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <input type="checkbox" class="form-check-input" name="is_manager[${option.value}]">
                                 <label class="form-check-label">Manager</label>
                             </div>
-                        </div>
-                        <div class="col-lg-7 mt-1">
-                              <textarea class="form-control" rows="1" placeholder="Note" maxlength="1000"></textarea>
                         </div>
                     `;
                     fragment.appendChild(div);

@@ -43,9 +43,9 @@
                                                 </td>
                                                 <td class="align-content-center">
                                                     <div class="d-flex gap-2 flex-wrap justify-content-center">
-                                                        <a href="{{ route('project.showProjectAssignmentDetail', ['projectId' => $projectAssignment->id]) }}" class="btn btn-soft-info btn-sm">
-                                                            {{-- <i class="ri-eye-fill"></i> --}}
-                                                            {{ __('View') }}
+                                                        <a href="{{ route('project.showProjectAssignmentDetail', ['projectId' => $projectAssignment->id]) }}" class="link-info fs-18"
+                                                           data-bs-toggle="tooltip" data-bs-title="{{ __('View') }}">
+                                                            <i class="ri-eye-fill"></i>
                                                         </a>
                                                     </div>
                                                 </td>
