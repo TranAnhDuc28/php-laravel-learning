@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\UserRole;
 use App\Enums\UserStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -26,6 +27,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'department_id',
         'full_name',
         'email',
         'password',
@@ -69,6 +71,14 @@ class User extends Authenticatable
             ->using(ProjectAssignment::class)
             ->withPivot(['project_join_date', 'project_exit_date', 'effort_percentage', 'status', 'note'])
             ->withTimestamps();
+    }
+
+    /**
+     * Get the Department that owns this User.
+     */
+    public function department(): BelongsTo
+    {
+        return $this->belongsTo(Department::class, 'department_id');
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Enums\ProjectStatus;
 use App\Enums\UserStatus;
 use App\Exports\ExportExcelDemo;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
 use App\Models\User;
 use Carbon\Carbon;
@@ -13,10 +14,13 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Throwable;
 
 class ProjectController extends Controller
 {
@@ -34,6 +38,9 @@ class ProjectController extends Controller
         return view('pages.project.project_list', $viewData);
     }
 
+    /**
+     * @return Factory|View|Application|object
+     */
     public function showCreateProjectForm()
     {
         $projects = Project::query()->select('id', 'project_code', 'project_name')
@@ -48,6 +55,37 @@ class ProjectController extends Controller
         ];
 
         return view('pages.project.project_create', $viewData);
+    }
+
+    /**
+     * @return Factory|View|Application|object
+     */
+    public function processCreateProject(ProjectRequest $request)
+    {
+        $validated = $request->validated();
+
+        try {
+            DB::beginTransaction();
+            $project = new Project();
+            $project->project_code = $validated['project_code'];
+            $project->project_name = $validated['project_name'];
+            $project->project_start_date = $validated['project_start_date'];
+            $project->project_end_date = $validated['project_end_date'];
+            $project->note = $validated['note'] ?? null;
+            $project->phase = $validated['phase'] ?? null;
+            $project->priority = $validated['priority'] ?? null;
+            $project->status = $validated['status'] ?? null;
+
+
+
+            DB::commit();
+            return redirect()->route('project.showProjectList');
+        } catch (Throwable $ex) {
+            DB::rollBack();
+            Log::error(__METHOD__ . '(): ' . $ex->getMessage());
+
+            return back()->withInput();
+        }
     }
 
     /**
@@ -73,20 +111,10 @@ class ProjectController extends Controller
         return view('pages.project.update_project', $viewData);
     }
 
-    /**
-     * @return Factory|View|Application|object
-     */
-    public function showProjectReport1()
-    {
-        return view('pages.project.report.report_1');
-    }
 
-    /**
-     * @return Factory|View|Application|object
-     */
-    public function showProjectReport2()
+    public function showProjectReport()
     {
-        return view('pages.project.report.report_2');
+        return view('pages.project.report.report');
     }
 
     /**
