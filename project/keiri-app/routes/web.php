@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth']], function () {
     /* Project. */
     Route::get('projects', [ProjectController::class, 'showProjectList'])->name('project.showProjectList');
     Route::get('projects/create', [ProjectController::class, 'showCreateProjectForm'])->name('project.showCreateProjectForm');
+    Route::post('projects/create', [ProjectController::class, 'processCreateProject'])->name('project.processCreateProject');
     Route::get('projects/update/{projectId}', [ProjectController::class, 'showUpdateProjectForm'])->name('project.showUpdateProjectForm');
 
     Route::get('projects/project-assign', [ProjectAssignmentController::class, 'showProjectAssignment'])->name('project.showProjectAssignment');
@@ -41,7 +42,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     /* Employee. */
     Route::get('employees', [HumanResourcesController::class, 'showEmployeeList'])->name('employee.showEmployeeList');
-    Route::get('employees/create', [HumanResourcesController::class, 'showCreateEmployeeForm'])->name('employee.showCreateEmployeeForm');
+    Route::get('employees/create', [HumanResourcesController::class, 'showCreateEmployee'])->name('employee.showCreateEmployee');
+    Route::post('employees/create', [HumanResourcesController::class, 'processCreateEmployee'])->name('employee.processCreateEmployee');
+    Route::get('employees/update/{id}', [HumanResourcesController::class, 'showUpdateEmployee'])->name('employee.showUpdateEmployee');
+    Route::put('employees/update/{id}', [HumanResourcesController::class, 'processUpdateEmployee'])->name('employee.processUpdateEmployee');
 });
-
 
