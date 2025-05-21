@@ -22,11 +22,8 @@ import DataTable from 'datatables.net-bs5';
     };
     DataTable.defaults.order = [];
 
-    /**
-     * Toggle hide and show input type password.
-     */
-    const passwordInputs = document.querySelectorAll('.show-password');
-    passwordInputs && passwordInputs.forEach(passwordInput => {
+    /* Toggle hide and show input type password. */
+    document.querySelectorAll('.show-password')?.forEach(passwordInput => {
         let wrapper = passwordInput.parentElement;
         if (!wrapper.classList.contains('position-relative')) {
             wrapper = document.createElement('div');
@@ -79,6 +76,13 @@ import DataTable from 'datatables.net-bs5';
 
             toggleVisibility();
         }
+    });
+
+    /* Logout */
+    document.getElementById('logout')?.addEventListener('click', (e) => {
+        e.preventDefault();
+        const logoutFormElement = document.getElementById('logout-form');
+        logoutFormElement && logoutFormElement.submit();
     });
 
     /**

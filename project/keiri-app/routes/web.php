@@ -17,6 +17,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [App\Http\Controllers\DashboardController::class, 'index'])->name('pages.dashboard');
 
     Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::get('profile', [AuthController::class, 'showProfile'])->name('auth.showProfile');
+    Route::get('change-password', [AuthController::class, 'showChangePassword'])->name('auth.showChangePassword');
+    Route::post('change-password', [AuthController::class, 'processChangePassword'])->name('auth.processChangePassword');
 
     /* Timesheet. */
     Route::prefix('timesheet')->group(function () {

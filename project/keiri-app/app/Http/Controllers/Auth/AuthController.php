@@ -6,6 +6,8 @@ use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +19,7 @@ class AuthController extends Controller
     /**
      * Show form for Login.
      *
-     * @return Response|\Illuminate\Contracts\View\View
+     * @return Response|View
      */
     public function showLogin()
     {
@@ -27,7 +29,7 @@ class AuthController extends Controller
     /**
      * Process Login.
      *
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|Response
+     * @return View|RedirectResponse|Response
      */
     public function processLogin(Request $request)
     {
@@ -56,8 +58,7 @@ class AuthController extends Controller
 
     /**
      * Process Logout.
-     *
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|Response
+     * @return View|RedirectResponse|Response
      */
     public function logout()
     {
@@ -69,13 +70,12 @@ class AuthController extends Controller
 
     /**
      * Show Profile screen.
-     *
      * @param Request $request
      * @return \Illuminate\View\View
      */
     public function showProfile(Request $request)
     {
-        return view('');
+        return view('auth.profile');
     }
 
     /**
@@ -85,13 +85,12 @@ class AuthController extends Controller
      */
     public function showChangePassword(Request $request)
     {
-        return view('');
+        return view('auth.change_password');
     }
 
     /**
      * Process ChangePassword.
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function processChangePassword(Request $request)
     {
@@ -105,15 +104,15 @@ class AuthController extends Controller
 
         // Match the current Password.
         if (!Hash::check($current_password, auth()->user()->password)) {
-            return back()->with('error', __('user.change_password_error'));
+            return back()->with('error', __("Current Password doesn't match!"));
         }
 
         // Update the new Password.
-        User::whereId(auth()->user()->id)->update([
+        User::find(auth()->user()->id)->update([
             'password' => Hash::make($new_password),
             'password_changed_at' => Carbon::now(),
         ]);
 
-        return back()->with('status', __('user.change_password_success'));
+        return back()->with('status', __('Password changed successfully!'));
     }
 }
