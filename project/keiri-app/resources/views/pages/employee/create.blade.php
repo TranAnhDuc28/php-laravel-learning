@@ -77,7 +77,7 @@
                                         <label for="id-password" class="form-label">{{ __('Password') }} <span class="text-danger">*</span></label>
                                         <input type="password" id="id-password" name="password"
                                                class="form-control @error('password')is-invalid @enderror show-password"
-                                               value="{{ old('password', '12345678') }}">
+                                               value="{{ old('password') }}">
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

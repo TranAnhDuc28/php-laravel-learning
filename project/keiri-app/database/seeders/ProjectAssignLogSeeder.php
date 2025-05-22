@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\ProjectAssignment;
 use App\Models\ProjectAssignmentLog;
 use Illuminate\Database\Seeder;
 

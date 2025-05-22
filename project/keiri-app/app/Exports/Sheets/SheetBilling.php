@@ -160,10 +160,14 @@ class SheetBilling implements FromView, WithEvents, WithTitle, withStyles
 
                 $rowAmountDataStart = 24;
                 $rowAmountDataEnd = $rowAmountDataStart - 1 + $countSheet;
+                $rowAmountDataTotal = $rowAmountDataEnd + 2;
                 for ($i = 0; $i < $countSheet; $i++) {
                     $sheet->setCellValue('F' . ($rowAmountDataStart + $i), "=LOOKUP(9^9, +'{$this->titleReportDailySheets[$i]}'!H:H)");
                 }
-                $sheet->getStyle([6, $rowAmountDataStart, 10, $rowAmountDataEnd])->getNumberFormat()->setFormatCode('"¥"#,##0;"¥"-#,##0');
+                $sheet->getStyle([6, $rowAmountDataStart, 10, $rowAmountDataTotal])->getNumberFormat()->setFormatCode('"¥"#,##0;"¥"-#,##0');
+
+
+                $sheet->setCellValue("F{$rowAmountDataTotal}","=SUM(F{$rowAmountDataStart}:J{$rowAmountDataEnd})");
             }
         ];
     }

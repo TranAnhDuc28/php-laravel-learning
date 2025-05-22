@@ -2,10 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Enums\UserRole;
 use App\Models\Department;
-use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class DepartmentSeeder extends Seeder

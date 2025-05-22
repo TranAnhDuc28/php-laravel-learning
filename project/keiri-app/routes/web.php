@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\HumanResourcesController;
 use App\Http\Controllers\Admin\ProjectAssignmentController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\TimekeepingController;
 use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -40,9 +41,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('projects/project-assign', [ProjectAssignmentController::class, 'showProjectAssignment'])->name('project.showProjectAssignment');
     Route::get('projects/project-assign-detail/{projectId}', [ProjectAssignmentController::class, 'showProjectAssignmentDetail'])->name('project.showProjectAssignmentDetail');
 
-    Route::get('projects/project-report1', [ProjectController::class, 'showProjectReport1'])->name('project.report.showProjectReport1');
-    Route::get('projects/project-report2', [ProjectController::class, 'showProjectReport2'])->name('project.report.showProjectReport2');
-    Route::post('projects/project-report', [ProjectController::class, 'exportReport'])->name('project.report.exportReport');
+    Route::get('projects/report/monthly-payment-request', [ReportController::class, 'showMonthlyPaymentRequest'])->name('project.report.showMonthlyPaymentRequest');
+    Route::get('projects/report/project-payment-request', [ReportController::class, 'showProjectPaymentRequest'])->name('project.report.showProjectPaymentRequest');
+    Route::get('projects/report/export/monthly-payment-request', [ReportController::class, 'exportReport'])->name('project.report.exportMonthlyPaymentRequest');
+    Route::get('projects/report/export/project-payment-request', [ReportController::class, 'exportReport'])->name('project.report.exportProjectPaymentRequest');
 
     /* Employee. */
     Route::get('employees', [HumanResourcesController::class, 'showEmployeeList'])->name('employee.showEmployeeList');

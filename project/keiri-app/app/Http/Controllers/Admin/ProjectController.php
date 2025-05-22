@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\AssignmentStatus;
 use App\Enums\UserStatus;
-use App\Exports\ExportExcelDemo;
+use App\Exports\ExportExcelMonthlyPaymentRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
@@ -127,8 +127,10 @@ class ProjectController extends Controller
 
         $project = Project::with([
             'users' => function ($query) {
-                $query->select('users.id');
+                $query->select('users.id')->wherePivot('status', AssignmentStatus::ACTIVE);
             }])->find($id);
+
+//        dd($project);
 
         $viewData = [
             'project' => $project,
@@ -185,13 +187,14 @@ class ProjectController extends Controller
                         $assignment->status = AssignmentStatus::ACTIVE;
                         $assignment->save();
 
-                        $lastLog = $assignment->logs()->latest()->first();
-                        if ($lastLog && $lastLog->project_exit_date !== null
-                            && Carbon::parse($lastLog->project_join_date)->equalTo(Carbon::now())) {
-                            $lastLog->project_exit_date = null;
-                            $lastLog->save();
-                        }
+//                        $lastLog = $assignment->logs()->latest()->first();
+//                        if ($lastLog && $lastLog->project_exit_date !== null
+//                            && Carbon::parse($lastLog->project_join_date)->equalTo(Carbon::now())) {
+//                            $lastLog->project_exit_date = null;
+//                            $lastLog->save();
+//                        }
                     }
+                    unset($existingAssignments[$userId]);
                 } else {
                     /* Create new member for project. */
                     $projectAssignment = new ProjectAssignment();
@@ -227,27 +230,5 @@ class ProjectController extends Controller
         }
     }
 
-    /**
-     * @return Factory|View|Application|object
-     */
-    public function showProjectReport1()
-    {
-        return view('pages.project.report.report_1');
-    }
 
-    /**
-     * @return Factory|View|Application|object
-     */
-    public function showProjectReport2()
-    {
-        return view('pages.project.report.report_2');
-    }
-
-    /**
-     * @return BinaryFileResponse
-     */
-    public function exportReport(Request $request)
-    {
-        return Excel::download(new ExportExcelDemo(), 'report_' . Carbon::now() . '.xlsx');
-    }
 }

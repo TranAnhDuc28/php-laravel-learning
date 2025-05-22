@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+
+            /* Info at work. */
             $table->foreignId('department_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('job_position')->nullable();
+//            $table->decimal('monthly_cost')->nullable();
 
             /* General information. */
             $table->string('full_name');
@@ -29,7 +33,6 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('password');
             $table->integer('role')->default(UserRole::Employee);
-            $table->string('job_position')->nullable();
             $table->date('join_date')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('status')->default(UserStatus::ACTIVE);

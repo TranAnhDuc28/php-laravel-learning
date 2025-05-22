@@ -5,10 +5,10 @@
     <div class="menu-dropdown collapse {{ request()->routeIs('project.report*') ? 'show' : '' }}" id="sidebarReport">
         <ul class="nav nav-sm flex-column">
             <li class="nav-item">
-                <a href="{{ route('project.report.showProjectReport1') }}" class="nav-link {{ request()->routeIs('project.report.showProjectReport1') ? 'active' : '' }}">{{ __('Monthly Payment Request') }}</a>
+                <a href="{{ route('project.report.showMonthlyPaymentRequest') }}" class="nav-link {{ request()->routeIs('project.report.showMonthlyPaymentRequest') ? 'active' : '' }}">{{ __('Monthly Payment Request') }}</a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('project.report.showProjectReport2') }}" class="nav-link {{ request()->routeIs('project.report.showProjectReport2') ? 'active' : '' }}">{{ __('Project Payment Request') }}</a>
+                <a href="{{ route('project.report.showProjectPaymentRequest') }}" class="nav-link {{ request()->routeIs('project.report.showProjectPaymentRequest') ? 'active' : '' }}">{{ __('Project Payment Request') }}</a>
             </li>
         </ul>
     </div>

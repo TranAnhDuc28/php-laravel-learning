@@ -7,7 +7,7 @@ use App\Exports\Sheets\SheetReportDailyMonth;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class ExportExcelDemo implements WithMultipleSheets
+class ExportExcelMonthlyPaymentRequest implements WithMultipleSheets
 {
     /**
      * @return array

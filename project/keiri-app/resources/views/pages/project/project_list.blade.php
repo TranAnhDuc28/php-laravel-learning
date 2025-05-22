@@ -41,11 +41,11 @@
                                                 $priorityClassStyle = 'badge bg-danger';
                                                 $priorityLabel = 'High';
                                             } else if($project->priority === \App\Enums\ProjectPriority::LOW){
-                                                $priorityClassStyle = 'badge bg-light';
+                                                $priorityClassStyle = 'badge bg-info';
                                                 $priorityLabel = 'Low';
                                             }
 
-                                            $statusClassStyle = 'badge bg-light-subtle text-body';
+                                            $statusClassStyle = 'badge bg-secondary-subtle text-secondary';
                                             $statusLabel = 'Not started';
                                             if ($project->status === \App\Enums\ProjectStatus::IN_PROGRESS) {
                                                 $statusClassStyle = 'badge bg-warning-subtle text-warning';

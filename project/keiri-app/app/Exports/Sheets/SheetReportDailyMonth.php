@@ -3,12 +3,14 @@
 namespace App\Exports\Sheets;
 
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Events\AfterSheet;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
@@ -37,7 +39,7 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
 
     public function view(): View
     {
-        return view('export.report_daily_month', ['data' => $this->data]);
+        return view('export.monthly_payment_request', ['data' => $this->data]);
     }
 
     /**
@@ -61,9 +63,12 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
             AfterSheet::class => function (AfterSheet $event) {
                 $sheet = $event->sheet->getDelegate();
                 $month = Carbon::parse($this->month)->format('m');
+                $day = Carbon::create($this->year, $month)->daysInMonth;
+                $excelDate = Date::PHPToExcel(new DateTime("{$this->year}-$month-$day"));
 
                 // Title report.
-                $sheet->setCellValue('A1', "稼働報告書({$this->year}年{$month}月分)");
+                $sheet->getStyle('A1')->getNumberFormat()->setFormatCode('"稼""働""報""告""書"([$-ja-JP]yyyy"年"m"月""分")');
+                $sheet->setCellValue('A1', $excelDate);
                 $sheet->getStyle('A1')->getFont()->setName('ＭＳ Ｐゴシック')->setSize(14);
                 $sheet->getStyle('A1')->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER)

@@ -36,7 +36,7 @@
                                         @csrf
                                         <div class="mb-3">
                                             <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
-                                            <input type="text" value="{{ old('email', 'admin@test.com') }}" id="username" name="email" placeholder="Enter username" class="form-control @error('email') is-invalid @enderror">
+                                            <input type="text" value="{{ old('email') }}" id="username" name="email" placeholder="Enter username" class="form-control @error('email') is-invalid @enderror">
                                             @error('email')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -54,10 +54,10 @@
                                             @enderror
                                         </div>
 
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
-                                            <label class="form-check-label" for="auth-remember-check">Remember me</label>
-                                        </div>
+{{--                                        <div class="form-check">--}}
+{{--                                            <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">--}}
+{{--                                            <label class="form-check-label" for="auth-remember-check">Remember me</label>--}}
+{{--                                        </div>--}}
 
                                         <div class="mt-4">
                                             <button class="btn btn-primary w-100" type="submit">Sign In</button>
