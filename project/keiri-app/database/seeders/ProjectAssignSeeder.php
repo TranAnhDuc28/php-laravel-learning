@@ -16,7 +16,6 @@ class ProjectAssignSeeder extends Seeder
         $projectAssign1 = new ProjectAssignment();
         $projectAssign1->user_id = 2;
         $projectAssign1->project_id = 1;
-        $projectAssign1->is_manager = true;
         $projectAssign1->status = 1;
         $projectAssign1->save();
 
@@ -48,7 +47,6 @@ class ProjectAssignSeeder extends Seeder
         $projectAssign6 = new ProjectAssignment();
         $projectAssign6->user_id = 2;
         $projectAssign6->project_id = 2;
-        $projectAssign6->is_manager = true;
         $projectAssign6->status = 1;
         $projectAssign6->save();
 
@@ -74,7 +72,6 @@ class ProjectAssignSeeder extends Seeder
         $projectAssign6 = new ProjectAssignment();
         $projectAssign6->user_id = 3;
         $projectAssign6->project_id = 3;
-        $projectAssign6->is_manager = true;
         $projectAssign6->status = 1;
         $projectAssign6->save();
 

@@ -9,7 +9,7 @@
                 :title="'Create Project'"
                 :breadcrumbs="[
                    ['label' => 'Project', 'url' => null],
-                   ['label' => 'Create Project', 'url' => route('project.showCreateProjectForm')],
+                   ['label' => 'Create Project', 'url' => route('project.showCreateProject')],
                 ]"
             />
 
@@ -21,29 +21,29 @@
                                 @csrf
                                 <div class="d-flex gap-3 align-items-center">
                                     <div class="card-title fw-bold">{{ __('Project Information') }}</div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="switchUseExistingProject" name="use_existing_project">
-                                        <label class="form-check-label" for="switchUseExistingProject">Use existing project.</label>
-                                    </div>
+{{--                                    <div class="form-check form-switch">--}}
+{{--                                        <input class="form-check-input" type="checkbox" role="switch" id="switchUseExistingProject" name="use_existing_project">--}}
+{{--                                        <label class="form-check-label" for="switchUseExistingProject">Use existing project.</label>--}}
+{{--                                    </div>--}}
                                 </div>
 
                                 {{-- Form project. --}}
                                 <div class="ps-3 pe-3">
                                     {{-- Form select existing project. --}}
-                                    <div class="form-select-existing-project mt-3 d-none">
-                                        <label for="project_id" class="form-label">{{ __('Project Name') }} <span class="text-danger">*</span></label>
-                                        <select id="project_id" name="project_id" class="form-select @error('project_id') is-invalid @enderror">
-                                            <option value="">-</option>
-                                            @foreach($projects as $project)
-                                                <option value="{{ $project->project_code }}">{{ $project->project_name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('project_id')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
+{{--                                    <div class="form-select-existing-project mt-3 d-none">--}}
+{{--                                        <label for="project_id" class="form-label">{{ __('Project Name') }} <span class="text-danger">*</span></label>--}}
+{{--                                        <select id="project_id" name="project_id" class="form-select @error('project_id') is-invalid @enderror">--}}
+{{--                                            <option value="">-</option>--}}
+{{--                                            @foreach($projects as $project)--}}
+{{--                                                <option value="{{ $project->project_code }}">{{ $project->project_name }}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                        @error('project_id')--}}
+{{--                                        <span class="invalid-feedback" role="alert">--}}
+{{--                                            <strong>{{ $message }}</strong>--}}
+{{--                                        </span>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
 
                                     {{-- Form create project. --}}
                                     <div class="form-create-project">
@@ -185,7 +185,7 @@
                                                 </div>
                                             @endif
                                         </div>
-                                        <div id="team-members-form" class="col-sm-12 mt-3"></div>
+                                        {{-- <div id="team-members-form" class="col-sm-12 mt-3"></div> --}}
                                     </div>
                                 </div>
 

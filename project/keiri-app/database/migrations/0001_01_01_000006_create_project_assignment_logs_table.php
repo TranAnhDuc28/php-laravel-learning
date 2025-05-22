@@ -18,12 +18,13 @@ return new class extends Migration
             $table->foreignId('project_assignment_id')->constrained();
             $table->date('project_join_date')->nullable();
             $table->date('project_exit_date')->nullable();
-            $table->unsignedInteger('effort_percentage')->default(100);
+            $table->unsignedTinyInteger('effort_percentage')->default(100);
             $table->integer('worked_days')->default(0);
-            $table->integer('status')->default(1);
             $table->string('note')->nullable();
 
             $table->timestamps();
+
+            $table->index(['user_id', 'project_id']);
         });
     }
 

@@ -20,16 +20,16 @@
                             <table class="table table-bordered">
                                 @php
                                     $priorityLabel = 'Medium';
-                                    if ($projectAssignmentDetail->priority == \App\Enums\ProjectPriority::HIGH) {
+                                    if ($projectAssignmentDetail->priority === \App\Enums\ProjectPriority::HIGH) {
                                         $priorityLabel = 'High';
-                                    } else if($projectAssignmentDetail->priority == \App\Enums\ProjectPriority::LOW){
+                                    } else if($projectAssignmentDetail->priority === \App\Enums\ProjectPriority::LOW){
                                         $priorityLabel = 'Low';
                                     }
 
                                     $statusLabel = 'Not started';
-                                    if ($projectAssignmentDetail->status == \App\Enums\ProjectStatus::IN_PROGRESS) {
+                                    if ($projectAssignmentDetail->status === \App\Enums\ProjectStatus::IN_PROGRESS) {
                                         $statusLabel = 'In progress';
-                                    } else if ($projectAssignmentDetail->status == \App\Enums\ProjectStatus::COMPLETED) {
+                                    } else if ($projectAssignmentDetail->status === \App\Enums\ProjectStatus::COMPLETED) {
                                         $statusLabel = 'Completed';
                                     }
                                 @endphp
@@ -39,7 +39,7 @@
                                         <div class="d-flex justify-content-between m-0">
                                             <div class="fs-16 fw-bold m-0">{{ __('Project Information') }}</div>
                                             <div class="m-0">
-                                                <a class="btn btn-primary btn-sm" href="{{ route('project.showUpdateProjectForm', ['projectId' => $projectAssignmentDetail->id]) }}"
+                                                <a class="btn btn-primary btn-sm" href="{{ route('project.showUpdateProject', ['projectId' => $projectAssignmentDetail->id]) }}"
                                                    data-bs-toggle="tooltip" data-bs-title="{{ __('Edit project information') }}">
                                                     Edit
                                                 </a>
@@ -57,7 +57,7 @@
                                 </tr>
                                 <tr>
                                     <th scope="row">{{ __('Project start date') }}</th>
-                                    <td colspan="3">{{ \Carbon\Carbon::parse($projectAssignmentDetail->project_start_date)->format('d-m-Y') }}</td>
+                                    <td colspan="2">{{ \Carbon\Carbon::parse($projectAssignmentDetail->project_start_date)->format('d-m-Y') }}</td>
                                     <th scope="row">{{ __('Project end date') }}</th>
                                     <td colspan="2">{{ \Carbon\Carbon::parse($projectAssignmentDetail->project_end_date)->format('d-m-Y') }}</td>
                                 </tr>
@@ -84,37 +84,35 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>{{ __('Full name') }}</th>
-                                    <th>{{ __('Role') }}</th>
+                                    <th colspan="2">{{ __('Full name') }}</th>
+                                    {{-- <th>{{ __('Role') }}</th> --}}
                                     <th>{{ __('Join date') }}</th>
                                     <th>{{ __('Exit date') }}</th>
                                     <th>{{ __('Effort percentage') }}</th>
                                     <th>{{ __('Worked days') }}</th>
-                                    <th>{{ __('Status') }}</th>
                                 </tr>
                                 @foreach($usersWithLogs as $user)
                                     @php
                                         $countRowspan = $user['assign_logs']->count();
                                     @endphp
                                     @if($user['assign_logs']->isNotEmpty())
-                                        @foreach($user['assign_logs'] as $assign_logs)
+                                        @foreach($user['assign_logs'] as $assignLog)
                                             <tr>
                                                 @if ($loop->first)
-                                                    <td rowspan="{{ $countRowspan }}">{{ $user['full_name'] }}</td>
-                                                    <td rowspan="{{ $countRowspan }}">{{ $user['is_manager'] ? __('Manager') : __('Member') }}</td>
+                                                    <td rowspan="{{ $countRowspan }}" colspan="2">{{ $user['full_name'] }}</td>
+                                                    {{-- <td rowspan="{{ $countRowspan }}">{{ $user['is_manager'] ? __('Manager') : __('Member') }}</td> --}}
                                                 @endif
-                                                <td>{{ $assign_logs->project_join_date ? \Carbon\Carbon::parse($assign_logs->project_join_date)->format('d-m-Y') : '-' }}</td>
-                                                <td>{{ $assign_logs->project_exit_date ? \Carbon\Carbon::parse($assign_logs->project_exit_date)->format('d-m-Y') : '-' }}</td>
-                                                <td>{{ $assign_logs->effort_percentage ?? 0 }}%</td>
-                                                <td>{{ $assign_logs->worked_days ?? 0 }}</td>
-                                                <td>{{ $assign_logs->status == \App\Enums\AssignmentLogStatus::ACTIVE->value ? __('Active') : __('Inactive') }}</td>
+                                                <td>{{ $assignLog->project_join_date ? \Carbon\Carbon::parse($assignLog->project_join_date)->format('d-m-Y') : '-' }}</td>
+                                                <td>{{ $assignLog->project_exit_date ? \Carbon\Carbon::parse($assignLog->project_exit_date)->format('d-m-Y') : '-' }}</td>
+                                                <td>{{ $assignLog->effort_percentage ?? 0 }}%</td>
+                                                <td>{{ $assignLog->worked_days ?? 0 }}</td>
                                             </tr>
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td>{{ $user['full_name'] }}</td>
-                                            <td>{{ $user['is_manager'] ? __('Manager') : __('Member') }}</td>
-                                            <td colspan="5">{{ __('-') }}</td>
+                                            <td colspan="2">{{ $user['full_name'] }}</td>
+                                            {{-- <td>{{ $user['is_manager'] ? __('Manager') : __('Member') }}</td> --}}
+                                            <td colspan="4">{{ __('-') }}</td>
                                         </tr>
                                     @endif
                                 @endforeach

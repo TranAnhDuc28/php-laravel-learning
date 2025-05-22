@@ -20,6 +20,7 @@
                             <div class="row">
                                 <div class="col-lg-8 mx-auto my-3">
                                     <form method="POST" action="{{ route('auth.processChangePassword') }}">
+                                        @csrf
                                         @if (session('status'))
                                             <div class="alert alert-success" role="alert">
                                                 {{ session('status') }}

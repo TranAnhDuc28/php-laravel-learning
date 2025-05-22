@@ -22,14 +22,14 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Full Name</th>
-                                        <th>Email</th>
-                                        <th>Working department</th>
-                                        <th>Position</th>
-{{--                                        <th>Phone Number</th>--}}
-{{--                                        <th>Date Of Birth</th>--}}
-                                        <th>Join Date</th>
-                                        <th>Status</th>
+                                        <th>{{ __('Full Name') }}</th>
+                                        <th>{{ __('Email') }}</th>
+                                        <th>{{ __('Working department') }}</th>
+                                        <th>{{ __('Position') }}</th>
+{{--                                        <th>{{ __('Phone Number') }}</th>--}}
+{{--                                        <th>{{ __('Date Of Birth') }}</th>--}}
+                                        <th>{{ __('Join Date') }}</th>
+                                        <th>{{ __('Status') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -58,11 +58,6 @@
                                             <td>{{ $employee->join_date }}</td>
                                             <td>
                                                 <span class="{{ $employeeStatusClassStyle }} fs-12">{{ $employeeStatusLabel }}</span>
-                                            </td>
-                                            <td class="text-center">
-                                                <button type="button" class="btn btn-light btn-sm">
-                                                    <span class="ri-more-fill"></span>
-                                                </button>
                                             </td>
                                         </tr>
                                     @endforeach

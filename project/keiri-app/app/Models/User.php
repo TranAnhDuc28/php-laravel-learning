@@ -68,9 +68,7 @@ class User extends Authenticatable
     public function projects(): BelongsToMany
     {
         return $this->belongsToMany(Project::class, 'project_assignments')
-            ->using(ProjectAssignment::class)
-            ->withPivot(['project_join_date', 'project_exit_date', 'effort_percentage', 'status', 'note'])
-            ->withTimestamps();
+            ->using(ProjectAssignment::class);
     }
 
     /**

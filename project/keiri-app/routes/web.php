@@ -32,9 +32,10 @@ Route::group(['middleware' => ['auth']], function () {
 
     /* Project. */
     Route::get('projects', [ProjectController::class, 'showProjectList'])->name('project.showProjectList');
-    Route::get('projects/create', [ProjectController::class, 'showCreateProjectForm'])->name('project.showCreateProjectForm');
+    Route::get('projects/create', [ProjectController::class, 'showCreateProject'])->name('project.showCreateProject');
     Route::post('projects/create', [ProjectController::class, 'processCreateProject'])->name('project.processCreateProject');
-    Route::get('projects/update/{projectId}', [ProjectController::class, 'showUpdateProjectForm'])->name('project.showUpdateProjectForm');
+    Route::get('projects/update/{projectId}', [ProjectController::class, 'showUpdateProject'])->name('project.showUpdateProject');
+    Route::put('projects/update/{projectId}', [ProjectController::class, 'processUpdateProject'])->name('project.processUpdateProject');
 
     Route::get('projects/project-assign', [ProjectAssignmentController::class, 'showProjectAssignment'])->name('project.showProjectAssignment');
     Route::get('projects/project-assign-detail/{projectId}', [ProjectAssignmentController::class, 'showProjectAssignmentDetail'])->name('project.showProjectAssignmentDetail');

@@ -20,7 +20,6 @@ class ProjectAssignLogSeeder extends Seeder
         $projectAssignLog1->project_assignment_id = 1;
         $projectAssignLog1->project_join_date = '2024-11-24';
         $projectAssignLog1->project_exit_date = null;
-        $projectAssignLog1->status = 1;
         $projectAssignLog1->save();
 
         $projectAssignLog2 = new ProjectAssignmentLog();
@@ -29,7 +28,6 @@ class ProjectAssignLogSeeder extends Seeder
         $projectAssignLog2->project_assignment_id = 2;
         $projectAssignLog2->project_join_date = '2024-11-24';
         $projectAssignLog2->project_exit_date = null;
-        $projectAssignLog2->status = 1;
         $projectAssignLog2->save();
 
         $projectAssignLog3 = new ProjectAssignmentLog();
@@ -38,7 +36,6 @@ class ProjectAssignLogSeeder extends Seeder
         $projectAssignLog3->project_assignment_id = 3;
         $projectAssignLog3->project_join_date = '2024-11-24';
         $projectAssignLog3->project_exit_date = null;
-        $projectAssignLog3->status = 1;
         $projectAssignLog3->save();
 
         $projectAssignLog4 = new ProjectAssignmentLog();
@@ -47,7 +44,6 @@ class ProjectAssignLogSeeder extends Seeder
         $projectAssignLog4->project_assignment_id = 4;
         $projectAssignLog4->project_join_date = '2024-11-24';
         $projectAssignLog4->project_exit_date = null;
-        $projectAssignLog4->status = 1;
         $projectAssignLog4->save();
 
         $projectAssignLog5 = new ProjectAssignmentLog();
@@ -57,7 +53,6 @@ class ProjectAssignLogSeeder extends Seeder
         $projectAssignLog5->project_join_date = '2024-11-24';
         $projectAssignLog5->project_exit_date = '2024-11-29';
         $projectAssignLog5->worked_days = 5;
-        $projectAssignLog5->status = 0;
         $projectAssignLog5->save();
 
         $projectAssignLog6 = new ProjectAssignmentLog();
@@ -66,7 +61,6 @@ class ProjectAssignLogSeeder extends Seeder
         $projectAssignLog6->project_assignment_id = 5;
         $projectAssignLog6->project_join_date = '2024-12-16';
         $projectAssignLog6->project_exit_date = null;
-        $projectAssignLog6->status = 1;
         $projectAssignLog6->save();
     }
 }

@@ -29,28 +29,33 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($projectAssignments as $projectAssignment)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $projectAssignment->project_code }}</td>
-                                                <td>{{ $projectAssignment->project_name }}</td>
-                                                <td>
-                                                    <ul class="mb-0 ps-2">
-                                                        @foreach($projectAssignment->users as $user)
-                                                            <li>{{ $user->full_name }} ({{ $user->pivot->is_manager ? 'Manager' : 'Member' }})</li>
-                                                        @endforeach
-                                                    </ul>
-                                                </td>
-                                                <td class="align-content-center">
-                                                    <div class="d-flex gap-2 flex-wrap justify-content-center">
-                                                        <a href="{{ route('project.showProjectAssignmentDetail', ['projectId' => $projectAssignment->id]) }}" class="link-info fs-18"
-                                                           data-bs-toggle="tooltip" data-bs-title="{{ __('View') }}">
-                                                            <i class="ri-eye-fill"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                    @foreach($projectAssignments as $projectAssignment)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $projectAssignment->project_code }}</td>
+                                            <td>{{ $projectAssignment->project_name }}</td>
+                                            <td>
+                                                <ul class="mb-0 ps-2">
+                                                    @foreach($projectAssignment->users as $user)
+                                                        <li>{{ $user->full_name }}
+                                                            {{-- ({{ $user->pivot->is_manager ? 'Manager' : 'Member' }}) --}}
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
+                                            </td>
+                                            <td class="align-content-center">
+                                                <div class="d-flex gap-2 flex-wrap justify-content-center">
+                                                    <a href="{{ route('project.showProjectAssignmentDetail', ['projectId' => $projectAssignment->id]) }}"
+                                                       {{-- class="btn btn-soft-info btn-sm" --}}
+                                                       class="text-decoration-underline"
+                                                    >
+                                                        {{-- <i class="ri-eye-fill"></i> --}}
+                                                        {{ __('Detail') }}
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

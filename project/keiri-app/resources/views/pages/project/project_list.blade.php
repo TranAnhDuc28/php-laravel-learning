@@ -37,20 +37,20 @@
                                         @php
                                             $priorityClassStyle = 'badge bg-secondary';
                                             $priorityLabel = 'Medium';
-                                            if ($project->priority == \App\Enums\ProjectPriority::HIGH) {
+                                            if ($project->priority === \App\Enums\ProjectPriority::HIGH) {
                                                 $priorityClassStyle = 'badge bg-danger';
                                                 $priorityLabel = 'High';
-                                            } else if($project->priority == \App\Enums\ProjectPriority::LOW){
+                                            } else if($project->priority === \App\Enums\ProjectPriority::LOW){
                                                 $priorityClassStyle = 'badge bg-light';
                                                 $priorityLabel = 'Low';
                                             }
 
                                             $statusClassStyle = 'badge bg-light-subtle text-body';
                                             $statusLabel = 'Not started';
-                                            if ($project->status == \App\Enums\ProjectStatus::IN_PROGRESS) {
+                                            if ($project->status === \App\Enums\ProjectStatus::IN_PROGRESS) {
                                                 $statusClassStyle = 'badge bg-warning-subtle text-warning';
                                                 $statusLabel = 'In progress';
-                                            } else if ($project->status == \App\Enums\ProjectStatus::COMPLETED) {
+                                            } else if ($project->status === \App\Enums\ProjectStatus::COMPLETED) {
                                                 $statusClassStyle = 'badge bg-success-subtle text-success';
                                                 $statusLabel = 'Completed';
                                             }
@@ -58,10 +58,10 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>
-                                                <a href="#" class="text-decoration-underline">{{ $project->project_code }}</a>
+                                                <a href="{{ route('project.showUpdateProject', ['projectId' => $project->id]) }}" class="text-decoration-underline">{{ $project->project_code }}</a>
                                             </td>
                                             <td>
-                                                <a href="#" class="text-decoration-underline">{{ $project->project_name }}</a>
+                                                <a href="{{ route('project.showUpdateProject', ['projectId' => $project->id]) }}" class="text-decoration-underline">{{ $project->project_name }}</a>
                                             </td>
                                             <td>{{ \Carbon\Carbon::parse($project->project_start_date)->format('d-m-Y') }}</td>
                                             <td>{{ \Carbon\Carbon::parse($project->project_end_date)->format('d-m-Y') }}</td>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
-use App\Models\ProjectAssignment;
 use App\Models\ProjectAssignmentLog;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -38,7 +37,7 @@ class ProjectAssignmentController extends Controller
         $usersWithLogs = null;
         $projectAssignmentDetail = Project::with([
             'users' => function ($query) {
-                $query->select('users.id', 'users.full_name');
+                $query->select('users.id', 'users.full_name')->withPivot(['id', 'status', 'note']);
             }])->find($projectId);
 
         // Get list id member assign.
@@ -51,7 +50,6 @@ class ProjectAssignmentController extends Controller
                 return [
                     'id' => $user->id,
                     'full_name' => $user->full_name,
-                    'is_manager' => $user->pivot->is_manager,
                     'assign_logs' => $logs,
                 ];
             });

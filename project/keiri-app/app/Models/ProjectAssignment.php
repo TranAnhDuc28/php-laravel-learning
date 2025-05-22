@@ -17,6 +17,13 @@ class ProjectAssignment extends Pivot
     protected $table = 'project_assignments';
 
     /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = true;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -24,7 +31,8 @@ class ProjectAssignment extends Pivot
     protected $fillable = [
         'user_id',
         'project_id',
-        'is_manager',
+        'project_assignment_id',
+//        'is_manager',
         'status',
         'note',
     ];
@@ -35,7 +43,10 @@ class ProjectAssignment extends Pivot
      * @var array
      */
     protected $casts = [
-        'is_manager' => 'boolean',
+        'user_id' => 'integer',
+        'project_id' => 'integer',
+        'project_assignment_id' => 'integer',
+//        'is_manager' => 'boolean',
         'status' => AssignmentStatus::class,
     ];
 

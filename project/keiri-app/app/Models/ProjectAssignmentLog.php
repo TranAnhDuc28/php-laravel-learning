@@ -27,7 +27,6 @@ class ProjectAssignmentLog extends Model
         'project_exit_date',
         'effort_percentage',
         'worked_days',
-        'status',
     ];
 
     /**
@@ -36,6 +35,19 @@ class ProjectAssignmentLog extends Model
      * @var array
      */
     protected $casts = [
-
+        'user_id' => 'integer',
+        'project_id' => 'integer',
+        'project_assignment_id' => 'integer',
+        'worked_days' => 'integer',
+        'project_join_date' => 'date',
+        'project_exit_date' => 'date',
     ];
+
+    /**
+     * Get the project that the user participates in.
+     */
+    public function assign(): BelongsTo
+    {
+        return $this->belongsTo(ProjectAssignment::class);
+    }
 }

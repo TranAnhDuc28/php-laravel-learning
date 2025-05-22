@@ -51,9 +51,7 @@ class AuthController extends Controller
             return redirect()->route('pages.dashboard');
         }
 
-        return back()->withErrors([
-            'email' => __('Invalid credentials'),
-        ])->onlyInput('email');
+        return back()->withErrors(['email' => __('Invalid credentials'),])->onlyInput('email');
     }
 
     /**

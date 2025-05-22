@@ -48,8 +48,8 @@ class ProjectRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'team_members.*.numeric' => 'The value ":input" field must be a number.',
-            'team_members.*.integer' => 'The value ":input" for team member is not a valid number.',
+            'team_members.*.numeric' => 'The value ":input" field ID must be a number.',
+            'team_members.*.integer' => 'The value ":input" for team member ID is not a valid number.',
             'team_members.*.exists' => 'The team member with ID :input does not exist.',
         ];
     }

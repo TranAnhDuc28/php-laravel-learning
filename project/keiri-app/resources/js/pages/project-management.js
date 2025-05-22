@@ -122,48 +122,48 @@ document.addEventListener('DOMContentLoaded', () => {
             noChoicesText: 'No members available',
         });
 
-        teamMembers.addEventListener('change', function () {
-            const selectedOptions = teamMembersChoices.getValue();
-            console.log('Selected options:', selectedOptions);
-            renderTeamMembersForm(selectedOptions);
-        });
+        // teamMembers.addEventListener('change', function () {
+        //     const selectedOptions = teamMembersChoices.getValue();
+        //     console.log('Selected options:', selectedOptions);
+        //     renderTeamMembersForm(selectedOptions);
+        // });
 
-        /**
-         * Render form create project assign members
-         * @param selectedOptions
-         */
-        const renderTeamMembersForm = (selectedOptions) => {
-            const teamMemberForm = document.getElementById('team-members-form');
-            if (teamMemberForm) {
-                const fragment = document.createDocumentFragment();
-                teamMemberForm.innerHTML = '';
-
-                selectedOptions.forEach(option => {
-                    const div = document.createElement('div');
-                    div.className = 'row mb-3 d-flex align-items-center';
-                    div.innerHTML = `
-                        <input type="hidden" class="form-control" name="user_id" value="${option.value}" readonly disabled>
-                        <div class="col-lg-3 mt-1">
-                            <input type="text" class="form-control" value="${option.label}" readonly disabled>
-                        </div>
-                        <div class="col-lg-2 mt-1">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" name="is_manager[${option.value}]">
-                                <label class="form-check-label">Manager</label>
-                            </div>
-                        </div>
-                    `;
-                    fragment.appendChild(div);
-                });
-
-                teamMemberForm.appendChild(fragment);
-            }
-        }
-
-        const initialValues = teamMembersChoices.getValue();
-        if (initialValues.length > 0) {
-            renderTeamMembersForm(initialValues);
-        }
+        // /**
+        //  * Render form create project assign members
+        //  * @param selectedOptions
+        //  */
+        // const renderTeamMembersForm = (selectedOptions) => {
+        //     const teamMemberForm = document.getElementById('team-members-form');
+        //     if (teamMemberForm) {
+        //         const fragment = document.createDocumentFragment();
+        //         teamMemberForm.innerHTML = '';
+        //
+        //         selectedOptions.forEach(option => {
+        //             const div = document.createElement('div');
+        //             div.className = 'row mb-3 d-flex align-items-center';
+        //             div.innerHTML = `
+        //                 <input type="hidden" class="form-control" name="user_id" value="${option.value}" readonly disabled>
+        //                 <div class="col-lg-3 mt-1">
+        //                     <input type="text" class="form-control" value="${option.label}" readonly disabled>
+        //                 </div>
+        //                 <div class="col-lg-2 mt-1">
+        //                     <div class="form-check">
+        //                         <input type="checkbox" class="form-check-input" name="is_manager[${option.value}]">
+        //                         <label class="form-check-label">Manager</label>
+        //                     </div>
+        //                 </div>
+        //             `;
+        //             fragment.appendChild(div);
+        //         });
+        //
+        //         teamMemberForm.appendChild(fragment);
+        //     }
+        // }
+        //
+        // const initialValues = teamMembersChoices.getValue();
+        // if (initialValues.length > 0) {
+        //     renderTeamMembersForm(initialValues);
+        // }
     }
 });
 
