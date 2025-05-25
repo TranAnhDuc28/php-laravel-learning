@@ -7,8 +7,9 @@
 @import "variables";
 @import "variables-custom";
 @import "variables-dark";
+@import "components/utilities";
+@import "/node_modules/bootstrap/scss/bootstrap";
 @import "/node_modules/bootstrap/scss/mixins";
-
 
 // Structure.
 @import "structure/topbar";
@@ -56,7 +57,6 @@
 @import "plugins/fullcalendar";
 @import "plugins/datatables";
 @import "plugins/select2";
-@import "plugins/toastify";
 @import "plugins/choices";
 @import "plugins/flatpicker";
 

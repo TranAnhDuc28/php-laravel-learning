@@ -32,7 +32,7 @@ class ProjectController extends Controller
      */
     public function showProjectList()
     {
-        $projects = Project::all();
+        $projects = Project::query()->orderBy( 'project_name')->get();
 
         $viewData = [
             'projects' => $projects,
@@ -46,14 +46,11 @@ class ProjectController extends Controller
      */
     public function showCreateProject()
     {
-//        $projects = Project::query()->select('id', 'project_code', 'project_name')
-//            ->whereNot('status', value: ProjectStatus::COMPLETED)->get();
-
         $users = User::query()->select('id', 'full_name')
-            ->where('status', UserStatus::ACTIVE)->get();
+            ->where('status', UserStatus::ACTIVE)
+            ->orderBy('full_name')->get();
 
         $viewData = [
-//            'projects' => $projects,
             'users' => $users,
         ];
 
@@ -86,14 +83,14 @@ class ProjectController extends Controller
                     $projectAssignment = new ProjectAssignment();
                     $projectAssignment->user_id = (int)$teamMember;
                     $projectAssignment->project_id = $project->id;
-                    $projectAssignment->status = AssignmentStatus::ACTIVE;
+                    $projectAssignment->status = AssignmentStatus::ACTIVE->value;
                     $projectAssignment->save();
 
                     $projectAssignmentLog = new ProjectAssignmentLog();
                     $projectAssignmentLog->project_id = $project->id;
                     $projectAssignmentLog->user_id = (int)$teamMember;
                     $projectAssignmentLog->project_assignment_id = $projectAssignment->id;
-                    $projectAssignmentLog->project_join_date = $projectStartDate;
+                    $projectAssignmentLog->project_join_date = Carbon::now()->get('Y-m-d');
                     $projectAssignmentLog->save();
                 }
             }
@@ -123,14 +120,13 @@ class ProjectController extends Controller
         }
 
         $users = User::query()->select('id', 'full_name')
-            ->where('status', UserStatus::ACTIVE)->get();
+            ->where('status', UserStatus::ACTIVE)
+            ->orderBy('full_name')->get();
 
         $project = Project::with([
             'users' => function ($query) {
                 $query->select('users.id')->wherePivot('status', AssignmentStatus::ACTIVE);
             }])->find($id);
-
-//        dd($project);
 
         $viewData = [
             'project' => $project,
@@ -158,12 +154,13 @@ class ProjectController extends Controller
             }])->find($id);
 
         $validated = $request->validated();
+        $projectStartDate = Carbon::parse($validated['project_start_date'])->format('Y-m-d');
 
         try {
             DB::beginTransaction();
             $project->project_code = $validated['project_code'];
             $project->project_name = $validated['project_name'];
-            $project->project_start_date = $validated['project_start_date'];
+            $project->project_start_date = $projectStartDate;
             $project->project_end_date = $validated['project_end_date'];
             $project->phase = $validated['phase'] ?? null;
             $project->priority = $validated['priority'] ?? null;
@@ -184,7 +181,7 @@ class ProjectController extends Controller
                     $assignment = $existingAssignments[$userId];
                     /* Change status to active. */
                     if ($assignment->status === AssignmentStatus::INACTIVE) {
-                        $assignment->status = AssignmentStatus::ACTIVE;
+                        $assignment->status = AssignmentStatus::ACTIVE->value;
                         $assignment->save();
 
 //                        $lastLog = $assignment->logs()->latest()->first();
@@ -207,7 +204,7 @@ class ProjectController extends Controller
                     $projectAssignmentLog->project_id = $project->id;
                     $projectAssignmentLog->user_id = $userId;
                     $projectAssignmentLog->project_assignment_id = $projectAssignment->id;
-                    $projectAssignmentLog->project_join_date = $project->project_start_date;
+                    $projectAssignmentLog->project_join_date = Carbon::now()->get('Y-m-d');
                     $projectAssignmentLog->save();
                 }
             }
@@ -215,7 +212,7 @@ class ProjectController extends Controller
             /* Remove the remaining members of existingAssignments from the project, change status to inactive. */
             foreach ($existingAssignments as $assignment) {
                 if ($assignment->status === AssignmentStatus::ACTIVE) {
-                    $assignment->status = AssignmentStatus::INACTIVE;
+                    $assignment->status = AssignmentStatus::INACTIVE->value;
                     $assignment->save();
                 }
             }
@@ -229,6 +226,4 @@ class ProjectController extends Controller
             return back()->withInput();
         }
     }
-
-
 }

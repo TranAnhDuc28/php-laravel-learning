@@ -37,19 +37,13 @@
                                             <td>
                                                 <ul class="mb-0 ps-2">
                                                     @foreach($projectAssignment->users as $user)
-                                                        <li>{{ $user->full_name }}
-                                                            {{-- ({{ $user->pivot->is_manager ? 'Manager' : 'Member' }}) --}}
-                                                        </li>
+                                                        <div class="m-0 p-0">{{ $user->full_name }}</div>
                                                     @endforeach
                                                 </ul>
                                             </td>
                                             <td class="align-content-center">
                                                 <div class="d-flex gap-2 flex-wrap justify-content-center">
-                                                    <a href="{{ route('project.showProjectAssignmentDetail', ['projectId' => $projectAssignment->id]) }}"
-                                                       {{-- class="btn btn-soft-info btn-sm" --}}
-                                                       class="text-decoration-underline"
-                                                    >
-                                                        {{-- <i class="ri-eye-fill"></i> --}}
+                                                    <a href="{{ route('project.showProjectAssignmentDetail', ['projectId' => $projectAssignment->id]) }}" class="text-decoration-underline">
                                                         {{ __('Detail') }}
                                                     </a>
                                                 </div>

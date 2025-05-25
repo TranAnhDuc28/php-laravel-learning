@@ -34,10 +34,15 @@
                         <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboard">{{ __('Dashboard') }}</span>
                     </a>
                 </li>
-                @include('common.side_bar.admin_side_bar')
-                {{--        @include('common.side_bar.hr_side_bar')--}}
-                {{--        @include('common.side_bar.manager_side_bar')--}}
-                {{--        @include('common.side_bar.employee_side_bar')--}}
+                @if(Auth::user()->isAdmin())
+                    @include('common.side_bar.admin_side_bar')
+                @elseif(Auth::user()->isManager())
+                    {{--        @include('common.side_bar.hr_side_bar')--}}
+                @elseif(Auth::user()->isHr())
+                    {{--        @include('common.side_bar.manager_side_bar')--}}
+                @else()
+                    {{--        @include('common.side_bar.employee_side_bar')--}}
+                @endif
             </ul>
         </div>
     </div>

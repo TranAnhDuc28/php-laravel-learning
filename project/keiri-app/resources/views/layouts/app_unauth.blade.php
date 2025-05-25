@@ -11,9 +11,7 @@
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
     @vite([
-        'resources/scss/bootstrap.scss',
         'resources/scss/icons.scss',
-        'resources/scss/app.scss',
         'resources/scss/app.scss',
     ])
 

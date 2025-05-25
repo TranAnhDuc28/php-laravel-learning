@@ -3,6 +3,7 @@ import Tooltip from 'bootstrap/js/dist/tooltip';
 import Popover from 'bootstrap/js/dist/popover';
 import 'bootstrap/js/dist/dropdown';
 import 'bootstrap/js/dist/offcanvas';
+import 'bootstrap/js/dist/alert';
 import SimpleBar from 'simplebar';
 import feather from 'feather-icons';
 import DataTable from 'datatables.net-bs5';

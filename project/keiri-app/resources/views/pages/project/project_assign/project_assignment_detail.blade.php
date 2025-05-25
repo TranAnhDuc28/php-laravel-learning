@@ -76,7 +76,17 @@
                                 <tr>
                                     <td colspan="7">
                                         <div class="d-flex justify-content-between m-0">
-                                            <div class="fs-16 fw-bold m-0">{{ __('Team members') }}</div>
+                                            <div class="m-0">
+                                                <div class="fs-16 fw-bold ">{{ __('Team members') }}</div>
+                                                <div class="d-flex gap-4 align-items-center">
+                                                    <div>
+                                                        <span class="badge-dot badge-dot-success"></span>{{ __('Joining') }}
+                                                    </div>
+                                                    <div>
+                                                        <span class="badge-dot badge-dot-dark"></span>{{ __('Leaving') }}
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="m-0">
                                                 <button class="btn btn-primary btn-sm" data-bs-toggle="tooltip" data-bs-title="{{ __('Update project member details') }}">Edit</button>
                                             </div>
@@ -85,7 +95,6 @@
                                 </tr>
                                 <tr>
                                     <th colspan="2">{{ __('Full name') }}</th>
-                                    {{-- <th>{{ __('Role') }}</th> --}}
                                     <th>{{ __('Join date') }}</th>
                                     <th>{{ __('Exit date') }}</th>
                                     <th>{{ __('Effort percentage') }}</th>
@@ -99,19 +108,21 @@
                                         @foreach($user['assign_logs'] as $assignLog)
                                             <tr>
                                                 @if ($loop->first)
-                                                    <td rowspan="{{ $countRowspan }}" colspan="2">{{ $user['full_name'] }}</td>
-                                                    {{-- <td rowspan="{{ $countRowspan }}">{{ $user['is_manager'] ? __('Manager') : __('Member') }}</td> --}}
+                                                    <td rowspan="{{ $countRowspan }}" colspan="2">
+                                                        <span class="badge-dot {{ $user['status'] === \App\Enums\AssignmentStatus::ACTIVE ? 'badge-dot-success' : 'badge-dot-dark' }}"></span>{{ $user['full_name'] }}
+                                                    </td>
                                                 @endif
                                                 <td>{{ $assignLog->project_join_date ? \Carbon\Carbon::parse($assignLog->project_join_date)->format('d-m-Y') : '-' }}</td>
                                                 <td>{{ $assignLog->project_exit_date ? \Carbon\Carbon::parse($assignLog->project_exit_date)->format('d-m-Y') : '-' }}</td>
                                                 <td>{{ $assignLog->effort_percentage ?? 0 }}%</td>
-                                                <td>{{ $assignLog->worked_days ?? 0 }}</td>
+                                                <td>{{ $assignLog->worked_days ?? 0 }} {{ $user['status'] }}</td>
                                             </tr>
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="2">{{ $user['full_name'] }}</td>
-                                            {{-- <td>{{ $user['is_manager'] ? __('Manager') : __('Member') }}</td> --}}
+                                            <td colspan="2">
+                                                <span class="badge-dot {{ $user['status'] === \App\Enums\AssignmentStatus::ACTIVE ? 'badge-dot-success' : 'badge-dot-dark' }}"></span>{{ $user['full_name'] }}
+                                            </td>
                                             <td colspan="4">{{ __('-') }}</td>
                                         </tr>
                                     @endif

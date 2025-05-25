@@ -55,7 +55,7 @@
                                             <td>{{ $employee->position }}</td>
 {{--                                            <td>{{ $employee->phone_number }}</td>--}}
 {{--                                            <td>{{ $employee->date_of_birth }}</td>--}}
-                                            <td>{{ $employee->join_date }}</td>
+                                            <td>{{ $employee->join_date ? \Carbon\Carbon::parse($employee->join_date)->format('d-m-Y') : null }}</td>
                                             <td>
                                                 <span class="{{ $employeeStatusClassStyle }} fs-12">{{ $employeeStatusLabel }}</span>
                                             </td>

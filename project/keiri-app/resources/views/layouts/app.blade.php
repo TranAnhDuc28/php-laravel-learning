@@ -13,7 +13,6 @@
 
     @vite([
         'resources/js/layout.js',
-        'resources/scss/bootstrap.scss',
         'resources/scss/icons.scss',
         'resources/scss/app.scss',
     ])

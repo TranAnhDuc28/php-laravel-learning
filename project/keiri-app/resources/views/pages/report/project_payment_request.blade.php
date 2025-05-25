@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Report | Project'))
+@section('title', __('Project Payment Request | Report'))
 
 @section('content')
     <div class="page-content">
@@ -8,23 +8,17 @@
             <x-breadcrumb
                 :title="'Project'"
                 :breadcrumbs="[
-                   ['label' => 'Project', 'url' => null],
-                   ['label' => 'Report', 'url' => route('project.report.showProjectPaymentRequest')],
+                   ['label' => 'Report', 'url' => null],
+                   ['label' => 'Project Payment Request', 'url' => route('report.showProjectPaymentRequest')],
                 ]"
             />
 
             <div class="mb-3 d-flex justify-content-end">
                 <div>
-                    <a href="{{ route('project.report.exportProjectPaymentRequest') }}" class="btn btn-outline-primary">Export</a>
+                    <a href="{{ route('report.exportProjectPaymentRequest') }}" class="btn btn-outline-primary">Export</a>
                 </div>
 
                 <div class="d-flex gap-3">
-
-                </div>
-            </div>
-
-            <div class="card mt-0">
-                <div class="card-body">
 
                 </div>
             </div>

@@ -50,3 +50,21 @@ $gradients: map-merge((primary: linear-gradient(135deg, $primary 0%, $success 10
 @each $gradient, $value in $gradients {
     @include badge-gradient(".badge-gradient-#{$gradient}", $value);
 }
+
+// Badge dot status
+.badge-dot {
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-inline-end: 5px;
+}
+
+@each $color, $value in $theme-colors {
+    .badge-dot-#{$color} {
+        background-color: $value;
+    }
+}
+
+

@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Log;
@@ -22,7 +23,7 @@ class HumanResourcesController extends Controller
      */
     public function showEmployeeList()
     {
-        $employees = User::with('department')->get();
+        $employees = User::with('department')->orderBy('full_name')->get();
 
         $dataView = [
             'employees' => $employees
@@ -36,7 +37,7 @@ class HumanResourcesController extends Controller
      */
     public function showCreateEmployee()
     {
-        $departments = Department::all();
+        $departments = Department::orderBy('name')->get();
 
         $dataView = [
             'departments' => $departments,
@@ -84,7 +85,7 @@ class HumanResourcesController extends Controller
         }
 
         $employee = User::find($id);
-        $departments = Department::all();
+        $departments = Department::orderBy('name')->get();
 
         $dataView = [
             'employee' => $employee,
@@ -109,13 +110,14 @@ class HumanResourcesController extends Controller
         $employee = User::find($id);
 
         $validated = $request->validated();
+        $joinDate = $validated['join_date'] ? Carbon::parse($validated['join_date'])->format('Y-m-d') : null;
 
         try {
             $employee->department_id = $validated['department_id'] ?? null;
             $employee->job_position = $validated['job_position'] ?? null;
             $employee->full_name = $validated['full_name'];
             $employee->email = $validated['email'];
-            $employee->join_date = $validated['join_date'] ?? null;
+            $employee->join_date = $joinDate;
             $employee->note = $validated['note'] ?? null;
             $employee->status = $validated['status'];
             $employee->save();

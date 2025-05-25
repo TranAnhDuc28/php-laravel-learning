@@ -19,7 +19,7 @@ class ReportController extends Controller
      */
     public function showMonthlyPaymentRequest()
     {
-        return view('pages.project.report.monthly_payment_request');
+        return view('pages.report.monthly_payment_request');
     }
 
     /**
@@ -27,7 +27,7 @@ class ReportController extends Controller
      */
     public function showProjectPaymentRequest()
     {
-        return view('pages.project.report.project_payment_request');
+        return view('pages.report.project_payment_request');
     }
 
     /**

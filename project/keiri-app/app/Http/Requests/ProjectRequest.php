@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Enums\ProjectPriority;
 use App\Enums\ProjectStatus;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -26,8 +27,9 @@ class ProjectRequest extends FormRequest
      */
     public function rules(): array
     {
+        $isUpdate = $this->method() === 'PUT' || $this->method() === 'PATCH';
+
         $rules = [
-            'project_code' => ['required', 'string', 'max:255'],
             'project_name' => ['required', 'string', 'max:255'],
             'project_start_date' => ['required', 'date'],
             'project_end_date' => ['required', 'date', Rule::date()->after('project_start_date')],
@@ -38,6 +40,16 @@ class ProjectRequest extends FormRequest
             'team_members' => ['nullable', 'array'],
             'team_members.*' => ['numeric', 'integer', Rule::exists(User::class, 'id')],
         ];
+
+        if (!$isUpdate) {
+            $rules['project_code'] = ['required', 'string', 'max:255', Rule::unique(Project::class, 'project_code')];
+        } else {
+            $id = $this->route('projectId');
+            $rules['project_code'] = [
+                'required', 'string', 'max:255',
+                Rule::unique(Project::class, 'project_code')->ignore($id, 'id')
+            ];
+        }
 
         return $rules;
     }

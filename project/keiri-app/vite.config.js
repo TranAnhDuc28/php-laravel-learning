@@ -67,7 +67,6 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/scss/bootstrap.scss',
                 'resources/scss/app.scss',
                 'resources/scss/icons.scss',
                 ...globSync('resources/js/*.js'),
