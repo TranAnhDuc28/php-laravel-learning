@@ -35,7 +35,7 @@
                                             <td>{{ $projectAssignment->project_code }}</td>
                                             <td>{{ $projectAssignment->project_name }}</td>
                                             <td>
-                                                <ul class="mb-0 ps-2">
+                                                <ul class="mb-0 ps-0">
                                                     @foreach($projectAssignment->users as $user)
                                                         <div class="m-0 p-0">{{ $user->full_name }}</div>
                                                     @endforeach

@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('employee_billing_costs', function (Blueprint $table) {
+        Schema::create('employee_payment_costs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('project_id')->nullable()->constrained();
             $table->decimal('contract_unit_price', 15);
             $table->date('start_date');
             $table->date('end_date')->nullable();
             $table->timestamps();
+
+            $table->index(['user_id', 'project_id', 'start_date']);
+            $table->unique(['user_id', 'project_id', 'start_date']);
         });
     }
 
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employee_billing_costs');
+        Schema::dropIfExists('employee_payment_costs');
     }
 };

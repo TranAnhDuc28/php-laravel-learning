@@ -23,7 +23,7 @@
     }
 }
 
-.custom-accordionwithicon {
+.custom-accordion-with-icon {
     .accordion-button {
         &::after {
             background-image: none !important;
@@ -44,7 +44,7 @@
     }
 }
 
-.custom-accordionwithicon-plus {
+.custom-accordion-with-icon-plus {
     .accordion-button {
         &::after {
             background-image: none !important;
@@ -65,7 +65,7 @@
     }
 }
 
-.lefticon-accordion {
+.left-icon-accordion {
     .accordion-button {
         padding-left: 2.75rem;
 
@@ -144,7 +144,7 @@
 }
 
 [dir="rtl"]{
-    .custom-accordionwithicon {
+    .custom-accordion-with-icon {
         .accordion-button::after{
             transform: rotate(180deg);
         }
