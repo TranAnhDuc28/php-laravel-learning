@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     inpEmployeeJoinDate && flatpickr(inpEmployeeJoinDate, {
         enableTime: false,
         dateFormat: 'd-m-Y',
+        allowInput: true
     });
 });
 

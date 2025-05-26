@@ -74,12 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
     inpProjectStartDate && flatpickr(inpProjectStartDate, {
         enableTime: false,
         dateFormat: 'd-m-Y',
+        allowInput: true
     });
 
     const inpProjectEndDate = document.getElementById('id-project_end_date');
     inpProjectEndDate && flatpickr(inpProjectEndDate, {
         enableTime: false,
         dateFormat: 'd-m-Y',
+        allowInput: true
     });
 
     const inpDateMemberJoinedDates = document.querySelectorAll('.project_join_date');
@@ -87,6 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         flatpickr(inp, {
             enableTime: false,
             dateFormat: 'd-m-Y',
+            allowInput: true
         });
     });
 
@@ -95,6 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         flatpickr(inp, {
             enableTime: false,
             dateFormat: 'd-m-Y',
+            allowInput: true
         });
     });
 

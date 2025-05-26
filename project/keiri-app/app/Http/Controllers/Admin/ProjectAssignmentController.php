@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\AssignmentStatus;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProjectAssignLogRequest;
 use App\Models\Project;
 use App\Models\ProjectAssignment;
 use App\Models\ProjectAssignmentLog;
@@ -98,5 +99,24 @@ class ProjectAssignmentController extends Controller
         ];
 
         return view('pages.project.project_assign.update_member_assignment', $viewData);
+    }
+
+    /**
+     * @return Factory|View|Application|object
+     */
+    public function processUpdateProjectAssignmentLog(ProjectAssignLogRequest $request, $projectAssignId) {
+        $validator = Validator::make(['id' => $projectAssignId], [
+            'id' => ['required', 'numeric', 'integer', Rule::exists(ProjectAssignment::class, 'id')],
+        ]);
+        if ($validator->fails()) {
+            abort(404);
+        }
+
+        $validated = $request->validated();
+
+        $projectAssign = ProjectAssignment::with(['project', 'logs', 'user'])->find((int)$projectAssignId);
+
+
+        return redirect()->route('project.assign.showProjectAssignmentDetail', ['projectAssignmentId' => $projectAssign->project_id]);
     }
 }

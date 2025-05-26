@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
     Route::get('projects/project-assign', [ProjectAssignmentController::class, 'showProjectAssignment'])->name('project.assign.showProjectAssignment');
     Route::get('projects/project-assign-detail/{projectId}', [ProjectAssignmentController::class, 'showProjectAssignmentDetail'])->name('project.assign.showProjectAssignmentDetail');
     Route::get('projects/update-member-assign/{projectAssignId}', [ProjectAssignmentController::class, 'showUpdateMemberAssignment'])->name('project.assign.showUpdateMemberAssignment');
+    Route::put('projects/update-member-assign/{projectAssignId}', [ProjectAssignmentController::class, 'processUpdateProjectAssignmentLog'])->name('project.assign.processUpdateProjectAssignmentLog');
 
     /* Report. */
     Route::group(['middleware' => ['check_role:' . UserRole::ADMIN->value]], function () {

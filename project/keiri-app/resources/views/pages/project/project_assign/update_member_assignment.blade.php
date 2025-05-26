@@ -90,23 +90,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                <form action="" method="POST">
+                                <form action="{{ route('project.assign.processUpdateProjectAssignmentLog', ['projectAssignId' => $projectAssign->id]) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
                                     @if($projectAssign->logs)
-                                        @foreach($projectAssign->logs as $projectAssignMemberDetail)
+                                        @foreach($projectAssign->logs as $projectAssignLog)
                                             <div>
                                                 <div class="row">
                                                     <div class="col-sm-12 col-md-12 col-lg-1 mt-3 d-flex align-items-center">
                                                         <div>
                                                             #{{ $loop->iteration }}
-                                                            <span class="badge-dot {{ $projectAssignMemberDetail->project_exit_date ? 'badge-dot-dark' : 'badge-dot-success' }}"></span>
+                                                            <span class="badge-dot {{ $projectAssignLog->project_exit_date ? 'badge-dot-dark' : 'badge-dot-success' }}"></span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-12 col-md-6 col-lg-3 mt-3">
-                                                        <label for="id-project_join_date" class="form-label">{{ __('Join date') }}</label>
+                                                        <label for="id-project_join_date-{{ $projectAssignLog->id }}" class="form-label">{{ __('Join date') }}</label>
                                                         <div class="input-group">
-                                                            <input type="text" id="id-project_join_date" name="project_join_date"
-                                                                   class="form-control @error('project_join_date') is-invalid @enderror"
-                                                                   value="{{ old('project_join_date', $projectAssignMemberDetail->project_join_date ? Carbon::parse($projectAssignMemberDetail->project_join_date)->format('d-m-Y') : null) }}">
+                                                            <input type="text" id="id-project_join_date-{{ $projectAssignLog->id }}"
+                                                                   name="logs[{{ $projectAssignLog->id }}][project_join_date]"
+                                                                   class="project_join_date form-control @error('project_join_date') is-invalid @enderror"
+                                                                   value="{{ old('project_join_date', $projectAssignLog->project_join_date ? Carbon::parse($projectAssignLog->project_join_date)->format('d-m-Y') : null) }}">
                                                             <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
                                                         </div>
                                                         @error('project_join_date')
@@ -116,11 +119,12 @@
                                                         @enderror
                                                     </div>
                                                     <div class="col-sm-12 col-md-6 col-lg-3 mt-3">
-                                                        <label for="id-project_exit_date" class="form-label">{{ __('Exit date') }}</label>
+                                                        <label for="id-project_exit_date-{{ $projectAssignLog->id }}" class="form-label">{{ __('Exit date') }}</label>
                                                         <div class="input-group">
-                                                            <input type="text" id="id-project_exit_date" name="project_exit_date"
-                                                                   class="form-control @error('project_exit_date') is-invalid @enderror"
-                                                                   value="{{ old('project_exit_date', $projectAssignMemberDetail->project_exit_date ? Carbon::parse($projectAssignMemberDetail->project_exit_date)->format('d-m-Y') : null)  }}">
+                                                            <input type="text" id="id-project_exit_date-{{ $projectAssignLog->id }}"
+                                                                   name="logs[{{ $projectAssignLog->id }}][project_exit_date]"
+                                                                   class="project_exit_date flatpickr flatpickr-input form-control @error('project_exit_date') is-invalid @enderror"
+                                                                   value="{{ old('project_exit_date', $projectAssignLog->project_exit_date ? Carbon::parse($projectAssignLog->project_exit_date)->format('d-m-Y') : null)  }}">
                                                             <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
                                                         </div>
                                                         @error('project_exit_date')
@@ -130,10 +134,11 @@
                                                         @enderror
                                                     </div>
                                                     <div class="col-sm-12 col-md-6 col-lg-2 mt-3">
-                                                        <label for="id-effort_percentage" class="form-label text-nowrap">{{ __('Effort Percentage') }}</label>
-                                                        <input type="number" id="id-effort_percentage" name="effort_percentage" min="0" max="100"
-                                                               class="form-control @error('effort_percentage') is-invalid @enderror"
-                                                               value="{{ old('effort_percentage', $projectAssignMemberDetail->effort_percentage) }}">
+                                                        <label for="id-effort_percentage-{{ $projectAssignLog->id }}" class="form-label text-nowrap">{{ __('Effort Percentage') }}</label>
+                                                        <input type="number" id="id-effort_percentage-{{ $projectAssignLog->id }}"
+                                                               name="logs[{{ $projectAssignLog->id }}][effort_percentage]" min="0" max="100"
+                                                               class="form-control flatpickr flatpickr-input @error('effort_percentage') is-invalid @enderror"
+                                                               value="{{ old('effort_percentage', $projectAssignLog->effort_percentage) }}">
                                                         @error('effort_percentage')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -141,10 +146,11 @@
                                                         @enderror
                                                     </div>
                                                     <div class="col-sm-12 col-md-6 col-lg-3 mt-3">
-                                                        <label for="id-worked_days" class="form-label">{{ __('Worked days') }}</label>
-                                                        <input type="number" id="id-worked_days" name="worked_days"
+                                                        <label for="id-worked_days-{{ $projectAssignLog->id }}" class="form-label">{{ __('Worked days') }}</label>
+                                                        <input type="number" id="id-worked_days-{{ $projectAssignLog->id }}"
+                                                               name="logs[{{ $projectAssignLog->id }}][worked_days]"
                                                                class="form-control @error('worked_days') is-invalid @enderror"
-                                                               value="{{ old('worked_days', $projectAssignMemberDetail->worked_days) }}">
+                                                               value="{{ old('worked_days', $projectAssignLog->worked_days) }}">
                                                         @error('worked_days')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
@@ -157,6 +163,10 @@
                                                 <hr class="mb-0">
                                             @endif
                                         @endforeach
+
+                                        <div class="text-end mt-3">
+                                            <button type="submit" id="btn-save-project" class="btn btn-primary">{{ __('Save') }}</button>
+                                        </div>
                                     @endif
                                 </form>
                             </div>
