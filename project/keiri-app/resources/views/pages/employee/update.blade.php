@@ -81,7 +81,7 @@
                                         <div class="input-group">
                                             <input type="text" id="id-join_date" name="join_date"
                                                    class="form-control @error('join_date') is-invalid @enderror"
-                                                   value="{{ old('join_date', $employee->join_date) }}">
+                                                   value="{{ old('join_date', \Illuminate\Support\Carbon::parse($employee->join_date)->format('d-m-Y')) }}">
                                             <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
                                         </div>
                                         @error('join_date')

@@ -70,16 +70,32 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('.dt-search input')?.classList.remove('form-control-sm');
 
     /* Init input type date. */
-    const inpProjectStartDate = document.getElementById('id-project-start-date');
+    const inpProjectStartDate = document.getElementById('id-project_start_date');
     inpProjectStartDate && flatpickr(inpProjectStartDate, {
         enableTime: false,
         dateFormat: 'd-m-Y',
     });
 
-    const inpProjectEndDate = document.getElementById('id-project-end-date');
+    const inpProjectEndDate = document.getElementById('id-project_end_date');
     inpProjectEndDate && flatpickr(inpProjectEndDate, {
         enableTime: false,
         dateFormat: 'd-m-Y',
+    });
+
+    const inpDateMemberJoinedDates = document.querySelectorAll('.project_join_date');
+    inpDateMemberJoinedDates.forEach((inp) => {
+        flatpickr(inp, {
+            enableTime: false,
+            dateFormat: 'd-m-Y',
+        });
+    });
+
+    const inpDateMemberExitDates = document.querySelectorAll('.project_exit_date');
+    inpDateMemberExitDates.forEach((inp) => {
+        flatpickr(inp, {
+            enableTime: false,
+            dateFormat: 'd-m-Y',
+        });
     });
 
     /* Switch create project. */

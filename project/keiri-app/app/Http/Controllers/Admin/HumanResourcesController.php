@@ -84,7 +84,7 @@ class HumanResourcesController extends Controller
             abort(404);
         }
 
-        $employee = User::find($id);
+        $employee = User::find((int)$id);
         $departments = Department::orderBy('name')->get();
 
         $dataView = [
@@ -107,7 +107,7 @@ class HumanResourcesController extends Controller
             abort(404);
         }
 
-        $employee = User::find($id);
+        $employee = User::find((int)$id);
 
         $validated = $request->validated();
         $joinDate = $validated['join_date'] ? Carbon::parse($validated['join_date'])->format('Y-m-d') : null;
@@ -128,5 +128,13 @@ class HumanResourcesController extends Controller
 
             return back()->withInput();
         }
+    }
+
+    /**
+     * @return Factory|View|Application|object
+     */
+    public function showEmployeePaymentCosts()
+    {
+        return view('pages.employee.payment_costs.payment_costs_list');
     }
 }

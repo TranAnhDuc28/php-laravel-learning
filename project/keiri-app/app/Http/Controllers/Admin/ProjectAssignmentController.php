@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enums\AssignmentStatus;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\ProjectAssignment;
 use App\Models\ProjectAssignmentLog;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -50,7 +51,7 @@ class ProjectAssignmentController extends Controller
         $projectAssignmentDetail = Project::with([
             'users' => function ($query) {
                 $query->select('users.id', 'users.full_name')->withPivot(['id', 'status', 'note']);
-            }])->find($projectId);
+            }])->find((int)$projectId);
 
         // Get list id member assign.
         if ($projectAssignmentDetail) {
@@ -62,6 +63,7 @@ class ProjectAssignmentController extends Controller
                 return [
                     'id' => $user->id,
                     'full_name' => $user->full_name,
+                    'project_assignment_id' => $user->pivot->id,
                     'status' => $user->pivot->status,
                     'note' => $user->pivot->note,
                     'assign_logs' => $logs,
@@ -75,5 +77,26 @@ class ProjectAssignmentController extends Controller
         ];
 
         return view('pages.project.project_assign.project_assignment_detail', $viewData);
+    }
+
+    /**
+     * @return Factory|View|Application|object
+     */
+    public function showUpdateMemberAssignment(Request $request, $projectAssignId)
+    {
+        $validator = Validator::make(['id' => $projectAssignId], [
+            'id' => ['required', 'numeric', 'integer', Rule::exists(ProjectAssignment::class, 'id')],
+        ]);
+        if ($validator->fails()) {
+            abort(404);
+        }
+
+        $projectAssign = ProjectAssignment::with(['project', 'logs', 'user'])->find((int)$projectAssignId);
+
+        $viewData = [
+            'projectAssign' => $projectAssign,
+        ];
+
+        return view('pages.project.project_assign.update_member_assignment', $viewData);
     }
 }

@@ -32,7 +32,7 @@ return new class extends Migration
             /* Other. */
             $table->string('address')->nullable();
             $table->string('password');
-            $table->integer('role')->default(UserRole::Employee);
+            $table->integer('role')->default(UserRole::EMPLOYEE);
             $table->date('join_date')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('status')->default(UserStatus::ACTIVE);

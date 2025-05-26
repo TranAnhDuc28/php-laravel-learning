@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         $manager1->full_name = 'Nguyen Tien Dung';
         $manager1->email = 'dungnt@test.com';
         $manager1->password = Hash::make('12345678');
-        $manager1->role = UserRole::Manager;
+        $manager1->role = UserRole::MANAGER;
         $manager1->job_position = 'PM';
         $manager1->save();
 
@@ -33,7 +33,7 @@ class UserSeeder extends Seeder
         $manager2->full_name = 'Kieu Bao Long';
         $manager2->email = 'longkl@test.com';
         $manager2->password = Hash::make('12345678');
-        $manager2->role = UserRole::Manager;
+        $manager2->role = UserRole::MANAGER;
         $manager2->job_position = 'PM';
         $manager2->save();
 
@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
         $manager3->full_name = 'Tran Tuan Long';
         $manager3->email = 'longtl@test.com';
         $manager3->password = Hash::make('12345678');
-        $manager3->role = UserRole::Manager;
+        $manager3->role = UserRole::MANAGER;
         $manager3->job_position = 'PM';
         $manager3->save();
 
@@ -54,7 +54,7 @@ class UserSeeder extends Seeder
         $manager4->full_name = 'Manager';
         $manager4->email = 'manager@test.com';
         $manager4->password = Hash::make('12345678');
-        $manager4->role = UserRole::Manager;
+        $manager4->role = UserRole::MANAGER;
         $manager4->job_position = 'PM';
         $manager4->save();
 
@@ -65,7 +65,7 @@ class UserSeeder extends Seeder
         $employee6->full_name = 'employee';
         $employee6->email = 'employee@test.com';
         $employee6->password = Hash::make('12345678');
-        $employee6->role = UserRole::Employee;
+        $employee6->role = UserRole::EMPLOYEE;
         $employee6->save();
 
         // ID: 7
@@ -75,7 +75,7 @@ class UserSeeder extends Seeder
         $employee7->full_name = 'Tran Phuc Hong';
         $employee7->email = 'hongtp@test.com';
         $employee7->password = Hash::make('12345678');
-        $employee7->role = UserRole::Employee;
+        $employee7->role = UserRole::EMPLOYEE;
         $employee7->save();
 
         // ID: 8
@@ -85,7 +85,7 @@ class UserSeeder extends Seeder
         $employee8->full_name = 'Nguyen Minh Vu';
         $employee8->email = 'vunm@test.com';
         $employee8->password = Hash::make('12345678');
-        $employee8->role = UserRole::Employee;
+        $employee8->role = UserRole::EMPLOYEE;
         $employee8->save();
 
         // ID: 9
@@ -95,7 +95,7 @@ class UserSeeder extends Seeder
         $employee9->full_name = 'Bui Thi Thom';
         $employee9->email = 'thombt@test.com';
         $employee9->password = Hash::make('12345678');
-        $employee9->role = UserRole::Employee;
+        $employee9->role = UserRole::EMPLOYEE;
         $employee9->save();
 
         // ID: 10
@@ -105,7 +105,7 @@ class UserSeeder extends Seeder
         $employee10->full_name = 'Nguyen Thanh Minh';
         $employee10->email = 'minhnt@test.com';
         $employee10->password = Hash::make('12345678');
-        $employee10->role = UserRole::Employee;
+        $employee10->role = UserRole::EMPLOYEE;
         $employee10->save();
 
         // ID: 11
@@ -115,7 +115,7 @@ class UserSeeder extends Seeder
         $employee11->full_name = 'Nguyen Tien Trung';
         $employee11->email = 'trungnt11@test.com';
         $employee11->password = Hash::make('12345678');
-        $employee11->role = UserRole::Employee;
+        $employee11->role = UserRole::EMPLOYEE;
         $employee11->save();
 
         // ID: 12
@@ -125,7 +125,7 @@ class UserSeeder extends Seeder
         $employee12->full_name = 'Nguyen Anh Tuan';
         $employee12->email = 'tuanna@test.com';
         $employee12->password = Hash::make('12345678');
-        $employee12->role = UserRole::Employee;
+        $employee12->role = UserRole::EMPLOYEE;
         $employee12->save();
 
         // ID: 13
@@ -135,7 +135,7 @@ class UserSeeder extends Seeder
         $employee13->full_name = 'Nguyen Thanh Trung';
         $employee13->email = 'trungnt13@test.com';
         $employee13->password = Hash::make('12345678');
-        $employee13->role = UserRole::Employee;
+        $employee13->role = UserRole::EMPLOYEE;
         $employee13->save();
 
         // ID: 14
@@ -145,7 +145,7 @@ class UserSeeder extends Seeder
         $employee14->full_name = 'Pham Long Quan';
         $employee14->email = 'quanpl@test.com';
         $employee14->password = Hash::make('12345678');
-        $employee14->role = UserRole::Employee;
+        $employee14->role = UserRole::EMPLOYEE;
         $employee14->save();
 
         // ID: 15
@@ -155,7 +155,7 @@ class UserSeeder extends Seeder
         $employee15->full_name = 'Do Tuan Thanh';
         $employee15->email = 'thanhdt@test.com';
         $employee15->password = Hash::make('12345678');
-        $employee15->role = UserRole::Employee;
+        $employee15->role = UserRole::EMPLOYEE;
         $employee15->save();
 
         // ID: 16
@@ -165,7 +165,7 @@ class UserSeeder extends Seeder
         $employee16->full_name = 'Bui Hong Khanh';
         $employee16->email = 'khanhbh@test.com';
         $employee16->password = Hash::make('12345678');
-        $employee16->role = UserRole::Employee;
+        $employee16->role = UserRole::EMPLOYEE;
         $employee16->save();
 
         // ID: 17
@@ -175,7 +175,7 @@ class UserSeeder extends Seeder
         $employee17->full_name = 'Nguyen Hai Anh';
         $employee17->email = 'anhnh@test.com';
         $employee17->password = Hash::make('12345678');
-        $employee17->role = UserRole::Employee;
+        $employee17->role = UserRole::EMPLOYEE;
         $employee17->save();
 
         // ID: 18
@@ -185,7 +185,7 @@ class UserSeeder extends Seeder
         $employee18->full_name = 'Hoang Quang Linh';
         $employee18->email = 'linhhq@test.com';
         $employee18->password = Hash::make('12345678');
-        $employee18->role = UserRole::Employee;
+        $employee18->role = UserRole::EMPLOYEE;
         $employee18->save();
 
         // ID: 19
@@ -195,7 +195,7 @@ class UserSeeder extends Seeder
         $employee19->full_name = 'Luu Thi Hai Yen';
         $employee19->email = 'yenlth@test.com';
         $employee19->password = Hash::make('12345678');
-        $employee19->role = UserRole::Employee;
+        $employee19->role = UserRole::EMPLOYEE;
         $employee19->save();
 
         // ID: 20
@@ -205,7 +205,7 @@ class UserSeeder extends Seeder
         $employee20->full_name = 'Nguyen Tuan Anh';
         $employee20->email = 'anhnt@test.com';
         $employee20->password = Hash::make('12345678');
-        $employee20->role = UserRole::Employee;
+        $employee20->role = UserRole::EMPLOYEE;
         $employee20->save();
 
         // ID: 21
@@ -215,7 +215,7 @@ class UserSeeder extends Seeder
         $employee21->full_name = 'Pham Van Dat';
         $employee21->email = 'datpv@test.com';
         $employee21->password = Hash::make('12345678');
-        $employee21->role = UserRole::Employee;
+        $employee21->role = UserRole::EMPLOYEE;
         $employee21->save();
 
         // ID: 22
@@ -225,7 +225,7 @@ class UserSeeder extends Seeder
         $employee22->full_name = 'Tran Anh Duc';
         $employee22->email = 'ducta@test.com';
         $employee22->password = Hash::make('12345678');
-        $employee22->role = UserRole::Employee;
+        $employee22->role = UserRole::EMPLOYEE;
         $employee22->save();
 
         // ID: 23
@@ -235,7 +235,7 @@ class UserSeeder extends Seeder
         $employee23->full_name = 'Nguyen Xuan Truong';
         $employee23->email = 'truongnx@test.com';
         $employee23->password = Hash::make('12345678');
-        $employee23->role = UserRole::Employee;
+        $employee23->role = UserRole::EMPLOYEE;
         $employee23->save();
 
         // ID: 24
@@ -245,7 +245,7 @@ class UserSeeder extends Seeder
         $employee24->full_name = 'Nguyen Minh Quang';
         $employee24->email = 'anhnm@test.com';
         $employee24->password = Hash::make('12345678');
-        $employee24->role = UserRole::Employee;
+        $employee24->role = UserRole::EMPLOYEE;
         $employee24->save();
 
         // ID: 25
@@ -255,7 +255,7 @@ class UserSeeder extends Seeder
         $employee25->full_name = 'Nguyen Thi Ngoc Anh';
         $employee25->email = 'anhntn@test.com';
         $employee25->password = Hash::make('12345678');
-        $employee25->role = UserRole::Employee;
+        $employee25->role = UserRole::EMPLOYEE;
         $employee25->save();
 
         // ID: 26
@@ -265,7 +265,7 @@ class UserSeeder extends Seeder
         $employee26->full_name = 'Tran Minh Hang';
         $employee26->email = 'hangtm@test.com';
         $employee26->password = Hash::make('12345678');
-        $employee26->role = UserRole::Employee;
+        $employee26->role = UserRole::EMPLOYEE;
         $employee26->save();
 
         // ID: 27
@@ -275,7 +275,7 @@ class UserSeeder extends Seeder
         $employee27->full_name = 'Hoang Thi Ngoc Dung';
         $employee27->email = 'dunghtn@test.com';
         $employee27->password = Hash::make('12345678');
-        $employee27->role = UserRole::Employee;
+        $employee27->role = UserRole::EMPLOYEE;
         $employee27->save();
     }
 }

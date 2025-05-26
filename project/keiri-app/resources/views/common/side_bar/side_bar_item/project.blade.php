@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('project.showProjectAssignment') }}" class="nav-link {{ request()->routeIs('project.showProjectAssignment') ? 'active' : '' }}">
+                <a href="{{ route('project.assign.showProjectAssignment') }}" class="nav-link {{ request()->routeIs('project.assign.showProjectAssignment') ? 'active' : '' }}">
                     {{ __('Project Assignment') }}
                 </a>
             </li>

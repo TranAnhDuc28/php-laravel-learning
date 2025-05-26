@@ -42,7 +42,7 @@ class AuthController extends Controller
         $credentials = [
             'email' => $validated['email'],
             'password' => $validated['password'],
-            'role' => [UserRole::Admin, UserRole::Manager],
+            'role' => [UserRole::ADMIN, UserRole::MANAGER],
         ];
 
         if (Auth::attempt($credentials)) {

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->date('end_date')->nullable();
             $table->timestamps();
 
-            $table->index(['user_id', 'project_id', 'start_date']);
             $table->unique(['user_id', 'project_id', 'start_date']);
         });
     }

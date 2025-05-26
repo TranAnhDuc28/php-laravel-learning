@@ -126,7 +126,7 @@ class ProjectController extends Controller
         $project = Project::with([
             'users' => function ($query) {
                 $query->select('users.id')->wherePivot('status', AssignmentStatus::ACTIVE);
-            }])->find($id);
+            }])->find((int)$id);
 
         $viewData = [
             'project' => $project,
@@ -151,7 +151,7 @@ class ProjectController extends Controller
         $project = Project::with([
             'users' => function ($query) {
                 $query->select('users.id')->withPivot('id', 'status', 'note');
-            }])->find($id);
+            }])->find((int)$id);
 
         $validated = $request->validated();
         $projectStartDate = Carbon::parse($validated['project_start_date'])->format('Y-m-d');

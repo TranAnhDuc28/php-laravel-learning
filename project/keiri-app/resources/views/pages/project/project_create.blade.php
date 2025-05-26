@@ -70,10 +70,10 @@
 
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6 mt-3">
-                                                <label for="id-project-start-date" class="form-label">{{ __('Start date') }} <span class="text-danger">*</span></label>
-                                                <div class="input-group @error('project_end_date') has-validation @enderror">
+                                                <label for="project_start_date" class="form-label">{{ __('Start date') }} <span class="text-danger">*</span></label>
+                                                <div class="input-group @error('project_start_date') has-validation @enderror">
                                                     <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
-                                                    <input type="text" id="id-project-start-date" name="project_start_date"
+                                                    <input type="text" id="project_start_date" name="project_start_date"
                                                            class="form-control flatpickr flatpickr-input @error('project_start_date') is-invalid @enderror"
                                                            value="{{ old('project_start_date') }}">
                                                     @error('project_start_date')
@@ -84,10 +84,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-md-6 mt-3">
-                                                <label for="id-project-end-date" class="form-label">{{ __('End date') }} <span class="text-danger">*</span></label>
+                                                <label for="project_end_date" class="form-label">{{ __('End date') }} <span class="text-danger">*</span></label>
                                                 <div class="input-group @error('project_end_date') has-validation @enderror">
                                                     <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
-                                                    <input type="text" id="id-project-end-date" name="project_end_date"
+                                                    <input type="text" id="project_end_date" name="project_end_date"
                                                            class="form-control flatpickr flatpickr-input @error('project_end_date') is-invalid @enderror"
                                                            value="{{ old('project_end_date') }}">
                                                     @error('project_end_date')

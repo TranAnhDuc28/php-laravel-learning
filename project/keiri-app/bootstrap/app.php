@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\CheckRoleMiddleware;
 use App\Http\Middleware\LocaleMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -16,7 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectGuestsTo('/login');
 
         $middleware->alias([
-            'admin' => AdminMiddleware::class,
+            'check_role' => CheckRoleMiddleware::class,
             'locale' => LocaleMiddleware::class,
         ]);
     })

@@ -9,7 +9,7 @@
                 :title="'Project assignment'"
                 :breadcrumbs="[
                    ['label' => 'Project', 'url' => null],
-                   ['label' => 'Project assignment', 'url' => route('project.showProjectAssignment')],
+                   ['label' => 'Project assignment', 'url' => route('project.assign.showProjectAssignment')],
                 ]"
             />
 
@@ -43,7 +43,7 @@
                                             </td>
                                             <td class="align-content-center">
                                                 <div class="d-flex gap-2 flex-wrap justify-content-center">
-                                                    <a href="{{ route('project.showProjectAssignmentDetail', ['projectId' => $projectAssignment->id]) }}" class="text-decoration-underline">
+                                                    <a href="{{ route('project.assign.showProjectAssignmentDetail', ['projectId' => $projectAssignment->id]) }}" class="text-decoration-underline">
                                                         {{ __('Detail') }}
                                                     </a>
                                                 </div>

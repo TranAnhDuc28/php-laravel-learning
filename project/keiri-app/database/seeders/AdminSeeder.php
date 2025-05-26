@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
         $admin->full_name = 'Admin';
         $admin->email = 'admin@test.com';
         $admin->password = Hash::make('12345678');
-        $admin->role = UserRole::Admin;
+        $admin->role = UserRole::ADMIN;
         $admin->save();
     }
 }

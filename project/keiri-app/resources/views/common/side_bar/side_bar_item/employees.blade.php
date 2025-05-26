@@ -14,6 +14,11 @@
                     {{ __('Create Employee') }}
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('employee.showEmployeePaymentCosts') }}" class="nav-link {{ request()->routeIs('employee.showEmployeePaymentCosts') ? 'active' : '' }}">
+                    {{ __('Employee Payment Costs') }}
+                </a>
+            </li>
         </ul>
     </div>
 </li>

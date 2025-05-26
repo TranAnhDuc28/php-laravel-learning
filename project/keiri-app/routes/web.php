@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\UserRole;
 use App\Http\Controllers\Admin\HumanResourcesController;
 use App\Http\Controllers\Admin\ProjectAssignmentController;
 use App\Http\Controllers\Admin\ProjectController;
@@ -43,11 +44,12 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
     Route::get('projects/update/{projectId}', [ProjectController::class, 'showUpdateProject'])->name('project.showUpdateProject');
     Route::put('projects/update/{projectId}', [ProjectController::class, 'processUpdateProject'])->name('project.processUpdateProject');
 
-    Route::get('projects/project-assign', [ProjectAssignmentController::class, 'showProjectAssignment'])->name('project.showProjectAssignment');
-    Route::get('projects/project-assign-detail/{projectId}', [ProjectAssignmentController::class, 'showProjectAssignmentDetail'])->name('project.showProjectAssignmentDetail');
+    Route::get('projects/project-assign', [ProjectAssignmentController::class, 'showProjectAssignment'])->name('project.assign.showProjectAssignment');
+    Route::get('projects/project-assign-detail/{projectId}', [ProjectAssignmentController::class, 'showProjectAssignmentDetail'])->name('project.assign.showProjectAssignmentDetail');
+    Route::get('projects/update-member-assign/{projectAssignId}', [ProjectAssignmentController::class, 'showUpdateMemberAssignment'])->name('project.assign.showUpdateMemberAssignment');
 
     /* Report. */
-    Route::group(['middleware' => ['admin']], function () {
+    Route::group(['middleware' => ['check_role:' . UserRole::ADMIN->value]], function () {
         Route::get('reports/monthly-payment-request', [ReportController::class, 'showMonthlyPaymentRequest'])->name('report.showMonthlyPaymentRequest');
         Route::get('reports/project-payment-request', [ReportController::class, 'showProjectPaymentRequest'])->name('report.showProjectPaymentRequest');
         Route::get('reports/export/monthly-payment-request', [ReportController::class, 'exportReport'])->name('report.exportMonthlyPaymentRequest');
@@ -55,10 +57,13 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
     });
 
     /* Employee. */
-    Route::get('employees', [HumanResourcesController::class, 'showEmployeeList'])->name('employee.showEmployeeList');
-    Route::get('employees/create', [HumanResourcesController::class, 'showCreateEmployee'])->name('employee.showCreateEmployee');
-    Route::post('employees/create', [HumanResourcesController::class, 'processCreateEmployee'])->name('employee.processCreateEmployee');
-    Route::get('employees/update/{id}', [HumanResourcesController::class, 'showUpdateEmployee'])->name('employee.showUpdateEmployee');
-    Route::put('employees/update/{id}', [HumanResourcesController::class, 'processUpdateEmployee'])->name('employee.processUpdateEmployee');
+    Route::group(['middleware' => ['check_role:' . implode(',', [UserRole::ADMIN->value, UserRole::MANAGER->value])]], function () {
+        Route::get('employees', [HumanResourcesController::class, 'showEmployeeList'])->name('employee.showEmployeeList');
+        Route::get('employees/create', [HumanResourcesController::class, 'showCreateEmployee'])->name('employee.showCreateEmployee');
+        Route::post('employees/create', [HumanResourcesController::class, 'processCreateEmployee'])->name('employee.processCreateEmployee');
+        Route::get('employees/update/{id}', [HumanResourcesController::class, 'showUpdateEmployee'])->name('employee.showUpdateEmployee');
+        Route::put('employees/update/{id}', [HumanResourcesController::class, 'processUpdateEmployee'])->name('employee.processUpdateEmployee');
+        Route::get('employees/employee-payment-costs', [HumanResourcesController::class, 'showEmployeePaymentCosts'])->name('employee.showEmployeePaymentCosts');
+    });
 });
 

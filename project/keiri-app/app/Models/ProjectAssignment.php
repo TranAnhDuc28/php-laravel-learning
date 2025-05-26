@@ -71,6 +71,6 @@ class ProjectAssignment extends Pivot
      */
     public function logs(): HasMany
     {
-        return $this->hasMany(ProjectAssignmentLog::class);
+        return $this->hasMany(ProjectAssignmentLog::class, 'project_assignment_id');
     }
 }

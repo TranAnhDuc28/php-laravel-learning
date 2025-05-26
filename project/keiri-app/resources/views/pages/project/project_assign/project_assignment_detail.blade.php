@@ -9,6 +9,7 @@
                 :title="'Project assignment detail'"
                 :breadcrumbs="[
                    ['label' => 'Project', 'url' => null],
+                   ['label' => 'Project assignment', 'url' => route('project.assign.showProjectAssignment')],
                    ['label' => 'Project assignment detail', 'url' => null],
                 ]"
             />
@@ -111,20 +112,23 @@
                                                 <tr>
                                                     @if ($loop->first)
                                                         <td rowspan="{{ $countRowspan }}" colspan="2">
-                                                        <span
-                                                            class="badge-dot {{ $user['status'] === \App\Enums\AssignmentStatus::ACTIVE ? 'badge-dot-success' : 'badge-dot-dark' }}"></span>{{ $user['full_name'] }}
+                                                            <span class="badge-dot {{ $user['status'] === \App\Enums\AssignmentStatus::ACTIVE ? 'badge-dot-success' : 'badge-dot-dark' }}"></span>
+                                                            {{ $user['full_name'] }}
                                                         </td>
                                                     @endif
                                                     <td>{{ $assignLog->project_join_date ? \Carbon\Carbon::parse($assignLog->project_join_date)->format('d-m-Y') : '-' }}</td>
                                                     <td>{{ $assignLog->project_exit_date ? \Carbon\Carbon::parse($assignLog->project_exit_date)->format('d-m-Y') : '-' }}</td>
                                                     <td>{{ $assignLog->effort_percentage ?? 0 }}%</td>
                                                     <td>{{ $assignLog->worked_days ?? 0 }}</td>
-                                                    <td class="text-center align-middle" style="width: 50px">
-                                                        <a href="" class="btn btn-light p-1 border-0" data-bs-toggle="tooltip" data-bs-title="{{ __('Edit') }}">
-                                                            {{-- {{ __('Edit') }} --}}
-                                                            <i class="ri-edit-line"></i>
-                                                        </a>
-                                                    </td>
+                                                    @if ($loop->first)
+                                                        <td rowspan="{{ $countRowspan }}" class="text-center align-middle" style="width: 50px">
+                                                            <a href="{{route('project.assign.showUpdateMemberAssignment', ['projectAssignId' => $user['project_assignment_id']])}}"
+                                                               class="btn btn-light p-1 border-0" data-bs-toggle="tooltip" data-bs-title="{{ __('Edit') }}">
+                                                                {{-- {{ __('Edit') }} --}}
+                                                                <i class="ri-edit-line"></i>
+                                                            </a>
+                                                        </td>
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                         @else
@@ -138,7 +142,8 @@
                                                 <td></td>
                                                 <td></td>
                                                 <td class="text-center align-middle" style="width: 50px">
-                                                    <a href="" class="btn btn-light p-1 border-0" data-bs-toggle="tooltip" data-bs-title="{{ __('Edit') }}">
+                                                    <a href="{{route('project.assign.showUpdateMemberAssignment', ['projectAssignId' => $user['project_assignment_id']])}}"
+                                                       class="btn btn-light p-1 border-0" data-bs-toggle="tooltip" data-bs-title="{{ __('Edit') }}">
                                                         {{-- {{ __('Edit') }} --}}
                                                         <i class="ri-edit-line"></i>
                                                     </a>

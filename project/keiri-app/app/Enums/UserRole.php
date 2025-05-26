@@ -7,9 +7,9 @@ use App\Traits\LocalizedEnum;
 enum UserRole: int
 {
     use LocalizedEnum;
-    case Admin = 9;
-    case Hr = 3;
-    case Manager = 2;
-    case Employee = 1;
+    case ADMIN = 9;
+    case HR = 3;
+    case MANAGER = 2;
+    case EMPLOYEE = 1;
 
 }
