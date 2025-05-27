@@ -11,9 +11,11 @@ use App\Models\Project;
 use App\Models\ProjectAssignment;
 use App\Models\ProjectAssignmentLog;
 use App\Models\User;
+use App\Utils\DateUtil;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
@@ -32,7 +34,7 @@ class ProjectController extends Controller
      */
     public function showProjectList()
     {
-        $projects = Project::query()->orderBy( 'project_name')->get();
+        $projects = Project::query()->orderBy('project_name')->get();
 
         $viewData = [
             'projects' => $projects,
@@ -137,7 +139,7 @@ class ProjectController extends Controller
     }
 
     /**
-     * @return Factory|View|Application|object
+     * @return RedirectResponse
      */
     public function processUpdateProject(ProjectRequest $request, $id)
     {
@@ -169,12 +171,18 @@ class ProjectController extends Controller
             $project->save();
 
             /* Get list of old members (including active and inactive). */
-            $existingAssignments = ProjectAssignment::where('project_id', $project->id)->get()->keyBy('user_id');
+            $existingAssignments = ProjectAssignment::query()
+                ->where('project_id', $project->id)
+                ->with(['logs' => function ($query) {
+                    $query->orderBy('project_join_date', 'DESC');
+                }])
+                ->get()->keyBy('user_id');
 
             /* New member list. */
             $newUserIds = !empty($validated['team_members']) ? array_map('intval', $validated['team_members']) : [];
 
             /* Handle new member list: Add or Reactivate. */
+            $currentDate = Carbon::now()->format('Y-m-d');
             foreach ($newUserIds as $userId) {
                 /* Member joined project. */
                 if (isset($existingAssignments[$userId])) {
@@ -184,12 +192,30 @@ class ProjectController extends Controller
                         $assignment->status = AssignmentStatus::ACTIVE->value;
                         $assignment->save();
 
-//                        $lastLog = $assignment->logs()->latest()->first();
-//                        if ($lastLog && $lastLog->project_exit_date !== null
-//                            && Carbon::parse($lastLog->project_join_date)->equalTo(Carbon::now())) {
-//                            $lastLog->project_exit_date = null;
-//                            $lastLog->save();
-//                        }
+                        /* Check log latest */
+                        $lastLog = $assignment->logs->first();
+                        if ($lastLog && $lastLog->project_exit_date) {
+                            $exitDate = $exitDate = Carbon::parse($lastLog->project_exit_date)->format('Y-m-d');
+                            if ($exitDate === $currentDate) {
+                                $lastLog->project_exit_date = null;
+                                $lastLog->worked_days = 0;
+                                $lastLog->save();
+                            } else {
+                                $projectAssignmentLog = new ProjectAssignmentLog();
+                                $projectAssignmentLog->project_id = $project->id;
+                                $projectAssignmentLog->user_id = $userId;
+                                $projectAssignmentLog->project_assignment_id = $assignment->id;
+                                $projectAssignmentLog->project_join_date = $currentDate;
+                                $projectAssignmentLog->save();
+                            }
+                        } else {
+                            $projectAssignmentLog = new ProjectAssignmentLog();
+                            $projectAssignmentLog->project_id = $project->id;
+                            $projectAssignmentLog->user_id = $userId;
+                            $projectAssignmentLog->project_assignment_id = $assignment->id;
+                            $projectAssignmentLog->project_join_date = $currentDate;
+                            $projectAssignmentLog->save();
+                        }
                     }
                     unset($existingAssignments[$userId]);
                 } else {
@@ -214,6 +240,14 @@ class ProjectController extends Controller
                 if ($assignment->status === AssignmentStatus::ACTIVE) {
                     $assignment->status = AssignmentStatus::INACTIVE->value;
                     $assignment->save();
+                }
+
+                /* Update log for member exit project. */
+                $lastLog = $assignment->logs->first();
+                if ($lastLog && !$lastLog->project_exit_date) {
+                    $lastLog->project_exit_date = $currentDate;
+                    $lastLog->worked_days = DateUtil::workingDaysBetween($currentDate, $lastLog->project_exit_date);
+                    $lastLog->save();
                 }
             }
 

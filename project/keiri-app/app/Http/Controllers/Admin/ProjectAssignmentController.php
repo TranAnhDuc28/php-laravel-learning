@@ -13,8 +13,11 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Throwable;
 
 class ProjectAssignmentController extends Controller
 {
@@ -108,7 +111,8 @@ class ProjectAssignmentController extends Controller
     /**
      * @return RedirectResponse
      */
-    public function processUpdateProjectAssignmentLog(ProjectAssignLogRequest $request, $projectAssignId) {
+    public function processUpdateProjectAssignmentLog(ProjectAssignLogRequest $request, $projectAssignId)
+    {
         $validator = Validator::make(['id' => $projectAssignId], [
             'id' => ['required', 'numeric', 'integer', Rule::exists(ProjectAssignment::class, 'id')],
         ]);
@@ -119,8 +123,33 @@ class ProjectAssignmentController extends Controller
 
         $validated = $request->validated();
 
-        dd($validated);
+        try {
 
-        return redirect()->route('project.assign.showProjectAssignmentDetail', ['projectId' => $projectAssign->project_id]);
+            DB::transaction(function () use ($projectAssign, $validated) {
+                foreach ($validated['logs'] as $logKey => $logValue) {
+                    $conditions = [
+                        'id' => $logValue['id'],
+                    ];
+
+                    $data = [
+                        'project_assignment_id' => $projectAssign->id,
+                        'project_id' => $projectAssign->project_id,
+                        'user_id' => $projectAssign->user_id,
+                        'project_join_date' => $logValue['project_join_date'],
+                        'project_exit_date' => $logValue['project_exit_date'],
+                        'effort_percentage' => $logValue['effort_percentage'],
+                        'worked_days' => $logValue['worked_days'],
+                    ];
+
+                    ProjectAssignmentLog::query()->updateOrCreate($conditions, $data);
+                }
+            });
+
+            return redirect()->route('project.assign.showProjectAssignmentDetail', ['projectId' => $projectAssign->project_id]);
+        } catch (Throwable $ex) {
+            Log::error(__METHOD__ . '(): ' . $ex->getMessage());
+
+            return back()->withInput();
+        }
     }
 }

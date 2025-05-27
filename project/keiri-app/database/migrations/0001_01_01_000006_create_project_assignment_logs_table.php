@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('project_assignment_logs', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('project_id');
+            $table->foreignId('user_id');
+            $table->foreignId('project_id');
             $table->foreignId('project_assignment_id')->constrained();
             $table->date('project_join_date')->nullable();
             $table->date('project_exit_date')->nullable();
@@ -24,7 +24,8 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->index(['user_id', 'project_id']);
+            $table->index(['project_assignment_id', 'project_id', 'user_id']);
+            $table->unique(['project_assignment_id', 'project_join_date']);
         });
     }
 

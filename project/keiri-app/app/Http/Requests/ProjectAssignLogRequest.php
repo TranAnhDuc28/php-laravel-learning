@@ -28,7 +28,6 @@ class ProjectAssignLogRequest extends FormRequest
         $rules = [
             'logs' => ['required', 'array'],
             'logs.*.id' => ['required', 'numeric', 'integer', Rule::exists(ProjectAssignmentLog::class, 'id')],
-            'logs.*.order' => ['required', 'numeric', 'integer', 'min:1', 'max:' . count($this->input('logs', []))],
             'logs.*.project_join_date' => ['required', 'date',],
             'logs.*.project_exit_date' => ['nullable', 'date', Rule::date()->after('logs.*.project_join_date'),],
             'logs.*.effort_percentage' => ['required', 'numeric', 'integer', 'between:0,100',],
