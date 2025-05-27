@@ -10,6 +10,5 @@ enum UserRole: int
     case ADMIN = 9;
     case HR = 3;
     case MANAGER = 2;
-    case EMPLOYEE = 1;
-
+    case USER = 1;
 }

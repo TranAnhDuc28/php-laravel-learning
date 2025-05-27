@@ -26,24 +26,24 @@
                                         <th>{{ __('Project name') }}</th>
                                         <th>{{ __('Project start date') }}</th>
                                         <th>{{ __('Project end date') }}</th>
-                                        <th>{{ __('Phase') }}</th>
-                                        <th>{{ __('Priority') }}</th>
+{{--                                        <th>{{ __('Phase') }}</th>--}}
+{{--                                        <th>{{ __('Priority') }}</th>--}}
                                         <th>{{ __('Status') }}</th>
-                                        <th>{{ __('Project outline') }}</th>
+                                        <th>{{ __('Note') }}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($projects as $project)
                                         @php
-                                            $priorityClassStyle = 'badge bg-secondary';
-                                            $priorityLabel = 'Medium';
-                                            if ($project->priority === \App\Enums\ProjectPriority::HIGH) {
-                                                $priorityClassStyle = 'badge bg-danger';
-                                                $priorityLabel = 'High';
-                                            } else if($project->priority === \App\Enums\ProjectPriority::LOW){
-                                                $priorityClassStyle = 'badge bg-info';
-                                                $priorityLabel = 'Low';
-                                            }
+//                                            $priorityClassStyle = 'badge bg-secondary';
+//                                            $priorityLabel = 'Medium';
+//                                            if ($project->priority === \App\Enums\ProjectPriority::HIGH) {
+//                                                $priorityClassStyle = 'badge bg-danger';
+//                                                $priorityLabel = 'High';
+//                                            } else if($project->priority === \App\Enums\ProjectPriority::LOW){
+//                                                $priorityClassStyle = 'badge bg-info';
+//                                                $priorityLabel = 'Low';
+//                                            }
 
                                             $statusClassStyle = 'badge bg-secondary-subtle text-secondary';
                                             $statusLabel = 'Not started';
@@ -65,10 +65,10 @@
                                             </td>
                                             <td>{{ \Carbon\Carbon::parse($project->project_start_date)->format('d-m-Y') }}</td>
                                             <td>{{ \Carbon\Carbon::parse($project->project_end_date)->format('d-m-Y') }}</td>
-                                            <td>{{ $project->phase }}</td>
-                                            <td>
-                                                <span class="{{ $priorityClassStyle }} fs-12">{{ $priorityLabel }}</span>
-                                            </td>
+{{--                                            <td>{{ $project->phase }}</td>--}}
+{{--                                            <td>--}}
+{{--                                                <span class="{{ $priorityClassStyle }} fs-12">{{ $priorityLabel }}</span>--}}
+{{--                                            </td>--}}
                                             <td>
                                                 <span class="{{ $statusClassStyle }} fs-12">{{ $statusLabel }}</span>
                                             </td>

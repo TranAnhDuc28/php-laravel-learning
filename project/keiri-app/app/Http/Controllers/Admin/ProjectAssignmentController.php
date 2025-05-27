@@ -11,6 +11,7 @@ use App\Models\ProjectAssignmentLog;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -92,7 +93,10 @@ class ProjectAssignmentController extends Controller
             abort(404);
         }
 
-        $projectAssign = ProjectAssignment::with(['project', 'logs', 'user'])->find((int)$projectAssignId);
+        $projectAssign = ProjectAssignment::with(['project', 'user',
+            'logs' => function ($query) {
+                $query->orderBy('project_join_date');
+            }])->find((int)$projectAssignId);
 
         $viewData = [
             'projectAssign' => $projectAssign,
@@ -102,7 +106,7 @@ class ProjectAssignmentController extends Controller
     }
 
     /**
-     * @return Factory|View|Application|object
+     * @return RedirectResponse
      */
     public function processUpdateProjectAssignmentLog(ProjectAssignLogRequest $request, $projectAssignId) {
         $validator = Validator::make(['id' => $projectAssignId], [
@@ -111,12 +115,12 @@ class ProjectAssignmentController extends Controller
         if ($validator->fails()) {
             abort(404);
         }
+        $projectAssign = ProjectAssignment::with(['project', 'logs', 'user'])->find((int)$projectAssignId);
 
         $validated = $request->validated();
 
-        $projectAssign = ProjectAssignment::with(['project', 'logs', 'user'])->find((int)$projectAssignId);
+        dd($validated);
 
-
-        return redirect()->route('project.assign.showProjectAssignmentDetail', ['projectAssignmentId' => $projectAssign->project_id]);
+        return redirect()->route('project.assign.showProjectAssignmentDetail', ['projectId' => $projectAssign->project_id]);
     }
 }

@@ -21,12 +21,12 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     @php
-                                        $priorityLabel = 'Medium';
-                                        if ($projectAssignmentDetail->priority === \App\Enums\ProjectPriority::HIGH) {
-                                            $priorityLabel = 'High';
-                                        } else if($projectAssignmentDetail->priority === \App\Enums\ProjectPriority::LOW){
-                                            $priorityLabel = 'Low';
-                                        }
+//                                        $priorityLabel = 'Medium';
+//                                        if ($projectAssignmentDetail->priority === \App\Enums\ProjectPriority::HIGH) {
+//                                            $priorityLabel = 'High';
+//                                        } else if($projectAssignmentDetail->priority === \App\Enums\ProjectPriority::LOW){
+//                                            $priorityLabel = 'Low';
+//                                        }
 
                                         $statusLabel = 'Not started';
                                         if ($projectAssignmentDetail->status === \App\Enums\ProjectStatus::IN_PROGRESS) {
@@ -65,15 +65,15 @@
                                         <td colspan="2">{{ \Carbon\Carbon::parse($projectAssignmentDetail->project_end_date)->format('d-m-Y') }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">{{ __('Phase') }}</th>
-                                        <td>{{ $projectAssignmentDetail->phase }}</td>
-                                        <th scope="row">{{ __('Priority') }}</th>
-                                        <td>{{ $priorityLabel }}</td>
+{{--                                        <th scope="row">{{ __('Phase') }}</th>--}}
+{{--                                        <td>{{ $projectAssignmentDetail->phase }}</td>--}}
+{{--                                        <th scope="row">{{ __('Priority') }}</th>--}}
+{{--                                        <td>{{ $priorityLabel }}</td>--}}
                                         <th scope="row">{{ __('Status') }}</th>
-                                        <td colspan="2">{{ $statusLabel }}</td>
+                                        <td colspan="6">{{ $statusLabel }}</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">{{ __('Project outline') }}</th>
+                                        <th scope="row">{{ __('Note') }}</th>
                                         <td colspan="6">{{ $projectAssignmentDetail->note }}</td>
                                     </tr>
                                     <tr>

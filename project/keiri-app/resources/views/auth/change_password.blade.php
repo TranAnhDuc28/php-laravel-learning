@@ -31,7 +31,9 @@
                                             </div>
                                         @endif
                                         <div class="row">
-                                            <label for="id-current_password" class="col-form-label col-md-3">{{ __('Current Password') }} <span class="text-danger">*</span></label>
+                                            <label for="id-current_password" class="col-form-label col-md-3 text-nowrap">
+                                                {{ __('Current Password') }} <span class="text-danger">*</span>
+                                            </label>
                                             <div class="col-md-9">
                                                 <input type="password" id="id-current_password" name="current_password"
                                                        class="form-control @error('current_password') is-invalid @enderror show-password">
@@ -43,7 +45,9 @@
                                             </div>
                                         </div>
                                         <div class="row mt-3">
-                                            <label for="id-new_password" class="col-form-label col-md-3">{{ __('New Password') }} <span class="text-danger">*</span></label>
+                                            <label for="id-new_password" class="col-form-label col-md-3 text-nowrap">
+                                                {{ __('New Password') }} <span class="text-danger">*</span>
+                                            </label>
                                             <div class="col-md-9">
                                                 <input type="password" id="id-new_password" name="new_password"
                                                        class="form-control @error('new_password') is-invalid @enderror show-password">
@@ -55,7 +59,9 @@
                                             </div>
                                         </div>
                                         <div class="row mt-3">
-                                            <label for="id-new_password_confirmation" class="col-form-label col-md-3">{{ __('Confirm Password') }} <span class="text-danger">*</span></label>
+                                            <label for="id-new_password_confirmation" class="col-form-label col-md-3 text-nowrap">
+                                                {{ __('Confirm Password') }} <span class="text-danger">*</span>
+                                            </label>
                                             <div class="col-md-9">
                                                 <input type="password" id="id-new_password_confirmation" name="new_password_confirmation" class="form-control show-password">
                                             </div>

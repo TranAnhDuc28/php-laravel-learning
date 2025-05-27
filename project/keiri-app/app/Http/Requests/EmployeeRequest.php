@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\UserRole;
 use App\Enums\UserStatus;
 use App\Models\Department;
 use App\Models\User;
@@ -33,6 +34,7 @@ class EmployeeRequest extends FormRequest
             'department_id' => ['nullable', 'numeric', 'integer', Rule::exists(Department::class, 'id')],
             'job_position' => ['nullable', 'string', 'max:255'],
             'full_name' => ['required', 'string', 'max:255'],
+            'role' => ['required', 'numeric', 'integer', Rule::enum(UserRole::class)->only([UserRole::MANAGER, UserRole::USER])],
             'join_date' => ['nullable', 'date'],
             'note' => ['nullable', 'string', 'max:255'],
         ];

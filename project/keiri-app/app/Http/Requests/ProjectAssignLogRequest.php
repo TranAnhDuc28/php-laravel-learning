@@ -27,7 +27,8 @@ class ProjectAssignLogRequest extends FormRequest
     {
         $rules = [
             'logs' => ['required', 'array'],
-            'logs.*' => ['numeric', 'integer', Rule::exists(ProjectAssignmentLog::class, 'id')],
+            'logs.*.id' => ['required', 'numeric', 'integer', Rule::exists(ProjectAssignmentLog::class, 'id')],
+            'logs.*.order' => ['required', 'numeric', 'integer', 'min:1', 'max:' . count($this->input('logs', []))],
             'logs.*.project_join_date' => ['required', 'date',],
             'logs.*.project_exit_date' => ['nullable', 'date', Rule::date()->after('logs.*.project_join_date'),],
             'logs.*.effort_percentage' => ['required', 'numeric', 'integer', 'between:0,100',],
@@ -58,5 +59,18 @@ class ProjectAssignLogRequest extends FormRequest
         }
 
         return $validated;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function messages(): array
+    {
+        return [
+            'logs.*.id.numeric' => 'The value ":input" field ID must be a number.',
+            'logs.*.id.integer' => 'The value ":input" for log member ID is not a valid number.',
+            'logs.*.id.exists' => 'The log with ID :input does not exist.',
+            'logs.*.id.required' => 'The log field ID is required.',
+        ];
     }
 }

@@ -41,7 +41,7 @@
                                                 $employeeStatusClassStyle = 'badge bg-success-subtle text-success';
                                                 $employeeStatusLabel = 'Active';
                                             } else if($employee->status === \App\Enums\UserStatus::INACTIVE){
-                                                $employeeStatusClassStyle = 'badge bg-secondary-subtle text-secondary';
+                                                $employeeStatusClassStyle = 'badge bg-dark-subtle text-dark';
                                                 $employeeStatusLabel = 'Inactive';
                                             }
                                         @endphp

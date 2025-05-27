@@ -70,12 +70,12 @@
 
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6 mt-3">
-                                                <label for="project_start_date" class="form-label">{{ __('Start date') }} <span class="text-danger">*</span></label>
+                                                <label for="id-project_start_date" class="form-label">{{ __('Start date') }} <span class="text-danger">*</span></label>
                                                 <div class="input-group @error('project_start_date') has-validation @enderror">
                                                     <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
-                                                    <input type="text" id="project_start_date" name="project_start_date"
+                                                    <input type="text" id="id-project_start_date" name="project_start_date"
                                                            class="form-control flatpickr flatpickr-input @error('project_start_date') is-invalid @enderror"
-                                                           value="{{ old('project_start_date') }}">
+                                                           value="{{ old('project_start_date') }}" autocomplete="off">
                                                     @error('project_start_date')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -84,12 +84,12 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 col-md-6 mt-3">
-                                                <label for="project_end_date" class="form-label">{{ __('End date') }} <span class="text-danger">*</span></label>
+                                                <label for="id-project_end_date" class="form-label">{{ __('End date') }} <span class="text-danger">*</span></label>
                                                 <div class="input-group @error('project_end_date') has-validation @enderror">
                                                     <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
-                                                    <input type="text" id="project_end_date" name="project_end_date"
+                                                    <input type="text" id="id-project_end_date" name="project_end_date"
                                                            class="form-control flatpickr flatpickr-input @error('project_end_date') is-invalid @enderror"
-                                                           value="{{ old('project_end_date') }}">
+                                                           value="{{ old('project_end_date') }}" autocomplete="off">
                                                     @error('project_end_date')
                                                     <span class="invalid-feedback">
                                                         <strong>{{ $message }}</strong>
@@ -99,43 +99,31 @@
                                             </div>
                                         </div>
 
-                                        <div class="row mt-3">
-                                            <div class="col-12">
-                                                <label for="id-note" class="form-label">{{ __('Project outline') }}</label>
-                                                <textarea id="id-note" name="note" rows="3" class="form-control @error('note') is-invalid @enderror">{{ old('note') }}</textarea>
-                                                @error('note')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
-                                        </div>
-
                                         <div class="row">
-                                            <div class="col-sm-12 col-md-4 mt-3">
-                                                <label for="id-phase" class="form-label">{{ __('Phase') }}</label>
-                                                <input type="number" id="id-phase" name="phase" class="form-control @error('phase') is-invalid @enderror" value="{{ old('phase') }}">
-                                                @error('phase')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-sm-12 col-md-4 mt-3">
-                                                <label for="id-priority" class="form-label">{{ __('Priority') }}</label>
-                                                <select id="id-priority" name="priority" class="form-select @error('priority') is-invalid @enderror">
-                                                    <option value="">-</option>
-                                                    <option value="{{ \App\Enums\ProjectPriority::LOW }}" @selected(old('priority') === \App\Enums\ProjectPriority::LOW)>{{ __('Low') }}</option>
-                                                    <option value="{{ \App\Enums\ProjectPriority::MEDIUM }}" @selected(old('priority') === \App\Enums\ProjectPriority::MEDIUM)>{{ __('Medium') }}</option>
-                                                    <option value="{{ \App\Enums\ProjectPriority::HIGH }}" @selected(old('priority') === \App\Enums\ProjectPriority::HIGH)>{{ __('High') }}</option>
-                                                </select>
-                                                @error('priority')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                                @enderror
-                                            </div>
-                                            <div class="col-sm-12 col-md-4 mt-3">
+{{--                                            <div class="col-sm-12 col-md-4 mt-3">--}}
+{{--                                                <label for="id-phase" class="form-label">{{ __('Phase') }}</label>--}}
+{{--                                                <input type="number" id="id-phase" name="phase" class="form-control @error('phase') is-invalid @enderror" value="{{ old('phase') }}">--}}
+{{--                                                @error('phase')--}}
+{{--                                                <span class="invalid-feedback" role="alert">--}}
+{{--                                                    <strong>{{ $message }}</strong>--}}
+{{--                                                </span>--}}
+{{--                                                @enderror--}}
+{{--                                            </div>--}}
+{{--                                            <div class="col-sm-12 col-md-4 mt-3">--}}
+{{--                                                <label for="id-priority" class="form-label">{{ __('Priority') }}</label>--}}
+{{--                                                <select id="id-priority" name="priority" class="form-select @error('priority') is-invalid @enderror">--}}
+{{--                                                    <option value="">-</option>--}}
+{{--                                                    <option value="{{ \App\Enums\ProjectPriority::LOW }}" @selected(old('priority') === \App\Enums\ProjectPriority::LOW)>{{ __('Low') }}</option>--}}
+{{--                                                    <option value="{{ \App\Enums\ProjectPriority::MEDIUM }}" @selected(old('priority') === \App\Enums\ProjectPriority::MEDIUM)>{{ __('Medium') }}</option>--}}
+{{--                                                    <option value="{{ \App\Enums\ProjectPriority::HIGH }}" @selected(old('priority') === \App\Enums\ProjectPriority::HIGH)>{{ __('High') }}</option>--}}
+{{--                                                </select>--}}
+{{--                                                @error('priority')--}}
+{{--                                                <span class="invalid-feedback" role="alert">--}}
+{{--                                                    <strong>{{ $message }}</strong>--}}
+{{--                                                </span>--}}
+{{--                                                @enderror--}}
+{{--                                            </div>--}}
+                                            <div class="col-sm-12 col-md-6 mt-3">
                                                 <label for="id-project-status" class="form-label">{{ __('Status') }}</label>
                                                 <select id="id-project-status" name="status" class="form-select @error('status') is-invalid @enderror">
                                                     <option value="">-</option>
@@ -144,6 +132,18 @@
                                                     <option value="{{ \App\Enums\ProjectStatus::COMPLETED }}" @selected(old('status') === \App\Enums\ProjectStatus::COMPLETED)>{{ __('Complete') }}</option>
                                                 </select>
                                                 @error('status')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-3">
+                                            <div class="col-12">
+                                                <label for="id-note" class="form-label">{{ __('Note') }}</label>
+                                                <textarea id="id-note" name="note" rows="3" class="form-control @error('note') is-invalid @enderror">{{ old('note') }}</textarea>
+                                                @error('note')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -175,7 +175,7 @@
                                                 $teamMembersErrors = Illuminate\Support\Arr::flatten($errors->get('team_members.*'));
                                             @endphp
                                             @if(!empty($teamMembersErrors))
-                                                <div class="choices-msg-error text-danger mt-1" role="alert">
+                                                <div class="msg-error text-danger mt-1" role="alert">
                                                     <strong>{{ __('Invalid team members:') }}</strong>
                                                     <ul class="mb-0">
                                                         @foreach($teamMembersErrors as $message)

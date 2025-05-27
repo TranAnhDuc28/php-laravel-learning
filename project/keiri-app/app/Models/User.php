@@ -112,6 +112,6 @@ class User extends Authenticatable
      */
     public function isEmployee(): bool
     {
-        return $this->role == UserRole::EMPLOYEE;
+        return $this->role == UserRole::USER;
     }
 }

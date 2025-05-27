@@ -19,7 +19,7 @@ return new class extends Migration
             /* Info at work. */
             $table->foreignId('department_id')->nullable()->constrained()->nullOnDelete();
             $table->string('job_position')->nullable();
-//            $table->decimal('monthly_cost')->nullable();
+            $table->decimal('employee_costs', 15)->nullable();
 
             /* General information. */
             $table->string('full_name');
@@ -32,7 +32,7 @@ return new class extends Migration
             /* Other. */
             $table->string('address')->nullable();
             $table->string('password');
-            $table->integer('role')->default(UserRole::EMPLOYEE);
+            $table->integer('role')->default(UserRole::USER);
             $table->date('join_date')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('status')->default(UserStatus::ACTIVE);

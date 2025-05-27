@@ -1,3 +1,4 @@
+@php use App\Enums\UserRole; @endphp
 @extends('layouts.app')
 
 @section('title', __('Create Employee | Human Resources'))
@@ -49,6 +50,18 @@
 
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6 mb-3">
+                                        <label for="id-role" class="form-label">{{ __('Role') }} <span class="text-danger">*</span></label>
+                                        <select id="id-role" name="role" class="form-select @error('role') is-invalid @enderror">
+                                            <option value="{{ UserRole::MANAGER }}" @selected(old('role') === UserRole::MANAGER)>{{ __('Manager') }}</option>
+                                            <option value="{{ UserRole::USER }}" @selected(old('role', UserRole::USER) === UserRole::USER)>{{ __('User') }}</option>
+                                        </select>
+                                        @error('role')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 mb-3">
                                         <label for="id-full_name" class="form-label">{{ __('Full Name') }} <span class="text-danger">*</span></label>
                                         <input type="text" id="id-full_name" name="full_name"
                                                class="form-control @error('full_name') is-invalid @enderror"
@@ -90,7 +103,7 @@
                                     <div class="col-sm-12 col-md-6 mb-3">
                                         <label for="id-join_date" class="form-label">{{ __('Join date') }}</label>
                                         <div class="input-group">
-                                            <input type="text" id="id-join_date" name="join_date"
+                                            <input type="text" id="id-join_date" name="join_date" autocomplete="off"
                                                    class="form-control @error('join_date') is-invalid @enderror"
                                                    value="{{ old('join_date') }}">
                                             <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>

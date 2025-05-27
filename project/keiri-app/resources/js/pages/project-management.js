@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
             {targets: 0, width: '3%', type: 'string'},
             {targets: 3, type: 'string'},
             {targets: 5, type: 'string'},
-            {targets: 8, width: 500, className: 'text-wrap'},
+            {targets: 6, width: 500, className: 'text-wrap'},
         ],
         fixedColumns: {
             left: 3

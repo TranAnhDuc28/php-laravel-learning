@@ -58,6 +58,7 @@ class HumanResourcesController extends Controller
             $employee->department_id = $validated['department_id'] ?? null;
             $employee->job_position = $validated['job_position'] ?? null;
             $employee->full_name = $validated['full_name'];
+            $employee->role = (int)$validated['role'];
             $employee->email = $validated['email'];
             $employee->password = $validated['password'];
             $employee->join_date = $validated['join_date'] ?? null;
@@ -116,6 +117,7 @@ class HumanResourcesController extends Controller
             $employee->department_id = $validated['department_id'] ?? null;
             $employee->job_position = $validated['job_position'] ?? null;
             $employee->full_name = $validated['full_name'];
+            $employee->role = (int)$validated['role'];
             $employee->email = $validated['email'];
             $employee->join_date = $joinDate;
             $employee->note = $validated['note'] ?? null;
