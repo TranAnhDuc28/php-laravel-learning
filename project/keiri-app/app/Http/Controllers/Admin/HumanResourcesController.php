@@ -62,6 +62,7 @@ class HumanResourcesController extends Controller
             $employee->email = $validated['email'];
             $employee->password = $validated['password'];
             $employee->join_date = $validated['join_date'] ?? null;
+            $employee->employee_costs = $validated['employee_costs'] ?? 0;
             $employee->note = $validated['note'] ?? null;
             $employee->save();
 
@@ -120,6 +121,7 @@ class HumanResourcesController extends Controller
             $employee->role = (int)$validated['role'];
             $employee->email = $validated['email'];
             $employee->join_date = $joinDate;
+            $employee->employee_costs = $validated['employee_costs'] ?? 0;
             $employee->note = $validated['note'] ?? null;
             $employee->status = $validated['status'];
             $employee->save();

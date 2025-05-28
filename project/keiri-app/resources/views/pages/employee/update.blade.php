@@ -1,4 +1,4 @@
-@php use App\Enums\UserRole;use App\Enums\UserStatus; @endphp
+@php use App\Enums\UserRole;use App\Enums\UserStatus;use Illuminate\Support\Carbon; @endphp
 @extends('layouts.app')
 
 @section('title', __('Update Employee | Human Resources'))
@@ -94,10 +94,21 @@
                                         <div class="input-group">
                                             <input type="text" id="id-join_date" name="join_date" autocomplete="off"
                                                    class="form-control @error('join_date') is-invalid @enderror"
-                                                   value="{{ old('join_date', \Illuminate\Support\Carbon::parse($employee->join_date)->format('d-m-Y')) }}">
+                                                   value="{{ old('join_date', $employee->join_date ? Carbon::parse($employee->join_date)->format('d-m-Y') : null) }}">
                                             <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
                                         </div>
                                         @error('join_date')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 mb-3">
+                                        <label for="id-employee_costs" class="form-label">{{ __('Employee costs') }}</label>
+                                        <input type="text" id="id-employee_costs" name="employee_costs" autocomplete="off"
+                                               class="form-control @error('employee_costs') is-invalid @enderror" min="0"
+                                               value="{{ old('employee_costs', $employee->employee_costs) }}">
+                                        @error('employee_costs')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

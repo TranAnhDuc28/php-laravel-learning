@@ -28,12 +28,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'department_id',
+        'job_position',
         'full_name',
         'email',
         'password',
         'role',
-        'job_position',
         'join_date',
+        'employee_costs',
         'email_verified_at',
     ];
 
@@ -59,6 +60,7 @@ class User extends Authenticatable
             'password' => 'hashed',
             'role' => UserRole::class,
             'email_verified_at' => 'datetime',
+            'employee_costs' => 'string',
         ];
     }
 

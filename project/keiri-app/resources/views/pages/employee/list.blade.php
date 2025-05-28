@@ -25,9 +25,10 @@
                                         <th>{{ __('Full Name') }}</th>
                                         <th>{{ __('Email') }}</th>
                                         <th>{{ __('Working department') }}</th>
-                                        <th>{{ __('Position') }}</th>
+                                        <th>{{ __('Job position') }}</th>
 {{--                                        <th>{{ __('Phone Number') }}</th>--}}
 {{--                                        <th>{{ __('Date Of Birth') }}</th>--}}
+                                        <th>{{ __('Employee costs') }}</th>
                                         <th>{{ __('Join Date') }}</th>
                                         <th>{{ __('Status') }}</th>
                                     </tr>
@@ -52,9 +53,10 @@
                                             </td>
                                             <td>{{ $employee->email }}</td>
                                             <td>{{ $employee->department->name ?? '' }}</td>
-                                            <td>{{ $employee->position }}</td>
+                                            <td>{{ $employee->job_position }}</td>
 {{--                                            <td>{{ $employee->phone_number }}</td>--}}
 {{--                                            <td>{{ $employee->date_of_birth }}</td>--}}
+                                            <td>{{ $employee->employee_costs }}</td>
                                             <td>{{ $employee->join_date ? \Carbon\Carbon::parse($employee->join_date)->format('d-m-Y') : null }}</td>
                                             <td>
                                                 <span class="{{ $employeeStatusClassStyle }} fs-12">{{ $employeeStatusLabel }}</span>

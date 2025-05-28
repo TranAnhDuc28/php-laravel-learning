@@ -36,7 +36,7 @@ class ProjectRequest extends FormRequest
             'note' => ['nullable', 'string', 'max:1000'],
             'phase' => ['nullable', 'numeric', 'integer'],
             'priority' => ['nullable', Rule::enum(ProjectPriority::class)],
-            'status' => ['nullable', Rule::enum(ProjectStatus::class)],
+            'status' => ['required', Rule::enum(ProjectStatus::class)],
             'team_members' => ['nullable', 'array'],
             'team_members.*' => ['numeric', 'integer', Rule::exists(User::class, 'id')],
         ];

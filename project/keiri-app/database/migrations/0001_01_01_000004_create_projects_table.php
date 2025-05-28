@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('project_end_date');
             $table->integer('phase')->nullable();
             $table->integer('priority')->nullable();
-            $table->integer('status')->default(ProjectStatus::NOT_STARTED->value);
+            $table->integer('status')->default(ProjectStatus::IN_PROGRESS->value);
             $table->string('note')->nullable();
 
             $table->timestamps();

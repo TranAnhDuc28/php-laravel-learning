@@ -36,6 +36,7 @@ class EmployeeRequest extends FormRequest
             'full_name' => ['required', 'string', 'max:255'],
             'role' => ['required', 'numeric', 'integer', Rule::enum(UserRole::class)->only([UserRole::MANAGER, UserRole::USER])],
             'join_date' => ['nullable', 'date'],
+            'employee_costs' => ['nullable', 'numeric', 'min:0'],
             'note' => ['nullable', 'string', 'max:255'],
         ];
 

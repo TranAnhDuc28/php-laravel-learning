@@ -115,76 +115,50 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Submit.
-    // document.getElementById('btn-save-project')?.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     const form = {
-    //         'use_existing_project': document.getElementById('switchUseExistingProject')?.checked,
-    //         'project_code': document.getElementById('id-project-code')?.value,
-    //         'project_name': document.getElementById('id-project-name')?.value,
-    //         'project_start_date': document.getElementById('id-project-start-date')?.value,
-    //         'project_end_date': document.getElementById('id-project-end-date')?.value,
-    //         'phase': document.getElementById('id-phase')?.value,
-    //         'priority': document.getElementById('id-priority')?.value,
-    //         'status': document.getElementById('id-project-status')?.value,
-    //     };
-    //     console.log(form);
-    // });
-
     /* Multiple project assign. */
     const teamMembers = document.getElementById('team-members');
     if (teamMembers) {
-        const teamMembersChoices = new Choices(teamMembers, {
+        new Choices(teamMembers, {
             removeItems: true,
             removeItemButton: true,
             searchEnabled: true,
             placeholderValue: 'Select team members',
             noChoicesText: 'No members available',
         });
-
-        // teamMembers.addEventListener('change', function () {
-        //     const selectedOptions = teamMembersChoices.getValue();
-        //     console.log('Selected options:', selectedOptions);
-        //     renderTeamMembersForm(selectedOptions);
-        // });
-
-        // /**
-        //  * Render form create project assign members
-        //  * @param selectedOptions
-        //  */
-        // const renderTeamMembersForm = (selectedOptions) => {
-        //     const teamMemberForm = document.getElementById('team-members-form');
-        //     if (teamMemberForm) {
-        //         const fragment = document.createDocumentFragment();
-        //         teamMemberForm.innerHTML = '';
-        //
-        //         selectedOptions.forEach(option => {
-        //             const div = document.createElement('div');
-        //             div.className = 'row mb-3 d-flex align-items-center';
-        //             div.innerHTML = `
-        //                 <input type="hidden" class="form-control" name="user_id" value="${option.value}" readonly disabled>
-        //                 <div class="col-lg-3 mt-1">
-        //                     <input type="text" class="form-control" value="${option.label}" readonly disabled>
-        //                 </div>
-        //                 <div class="col-lg-2 mt-1">
-        //                     <div class="form-check">
-        //                         <input type="checkbox" class="form-check-input" name="is_manager[${option.value}]">
-        //                         <label class="form-check-label">Manager</label>
-        //                     </div>
-        //                 </div>
-        //             `;
-        //             fragment.appendChild(div);
-        //         });
-        //
-        //         teamMemberForm.appendChild(fragment);
-        //     }
-        // }
-        //
-        // const initialValues = teamMembersChoices.getValue();
-        // if (initialValues.length > 0) {
-        //     renderTeamMembersForm(initialValues);
-        // }
     }
+
+    // /**
+    //  * Calculate worked day.
+    //  */
+    // const calculateWorkedDays = () => {
+    //     if (!joinDateInput || !exitDateInput) {
+    //         document.getElementById("workedDays").value = 0;
+    //         return;
+    //     }
+    //
+    //     const joinDate = new Date(joinDateInput);
+    //     const exitDate = new Date(exitDateInput);
+    //
+    //     if (joinDate > exitDate) {
+    //         document.getElementById("workedDays").value = 0;
+    //         return;
+    //     }
+    //
+    //     let workDays = 0;
+    //     const currentDate = new Date(joinDate);
+    //
+    //     while (currentDate <= exitDate) {
+    //         const day = currentDate.getDay(); // 0 = Sunday, 6 = Saturday
+    //         if (day !== 0 && day !== 6) {
+    //             workDays++;
+    //         }
+    //         currentDate.setDate(currentDate.getDate() + 1);
+    //     }
+    //
+    //     document.getElementById("workedDays").value = workDays;
+    // }
+    // document.getElementById("joinDate").addEventListener("change", calculateWorkedDays);
+    // document.getElementById("exitDate").addEventListener("change", calculateWorkedDays);
 });
 
 

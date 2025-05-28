@@ -7,8 +7,8 @@
     <div class="page-content">
         <div class="container-fluid">
             <x-breadcrumb
-                :title="'Create Employee'"
-                :breadcrumbs="[
+                    :title="'Create Employee'"
+                    :breadcrumbs="[
                    ['label' => 'Human Resources', 'url' => null],
                    ['label' => 'Create Employee', 'url' => route('project.showProjectList')],
                 ]"
@@ -104,14 +104,25 @@
                                         <label for="id-join_date" class="form-label">{{ __('Join date') }}</label>
                                         <div class="input-group">
                                             <input type="text" id="id-join_date" name="join_date" autocomplete="off"
-                                                   class="form-control @error('join_date') is-invalid @enderror"
+                                                   class="form-control flatpickr flatpickr-input @error('join_date') is-invalid @enderror"
                                                    value="{{ old('join_date') }}">
                                             <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
                                         </div>
                                         @error('join_date')
                                         <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 mb-3">
+                                        <label for="id-employee_costs" class="form-label">{{ __('Employee costs') }}</label>
+                                        <input type="text" id="id-employee_costs" name="employee_costs" autocomplete="off"
+                                               class="form-control @error('employee_costs') is-invalid @enderror" min="0"
+                                               value="{{ old('employee_costs', 0) }}">
+                                        @error('employee_costs')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                         @enderror
                                     </div>
                                 </div>

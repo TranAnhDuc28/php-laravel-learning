@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
     Route::group(['middleware' => ['check_role:' . UserRole::ADMIN->value]], function () {
         Route::get('reports/monthly-payment-request', [ReportController::class, 'showMonthlyPaymentRequest'])->name('report.showMonthlyPaymentRequest');
         Route::get('reports/project-payment-request', [ReportController::class, 'showProjectPaymentRequest'])->name('report.showProjectPaymentRequest');
+        Route::get('reports/preview/monthly-payment-request', [ReportController::class, 'generateDataMonthlyPaymentRequest'])->name('report.generateDataMonthlyPaymentRequest');
+        Route::get('reports/preview/project-payment-request', [ReportController::class, 'generateDataMonthlyPaymentRequest'])->name('report.generateDataMonthlyPaymentRequest2');
         Route::get('reports/export/monthly-payment-request', [ReportController::class, 'exportReport'])->name('report.exportMonthlyPaymentRequest');
         Route::get('reports/export/project-payment-request', [ReportController::class, 'exportReport'])->name('report.exportProjectPaymentRequest');
     });

@@ -126,7 +126,6 @@
                                             <div class="col-sm-12 col-md-6 mt-3">
                                                 <label for="id-project-status" class="form-label">{{ __('Status') }}</label>
                                                 <select id="id-project-status" name="status" class="form-select @error('status') is-invalid @enderror">
-                                                    <option value="">-</option>
                                                     <option value="{{ \App\Enums\ProjectStatus::NOT_STARTED}}" @selected(old('status') === \App\Enums\ProjectStatus::NOT_STARTED)>{{ __('Not started') }}</option>
                                                     <option value="{{ \App\Enums\ProjectStatus::IN_PROGRESS }}" @selected(old('status') === \App\Enums\ProjectStatus::IN_PROGRESS)>{{ __('In progress') }}</option>
                                                     <option value="{{ \App\Enums\ProjectStatus::COMPLETED }}" @selected(old('status') === \App\Enums\ProjectStatus::COMPLETED)>{{ __('Complete') }}</option>

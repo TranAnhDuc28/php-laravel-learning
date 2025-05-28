@@ -19,7 +19,7 @@ return new class extends Migration
             /* Info at work. */
             $table->foreignId('department_id')->nullable()->constrained()->nullOnDelete();
             $table->string('job_position')->nullable();
-            $table->decimal('employee_costs', 15)->nullable();
+            $table->decimal('employee_costs', 15, 4)->default(0);
 
             /* General information. */
             $table->string('full_name');

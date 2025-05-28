@@ -55,7 +55,8 @@ class ProjectAssignmentController extends Controller
         $usersWithLogs = null;
         $projectAssignmentDetail = Project::with([
             'users' => function ($query) {
-                $query->select('users.id', 'users.full_name')->withPivot(['id', 'status', 'note']);
+                $query->select('users.id', 'users.full_name')->orderBy('users.full_name')
+                    ->withPivot(['id', 'status', 'note']);
             }])->find((int)$projectId);
 
         // Get list id member assign.
@@ -64,7 +65,7 @@ class ProjectAssignmentController extends Controller
             $projectAssignmentLogs = ProjectAssignmentLog::query()->whereIn('project_assignment_id', $projectAssignIds)->get();
 
             $usersWithLogs = $projectAssignmentDetail->users->map(function ($user) use ($projectAssignmentLogs) {
-                $logs = $projectAssignmentLogs->where('project_assignment_id', $user->pivot->id);
+                $logs = $projectAssignmentLogs->where('project_assignment_id', $user->pivot->id)->sortByDesc('project_join_date');
                 return [
                     'id' => $user->id,
                     'full_name' => $user->full_name,
@@ -98,7 +99,7 @@ class ProjectAssignmentController extends Controller
 
         $projectAssign = ProjectAssignment::with(['project', 'user',
             'logs' => function ($query) {
-                $query->orderBy('project_join_date');
+                $query->orderBy('project_join_date', 'desc');
             }])->find((int)$projectAssignId);
 
         $viewData = [

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\AssignmentStatus;
 use App\Enums\UserStatus;
-use App\Exports\ExportExcelMonthlyPaymentRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProjectRequest;
 use App\Models\Project;
@@ -18,13 +17,10 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use Maatwebsite\Excel\Facades\Excel;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Throwable;
 
 class ProjectController extends Controller
@@ -92,7 +88,7 @@ class ProjectController extends Controller
                     $projectAssignmentLog->project_id = $project->id;
                     $projectAssignmentLog->user_id = (int)$teamMember;
                     $projectAssignmentLog->project_assignment_id = $projectAssignment->id;
-                    $projectAssignmentLog->project_join_date = Carbon::now()->get('Y-m-d');
+                    $projectAssignmentLog->project_join_date = Carbon::now()->format('Y-m-d');
                     $projectAssignmentLog->save();
                 }
             }
@@ -246,7 +242,7 @@ class ProjectController extends Controller
                 $lastLog = $assignment->logs->first();
                 if ($lastLog && !$lastLog->project_exit_date) {
                     $lastLog->project_exit_date = $currentDate;
-                    $lastLog->worked_days = DateUtil::workingDaysBetween($currentDate, $lastLog->project_exit_date);
+                    $lastLog->worked_days = DateUtil::workingDaysBetween($lastLog->project_join_date, $lastLog->project_exit_date);
                     $lastLog->save();
                 }
             }
