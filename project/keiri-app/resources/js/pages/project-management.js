@@ -3,7 +3,6 @@ import DataTable from 'datatables.net-bs5';
 import 'datatables.net-fixedcolumns-bs5';
 import 'datatables.net-fixedheader-bs5';
 import flatpickr from 'flatpickr';
-import 'tom-select';
 import Choices from "choices.js";
 
 document.addEventListener('DOMContentLoaded', () => {

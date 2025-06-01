@@ -20,7 +20,7 @@
                             <div class="table-responsive h-100">
                                 <table id="project_list" class="table table-striped nowrap w-100 h-100">
                                     <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>#</th>
                                         <th>{{ __('Project code') }}</th>
                                         <th>{{ __('Project name') }}</th>

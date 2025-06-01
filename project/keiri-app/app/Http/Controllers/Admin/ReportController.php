@@ -26,7 +26,23 @@ class ReportController extends Controller
      */
     public function showMonthlyPaymentRequest()
     {
-        return view('pages.report.monthly_payment_request');
+        $defaultEndMonth = Carbon::now()->month;
+        $defaultYear = Carbon::now()->year;
+
+        $endDate = Carbon::create($defaultYear, $defaultEndMonth)->endOfMonth()->format('d/m/Y');
+
+        $monthReports[] = $endDate;
+        $startMonth = null;
+        $endMonth = null;
+
+        $viewData = [
+            'monthReports' => $monthReports,
+            'dataReports' => [],
+            'startMonth' => $startMonth,
+            'endMonth' => $endMonth,
+            'year' => $defaultYear,
+        ];
+        return view('pages.report.monthly_payment_request', $viewData);
     }
 
     /**
@@ -64,7 +80,7 @@ class ReportController extends Controller
 
         $startMonth = $request->input('start_month');
         $endMonth = $request->input('end_month') ?? $startMonth;
-        $year = $request->input('year');
+        $year = $request->input('year', Carbon::now()->year);
 
         /* Create range date. */
         $startDate = Carbon::create($year, $startMonth)->startOfMonth()->format('Y-m-d');
@@ -72,9 +88,11 @@ class ReportController extends Controller
 
         /* Generate a list of months for the tab list. */
         $period = CarbonPeriod::create($startDate, '1 month', $endDate);
+
+        /* Title tab report. */
         $monthReports = [];
         foreach ($period as $date) {
-            $monthReports[] = $date->format('d/m/Y');
+            $monthReports[] = $date->copy()->endOfMonth()->format('d/m/Y');
         }
 
         /* Get projects join of members. */
@@ -85,50 +103,52 @@ class ReportController extends Controller
                         $query->whereBetween('project_start_date', [$startDate, $endDate])
                             ->orWhereBetween('project_end_date', [$startDate, $endDate])
                             ->orWhere(function ($query) use ($startDate, $endDate) {
-                                $query->where('project_start_date', '<=', $startDate)
-                                    ->where('project_end_date', '>=', $endDate);
+                                $query->where('project_start_date', '<=', $startDate)->where('project_end_date', '>=', $endDate);
+                            })
+                            ->orWhere(function ($query) use ($startDate) {
+                                $query->where('project_start_date', '<=', $startDate)->whereNull('project_end_date');
                             });
-                    })
-                    ->withPivot('id', 'status');
+                    })->withPivot('id', 'status', 'note');
             }
-        ])
-            ->select('users.id', 'full_name', 'job_position', 'employee_costs')
-            ->get();
+        ])->select('users.id', 'full_name', 'job_position', 'employee_costs')->get();
 
         /* Get log project assign detail of member. */
         $projectAssignIds = $users->pluck('projects')->flatten()->pluck('pivot.id')->toArray();
         $projectAssignLogs = ProjectAssignmentLog::query()
-            ->whereIn('id', $projectAssignIds)
+            ->whereIn('project_assignment_id', $projectAssignIds)
             ->where(function ($query) use ($startDate, $endDate) {
                 $query->whereBetween('project_join_date', [$startDate, $endDate])
                     ->orWhereBetween('project_exit_date', [$startDate, $endDate])
                     ->orWhere(function ($query) use ($startDate, $endDate) {
-                        $query->where('project_join_date', '<=', $startDate)
-                            ->where('project_exit_date', '>=', $endDate);
+                        $query->where('project_join_date', '<=', $startDate)->where('project_exit_date', '>=', $endDate);
+                    })
+                    ->orWhere(function ($query) use ($startDate) {
+                        $query->where('project_join_date', '<=', $startDate)->whereNull('project_exit_date');
                     });
-            })->get();
+            })->get()->groupBy('project_assignment_id');
 
         /* Prepare report data. */
-        $reportData = [];
-        foreach ($period as $monthDate) {
-            $monthStart = $monthDate->startOfMonth();
-            $monthEnd = $monthDate->endOfMonth();
-            $monthKey = $monthDate->format('d/m/Y');
+        $dataReports = [];
+        foreach ($period as $date) {
+            $monthStartDate = $date->copy()->startOfMonth();
+            $monthEndDate = $date->copy()->endOfMonth();
+            $monthKey = $monthEndDate->copy()->format('d/m/Y');
+
+            // Tính tổng số ngày làm việc trong tháng báo cáo.
+            $totalDaysInMonth = DateUtil::workingDaysBetween($monthStartDate, $monthEndDate);
 
             $monthData = [];
             foreach ($users as $user) {
-                // Lọc các assignment có log trong khoảng thời gian báo cáo
-                $activeAssignments = $user->projects->filter(function ($project) use ($monthStart, $monthEnd, $projectAssignLogs) {
-                    $isActivePeriod = $project->project_start_date->lte($monthEnd) && ($project->project_end_date ?: $monthEnd)->gte($monthStart);
-                    $logs = collect($projectAssignLogs->get($project->pivot->id, []));
-                    $hasLogsInPeriod = $logs->filter(function ($log) use ($monthStart, $monthEnd) {
-                        if (!$log instanceof \App\Models\ProjectAssignmentLog) {
-                            return false; // Bỏ qua nếu không phải model
-                        }
+                // Filter assignments that have logs within the reporting period.
+                $activeAssignments = $user->projects->filter(function ($project) use ($monthStartDate, $monthEndDate, $projectAssignLogs) {
+                    // Check if the project is active during the reporting period.
+                    $isActivePeriod = $project->project_start_date->lte($monthEndDate) && ($project->project_end_date ?: $monthEndDate)->gte($monthStartDate);
 
-                        $logStart = Carbon::parse($log->project_join_date);
-                        $logEnd = $log->project_exit_date ? Carbon::parse($log->project_exit_date) : $monthEnd;
-                        return $logStart->lte($monthEnd) && $logEnd->gte($monthStart);
+                    $logs = collect($projectAssignLogs->get($project->pivot->id, collect()));
+                    $hasLogsInPeriod = $logs->filter(function ($log) use ($monthStartDate, $monthEndDate) {
+                        $logStartDate = Carbon::parse($log->project_join_date);
+                        $logEndDate = $log->project_exit_date ? Carbon::parse($log->project_exit_date) : $monthEndDate;
+                        return $logStartDate->lte($monthEndDate) && $logEndDate->gte($monthStartDate);
                     })->isNotEmpty();
                     return $isActivePeriod && $hasLogsInPeriod;
                 });
@@ -141,45 +161,61 @@ class ReportController extends Controller
                 // Calculate worked days and amount.
                 $totalAmount = 0;
                 $projectDetails = [];
+                $monthlyDetails = [];
                 foreach ($activeAssignments as $project) {
                     $logs = $projectAssignLogs[$project->pivot->id] ?? collect();
-                    $projectWorkedDays = 0;
-                    $projectAmount = 0;
+                    $projectWorkedDays = 0; // Number of working days in the project.
+                    $projectAmount = 0; // That person's cost for this project.
+                    $projectAssignLogDetails = [];
 
                     foreach ($logs as $log) {
-                        $logStart = Carbon::parse($log->project_join_date);
-                        $logEnd = $log->project_exit_date ? Carbon::parse($log->project_exit_date) : $monthEnd;
+                        $logStartDate = Carbon::parse($log->project_join_date);
+                        $logEndDate = $log->project_exit_date ? Carbon::parse($log->project_exit_date) : $monthEndDate;
 
-                        $effectiveStart = $logStart->max($monthStart);
-                        $effectiveEnd = $logEnd->min($monthEnd);
+                        $effectiveStart = $logStartDate->max($monthStartDate);
+                        $effectiveEnd = $logEndDate->min($monthEndDate);
 
-                        $workedDaysInPeriod = DateUtil::workingDaysBetween(
-                            $effectiveStart->format('Y-m-d'),
-                            $effectiveEnd->format('Y-m-d')
-                        );
+                        // Cộng dồn số ngày làm việc thực tế cho khoảng thời gian tham gia dự án này.
+                        $workedDaysInPeriod = DateUtil::workingDaysBetween($effectiveStart, $effectiveEnd);
+                        $projectWorkedDays += $workedDaysInPeriod;
 
-                        // Điều chỉnh số ngày làm việc dựa trên effort_percentage.
-                        $adjustedWorkedDays = $workedDaysInPeriod * ($log->effort_percentage / 100);
-                        $projectWorkedDays += $adjustedWorkedDays;
-
-                        // Tính amount cho khoảng thời gian này
-                        $unitPrice = $user->employee_costs; // Sử dụng employee_costs từ DB
-                        $totalDaysInMonth = DateUtil::workingDaysBetween($monthStart->format('Y-m-d'), $monthEnd->format('Y-m-d'));
+                        // Calculate amount for this period based on prorated days and effort percentage
+                        $unitPrice = $user->employee_costs;
                         if ($totalDaysInMonth > 0) {
-                            $proratedFactor = $adjustedWorkedDays / $totalDaysInMonth;
-                            $projectAmount += $unitPrice * $proratedFactor;
+                            $proratedFactor = $workedDaysInPeriod / $totalDaysInMonth;
+                            $baseAmount = $unitPrice * $proratedFactor;
+                            $adjustedAmount = $baseAmount * ($log->effort_percentage / 100);
+                        } else {
+                            $adjustedAmount = 0;
                         }
+
+                        $projectAmount += $adjustedAmount;
+
+                        // Lưu chi tiết projectAssignLog vào mảng logDetails
+                        $projectAssignLogDetails[] = [
+                            'start_date' => $logStartDate->format('Y-m-d'),
+                            'end_date' => $effectiveEnd->format('Y-m-d'),
+                            'effort_percentage' => $log->effort_percentage,
+                            'worked_days' => $workedDaysInPeriod,
+                        ];
+
+                        // Lưu chi tiết chi phí vào mảng monthlyDetails
+                        $monthlyDetails[] = [
+                            'project_name' => $project->project_name,
+                            'amount' => round($adjustedAmount, 2),
+                        ];
                     }
 
                     $totalAmount += $projectAmount;
 
                     // Lưu thông tin chi tiết của assignment.
                     $projectDetails[] = [
-                        'name' => $project->project_name,
-                        'project_status' => $projectStatusMap[$project->status] ?? '',
-                        'assignment_status' => $assignmentStatusMap[$project->pivot->status] ?? '',
-                        'worked_days' => round($projectWorkedDays, 2),
-                        'amount' => round($projectAmount, 2),
+                        'project_name' => $project->project_name,
+                        'project_status' => $project->status->value,
+                        'assignment_status' => $project->pivot->status->value,
+                        'project_assign_log_details' => $projectAssignLogDetails,
+                        'total_worked_days' => round($projectWorkedDays, 2),
+                        'total_amount' => round($projectAmount, 2),
                     ];
                 }
 
@@ -189,11 +225,12 @@ class ReportController extends Controller
                 // Prepare employee data for this month.
                 $monthData[] = [
                     'employee_name' => $user->full_name,
-                    'rank' => $user->role,
-                    'contract_unit_price' => $user->employee_costs,
+                    'rank' => $user->job_position,
+                    'contract_unit_price' => +$user->employee_costs,
                     'job_content' => $jobContent,
                     'projects' => $projectDetails,
                     'monthly_data' => [
+                        'details' => $monthlyDetails,
                         'regular_overtime' => 0,
                         'overtime_work' => 0,
                         'total' => round($totalAmount, 2),
@@ -201,20 +238,17 @@ class ReportController extends Controller
                 ];
             }
 
-            $reportData[$monthKey] = $monthData;
+            $dataReports[$monthKey] = $monthData;
         }
 
-        dd(
-            $users->toArray(),
-            $reportData,
-            $monthReports
-        );
+//        dd($dataReports);
 
         $viewData = [
-            'reportData' => $reportData,
             'monthReports' => $monthReports,
-            'startDate' => $startDate,
-            'endDate' => $endDate,
+            'dataReports' => $dataReports,
+            'startMonth' => $startMonth,
+            'endMonth' => $endMonth,
+            'year' => $year,
         ];
 
         return view('pages.report.monthly_payment_request', $viewData);

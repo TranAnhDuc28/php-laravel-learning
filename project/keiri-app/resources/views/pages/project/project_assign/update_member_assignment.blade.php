@@ -174,6 +174,16 @@
                                                         </span>
                                                         @enderror
                                                     </div>
+                                                    <div class="col-sm-12 col-md-12 col-lg-12 mt-3">
+                                                        <label for="id-note-{{ $projectAssignLog->id }}" class="form-label">{{ __('Note') }}</label>
+                                                        <textarea id="id-note" name="logs[{{ $projectAssignLog->id }}][note]" rows="1" class="form-control
+                                                        @error('logs.' . $projectAssignLog->id . '.note') is-invalid @enderror">{{ old('logs.' . $projectAssignLog->id . '.note', $projectAssignLog->note) }}</textarea>
+                                                        @error('logs.' . $projectAssignLog->id . '.note')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                             </div>
                                             @if(!$loop->last)

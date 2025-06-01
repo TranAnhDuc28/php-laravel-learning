@@ -17,7 +17,6 @@
         'resources/scss/app.scss',
     ])
 
-    <!-- Custom Css-->
     @stack('head_css')
     @stack('head_js')
 </head>

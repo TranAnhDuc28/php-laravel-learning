@@ -107,7 +107,7 @@
                                         <label for="id-employee_costs" class="form-label">{{ __('Employee costs') }}</label>
                                         <input type="text" id="id-employee_costs" name="employee_costs" autocomplete="off"
                                                class="form-control @error('employee_costs') is-invalid @enderror" min="0"
-                                               value="{{ old('employee_costs', $employee->employee_costs) }}">
+                                               value="{{ old('employee_costs', +$employee->employee_costs) }}">
                                         @error('employee_costs')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

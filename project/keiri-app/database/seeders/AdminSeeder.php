@@ -16,12 +16,12 @@ class AdminSeeder extends Seeder
     {
         /* Create Admin. */
         // ID: 1
-        $admin = new User();
-        $admin->department_id = 1;
-        $admin->full_name = 'Admin';
-        $admin->email = 'admin@test.com';
-        $admin->password = Hash::make('12345678');
-        $admin->role = UserRole::ADMIN;
-        $admin->save();
+        $adminTest = new User();
+        $adminTest->department_id = 1;
+        $adminTest->full_name = 'Admin';
+        $adminTest->email = 'admin@test.com';
+        $adminTest->password = Hash::make('12345678');
+        $adminTest->role = UserRole::ADMIN;
+        $adminTest->save();
     }
 }
