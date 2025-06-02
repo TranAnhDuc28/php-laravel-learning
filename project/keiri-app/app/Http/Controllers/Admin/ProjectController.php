@@ -94,7 +94,7 @@ class ProjectController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('project.showProjectList');
+            return redirect()->route('project.showProjectList')->with('success', 'Project created successfully!');
         } catch (Throwable $ex) {
             DB::rollBack();
             Log::error(__METHOD__ . '(): ' . $ex->getMessage());
@@ -177,8 +177,56 @@ class ProjectController extends Controller
             /* New member list. */
             $newUserIds = !empty($validated['team_members']) ? array_map('intval', $validated['team_members']) : [];
 
-            /* Handle new member list: Add or Reactivate. */
+            /* Validate overlapping assignments for all new user IDs at once */
             $currentDate = Carbon::now()->format('Y-m-d');
+            if (!empty($newUserIds)) {
+                // Tạo mảng ánh xạ user_id => project_assignment_id để bỏ qua log hiện tại
+                $assignmentIdsToExclude = [];
+                foreach ($newUserIds as $userId) {
+                    if (isset($existingAssignments[$userId])) {
+                        $assignmentIdsToExclude[$userId] = $existingAssignments[$userId]->id;
+                    }
+                }
+
+                $overlappingUsersQuery = ProjectAssignmentLog::where('project_id', $project->id)
+                    ->whereIn('user_id', $newUserIds)
+                    ->where('project_join_date', '<=', $currentDate)
+                    ->where(function ($q) use ($currentDate) {
+                        $q->whereNull('project_exit_date')
+                            ->orWhere('project_exit_date', '>=', $currentDate);
+                    });
+
+                // Bỏ qua log hiện tại của các thành viên đang được cập nhật
+                $latestLogIdsToExclude = [];
+                foreach ($newUserIds as $userId) {
+                    if (isset($existingAssignments[$userId])) {
+                        $latestLog = $existingAssignments[$userId]->logs->first();
+                        if ($latestLog) {
+                            $latestLogIdsToExclude[] = $latestLog->id;
+                        }
+                    }
+                }
+
+                if (!empty($latestLogIdsToExclude)) {
+                    $overlappingUsersQuery->whereNotIn('id', $latestLogIdsToExclude);
+                }
+
+                $overlappingUsers = $overlappingUsersQuery->pluck('user_id')->unique()->toArray();
+
+                if (!empty($overlappingUsers)) {
+                    Log::warning('Overlapping assignment detected', [
+                        'project_id' => $project->id,
+                        'overlapping_user_ids' => $overlappingUsers,
+                        'current_date' => $currentDate,
+                    ]);
+
+                    return back()->withInput()->withErrors([
+                        'team_members' => 'Some team members are already assigned to this project during the same period. Please check their assignment dates and try again.',
+                    ]);
+                }
+            }
+
+            /* Handle new member list: Add or Reactivate. */
             foreach ($newUserIds as $userId) {
                 /* Member joined project. */
                 if (isset($existingAssignments[$userId])) {
@@ -191,7 +239,7 @@ class ProjectController extends Controller
                         /* Check log latest */
                         $lastLog = $assignment->logs->first();
                         if ($lastLog && $lastLog->project_exit_date) {
-                            $exitDate = $exitDate = Carbon::parse($lastLog->project_exit_date)->format('Y-m-d');
+                            $exitDate = Carbon::parse($lastLog->project_exit_date)->format('Y-m-d');
                             if ($exitDate === $currentDate) {
                                 $lastLog->project_exit_date = null;
                                 $lastLog->worked_days = 0;
@@ -226,7 +274,7 @@ class ProjectController extends Controller
                     $projectAssignmentLog->project_id = $project->id;
                     $projectAssignmentLog->user_id = $userId;
                     $projectAssignmentLog->project_assignment_id = $projectAssignment->id;
-                    $projectAssignmentLog->project_join_date = Carbon::now()->get('Y-m-d');
+                    $projectAssignmentLog->project_join_date = Carbon::now()->format('Y-m-d');
                     $projectAssignmentLog->save();
                 }
             }
@@ -248,7 +296,7 @@ class ProjectController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('project.showProjectList');
+            return redirect()->route('project.showProjectList')->with('success', 'Project updated successfully!');
         } catch (Throwable $ex) {
             DB::rollBack();
             Log::error(__METHOD__ . '(): ' . $ex->getMessage());

@@ -46,7 +46,7 @@ class ProjectAssignLogSeeder extends Seeder
         $projectAssignLog2->save();
 
         $projectAssignLog3 = new ProjectAssignmentLog();
-        $projectAssignLog3->user_id = 7;
+        $projectAssignLog3->user_id = 20;
         $projectAssignLog3->project_id = $project1->id;
         $projectAssignLog3->project_assignment_id = 3;
         $projectAssignLog3->project_join_date = $project1->project_start_date;
@@ -54,7 +54,7 @@ class ProjectAssignLogSeeder extends Seeder
         $projectAssignLog3->save();
 
         $projectAssignLog4 = new ProjectAssignmentLog();
-        $projectAssignLog4->user_id = 8;
+        $projectAssignLog4->user_id = 23;
         $projectAssignLog4->project_id = $project1->id;
         $projectAssignLog4->project_assignment_id = 4;
         $projectAssignLog4->project_join_date = $project1->project_start_date;
@@ -62,7 +62,7 @@ class ProjectAssignLogSeeder extends Seeder
         $projectAssignLog4->save();
 
         $projectAssignLog5 = new ProjectAssignmentLog();
-        $projectAssignLog5->user_id = 27;
+        $projectAssignLog5->user_id = 26;
         $projectAssignLog5->project_id = $project1->id;
         $projectAssignLog5->project_assignment_id = 5;
         $projectAssignLog5->project_join_date = $project1->project_start_date;
@@ -72,7 +72,7 @@ class ProjectAssignLogSeeder extends Seeder
         $projectAssignLog5->save();
 
         $projectAssignLog6 = new ProjectAssignmentLog();
-        $projectAssignLog6->user_id = 27;
+        $projectAssignLog6->user_id = 26;
         $projectAssignLog6->project_id = $project1->id;
         $projectAssignLog6->project_assignment_id = 5;
         $projectAssignLog6->project_join_date = '2024-12-16';
@@ -107,7 +107,7 @@ class ProjectAssignLogSeeder extends Seeder
         $projectAssignLog9->save();
 
         $projectAssignLog10 = new ProjectAssignmentLog();
-        $projectAssignLog10->user_id = 27;
+        $projectAssignLog10->user_id = 26;
         $projectAssignLog10->project_id = $project2->id;
         $projectAssignLog10->project_assignment_id = 9;
         $projectAssignLog10->project_join_date = '2024-12-16';

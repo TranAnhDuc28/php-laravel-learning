@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Database\QueryException;
 use Throwable;
 
 class ProjectAssignmentController extends Controller
@@ -125,7 +126,6 @@ class ProjectAssignmentController extends Controller
         $validated = $request->validated();
 
         try {
-
             DB::transaction(function () use ($projectAssign, $validated) {
                 foreach ($validated['logs'] as $logKey => $logValue) {
                     $conditions = [
@@ -147,6 +147,44 @@ class ProjectAssignmentController extends Controller
             });
 
             return redirect()->route('project.assign.showProjectAssignmentDetail', ['projectId' => $projectAssign->project_id]);
+        } catch (Throwable $ex) {
+            Log::error(__METHOD__ . '(): ' . $ex->getMessage());
+
+            return back()->withInput();
+        }
+    }
+
+    /**
+     * Process Delete
+     *
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function processDelete(Request $request, $id)
+    {
+        $validator = Validator::make(['id' => $id], [
+            'id' => ['required', 'numeric', 'integer', Rule::exists(ProjectAssignmentLog::class, 'id')],
+        ]);
+        if ($validator->fails()) {
+            abort(404);
+        }
+
+        $projectAssignmentLog = ProjectAssignmentLog::find($id);
+
+        try {
+            $projectAssignmentLog->delete();
+
+            return redirect()->route('project.assign.showUpdateMemberAssignment', ['id' => $projectAssignmentLog->project_assignment_id]);
+        } catch (QueryException $ex) {
+            Log::error(__METHOD__ . '(): ' . $ex->getMessage());
+
+            // PostgresSQL: 23503, MariaDB: 23000.
+            if ($ex->getCode() == 23503 || $ex->getCode() == 23000) {
+                return back()->with('error', __('common.Cannot delete because related data exists.'));
+            }
+
+            return back()->withInput();
         } catch (Throwable $ex) {
             Log::error(__METHOD__ . '(): ' . $ex->getMessage());
 

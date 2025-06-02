@@ -21,14 +21,16 @@
                                 <div class="col-lg-8 mx-auto my-3">
                                     <form method="POST" action="{{ route('auth.processChangePassword') }}">
                                         @csrf
-                                        @if (session('status'))
-                                            <div class="alert alert-success" role="alert">
-                                                {{ session('status') }}
-                                            </div>
+                                        @if (session('success'))
+                                            <x-alert
+                                                :messages="[session('success')]"
+                                                :type="'success'"
+                                            />
                                         @elseif (session('error'))
-                                            <div class="alert alert-danger" role="alert">
-                                                {{ session('error') }}
-                                            </div>
+                                            <x-alert
+                                                :messages="[session('error')]"
+                                                :type="'danger'"
+                                            />
                                         @endif
                                         <div class="row">
                                             <label for="id-current_password" class="col-form-label col-md-3 text-nowrap">

@@ -111,6 +111,6 @@ class AuthController extends Controller
             'password_changed_at' => Carbon::now(),
         ]);
 
-        return back()->with('status', __('Password changed successfully!'));
+        return back()->with('success', __('Password changed successfully!'));
     }
 }

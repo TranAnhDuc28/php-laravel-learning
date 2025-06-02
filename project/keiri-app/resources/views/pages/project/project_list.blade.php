@@ -15,6 +15,13 @@
 
             <div class="row h-100">
                 <div class="col-lg-12 h-100">
+                    @if(session('success'))
+                        <x-alert
+                            :messages="[session('success')]"
+                            :type="'success'"
+                        />
+                    @endif
+
                     <div class="card h-100">
                         <div class="card-body h-100">
                             <div class="table-responsive h-100">
@@ -63,8 +70,8 @@
                                             <td>
                                                 <a href="{{ route('project.showUpdateProject', ['projectId' => $project->id]) }}" class="text-decoration-underline">{{ $project->project_name }}</a>
                                             </td>
-                                            <td>{{ \Carbon\Carbon::parse($project->project_start_date)->format('d-m-Y') }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($project->project_end_date)->format('d-m-Y') }}</td>
+                                            <td>{{ \Illuminate\Support\Carbon::parse($project->project_start_date)->format('d-m-Y') }}</td>
+                                            <td>{{ \Illuminate\Support\Carbon::parse($project->project_end_date)->format('d-m-Y') }}</td>
 {{--                                            <td>{{ $project->phase }}</td>--}}
 {{--                                            <td>--}}
 {{--                                                <span class="{{ $priorityClassStyle }} fs-12">{{ $priorityLabel }}</span>--}}

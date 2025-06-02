@@ -10,7 +10,6 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Route;
 
-
 /* Language switcher. */
 Route::get('language/{locale}', [LanguageController::class, 'switchLanguage'])->name('language');
 
@@ -38,16 +37,19 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
     });
 
     /* Project. */
-    Route::get('projects', [ProjectController::class, 'showProjectList'])->name('project.showProjectList');
-    Route::get('projects/create', [ProjectController::class, 'showCreateProject'])->name('project.showCreateProject');
-    Route::post('projects/create', [ProjectController::class, 'processCreateProject'])->name('project.processCreateProject');
-    Route::get('projects/update/{projectId}', [ProjectController::class, 'showUpdateProject'])->name('project.showUpdateProject');
-    Route::put('projects/update/{projectId}', [ProjectController::class, 'processUpdateProject'])->name('project.processUpdateProject');
+    Route::group(['middleware' => ['check_role:' . UserRole::ADMIN->value]], function () {
+        Route::get('projects', [ProjectController::class, 'showProjectList'])->name('project.showProjectList');
+        Route::get('projects/create', [ProjectController::class, 'showCreateProject'])->name('project.showCreateProject');
+        Route::post('projects/create', [ProjectController::class, 'processCreateProject'])->name('project.processCreateProject');
+        Route::get('projects/update/{projectId}', [ProjectController::class, 'showUpdateProject'])->name('project.showUpdateProject');
+        Route::put('projects/update/{projectId}', [ProjectController::class, 'processUpdateProject'])->name('project.processUpdateProject');
 
-    Route::get('projects/project-assign', [ProjectAssignmentController::class, 'showProjectAssignment'])->name('project.assign.showProjectAssignment');
-    Route::get('projects/project-assign-detail/{projectId}', [ProjectAssignmentController::class, 'showProjectAssignmentDetail'])->name('project.assign.showProjectAssignmentDetail');
-    Route::get('projects/update-member-assign/{projectAssignId}', [ProjectAssignmentController::class, 'showUpdateMemberAssignment'])->name('project.assign.showUpdateMemberAssignment');
-    Route::put('projects/update-member-assign/{projectAssignId}', [ProjectAssignmentController::class, 'processUpdateProjectAssignmentLog'])->name('project.assign.processUpdateProjectAssignmentLog');
+        Route::get('projects/project-assign', [ProjectAssignmentController::class, 'showProjectAssignment'])->name('project.assign.showProjectAssignment');
+        Route::get('projects/project-assign-detail/{projectId}', [ProjectAssignmentController::class, 'showProjectAssignmentDetail'])->name('project.assign.showProjectAssignmentDetail');
+        Route::get('projects/update-member-assign/{projectAssignId}', [ProjectAssignmentController::class, 'showUpdateMemberAssignment'])->name('project.assign.showUpdateMemberAssignment');
+        Route::put('projects/update-member-assign/{projectAssignId}', [ProjectAssignmentController::class, 'processUpdateProjectAssignmentLog'])->name('project.assign.processUpdateProjectAssignmentLog');
+        Route::post('projects/delete-assign-log/{projectAssignLogId}', [ProjectAssignmentController::class, 'processDelete'])->name('project.assign.processDeleteProjectAssignmentLog');
+    });
 
     /* Report. */
     Route::group(['middleware' => ['check_role:' . UserRole::ADMIN->value]], function () {
@@ -60,7 +62,7 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
     });
 
     /* Employee. */
-    Route::group(['middleware' => ['check_role:' . implode(',', [UserRole::ADMIN->value, UserRole::MANAGER->value])]], function () {
+    Route::group(['middleware' => ['check_role:' . implode(',', [UserRole::ADMIN->value])]], function () {
         Route::get('employees', [HumanResourcesController::class, 'showEmployeeList'])->name('employee.showEmployeeList');
         Route::get('employees/create', [HumanResourcesController::class, 'showCreateEmployee'])->name('employee.showCreateEmployee');
         Route::post('employees/create', [HumanResourcesController::class, 'processCreateEmployee'])->name('employee.processCreateEmployee');

@@ -66,7 +66,7 @@ class HumanResourcesController extends Controller
             $employee->note = $validated['note'] ?? null;
             $employee->save();
 
-            return redirect()->route('employee.showEmployeeList');
+            return redirect()->route('employee.showEmployeeList')->with('success', 'Employee created successfully!');
         } catch (Throwable $ex) {
             Log::error(__METHOD__ . '(): ' . $ex->getMessage());
 
@@ -126,7 +126,7 @@ class HumanResourcesController extends Controller
             $employee->status = $validated['status'];
             $employee->save();
 
-            return redirect()->route('employee.showEmployeeList');
+            return redirect()->route('employee.showEmployeeList')->with('success', 'Employee updated successfully!');
         } catch (Throwable $ex) {
             Log::error(__METHOD__ . '(): ' . $ex->getMessage());
 

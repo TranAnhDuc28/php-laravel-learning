@@ -98,11 +98,15 @@
                                         @foreach($projectAssign->logs as $projectAssignLog)
                                             <div>
                                                 <div class="row">
-                                                    <div class="col-sm-12 col-md-12 col-lg-1 mt-3 d-flex align-items-center">
+                                                    <div class="col-sm-12 col-md-12 col-lg-12 mt-3 d-flex justify-content-between align-items-center">
                                                         <div>
                                                             #{{ $loop->iteration }}
                                                             <span class="badge-dot {{ $projectAssignLog->project_exit_date ? 'badge-dot-dark' : 'badge-dot-success' }}"></span>
                                                         </div>
+                                                        <a href="{{ route('project.assign.processDeleteProjectAssignmentLog', ['projectAssignLogId' => $projectAssignLog->id]) }}" class="btn btn-light p-1 border-0 btn-delete-assign-log"
+                                                           data-log-id="{{ $projectAssignLog->id }}" data-bs-toggle="tooltip" data-bs-title="{{ __('Delete') }}">
+                                                            <i class="ri-delete-bin-5-line text-danger"></i>
+                                                        </a>
                                                     </div>
 
                                                     @if($errors->has("logs.{$projectAssignLog->id}.id"))
@@ -111,7 +115,7 @@
                                                         @endphp
                                                         <div class="row m-0 px-3">
                                                             <x-alert
-                                                                :className="'mt-3'"
+                                                                :className="'mt-3 msg-err'"
                                                                 :type="'danger'"
                                                                 :messages="$messages"
                                                             />
@@ -150,7 +154,7 @@
                                                         </span>
                                                         @enderror
                                                     </div>
-                                                    <div class="col-sm-12 col-md-6 col-lg-2 mt-3">
+                                                    <div class="col-sm-12 col-md-6 col-lg-3 mt-3">
                                                         <label for="id-effort_percentage-{{ $projectAssignLog->id }}" class="form-label text-nowrap">{{ __('Effort Percentage') }}</label>
                                                         <input type="number" id="id-effort_percentage-{{ $projectAssignLog->id }}"
                                                                name="logs[{{ $projectAssignLog->id }}][effort_percentage]" min="0" max="100"
@@ -174,16 +178,22 @@
                                                         </span>
                                                         @enderror
                                                     </div>
-                                                    <div class="col-sm-12 col-md-12 col-lg-12 mt-3">
-                                                        <label for="id-note-{{ $projectAssignLog->id }}" class="form-label">{{ __('Note') }}</label>
-                                                        <textarea id="id-note" name="logs[{{ $projectAssignLog->id }}][note]" rows="1" class="form-control
-                                                        @error('logs.' . $projectAssignLog->id . '.note') is-invalid @enderror">{{ old('logs.' . $projectAssignLog->id . '.note', $projectAssignLog->note) }}</textarea>
-                                                        @error('logs.' . $projectAssignLog->id . '.note')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                        @enderror
-                                                    </div>
+                                                    {{--                                                    <div class="col-sm-12 col-md-12 col-lg-12 mt-3">--}}
+                                                    {{--                                                        <div class="row">--}}
+                                                    {{--                                                            <div class="col-lg-1">--}}
+                                                    {{--                                                                <label for="id-note-{{ $projectAssignLog->id }}" class="form-label">{{ __('Note') }}</label>--}}
+                                                    {{--                                                            </div>--}}
+                                                    {{--                                                            <div class="col-lg-11">--}}
+                                                    {{--                                                                <textarea id="id-note" name="logs[{{ $projectAssignLog->id }}][note]" rows="1"--}}
+                                                    {{--                                                                          class="form-control @error('logs.' . $projectAssignLog->id . '.note') is-invalid @enderror">{{ old('logs.' . $projectAssignLog->id . '.note', $projectAssignLog->note) }}</textarea>--}}
+                                                    {{--                                                                @error('logs.' . $projectAssignLog->id . '.note')--}}
+                                                    {{--                                                                <span class="invalid-feedback" role="alert">--}}
+                                                    {{--                                                                    <strong>{{ $message }}</strong>--}}
+                                                    {{--                                                                </span>--}}
+                                                    {{--                                                                @enderror--}}
+                                                    {{--                                                            </div>--}}
+                                                    {{--                                                        </div>--}}
+                                                    {{--                                                    </div>--}}
                                                 </div>
                                             </div>
                                             @if(!$loop->last)
@@ -201,6 +211,28 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal delete -->
+    <div class="modal fade" id="deleteLogModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <form id="deleteLogForm" method="POST">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">{{ __('Confirm delete') }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{ __('Are you sure you want to delete this log?') }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Cancel') }}</button>
+                        <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 @endsection

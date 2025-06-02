@@ -72,10 +72,10 @@
                                             <div class="col-sm-12 col-md-6 mt-3">
                                                 <label for="id-project_start_date" class="form-label">{{ __('Start date') }} <span class="text-danger">*</span></label>
                                                 <div class="input-group @error('project_start_date') has-validation @enderror">
-                                                    <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
                                                     <input type="text" id="id-project_start_date" name="project_start_date"
                                                            class="form-control flatpickr flatpickr-input @error('project_start_date') is-invalid @enderror"
                                                            value="{{ old('project_start_date') }}" autocomplete="off">
+                                                    <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
                                                     @error('project_start_date')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -86,10 +86,10 @@
                                             <div class="col-sm-12 col-md-6 mt-3">
                                                 <label for="id-project_end_date" class="form-label">{{ __('End date') }} <span class="text-danger">*</span></label>
                                                 <div class="input-group @error('project_end_date') has-validation @enderror">
-                                                    <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
                                                     <input type="text" id="id-project_end_date" name="project_end_date"
                                                            class="form-control flatpickr flatpickr-input @error('project_end_date') is-invalid @enderror"
                                                            value="{{ old('project_end_date') }}" autocomplete="off">
+                                                    <span class="input-group-text"><i class="ri-calendar-event-line"></i></span>
                                                     @error('project_end_date')
                                                     <span class="invalid-feedback">
                                                         <strong>{{ $message }}</strong>

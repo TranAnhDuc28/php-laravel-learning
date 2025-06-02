@@ -20,25 +20,25 @@ class ProjectAssignSeeder extends Seeder
         $projectAssign1->save();
 
         $projectAssign2 = new ProjectAssignment();
-        $projectAssign2->user_id = 21;
+        $projectAssign2->user_id = 6;
         $projectAssign2->project_id = 1;
         $projectAssign2->status = 1;
         $projectAssign2->save();
 
         $projectAssign4 = new ProjectAssignment();
-        $projectAssign4->user_id = 7;
+        $projectAssign4->user_id = 20;
         $projectAssign4->project_id = 1;
         $projectAssign4->status = 1;
         $projectAssign4->save();
 
         $projectAssign5 = new ProjectAssignment();
-        $projectAssign5->user_id = 12;
+        $projectAssign5->user_id = 23;
         $projectAssign5->project_id = 1;
         $projectAssign5->status = 1;
         $projectAssign5->save();
 
         $projectAssign3 = new ProjectAssignment();
-        $projectAssign3->user_id = 27;
+        $projectAssign3->user_id = 26;
         $projectAssign3->project_id = 1;
         $projectAssign3->status = 1;
         $projectAssign3->save();
@@ -63,7 +63,7 @@ class ProjectAssignSeeder extends Seeder
         $projectAssign8->save();
 
         $projectAssign9 = new ProjectAssignment();
-        $projectAssign9->user_id = 27;
+        $projectAssign9->user_id = 26;
         $projectAssign9->project_id = 2;
         $projectAssign9->status = 1;
         $projectAssign9->save();

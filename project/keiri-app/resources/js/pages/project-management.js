@@ -4,6 +4,7 @@ import 'datatables.net-fixedcolumns-bs5';
 import 'datatables.net-fixedheader-bs5';
 import flatpickr from 'flatpickr';
 import Choices from "choices.js";
+import Modal from 'bootstrap/js/dist/modal';
 
 document.addEventListener('DOMContentLoaded', () => {
     /* Init table project. */
@@ -158,6 +159,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // }
     // document.getElementById("joinDate").addEventListener("change", calculateWorkedDays);
     // document.getElementById("exitDate").addEventListener("change", calculateWorkedDays);
+
+    /**
+     * Delete log with modal.
+     * @param actionForm
+     */
+    const openDeleteModal = (actionForm) => {
+        const form = document.getElementById('deleteLogForm');
+        form.action = actionForm;
+        const modal = new Modal(document.getElementById('deleteLogModal'));
+        modal.show();
+    }
+
+    document.querySelectorAll('.btn-delete-assign-log')?.forEach(a => {
+        a.addEventListener('click', (e) => {
+            e.preventDefault();
+            const actionForm = a.href;
+            openDeleteModal(actionForm);
+        });
+    });
 });
 
 

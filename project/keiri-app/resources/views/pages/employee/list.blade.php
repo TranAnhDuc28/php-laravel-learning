@@ -15,6 +15,13 @@
 
             <div class="row h-100">
                 <div class="col-lg-12 h-100">
+                    @if(session('success'))
+                        <x-alert
+                            :messages="[session('success')]"
+                            :type="'success'"
+                        />
+                    @endif
+
                     <div class="card h-100">
                         <div class="card-body h-100">
                             <div class="table-responsive h-100">
