@@ -67,7 +67,6 @@ class ProjectAssignLogSeeder extends Seeder
         $projectAssignLog5->project_assignment_id = 5;
         $projectAssignLog5->project_join_date = $project1->project_start_date;
         $projectAssignLog5->project_exit_date = '2024-11-29';
-        $projectAssignLog5->effort_percentage = 50;
         $projectAssignLog5->worked_days = 5;
         $projectAssignLog5->save();
 

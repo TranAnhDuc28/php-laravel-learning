@@ -3,6 +3,7 @@ import 'bootstrap/js/dist/tab';
 import DataTable from 'datatables.net-bs5';
 import 'datatables.net-fixedcolumns-bs5';
 import 'datatables.net-fixedheader-bs5';
+import 'datatables.net-rowgroup-bs5';
 
 document.addEventListener('DOMContentLoaded', () => {
     const tblReportMonthlyPaymentRequest = document.querySelectorAll('.report-monthly_payment_request');
@@ -20,6 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }, 'paging']
             },
+            columnDefs: [
+                { targets: [0], visible: false }
+            ],
+            rowGroup: {
+                dataSrc: 0
+            }
         });
     });
 
