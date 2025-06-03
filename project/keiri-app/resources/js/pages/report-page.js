@@ -4,6 +4,8 @@ import DataTable from 'datatables.net-bs5';
 import 'datatables.net-fixedcolumns-bs5';
 import 'datatables.net-fixedheader-bs5';
 import 'datatables.net-rowgroup-bs5';
+import flatpickr from 'flatpickr';
+import monthSelectPlugin from 'flatpickr/dist/plugins/monthSelect';
 
 document.addEventListener('DOMContentLoaded', () => {
     const tblReportMonthlyPaymentRequest = document.querySelectorAll('.report-monthly_payment_request');
@@ -74,5 +76,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         document.getElementById('term-form')?.submit();
+    });
+
+    document.getElementById('id-range_month')
+
+    const inpRangeMonth = document.getElementById('id-range_month');
+    inpRangeMonth && flatpickr(inpRangeMonth, {
+        plugins: [
+            new monthSelectPlugin({
+                shorthand: true, //defaults to false
+                dateFormat: "F Y", //defaults to "F Y"
+                altFormat: "F Y", //defaults to "F Y"
+                theme: sessionStorage.getItem('data-bs-theme') ?? 'light' // defaults to "light"
+            })
+        ],
+        mode: 'range',
+        defaultDate: [new Date(), new Date()],
+    });
+
+    inpRangeMonth?.addEventListener('change', () => {
+        console.log(inpRangeMonth?.value);
     });
 });

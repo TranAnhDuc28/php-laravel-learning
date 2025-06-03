@@ -29,7 +29,7 @@ class ReportController extends Controller
         $defaultEndMonth = Carbon::now()->month;
         $defaultYear = Carbon::now()->year;
 
-        $endDate = Carbon::create($defaultYear, $defaultEndMonth)->endOfMonth()->format('d/m/Y');
+        $endDate = Carbon::create($defaultYear, $defaultEndMonth)->endOfMonth()->format('d-m-Y');
 
         $monthReports[] = $endDate;
         $startMonth = null;
@@ -67,8 +67,26 @@ class ReportController extends Controller
      */
     public function generateDataMonthlyPaymentRequest(Request $request)
     {
+        $range = $request->input('range_month');
+        $rangeParts = explode(' to ', $range);
+
+        try {
+            $start = Carbon::createFromFormat('F Y', trim($rangeParts[0]));
+            $end = isset($rangeParts[1]) ? Carbon::createFromFormat('F Y', trim($rangeParts[1])) : clone $start;
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['range_month' => 'Invalid date format.']);
+        }
+
+        if ($start->year !== $end->year) {
+            return back()->withInput()->withErrors(['range_month' => 'Only one year allowed.']);
+        }
+
         // Validate request data.
-        $validator = Validator::make($request->all(), [
+        $validator = Validator::make([
+            'start_month' => $start->month,
+            'end_month' => $end->month,
+            'year' => $start->year,
+        ], [
             'start_month' => ['required', 'integer', 'between:1,12'],
             'end_month' => ['nullable', 'integer', 'between:1,12', 'gte:start_month'],
             'year' => ['required', 'integer', 'min:2000', 'max:2100'],
@@ -78,9 +96,9 @@ class ReportController extends Controller
             return back()->withInput();
         }
 
-        $startMonth = $request->input('start_month');
-        $endMonth = $request->input('end_month') ?? $startMonth;
-        $year = $request->input('year', Carbon::now()->year);
+        $startMonth = $start->month;
+        $endMonth = $end->month;
+        $year = $start->year;
 
         /* Create range date. */
         $startDate = Carbon::create($year, $startMonth)->startOfMonth()->format('Y-m-d');
@@ -92,7 +110,7 @@ class ReportController extends Controller
         /* Title tab report. */
         $monthReports = [];
         foreach ($period as $date) {
-            $monthReports[] = $date->copy()->endOfMonth()->format('d/m/Y');
+            $monthReports[] = $date->copy()->endOfMonth()->format('d-m-Y');
         }
 
         /* Get projects join of members. */
@@ -132,7 +150,7 @@ class ReportController extends Controller
         foreach ($period as $date) {
             $monthStartDate = $date->copy()->startOfMonth();
             $monthEndDate = $date->copy()->endOfMonth();
-            $monthKey = $monthEndDate->copy()->format('d/m/Y');
+            $monthKey = $monthEndDate->copy()->format('d-m-Y');
 
             // Tính tổng số ngày làm việc trong tháng báo cáo.
             $totalDaysInMonth = DateUtil::workingDaysBetween($monthStartDate, $monthEndDate);

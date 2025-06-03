@@ -30,31 +30,10 @@
                     <div class="col-auto d-flex gap-3 align-items-center p-0">
                         <form action="{{ route('report.generateDataMonthlyPaymentRequest') }}" method="GET" class="w-100" id="term-form">
                             <div class="d-flex gap-2 align-items-center">
-                                <label for="start-month" class="form-label mb-0 text-nowrap">{{ __('Start month') }}</label>
-                                <select class="form-select" name="start_month" id="start-month" aria-label="Start month">
-                                    <option value="" @selected($startMonth == null)>-</option>
-                                    @for($month = 1; $month <= 12; $month++)
-                                        <option value="{{ $month }}" @selected($month == request()->get('start_month'))>{{ Carbon::create()->month($month)->format('F') }}</option>
-                                    @endfor
-                                </select>
-
-                                <label for="end-month" class="form-label mb-0">to</label>
-                                <select class="form-select" name="end_month" id="end-month" aria-label="End month" disabled>
-                                    <option value="" @selected($endMonth == null)>-</option>
-                                    @for($month = 1; $month <= 12; $month++)
-                                        <option value="{{ $month }}" @selected($month == request()->get('end_month'))>{{ Carbon::create()->month($month)->format('F') }}</option>
-                                    @endfor
-                                </select>
-
-                                <label for="year" class="form-label mb-0">year</label>
-                                <select class="form-select" name="year" id="year" aria-label="Year">
-                                    @php
-                                        $currentYear = Carbon::now()->get('year');
-                                    @endphp
-                                    @for($year = 2024; $year <= $currentYear; $year++)
-                                        <option value="{{ $year }}" @selected($year == (request()->get('year') ?? $currentYear))>{{ $year }}</option>
-                                    @endfor
-                                </select>
+                                <label for="id-range_month" class="form-label mb-0 text-nowrap">{{ __('Range date') }}</label>
+                                <input type="text" id="id-range_month" name="range_month" style="width: 300px"
+                                       class="form-control flatpickr flatpickr-input"
+                                       value="{{ old('range_month') }}" autocomplete="off">
                             </div>
                         </form>
                     </div>
@@ -71,76 +50,6 @@
 
             <div class="card">
                 <div class="card-body">
-                    {{-- Method 1. --}}
-                    {{--                    @if($monthReports && count($monthReports) > 0)--}}
-                    {{--                        <ul class="nav nav-tabs nav-justified nav-border-top nav-border-top-primary mb-3" role="tablist">--}}
-                    {{--                            @foreach($monthReports as $monthReport)--}}
-                    {{--                                <li class="nav-item">--}}
-                    {{--                                    <a class="nav-link @if($loop->first) active @endif" data-bs-toggle="tab" href="#tab{{ $monthReport }}" role="tab">--}}
-                    {{--                                        {{ $monthReport }}--}}
-                    {{--                                    </a>--}}
-                    {{--                                </li>--}}
-                    {{--                            @endforeach--}}
-                    {{--                        </ul>--}}
-                    {{--                        <div class="tab-content">--}}
-                    {{--                            @foreach($monthReports as $monthReport)--}}
-                    {{--                                <div class="tab-pane fade @if($loop->first) show active @endif" id="tab{{ $monthReport }}" role="tabpanel">--}}
-                    {{--                                    <div class="table-responsive">--}}
-                    {{--                                        <table class="table table-sm table-bordered text-wrap report-monthly_payment_request">--}}
-                    {{--                                            <thead class="text-center align-middle text-nowrap">--}}
-                    {{--                                            <tr>--}}
-                    {{--                                                <th>{{ __('Employee name') }}</th>--}}
-                    {{--                                                <th>{{ __('Rank') }}</th>--}}
-                    {{--                                                <th>{{ __('Category') }}</th>--}}
-                    {{--                                                <th data-bs-toggle="tooltip" data-bs-title="{{ __('(Top: Monthly Rate, Bottom: Hourly Rate)') }}">--}}
-                    {{--                                                    {{ __('Contract Unit Price') }}--}}
-                    {{--                                                </th>--}}
-                    {{--                                                <th>{{ __('Overtime work') }} (3)</th>--}}
-                    {{--                                                <th>{{ __('Job content') }}</th>--}}
-                    {{--                                                <th>{{ __('Total') }} <br> (1)+(2)+(3)</th>--}}
-                    {{--                                            </tr>--}}
-                    {{--                                            </thead>--}}
-                    {{--                                            <tbody>--}}
-                    {{--                                            @if(isset($dataReports[$monthReport]) && count($dataReports[$monthReport]) > 0)--}}
-                    {{--                                                @foreach($dataReports[$monthReport] as $dataReport)--}}
-                    {{--                                                    <tr>--}}
-                    {{--                                                        <td rowspan="2">{{ $dataReport['employee_name'] }}</td>--}}
-                    {{--                                                        <td rowspan="2">{{ $dataReport['rank'] }}</td>--}}
-                    {{--                                                        <th scope="row">{{ __('Monthly Unit Price') }} (1)</th>--}}
-                    {{--                                                        <td>{{ $dataReport['contract_unit_price'] }}</td>--}}
-                    {{--                                                        <td rowspan="2">{{ $dataReport['monthly_data']['overtime_work'] }}</td>--}}
-                    {{--                                                        <td rowspan="2">{{ implode(', ', $dataReport['job_content']) }}</td>--}}
-                    {{--                                                        <td rowspan="2">{{ $dataReport['monthly_data']['total'] }}</td>--}}
-                    {{--                                                    </tr>--}}
-                    {{--                                                    <tr>--}}
-                    {{--                                                        <th scope="row">{{ __('Regular Overtime') }} (2)</th>--}}
-                    {{--                                                        <td>{{ $dataReport['monthly_data']['regular_overtime'] }}</td>--}}
-                    {{--                                                    </tr>--}}
-                    {{--                                                @endforeach--}}
-                    {{--                                            @else--}}
-                    {{--                                                <tr>--}}
-                    {{--                                                    <td rowspan="2"></td>--}}
-                    {{--                                                    <td rowspan="2"></td>--}}
-                    {{--                                                    <th scope="row">{{ __('Monthly Unit Price') }} (1)</th>--}}
-                    {{--                                                    <td></td>--}}
-                    {{--                                                    <td rowspan="2"></td>--}}
-                    {{--                                                    <td rowspan="2"></td>--}}
-                    {{--                                                    <td rowspan="2"></td>--}}
-                    {{--                                                </tr>--}}
-                    {{--                                                <tr>--}}
-                    {{--                                                    <th scope="row">{{ __('Regular Overtime') }} (2)</th>--}}
-                    {{--                                                    <td></td>--}}
-                    {{--                                                </tr>--}}
-                    {{--                                            @endif--}}
-                    {{--                                            </tbody>--}}
-                    {{--                                        </table>--}}
-                    {{--                                    </div>--}}
-                    {{--                                </div>--}}
-                    {{--                            @endforeach--}}
-                    {{--                        </div>--}}
-                    {{--                    @endif--}}
-
-                    {{-- Method 2. --}}
                     @if($monthReports && count($monthReports) > 0)
                         <ul class="nav nav-tabs nav-justified nav-border-top nav-border-top-primary mb-3" role="tablist">
                             @foreach($monthReports as $monthReport)
@@ -158,7 +67,7 @@
                                         <table class="table table-striped table-bordered text-wrap report-monthly_payment_request">
                                             <thead class="text-center align-middle text-nowrap">
                                             <tr>
-{{--                                                <th rowspan="2">#</th>--}}
+                                                {{--                                                <th rowspan="2">#</th>--}}
                                                 <th rowspan="2" class="text-center">{{ __('Employee name') }}</th>
                                                 <th rowspan="2" class="text-center">{{ __('Rank') }}</th>
                                                 <th rowspan="2" class="text-center">{{ __('Project name') }}</th>
@@ -181,7 +90,7 @@
                                             @if(isset($dataReports[$monthReport]) && count($dataReports[$monthReport]) > 0)
                                                 @foreach($dataReports[$monthReport] as $dataReport)
                                                     <tr>
-{{--                                                        <td>{{''}}</td>--}}
+                                                        {{--                                                        <td>{{''}}</td>--}}
                                                         <td class="text-nowrap">{{ $dataReport['employee_name'] }}</td>
                                                         <td>{{ $dataReport['rank'] }}</td>
                                                         <td>
@@ -263,6 +172,5 @@
 @push('body_js')
     <script>
         const urlExportMonthlyPaymentRequest = "{{ route('report.exportMonthlyPaymentRequest') }}";
-        const urlUpdateDataMonthlyPaymentRequest = "";
     </script>
 @endpush
