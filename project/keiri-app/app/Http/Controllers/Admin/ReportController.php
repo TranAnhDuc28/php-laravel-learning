@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\ProjectStatus;
 use App\Exports\ExportExcelMonthlyPaymentRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use App\Models\ProjectAssignmentLog;
 use App\Models\User;
 use App\Utils\DateUtil;
@@ -24,24 +24,43 @@ class ReportController extends Controller
     /**
      * @return Factory|View|Application|object
      */
-    public function showMonthlyPaymentRequest()
+    public function showMonthlyPaymentRequest(Request $request)
     {
-        $defaultEndMonth = Carbon::now()->month;
-        $defaultYear = Carbon::now()->year;
+        $now = Carbon::now();
+        $defaultStartMonth = $now->month;
+        $defaultEndMonth = $now->month;
+        $defaultYear = $now->year;
 
-        $endDate = Carbon::create($defaultYear, $defaultEndMonth)->endOfMonth()->format('d-m-Y');
+        $startMonth = $defaultStartMonth;
+        $endMonth = $defaultEndMonth;
+        $year = $defaultYear;
 
-        $monthReports[] = $endDate;
-        $startMonth = null;
-        $endMonth = null;
+        if ($request->has('start_month') && $request->has('end_month')) {
+            $result = $this->validateMonthRange($request);
+            if ($result instanceof RedirectResponse) {
+                return $result;
+            }
+            [$startMonth, $endMonth, $year] = $result;
+        }
+
+        /* Create range date. */
+        $startDate = Carbon::create($year, $startMonth)->startOfMonth()->format('Y-m-d');
+        $endDate = Carbon::create($year, $endMonth)->endOfMonth()->format('Y-m-d');
+
+        /* Generate a list of months for the tab list. */
+        $period = CarbonPeriod::create($startDate, '1 month', $endDate);
+
+        // Sử dụng hàm xử lý chung
+        [$monthReports, $dataReports] = $this->generateMonthlyPaymentReportData($period, $startDate, $endDate);
 
         $viewData = [
             'monthReports' => $monthReports,
-            'dataReports' => [],
+            'dataReports' => $dataReports,
             'startMonth' => $startMonth,
             'endMonth' => $endMonth,
-            'year' => $defaultYear,
+            'year' => $year,
         ];
+
         return view('pages.report.monthly_payment_request', $viewData);
     }
 
@@ -50,7 +69,13 @@ class ReportController extends Controller
      */
     public function showProjectPaymentRequest()
     {
-        return view('pages.report.project_payment_request');
+        $projects = Project::query()->select('id', 'project_name')->get();
+
+        $viewData = [
+            'projects' => $projects,
+        ];
+
+        return view('pages.report.project_payment_request', $viewData);
     }
 
     /**
@@ -58,30 +83,55 @@ class ReportController extends Controller
      */
     public function exportReport(Request $request)
     {
-        return Excel::download(new ExportExcelMonthlyPaymentRequest(), 'report_' . Carbon::now() . '.xlsx');
+        $now = Carbon::now();
+        $defaultStartMonth = $now->month;
+        $defaultEndMonth = $now->month;
+        $defaultYear = $now->year;
+
+        $startMonth = $defaultStartMonth;
+        $endMonth = $defaultEndMonth;
+        $year = $defaultYear;
+
+        if ($request->has('start_month') && $request->has('end_month')) {
+            $result = $this->validateMonthRange($request);
+            if ($result instanceof RedirectResponse) {
+                return $result;
+            }
+            [$startMonth, $endMonth, $year] = $result;
+        }
+
+        /* Create range date. */
+        $startDate = Carbon::create($year, $startMonth)->startOfMonth()->format('Y-m-d');
+        $endDate = Carbon::create($year, $endMonth)->endOfMonth()->format('Y-m-d');
+
+        /* Generate a list of months for the tab list. */
+        $period = CarbonPeriod::create($startDate, '1 month', $endDate);
+
+        // Sử dụng hàm xử lý chung
+        [$monthReports, $dataReports] = $this->generateMonthlyPaymentReportData($period, $startDate, $endDate);
+
+        return Excel::download(new ExportExcelMonthlyPaymentRequest($dataReports), 'report_' . Carbon::now() . '.xlsx');
     }
 
     /**
-     * @param Request $request
-     * @return Application|Factory|object|View
+     * Validate month range input and return [startMonth, endMonth, year] or RedirectResponse on error.
      */
-    public function generateDataMonthlyPaymentRequest(Request $request)
+    private function validateMonthRange(Request $request)
     {
-        $range = $request->input('range_month');
-        $rangeParts = explode(' to ', $range);
+        $startInput = trim($request->input('start_month'));
+        $endInput = trim($request->input('end_month'));
 
         try {
-            $start = Carbon::createFromFormat('F Y', trim($rangeParts[0]));
-            $end = isset($rangeParts[1]) ? Carbon::createFromFormat('F Y', trim($rangeParts[1])) : clone $start;
+            $start = Carbon::createFromFormat('F Y', $startInput);
+            $end = Carbon::createFromFormat('F Y', $endInput);
         } catch (\Exception $e) {
-            return back()->withInput()->withErrors(['range_month' => 'Invalid date format.']);
+            return back()->withInput()->withErrors(['range_month' => 'Invalid date format. Please use format like "Month Year".']);
         }
 
         if ($start->year !== $end->year) {
-            return back()->withInput()->withErrors(['range_month' => 'Only one year allowed.']);
+            return back()->withInput()->withErrors(['range_month' => 'Start month and end month must be in the same year.']);
         }
 
-        // Validate request data.
         $validator = Validator::make([
             'start_month' => $start->month,
             'end_month' => $end->month,
@@ -96,18 +146,19 @@ class ReportController extends Controller
             return back()->withInput();
         }
 
-        $startMonth = $start->month;
-        $endMonth = $end->month;
-        $year = $start->year;
+        return [$start->month, $end->month, $start->year];
+    }
 
-        /* Create range date. */
-        $startDate = Carbon::create($year, $startMonth)->startOfMonth()->format('Y-m-d');
-        $endDate = Carbon::create($year, $endMonth)->endOfMonth()->format('Y-m-d');
-
-        /* Generate a list of months for the tab list. */
-        $period = CarbonPeriod::create($startDate, '1 month', $endDate);
-
-        /* Title tab report. */
+    /**
+     * Xử lý dữ liệu báo cáo.
+     * @param CarbonPeriod $period
+     * @param string $startDate
+     * @param string $endDate
+     * @return array [$monthReports, $dataReports]
+     */
+    private function generateMonthlyPaymentReportData($period, $startDate, $endDate): array
+    {
+        // Tạo danh sách tháng cho tab
         $monthReports = [];
         foreach ($period as $date) {
             $monthReports[] = $date->copy()->endOfMonth()->format('d-m-Y');
@@ -182,14 +233,32 @@ class ReportController extends Controller
                 $monthlyDetails = [];
                 foreach ($activeAssignments as $project) {
                     $logs = $projectAssignLogs[$project->pivot->id] ?? collect();
-                    $projectWorkedDays = 0; // Number of working days in the project.
-                    $projectAmount = 0; // That person's cost for this project.
-                    $projectAssignLogDetails = [];
 
-                    foreach ($logs as $log) {
+                    // Lọc lại log để chỉ giữ các log hợp lệ và thuộc tháng báo cáo.
+                    $filteredLogs = $logs->filter(function ($log) use ($monthStartDate, $monthEndDate) {
                         $logStartDate = Carbon::parse($log->project_join_date);
                         $logEndDate = $log->project_exit_date ? Carbon::parse($log->project_exit_date) : $monthEndDate;
 
+                        // Đảm bảo log hợp lệ: ngày bắt đầu phải trước hoặc bằng ngày kết thúc.
+                        if ($logStartDate->gt($logEndDate)) {
+                            return false;
+                        }
+
+                        // Kiểm tra xem log có giao với tháng báo cáo không.
+                        return $logStartDate->lte($monthEndDate) && $logEndDate->gte($monthStartDate);
+                    });
+
+                    if ($filteredLogs->isEmpty()) {
+                        continue; // Bỏ qua nếu không có log hợp lệ.
+                    }
+
+                    $projectWorkedDays = 0; // Number of working days in the project by month.
+                    $projectAmount = 0; // That person's cost for this project.
+                    $projectAssignLogDetails = [];
+
+                    foreach ($filteredLogs as $log) {
+                        $logStartDate = Carbon::parse($log->project_join_date);
+                        $logEndDate = $log->project_exit_date ? Carbon::parse($log->project_exit_date) : $monthEndDate;
                         $effectiveStart = $logStartDate->max($monthStartDate);
                         $effectiveEnd = $logEndDate->min($monthEndDate);
 
@@ -197,22 +266,27 @@ class ReportController extends Controller
                         $workedDaysInPeriod = DateUtil::workingDaysBetween($effectiveStart, $effectiveEnd);
                         $projectWorkedDays += $workedDaysInPeriod;
 
-                        // Calculate amount for this period based on prorated days and effort percentage
+                        // Tính toán số tiền cho khoảng thời gian này dựa trên số ngày được tính theo tỷ lệ và phần trăm nỗ lực.
                         $unitPrice = $user->employee_costs;
+                        $adjustedAmount = 0;
                         if ($totalDaysInMonth > 0) {
+                            // Tính tỷ lệ ngày làm việc: số ngày làm việc thực tế ($workedDaysInPeriod) chia cho tổng số ngày làm việc trong tháng ($totalDaysInMonth).
                             $proratedFactor = $workedDaysInPeriod / $totalDaysInMonth;
+
+                            // Tính số tiền cơ bản: nhân giá trị unit price với tỷ lệ ngày làm việc để điều chỉnh theo thời gian làm việc thực tế.
                             $baseAmount = $unitPrice * $proratedFactor;
+
+                            // Tính số tiền cơ bản với công sức bỏ ra: nhân số tiền cơ bản với tỷ lệ effort.
                             $adjustedAmount = $baseAmount * ($log->effort_percentage / 100);
-                        } else {
-                            $adjustedAmount = 0;
                         }
 
+                        // Cộng dồn số tiền đã điều chỉnh vào tổng số tiền của người đó cho tháng này của dự án ($projectAmount).
                         $projectAmount += $adjustedAmount;
 
                         // Lưu chi tiết projectAssignLog vào mảng logDetails
                         $projectAssignLogDetails[] = [
-                            'start_date' => $logStartDate->format('Y-m-d'),
-                            'end_date' => $effectiveEnd->format('Y-m-d'),
+                            'join_date' => $logStartDate->format('d-m-Y'),
+                            'exit_date' => $effectiveEnd->format('d-m-Y'),
                             'effort_percentage' => $log->effort_percentage,
                             'worked_days' => $workedDaysInPeriod,
                         ];
@@ -255,21 +329,9 @@ class ReportController extends Controller
                     ],
                 ];
             }
-
             $dataReports[$monthKey] = $monthData;
         }
 
-//        dd($dataReports);
-
-        $viewData = [
-            'monthReports' => $monthReports,
-            'dataReports' => $dataReports,
-            'startMonth' => $startMonth,
-            'endMonth' => $endMonth,
-            'year' => $year,
-        ];
-
-        return view('pages.report.monthly_payment_request', $viewData);
+        return [$monthReports, $dataReports];
     }
 }
-

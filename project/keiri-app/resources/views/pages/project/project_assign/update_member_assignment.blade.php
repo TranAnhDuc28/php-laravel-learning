@@ -165,7 +165,7 @@
                                                             @enderror
                                                         </div>
                                                         <div class="col-sm-12 col-md-6 col-lg-3 mt-3">
-                                                            <label for="id-effort_percentage-{{ $projectAssignLog->id }}" class="form-label text-nowrap">{{ __('Effort Percentage') }}</label>
+                                                            <label for="id-effort_percentage-{{ $projectAssignLog->id }}" class="form-label text-nowrap">{{ __('Effort percentage') }}</label>
                                                             <input type="number" id="id-effort_percentage-{{ $projectAssignLog->id }}"
                                                                    name="logs[{{ $projectAssignLog->id }}][effort_percentage]" min="0" max="100"
                                                                    class="form-control flatpickr flatpickr-input @error('logs.' . $projectAssignLog->id . '.effort_percentage') is-invalid @enderror"

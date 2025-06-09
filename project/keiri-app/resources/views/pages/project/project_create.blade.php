@@ -6,10 +6,10 @@
     <div class="page-content">
         <div class="container-fluid">
             <x-breadcrumb
-                :title="'Create Project'"
+                :title="__('Create Project')"
                 :breadcrumbs="[
-                   ['label' => 'Project', 'url' => null],
-                   ['label' => 'Create Project', 'url' => route('project.showCreateProject')],
+                   ['label' => __('Project Management'), 'url' => null],
+                   ['label' => __('Create Project'), 'url' => route('project.showCreateProject')],
                 ]"
             />
 
@@ -49,7 +49,7 @@
                                     <div class="form-create-project">
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6 mt-3">
-                                                <label for="id-project-code" class="form-label">{{ __('Project Code') }} <span class="text-danger">*</span></label>
+                                                <label for="id-project-code" class="form-label">{{ __('Project code') }} <span class="text-danger">*</span></label>
                                                 <input type="text" id="id-project-code" name="project_code" class="form-control @error('project_code') is-invalid @enderror" value="{{ old('project_code') }}">
                                                 @error('project_code')
                                                 <span class="invalid-feedback" role="alert">
@@ -58,7 +58,7 @@
                                                 @enderror
                                             </div>
                                             <div class="col-sm-12 col-md-6 mt-3">
-                                                <label for="id-project-name" class="form-label">{{ __('Project Name') }} <span class="text-danger">*</span></label>
+                                                <label for="id-project-name" class="form-label">{{ __('Project name') }} <span class="text-danger">*</span></label>
                                                 <input type="text" id="id-project-name" name="project_name" class="form-control @error('project_name') is-invalid @enderror" value="{{ old('project_name') }}">
                                                 @error('project_name')
                                                 <span class="invalid-feedback" role="alert">

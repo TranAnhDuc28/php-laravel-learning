@@ -26,24 +26,36 @@
             />
 
             <div class="row mb-3">
-                <div class="row gap-3 p-0 justify-content-end align-items-center">
-                    <div class="col-auto d-flex gap-3 align-items-center p-0">
-                        <form action="{{ route('report.generateDataMonthlyPaymentRequest') }}" method="GET" class="w-100" id="term-form">
-                            <div class="d-flex gap-2 align-items-center">
-                                <label for="id-range_month" class="form-label mb-0 text-nowrap">{{ __('Range date') }}</label>
-                                <input type="text" id="id-range_month" name="range_month" style="width: 300px"
-                                       class="form-control flatpickr flatpickr-input"
-                                       value="{{ old('range_month') }}" autocomplete="off">
+                <div class="d-flex justify-content-end gap-3 flex-wrap">
+                    <div>
+                        <form action="{{ route('report.showMonthlyPaymentRequest') }}" method="GET" class="w-100" id="term-form">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label for="id-start_month" class="col-form-label">{{ __('Range date') }}</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="text" id="id-start_month" name="start_month"
+                                           class="form-control flatpickr flatpickr-input"
+                                           value="{{ old('start_month', request()->get('start_month') ? Carbon::parse(request()->get('start_month'))->format('F Y') : Carbon::now()->format('F Y')) }}" autocomplete="off" readonly>
+                                </div>
+                                <div class="col-auto">
+                                    <label for="id-end_month" class="col-form-label">{{ __('to') }}</label>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="text" id="id-end_month" name="end_month"
+                                           class="form-control flatpickr flatpickr-input"
+                                           value="{{ old('end_month', request()->get('end_month') ? Carbon::parse(request()->get('end_month'))->format('F Y') : Carbon::now()->format('F Y')) }}" autocomplete="off" readonly>
+                                </div>
                             </div>
                         </form>
                     </div>
-                    <div class="col-auto d-flex gap-2 p-0">
+                    <div class="d-flex gap-2">
                         <button class="btn btn-outline-secondary" id="update-preview-report">
                             <i class="ri-refresh-line label-icon align-middle me-1"></i> {{ __('Update') }}
                         </button>
-                        <button class="btn btn-outline-primary">
+                        <a href="{{ route('report.exportMonthlyPaymentRequest') }}" class="btn btn-outline-primary">
                             <i class="bi bi-download label-icon align-middle me-1"></i> {{ __('Export') }}
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -53,7 +65,7 @@
                     @if($monthReports && count($monthReports) > 0)
                         <ul class="nav nav-tabs nav-justified nav-border-top nav-border-top-primary mb-3" role="tablist">
                             @foreach($monthReports as $monthReport)
-                                <li class="nav-item">
+                                <li class="nav-item text-nowrap">
                                     <a class="nav-link @if($loop->first) active @endif" data-bs-toggle="tab" href="#tab{{ $monthReport }}" role="tab">
                                         {{ $monthReport }}
                                     </a>
@@ -73,17 +85,17 @@
                                                 <th rowspan="2" class="text-center">{{ __('Project name') }}</th>
                                                 <th colspan="4" class="text-center">{{ __('Project assign') }}</th>
                                                 <th colspan="2" class="text-center">{{ __('Contract unit price') }}</th>
-                                                <th rowspan="2" class="text-center">{{ __('Overtime work') }} (3)</th>
+                                                <th rowspan="2" class="text-center">{{ __('Overtime work') }}</th>
                                                 <th rowspan="2" class="text-center">{{ __('Job content') }}</th>
                                                 <th rowspan="2" class="text-center">{{ __('Total') }} <br></th>
                                             </tr>
                                             <tr>
-                                                <th class="text-center">{{ __('Start_date') }}</th>
-                                                <th class="text-center">{{ __('End_date') }}</th>
+                                                <th class="text-center text-nowrap">{{ __('Join date') }}</th>
+                                                <th class="text-center text-nowrap">{{ __('Exit date') }}</th>
                                                 <th class="text-center">{{ __('Effort') }}</th>
                                                 <th class="text-center">{{ __('Worked days') }}</th>
-                                                <th class="text-center">{{ __('Monthly unit price') }} (1)</th>
-                                                <th class="text-center">{{ __('Regular overtime') }} (2)</th>
+                                                <th class="text-center">{{ __('Monthly unit price') }}</th>
+                                                <th class="text-center">{{ __('Regular overtime') }}</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -103,8 +115,8 @@
                                                         <td>
                                                             @foreach($dataReport['projects'] as $project)
                                                                 @foreach($project['project_assign_log_details'] as $projectAssignLogDetail)
-                                                                    <div class="m-0 p-0">
-                                                                        <span>{{ $projectAssignLogDetail['start_date'] }}</span>
+                                                                    <div class="m-0 p-0 text-nowrap">
+                                                                        <span>{{ $projectAssignLogDetail['join_date'] }}</span>
                                                                     </div>
                                                                 @endforeach
                                                             @endforeach
@@ -112,8 +124,8 @@
                                                         <td>
                                                             @foreach($dataReport['projects'] as $project)
                                                                 @foreach($project['project_assign_log_details'] as $projectAssignLogDetail)
-                                                                    <div class="m-0 p-0">
-                                                                        <span>{{ $projectAssignLogDetail['end_date'] }}</span>
+                                                                    <div class="m-0 p-0 text-nowrap">
+                                                                        <span>{{ $projectAssignLogDetail['exit_date'] }}</span>
                                                                     </div>
                                                                 @endforeach
                                                             @endforeach
@@ -121,7 +133,7 @@
                                                         <td>
                                                             @foreach($dataReport['projects'] as $project)
                                                                 @foreach($project['project_assign_log_details'] as $projectAssignLogDetail)
-                                                                    {{ $projectAssignLogDetail['effort_percentage'] }} <br>
+                                                                    {{ $projectAssignLogDetail['effort_percentage'] }}% <br>
                                                                 @endforeach
                                                             @endforeach
                                                         </td>
@@ -132,11 +144,11 @@
                                                                 @endforeach
                                                             @endforeach
                                                         </td>
-                                                        <td>{{ $dataReport['contract_unit_price'] }}</td>
-                                                        <td>{{ $dataReport['monthly_data']['overtime_work'] }}</td>
-                                                        <td>{{ $dataReport['monthly_data']['regular_overtime'] }}</td>
+                                                        <td>{{ number_format($dataReport['contract_unit_price']) }}</td>
+                                                        <td>{{ number_format($dataReport['monthly_data']['overtime_work']) }}</td>
+                                                        <td>{{ number_format($dataReport['monthly_data']['regular_overtime']) }}</td>
                                                         <td>{{ implode(', ', $dataReport['job_content']) }}</td>
-                                                        <td>{{ $dataReport['monthly_data']['total'] }}</td>
+                                                        <td>{{ number_format($dataReport['monthly_data']['total']) }}</td>
                                                     </tr>
                                                 @endforeach
                                             @else

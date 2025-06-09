@@ -18,14 +18,12 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyles
 {
-    private $month;
-    private $year;
+    private $title;
     private $data;
 
-    public function __construct(int $year, string $month, $data)
+    public function __construct(string $title, $data)
     {
-        $this->month = $month;
-        $this->year = $year;
+        $this->title = $title;
         $this->data = $data;
     }
 
@@ -34,7 +32,7 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
      */
     public function title(): string
     {
-        return '2.' . $this->month . '_' . $this->year;
+        return $this->title;
     }
 
     public function view(): View

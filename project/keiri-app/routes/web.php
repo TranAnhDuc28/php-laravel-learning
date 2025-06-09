@@ -45,18 +45,16 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
         Route::put('projects/update/{projectId}', [ProjectController::class, 'processUpdateProject'])->name('project.processUpdateProject');
 
         Route::get('projects/project-assign', [ProjectAssignmentController::class, 'showProjectAssignment'])->name('project.assign.showProjectAssignment');
-        Route::get('projects/project-assign-detail/{projectId}', [ProjectAssignmentController::class, 'showProjectAssignmentDetail'])->name('project.assign.showProjectAssignmentDetail');
-        Route::get('projects/update-member-assign/{projectAssignId}', [ProjectAssignmentController::class, 'showUpdateMemberAssignment'])->name('project.assign.showUpdateMemberAssignment');
-        Route::put('projects/update-member-assign/{projectAssignId}', [ProjectAssignmentController::class, 'processUpdateProjectAssignmentLog'])->name('project.assign.processUpdateProjectAssignmentLog');
-        Route::post('projects/delete-assign-log/{projectAssignLogId}', [ProjectAssignmentController::class, 'processDelete'])->name('project.assign.processDeleteProjectAssignmentLog');
+        Route::get('projects/project-assign/detail/{projectId}', [ProjectAssignmentController::class, 'showProjectAssignmentDetail'])->name('project.assign.showProjectAssignmentDetail');
+        Route::get('projects/project-assign/update-member/{projectAssignId}', [ProjectAssignmentController::class, 'showUpdateMemberAssignment'])->name('project.assign.showUpdateMemberAssignment');
+        Route::put('projects/project-assign/update-member/{projectAssignId}', [ProjectAssignmentController::class, 'processUpdateProjectAssignmentLog'])->name('project.assign.processUpdateProjectAssignmentLog');
+        Route::post('projects/project-assign/delete-log/{projectAssignLogId}', [ProjectAssignmentController::class, 'processDelete'])->name('project.assign.processDeleteProjectAssignmentLog');
     });
 
     /* Report. */
     Route::group(['middleware' => ['check_role:' . UserRole::ADMIN->value]], function () {
         Route::get('reports/monthly-payment-request', [ReportController::class, 'showMonthlyPaymentRequest'])->name('report.showMonthlyPaymentRequest');
         Route::get('reports/project-payment-request', [ReportController::class, 'showProjectPaymentRequest'])->name('report.showProjectPaymentRequest');
-        Route::get('reports/preview/monthly-payment-request', [ReportController::class, 'generateDataMonthlyPaymentRequest'])->name('report.generateDataMonthlyPaymentRequest');
-        Route::get('reports/preview/project-payment-request', [ReportController::class, 'generateDataMonthlyPaymentRequest'])->name('report.generateDataMonthlyPaymentRequest2');
         Route::get('reports/export/monthly-payment-request', [ReportController::class, 'exportReport'])->name('report.exportMonthlyPaymentRequest');
         Route::get('reports/export/project-payment-request', [ReportController::class, 'exportReport'])->name('report.exportProjectPaymentRequest');
     });

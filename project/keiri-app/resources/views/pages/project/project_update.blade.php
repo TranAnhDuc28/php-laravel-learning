@@ -6,10 +6,10 @@
     <div class="page-content">
         <div class="container-fluid">
             <x-breadcrumb
-                :title="'Update Project'"
+                :title="__('Update Project')"
                 :breadcrumbs="[
-                   ['label' => 'Project', 'url' => null],
-                   ['label' => 'Update project', 'url' => null],
+                   ['label' => __('Project Management'), 'url' => null],
+                   ['label' => __('Update project'), 'url' => null],
                 ]"
             />
 

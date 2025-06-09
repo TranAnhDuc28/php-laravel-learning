@@ -8,7 +8,7 @@
             <x-breadcrumb
                 :title="'Project assignment'"
                 :breadcrumbs="[
-                   ['label' => 'Project', 'url' => null],
+                   ['label' => 'Project management', 'url' => null],
                    ['label' => 'Project assignment', 'url' => route('project.assign.showProjectAssignment')],
                 ]"
             />

@@ -13,13 +13,44 @@
                 ]"
             />
 
-            <div class="mb-3 d-flex justify-content-end">
-                <div>
-                    <a href="{{ route('report.exportProjectPaymentRequest') }}" class="btn btn-outline-primary">Export</a>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9 mb-3">
+                    <form action="{{ route('report.showProjectPaymentRequest') }}" method="GET" class="w-100" id="term-form">
+                        <div class="d-flex gap-2 align-items-center w-100">
+                            <label for="projects" class="form-label mb-0">{{ __('Projects') }}</label>
+                            <select id="projects" class="form-select w-100 @error('projects') is-invalid @enderror" name="projects[]" multiple>
+                                @foreach($projects as $project)
+                                    <option value="{{ $project->id }}" @selected(in_array($project->id, old('projects', [])))>{{ $project->project_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @error('projects')
+                        <span class="choices-msg-error text-danger mt-1 d-block w-100" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                        @php
+                            $projectsErrors = Illuminate\Support\Arr::flatten($errors->get('projects.*'));
+                        @endphp
+                        @if(!empty($projectsErrors))
+                            <div class="msg-error text-danger mt-1" role="alert">
+                                <strong>{{ __('Invalid projects:') }}</strong>
+                                <ul class="mb-0">
+                                    @foreach($projectsErrors as $message)
+                                        <li>{{ $message }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </form>
                 </div>
-
-                <div class="d-flex gap-3">
-
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3 mb-3 d-flex gap-2 justify-content-end">
+                    <button class="btn btn-outline-secondary" id="update-preview-report">
+                        <i class="ri-refresh-line label-icon align-middle me-1"></i> {{ __('Update') }}
+                    </button>
+                    <button class="btn btn-outline-primary">
+                        <i class="bi bi-download label-icon align-middle me-1"></i> {{ __('Export') }}
+                    </button>
                 </div>
             </div>
 
@@ -56,10 +87,10 @@
                             @endfor
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <th scope="row" colspan="5">{{ __('Total') }}</th>
-                                    <td colspan="2" class="text-start"></td>
-                                </tr>
+                            <tr>
+                                <th scope="row" colspan="5">{{ __('Total') }}</th>
+                                <td colspan="2" class="text-start"></td>
+                            </tr>
                             </tfoot>
                         </table>
                     </div>

@@ -58,7 +58,9 @@
                                             <td>
                                                 <a href="{{ route('employee.showUpdateEmployee', ['id' => $employee->id]) }}" class="text-decoration-underline">{{ $employee->full_name }}</a>
                                             </td>
-                                            <td>{{ $employee->email }}</td>
+                                            <td>
+                                                <a href="{{ route('employee.showUpdateEmployee', ['id' => $employee->id]) }}" class="text-decoration-underline">  {{ $employee->email }}</a>
+                                            </td>
                                             <td>{{ $employee->department->name ?? '' }}</td>
                                             <td>{{ $employee->job_position }}</td>
 {{--                                            <td>{{ $employee->phone_number }}</td>--}}
