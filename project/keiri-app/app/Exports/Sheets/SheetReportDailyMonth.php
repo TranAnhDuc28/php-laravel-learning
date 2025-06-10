@@ -18,12 +18,12 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyles
 {
-    private $title;
+    private $key;
     private $data;
 
-    public function __construct(string $title, $data)
+    public function __construct(string $key, $data)
     {
-        $this->title = $title;
+        $this->key = $key;
         $this->data = $data;
     }
 
@@ -32,7 +32,7 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
      */
     public function title(): string
     {
-        return $this->title;
+        return Carbon::parse($this->key)->format('M_Y');
     }
 
     public function view(): View
@@ -60,14 +60,14 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
         return [
             AfterSheet::class => function (AfterSheet $event) {
                 $sheet = $event->sheet->getDelegate();
-                $month = Carbon::parse($this->month)->format('m');
-                $day = Carbon::create($this->year, $month)->daysInMonth;
-                $excelDate = Date::PHPToExcel(new DateTime("{$this->year}-$month-$day"));
+                $excelDate = Date::PHPToExcel(new DateTime($this->key));
 
                 // Title report.
-                $sheet->getStyle('A1')->getNumberFormat()->setFormatCode('"稼""働""報""告""書"([$-ja-JP]yyyy"年"m"月""分")');
+                $sheet->getStyle('A1')->getNumberFormat()
+                    ->setFormatCode('"稼""働""報""告""書"([$-ja-JP]yyyy"年"m"月""分")');
                 $sheet->setCellValue('A1', $excelDate);
-                $sheet->getStyle('A1')->getFont()->setName('ＭＳ Ｐゴシック')->setSize(14);
+                $sheet->getStyle('A1')->getFont()
+                    ->setName('ＭＳ Ｐゴシック')->setSize(14);
                 $sheet->getStyle('A1')->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                     ->setVertical(Alignment::VERTICAL_BOTTOM);
@@ -76,11 +76,12 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
 
                 // Name company.
                 $sheet->setCellValue('A4', 'ビジネスシステムズ株式会社殿');
-                $sheet->mergeCells('A4:C4');
+                $sheet->mergeCells('A4:D4');
 
                 //
                 $sheet->setCellValue('J4', Carbon::now()->format('Y年n月j日'));
-                $sheet->getStyle('J4')->getAlignment()->setHorizontal(Alignment::HORIZONTAL_RIGHT);
+                $sheet->getStyle('J4')->getAlignment()
+                    ->setHorizontal(Alignment::HORIZONTAL_RIGHT);
                 $sheet->mergeCells('J4:H4');
 
                 // Description.
@@ -89,8 +90,7 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
                 // "記"
                 $sheet->setCellValue('B7', '記');
                 $sheet->mergeCells('B7:J7');
-                $sheet->getStyle('B7:J7')
-                    ->getAlignment()
+                $sheet->getStyle('B7:J7')->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                     ->setVertical(Alignment::VERTICAL_BOTTOM);
 
@@ -105,8 +105,7 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
 
                 // (単位：円・時間).
                 $sheet->setCellValue('J12', '(単位：円・時間)');
-                $sheet->getStyle('J12')
-                    ->getAlignment()
+                $sheet->getStyle('J12')->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_RIGHT)
                     ->setVertical(Alignment::VERTICAL_BOTTOM);
 
@@ -126,117 +125,86 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
                 $sheet->getColumnDimension('G')->setWidth(21);
 
                 // Border table.
-                $sheet->getStyle([2, $rowStartTable, 10, $rowEndPrintData])
-                    ->getBorders()
-                    ->getAllBorders()
+                $sheet->getStyle([2, $rowStartTable, 10, $rowEndPrintData])->getBorders()->getAllBorders()
                     ->setBorderStyle(Border::BORDER_THIN);
-                $sheet->getStyle([2, $rowStartTable, 10, $rowEndPrintData])
-                    ->getBorders()
-                    ->getOutline()
+                $sheet->getStyle([2, $rowStartTable, 10, $rowEndPrintData])->getBorders()->getOutline()
                     ->setBorderStyle(Border::BORDER_MEDIUM);
 
                 // Header table.
                 $sheet->getRowDimension('13')->setRowHeight(42.5);
-                $sheet->getStyle('B13:J13')
-                    ->getAlignment()
+                $sheet->getStyle('B13:J13')->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                     ->setVertical(Alignment::VERTICAL_CENTER)
                     ->setWrapText(true);
-                $sheet->getStyle('B13:J13')
-                    ->getBorders()
-                    ->getBottom()
+                $sheet->getStyle('B13:J13')->getBorders()->getBottom()
                     ->setBorderStyle(Border::BORDER_MEDIUM);
 
                 /* Format column table. */
                 if ($countData) {
                     // Column "要員名".
-                    $sheet->getStyle([2, $rowStartPrintData, 2, $rowEndPrintData])
-                        ->getAlignment()
+                    $sheet->getStyle([2, $rowStartPrintData, 2, $rowEndPrintData])->getAlignment()
                         ->setHorizontal(Alignment::HORIZONTAL_CENTER)
-                        ->setVertical(Alignment::VERTICAL_CENTER)
-                        ->setWrapText(true);
+                        ->setVertical(Alignment::VERTICAL_CENTER)->setWrapText(true);
 
                     // Column "ランク".
-                    $sheet->getStyle([3, $rowStartPrintData, 3, $rowEndPrintData])
-                        ->getAlignment()
+                    $sheet->getStyle([3, $rowStartPrintData, 3, $rowEndPrintData])->getAlignment()
                         ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                         ->setVertical(Alignment::VERTICAL_CENTER);
 
                     // Column "区分".
-                    $sheet->getStyle([4, $rowStartPrintData, 4, $rowEndPrintData])
-                        ->getAlignment()
+                    $sheet->getStyle([4, $rowStartPrintData, 4, $rowEndPrintData])->getAlignment()
                         ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                         ->setVertical(Alignment::VERTICAL_CENTER);
-                    $sheet->getStyle([4, $rowStartPrintData, 4, $rowEndPrintData])
-                        ->getBorders()
-                        ->getRight()
+                    $sheet->getStyle([4, $rowStartPrintData, 4, $rowEndPrintData])->getBorders()->getRight()
                         ->setBorderStyle(Border::BORDER_NONE);
 
                     // Column "契約単金(上段：月額、下段：時間単価）".
-                    $sheet->getStyle([5, $rowStartPrintData, 5, $rowEndPrintData])
-                        ->getAlignment()
+                    $sheet->getStyle([5, $rowStartPrintData, 5, $rowEndPrintData])->getAlignment()
                         ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                         ->setVertical(Alignment::VERTICAL_CENTER)
                         ->setWrapText(true);
-                    $sheet->getStyle([5, $rowStartPrintData, 5, $rowEndPrintData])
-                        ->getNumberFormat()
+                    $sheet->getStyle([5, $rowStartPrintData, 5, $rowEndPrintData])->getNumberFormat()
                         ->setFormatCode(NumberFormat::FORMAT_NUMBER)
                         ->setFormatCode('#,##0');
 
                     // Column "時間外稼働.".
-                    $sheet->getStyle([6, $rowStartPrintData, 6, $rowEndPrintData])
-                        ->getAlignment()
+                    $sheet->getStyle([6, $rowStartPrintData, 6, $rowEndPrintData])->getAlignment()
                         ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                         ->setVertical(Alignment::VERTICAL_CENTER)
                         ->setWrapText(true);
 
                     // Column "業務内容".
-                    $sheet->getStyle([7, $rowStartPrintData, 7, $rowEndPrintData])
-                        ->getAlignment()
+                    $sheet->getStyle([7, $rowStartPrintData, 7, $rowEndPrintData])->getAlignment()
                         ->setVertical(Alignment::VERTICAL_CENTER)
                         ->setWrapText(true);
 
                     // Column "計".
-                    $sheet->getStyle([8, $rowStartPrintData, 8, $rowEndPrintData])
-                        ->getAlignment()
+                    $sheet->getStyle([8, $rowStartPrintData, 8, $rowEndPrintData])->getAlignment()
                         ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                         ->setVertical(Alignment::VERTICAL_CENTER);
-                    $sheet->getStyle([8, $rowStartPrintData, 8, $rowEndPrintData])
-                        ->getNumberFormat()
+                    $sheet->getStyle([8, $rowStartPrintData, 8, $rowEndPrintData])->getNumberFormat()
                         ->setFormatCode(NumberFormat::FORMAT_NUMBER)
                         ->setFormatCode('#,##0');
-                    for ($row = $rowStartPrintData; $row <= $rowEndPrintData; $row++) {
-                        $sheet->setCellValue("H{$row}", "=E{$row}");
-                        $row++;
-                    }
                 }
 
                 // Result calculation.
-                $sheet->getStyle([2, ($rowEndPrintData + 1), 7, ($rowEndPrintData + 3)])
-                    ->getAlignment()
+                $sheet->getStyle([2, ($rowEndPrintData + 1), 7, ($rowEndPrintData + 3)])->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                     ->setVertical(Alignment::VERTICAL_CENTER);
-                $sheet->getStyle([2, ($rowEndPrintData + 1), 7, ($rowEndPrintData + 3)])
-                    ->getBorders()
-                    ->getAllBorders()
+                $sheet->getStyle([2, ($rowEndPrintData + 1), 7, ($rowEndPrintData + 3)])->getBorders()->getAllBorders()
                     ->setBorderStyle(Border::BORDER_MEDIUM);
 
-                $sheet->getStyle([8, ($rowEndPrintData + 1), 10, ($rowEndPrintData + 3)])
-                    ->getAlignment()
+                $sheet->getStyle([8, ($rowEndPrintData + 1), 10, ($rowEndPrintData + 3)])->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                     ->setVertical(Alignment::VERTICAL_CENTER);
-                $sheet->getStyle([8, ($rowEndPrintData + 1), 10, ($rowEndPrintData + 3)])
-                    ->getBorders()
-                    ->getAllBorders()
+                $sheet->getStyle([8, ($rowEndPrintData + 1), 10, ($rowEndPrintData + 3)])->getBorders()->getAllBorders()
                     ->setBorderStyle(Border::BORDER_MEDIUM);
 
                 $this->setRowHeights($sheet, $rowEndPrintData + 1, $rowEndPrintData + 3, 19);
 
                 if ($countData) {
                     $sheet->getStyle([8, ($rowEndPrintData + 1), 8, ($rowEndPrintData + 3)])
-                        ->getNumberFormat()
-                        ->setFormatCode(NumberFormat::FORMAT_NUMBER)
-                        ->setFormatCode('#,##0');
+                        ->getNumberFormat()->setFormatCode(NumberFormat::FORMAT_NUMBER)->setFormatCode('#,##0');
                     $sheet->setCellValue('H' . ($rowEndPrintData + 1), "=SUM(H{$rowStartPrintData}:J{$rowEndPrintData})");
                     $sheet->setCellValue('H' . ($rowEndPrintData + 2), 0);
                     $sheet->setCellValue('H' . ($rowEndPrintData + 3), '=H' . ($rowEndPrintData + 1));
@@ -244,8 +212,7 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
 
                 /* Sign. */
                 $sheet->setCellValue('G' . ($rowEndPrintData + 5), Carbon::now()->format('d, F, Y'));
-                $sheet->getStyle('G' . ($rowEndPrintData + 5))
-                    ->getAlignment()
+                $sheet->getStyle('G' . ($rowEndPrintData + 5))->getAlignment()
                     ->setVertical(Alignment::VERTICAL_BOTTOM);
 
                 $sheet->getRowDimension($rowEndPrintData + 6)->setRowHeight(58);
@@ -253,13 +220,10 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
                 $sheet->mergeCells([7, ($rowEndPrintData + 7), 9, ($rowEndPrintData + 7)]);
                 $sheet->mergeCells([7, ($rowEndPrintData + 8), 9, ($rowEndPrintData + 8)]);
 
-                $sheet->getStyle([7, ($rowEndPrintData + 6), 9, ($rowEndPrintData + 6)])
-                    ->getBorders()
-                    ->getBottom()
+                $sheet->getStyle([7, ($rowEndPrintData + 6), 9, ($rowEndPrintData + 6)])->getBorders()->getBottom()
                     ->setBorderStyle(Border::BORDER_THIN);
 
-                $sheet->getStyle('G' . ($rowEndPrintData + 6) . ':J' . ($rowEndPrintData + 8))
-                    ->getAlignment()
+                $sheet->getStyle('G' . ($rowEndPrintData + 6) . ':J' . ($rowEndPrintData + 8))->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                     ->setVertical(Alignment::VERTICAL_BOTTOM);
 

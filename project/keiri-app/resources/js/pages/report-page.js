@@ -33,43 +33,81 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    /*  */
-    document.getElementById('update-preview-report')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        const inpStartMonth = document.getElementById('id-start_month');
-        const inpEndMonth = document.getElementById('id-end_month');
+    /* Preview report monthly payment report. */
+    let startPicker, endPicker;
+    const inpStartMonth = document.getElementById('id-start_month');
+    const inpEndMonth = document.getElementById('id-end_month');
+    const btnUpdatePreviewReport = document.getElementById('update-preview-report');
+    const btnExportReport = document.getElementById('export-report');
 
+    /* Function validate range month. */
+    const validateRangeMonth = () => {
         if (!inpStartMonth || !inpEndMonth) {
-            return;
+            return false;
         }
 
         const startValue = inpStartMonth.value.trim();
         const endValue = inpEndMonth.value.trim();
 
         if (!startValue || !endValue) {
-            return;
+            return false;
         }
 
-        document.getElementById('term-form')?.submit();
+        return true;
+    };
+
+    btnExportReport?.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        if (validateRangeMonth()) {
+            const termForm = document.getElementById('term-form');
+
+            if (termForm) {
+                termForm.action = urlExportMonthlyPaymentRequest;
+                termForm.submit();
+            }
+        }
     });
 
-    let startPicker, endPicker;
-    const inpStartMonth = document.getElementById('id-start_month');
+    btnUpdatePreviewReport?.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        if (validateRangeMonth()) {
+            const termForm = document.getElementById('term-form');
+
+            if (termForm) {
+                termForm.action = urlShowMonthlyPaymentRequest;
+                termForm.submit();
+            }
+        }
+    });
+
+    const parseDateString = (dateStr) => {
+        if (!dateStr) return null;
+        try {
+            return new Date(`${dateStr} 1`);
+        } catch (e) {
+            console.error("Invalid date format:", dateStr);
+            return new Date();
+        }
+    }
 
     if (inpStartMonth) {
+        const startValue = inpStartMonth.value;
+        const defaultStartDate = startValue ? parseDateString(startValue) : new Date();
+
         startPicker = flatpickr(inpStartMonth, {
             plugins: [
-                 monthSelectPlugin({
+                monthSelectPlugin({
                     shorthand: true,
                     dateFormat: "F Y",
                     altFormat: "F Y",
                     theme: sessionStorage.getItem('data-bs-theme') ?? 'light',
                 })
             ],
-            defaultDate: new Date(),
+            defaultDate: defaultStartDate,
             onChange: function (selectedDates, dateStr, instance) {
                 if (selectedDates.length > 0 && endPicker) {
-                    console.log(endPicker)
                     const startDate = selectedDates[0];
                     const startYear = startDate.getFullYear();
 
@@ -107,11 +145,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const inpEndMonth = document.getElementById('id-end_month');
     if (inpEndMonth) {
+        const endValue = inpEndMonth.value;
+        const defaultEndDate = endValue ? parseDateString(endValue) : new Date();
+
         endPicker = flatpickr(inpEndMonth, {
             plugins: [
-                 monthSelectPlugin({
+                monthSelectPlugin({
                     shorthand: true,
                     dateFormat: "F Y",
                     altFormat: "F Y",
@@ -120,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             nextArrow: null,
             prevArrow: null,
-            defaultDate: new Date(),
+            defaultDate: defaultEndDate,
             onChange: function (selectedDates, dateStr, instance) {
                 if (selectedDates.length > 0 && startPicker && startPicker.selectedDates.length > 0) {
                     const endDate = selectedDates[0];

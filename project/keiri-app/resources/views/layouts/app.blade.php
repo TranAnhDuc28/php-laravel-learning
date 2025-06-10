@@ -32,8 +32,8 @@
 
 @include('common.customizer')
 
+@stack('body_js')
 @vite($viteEntries)
 
-@stack('body_js')
 </body>
 </html>

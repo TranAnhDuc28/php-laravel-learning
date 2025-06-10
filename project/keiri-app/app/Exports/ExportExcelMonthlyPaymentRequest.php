@@ -10,10 +10,12 @@ use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 class ExportExcelMonthlyPaymentRequest implements WithMultipleSheets
 {
 
+    private $monthReports;
     private $data;
 
-    public function __construct($data)
+    public function __construct($monthReports, $data)
     {
+        $this->monthReports = $monthReports;
         $this->data = $data;
     }
 
@@ -26,8 +28,9 @@ class ExportExcelMonthlyPaymentRequest implements WithMultipleSheets
         $titleReportDailySheets = [];
 
         foreach ($this->data as $key => $value) {
-            $titleSheetReportDaily = Carbon::now()->month($key)->format('M_Y');
-            $sheets[] = new SheetReportDailyMonth($titleSheetReportDaily, $value);
+//            dd($value);
+            $titleSheetReportDaily = Carbon::parse($key)->format('M_Y');
+            $sheets[] = new SheetReportDailyMonth($key, $value);
             $titleReportDailySheets[] = $titleSheetReportDaily;
         }
 

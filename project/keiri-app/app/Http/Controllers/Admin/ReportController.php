@@ -36,11 +36,38 @@ class ReportController extends Controller
         $year = $defaultYear;
 
         if ($request->has('start_month') && $request->has('end_month')) {
-            $result = $this->validateMonthRange($request);
-            if ($result instanceof RedirectResponse) {
-                return $result;
+            $startInput = trim($request->input('start_month'));
+            $endInput = trim($request->input('end_month'));
+
+            try {
+                $start = Carbon::createFromFormat('F Y', $startInput);
+                $end = Carbon::createFromFormat('F Y', $endInput);
+            } catch (\Exception $e) {
+                return back()->withInput()->withErrors(['range_month' => 'Invalid date format.']);
             }
-            [$startMonth, $endMonth, $year] = $result;
+
+            if ($start->year !== $end->year) {
+                return back()->withInput()->withErrors(['range_month' => 'Start month and end month must be in the same year.']);
+            }
+
+            // Validate request data.
+            $validator = Validator::make([
+                'start_month' => $start->month,
+                'end_month' => $end->month,
+                'year' => $start->year,
+            ], [
+                'start_month' => ['required', 'integer', 'between:1,12'],
+                'end_month' => ['nullable', 'integer', 'between:1,12', 'gte:start_month'],
+                'year' => ['required', 'integer', 'min:2000', 'max:2100'],
+            ]);
+
+            if ($validator->fails()) {
+                return back()->withInput();
+            }
+
+            $startMonth = $start->month;
+            $endMonth = $end->month;
+            $year = $start->year;
         }
 
         /* Create range date. */
@@ -50,7 +77,6 @@ class ReportController extends Controller
         /* Generate a list of months for the tab list. */
         $period = CarbonPeriod::create($startDate, '1 month', $endDate);
 
-        // Sử dụng hàm xử lý chung
         [$monthReports, $dataReports] = $this->generateMonthlyPaymentReportData($period, $startDate, $endDate);
 
         $viewData = [
@@ -79,7 +105,7 @@ class ReportController extends Controller
     }
 
     /**
-     * @return BinaryFileResponse
+     * @return BinaryFileResponse|RedirectResponse
      */
     public function exportReport(Request $request)
     {
@@ -93,11 +119,38 @@ class ReportController extends Controller
         $year = $defaultYear;
 
         if ($request->has('start_month') && $request->has('end_month')) {
-            $result = $this->validateMonthRange($request);
-            if ($result instanceof RedirectResponse) {
-                return $result;
+            $startInput = trim($request->input('start_month'));
+            $endInput = trim($request->input('end_month'));
+
+            try {
+                $start = Carbon::createFromFormat('F Y', $startInput);
+                $end = Carbon::createFromFormat('F Y', $endInput);
+            } catch (\Exception $e) {
+                return back()->withInput()->withErrors(['range_month' => 'Invalid date format. Please use format like "Month Year".']);
             }
-            [$startMonth, $endMonth, $year] = $result;
+
+            if ($start->year !== $end->year) {
+                return back()->withInput()->withErrors(['range_month' => 'Start month and end month must be in the same year.']);
+            }
+
+            // Validate request data.
+            $validator = Validator::make([
+                'start_month' => $start->month,
+                'end_month' => $end->month,
+                'year' => $start->year,
+            ], [
+                'start_month' => ['required', 'integer', 'between:1,12'],
+                'end_month' => ['nullable', 'integer', 'between:1,12', 'gte:start_month'],
+                'year' => ['required', 'integer', 'min:2000', 'max:2100'],
+            ]);
+
+            if ($validator->fails()) {
+                return back()->withInput();
+            }
+
+            $startMonth = $start->month;
+            $endMonth = $end->month;
+            $year = $start->year;
         }
 
         /* Create range date. */
@@ -107,46 +160,9 @@ class ReportController extends Controller
         /* Generate a list of months for the tab list. */
         $period = CarbonPeriod::create($startDate, '1 month', $endDate);
 
-        // Sử dụng hàm xử lý chung
         [$monthReports, $dataReports] = $this->generateMonthlyPaymentReportData($period, $startDate, $endDate);
 
-        return Excel::download(new ExportExcelMonthlyPaymentRequest($dataReports), 'report_' . Carbon::now() . '.xlsx');
-    }
-
-    /**
-     * Validate month range input and return [startMonth, endMonth, year] or RedirectResponse on error.
-     */
-    private function validateMonthRange(Request $request)
-    {
-        $startInput = trim($request->input('start_month'));
-        $endInput = trim($request->input('end_month'));
-
-        try {
-            $start = Carbon::createFromFormat('F Y', $startInput);
-            $end = Carbon::createFromFormat('F Y', $endInput);
-        } catch (\Exception $e) {
-            return back()->withInput()->withErrors(['range_month' => 'Invalid date format. Please use format like "Month Year".']);
-        }
-
-        if ($start->year !== $end->year) {
-            return back()->withInput()->withErrors(['range_month' => 'Start month and end month must be in the same year.']);
-        }
-
-        $validator = Validator::make([
-            'start_month' => $start->month,
-            'end_month' => $end->month,
-            'year' => $start->year,
-        ], [
-            'start_month' => ['required', 'integer', 'between:1,12'],
-            'end_month' => ['nullable', 'integer', 'between:1,12', 'gte:start_month'],
-            'year' => ['required', 'integer', 'min:2000', 'max:2100'],
-        ]);
-
-        if ($validator->fails()) {
-            return back()->withInput();
-        }
-
-        return [$start->month, $end->month, $start->year];
+        return Excel::download(new ExportExcelMonthlyPaymentRequest($monthReports, $dataReports), 'report_' . Carbon::now() . '.xlsx');
     }
 
     /**

@@ -36,7 +36,8 @@
                                 <div class="col-auto">
                                     <input type="text" id="id-start_month" name="start_month"
                                            class="form-control flatpickr flatpickr-input"
-                                           value="{{ old('start_month', request()->get('start_month') ? Carbon::parse(request()->get('start_month'))->format('F Y') : Carbon::now()->format('F Y')) }}" autocomplete="off" readonly>
+                                           value="{{ old('start_month', request()->get('start_month') ? Carbon::parse(request()->get('start_month'))->format('F Y') : Carbon::now()->format('F Y')) }}"
+                                           autocomplete="off" readonly>
                                 </div>
                                 <div class="col-auto">
                                     <label for="id-end_month" class="col-form-label">{{ __('to') }}</label>
@@ -44,7 +45,8 @@
                                 <div class="col-auto">
                                     <input type="text" id="id-end_month" name="end_month"
                                            class="form-control flatpickr flatpickr-input"
-                                           value="{{ old('end_month', request()->get('end_month') ? Carbon::parse(request()->get('end_month'))->format('F Y') : Carbon::now()->format('F Y')) }}" autocomplete="off" readonly>
+                                           value="{{ old('end_month', request()->get('end_month') ? Carbon::parse(request()->get('end_month'))->format('F Y') : Carbon::now()->format('F Y')) }}"
+                                           autocomplete="off" readonly>
                                 </div>
                             </div>
                         </form>
@@ -53,9 +55,9 @@
                         <button class="btn btn-outline-secondary" id="update-preview-report">
                             <i class="ri-refresh-line label-icon align-middle me-1"></i> {{ __('Update') }}
                         </button>
-                        <a href="{{ route('report.exportMonthlyPaymentRequest') }}" class="btn btn-outline-primary">
+                        <button class="btn btn-outline-primary" id="export-report">
                             <i class="bi bi-download label-icon align-middle me-1"></i> {{ __('Export') }}
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -183,6 +185,7 @@
 
 @push('body_js')
     <script>
+        const urlShowMonthlyPaymentRequest = "{{ route('report.showMonthlyPaymentRequest') }}";
         const urlExportMonthlyPaymentRequest = "{{ route('report.exportMonthlyPaymentRequest') }}";
     </script>
 @endpush
