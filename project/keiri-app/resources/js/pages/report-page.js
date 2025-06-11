@@ -6,9 +6,12 @@ import 'datatables.net-fixedheader-bs5';
 import 'datatables.net-rowgroup-bs5';
 import flatpickr from 'flatpickr';
 import monthSelectPlugin from '../plugins/flatpickr/monthSelect/index.js';
-import Choices from "choices.js";
+import Choices from 'choices.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    /**
+     * Monthly payment report.
+     */
     const tblReportMonthlyPaymentRequest = document.querySelectorAll('.report-monthly_payment_request');
     tblReportMonthlyPaymentRequest.forEach((tbl) => {
         new DataTable(tbl, {
@@ -37,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let startPicker, endPicker;
     const inpStartMonth = document.getElementById('id-start_month');
     const inpEndMonth = document.getElementById('id-end_month');
-    const btnUpdatePreviewReport = document.getElementById('update-preview-report');
-    const btnExportReport = document.getElementById('export-report');
+    const btnUpdatePreviewMonthlyPaymentReport = document.getElementById('btn-update-preview-monthly-payment-report');
+    const btnExportMonthlyPaymentReport = document.getElementById('btn-export-monthly-payment-report');
 
     /* Function validate range month. */
     const validateRangeMonth = () => {
@@ -56,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     };
 
-    btnExportReport?.addEventListener('click', (e) => {
+    btnExportMonthlyPaymentReport?.addEventListener('click', (e) => {
         e.preventDefault();
 
         if (validateRangeMonth()) {
@@ -69,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    btnUpdatePreviewReport?.addEventListener('click', (e) => {
+    btnUpdatePreviewMonthlyPaymentReport?.addEventListener('click', (e) => {
         e.preventDefault();
 
         if (validateRangeMonth()) {
@@ -192,15 +195,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /**
+     * Project payment report.
+     */
+
+
+    const btnUpdatePreviewProjectPaymentReport = document.getElementById('btn-update-preview-project-payment-report');
+    const btnExportProjectPaymentReport = document.getElementById('btn-export-project-payment-report');
+    const selectStatusProject = document.getElementById('status-project');
+
     /* Multiple project assign. */
-    const projects = document.getElementById('projects');
-    if (projects) {
-        new Choices(projects, {
+    const elProjects = document.getElementById('projects');
+    if (elProjects) {
+        let projectChoices= new Choices(elProjects, {
             removeItems: true,
             removeItemButton: true,
             searchEnabled: true,
             placeholderValue: 'Select projects',
             noChoicesText: 'No projects available',
+        });
+
+        const loadProjects = (status = null) => {
+            const filteredProjects = status == null ? projects : projects.filter(p => p.status === status);
+
+            const choices = filteredProjects.map(p => ({
+                value: p.id,
+                label: p.project_name,
+                selected: true
+            }));
+
+            projectChoices.clearChoices(true, true);
+            projectChoices.setChoices(choices, 'value', 'label', false);
+        };
+        loadProjects();
+
+        selectStatusProject?.addEventListener('change', (e) => {
+            const selectedStatus = e.target.value === '' ? null : parseInt(e.target.value);
+            loadProjects(selectedStatus);
         });
     }
 });

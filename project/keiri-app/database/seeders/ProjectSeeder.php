@@ -135,15 +135,15 @@ class ProjectSeeder extends Seeder
 //        $project11->note = 'Develop the HR system';
 //        $project11->save();
 //
-//        $project12 = new Project();
-//        $project12->project_code = 'RSS';
-//        $project12->project_name = 'RSS development';
-//        $project12->project_start_date = '2024-04-01';
-//        $project12->project_end_date = '2025-04-30';
-//        $project12->phase = 1;
-//        $project12->priority = ProjectPriority::MEDIUM;
-//        $project12->status = ProjectStatus::IN_PROGRESS;
-//        $project12->note = 'Check the impact for RSS system for upgrading the software version and maintain the program.';
-//        $project12->save();
+        $project12 = new Project();
+        $project12->project_code = 'RSS';
+        $project12->project_name = 'RSS development';
+        $project12->project_start_date = '2024-04-01';
+        $project12->project_end_date = '2025-04-30';
+        $project12->phase = 1;
+        $project12->priority = ProjectPriority::MEDIUM;
+        $project12->status = ProjectStatus::COMPLETED;
+        $project12->note = 'Check the impact for RSS system for upgrading the software version and maintain the program.';
+        $project12->save();
     }
 }

@@ -52,10 +52,10 @@
                         </form>
                     </div>
                     <div class="d-flex gap-2">
-                        <button class="btn btn-outline-secondary" id="update-preview-report">
+                        <button class="btn btn-outline-secondary" id="btn-update-preview-monthly-payment-report">
                             <i class="ri-refresh-line label-icon align-middle me-1"></i> {{ __('Update') }}
                         </button>
-                        <button class="btn btn-outline-primary" id="export-report">
+                        <button class="btn btn-outline-primary" id="btn-export-monthly-payment-report">
                             <i class="bi bi-download label-icon align-middle me-1"></i> {{ __('Export') }}
                         </button>
                     </div>
@@ -85,7 +85,7 @@
                                                 <th rowspan="2" class="text-center">{{ __('Employee name') }}</th>
                                                 <th rowspan="2" class="text-center">{{ __('Rank') }}</th>
                                                 <th rowspan="2" class="text-center">{{ __('Project name') }}</th>
-                                                <th colspan="4" class="text-center">{{ __('Project assign') }}</th>
+                                                <th colspan="4" class="text-center">{{ __('Assigned') }}</th>
                                                 <th colspan="2" class="text-center">{{ __('Contract unit price') }}</th>
                                                 <th rowspan="2" class="text-center">{{ __('Overtime work') }}</th>
                                                 <th rowspan="2" class="text-center">{{ __('Job content') }}</th>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\ProjectStatus;
 use App\Exports\ExportExcelMonthlyPaymentRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
@@ -95,7 +96,9 @@ class ReportController extends Controller
      */
     public function showProjectPaymentRequest()
     {
-        $projects = Project::query()->select('id', 'project_name')->get();
+        $projects = Project::query()->select('id', 'project_name', 'status')
+            ->whereNot('status', ProjectStatus::NOT_STARTED)
+            ->get();
 
         $viewData = [
             'projects' => $projects,
@@ -214,6 +217,7 @@ class ReportController extends Controller
 
         /* Prepare report data. */
         $dataReports = [];
+        $totalRequestAmount = 0; // Tổng số tiền yêu cầu của tất cả nhân viên trong tháng báo cáo.
         foreach ($period as $date) {
             $monthStartDate = $date->copy()->startOfMonth();
             $monthEndDate = $date->copy()->endOfMonth();
@@ -343,6 +347,7 @@ class ReportController extends Controller
                         'overtime_work' => 0,
                         'total' => round($totalAmount, 2),
                     ],
+                    'total_request_amount' => 0,
                 ];
             }
             $dataReports[$monthKey] = $monthData;

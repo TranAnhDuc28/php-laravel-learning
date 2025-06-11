@@ -10,10 +10,13 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Events\AfterSheet;
+use PhpOffice\PhpSpreadsheet\Cell\CellAddress;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;
+use PhpOffice\PhpSpreadsheet\Worksheet\SheetView;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyles
@@ -123,6 +126,9 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
                 $sheet->getColumnDimension('E')->setWidth(13);
                 $sheet->getColumnDimension('F')->setWidth(5);
                 $sheet->getColumnDimension('G')->setWidth(21);
+                $sheet->getColumnDimension('H')->setWidth(5);
+                $sheet->getColumnDimension('I')->setWidth(8);
+                $sheet->getColumnDimension('J')->setWidth(8);
 
                 // Border table.
                 $sheet->getStyle([2, $rowStartTable, 10, $rowEndPrintData])->getBorders()->getAllBorders()
@@ -138,6 +144,10 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
                     ->setWrapText(true);
                 $sheet->getStyle('B13:J13')->getBorders()->getBottom()
                     ->setBorderStyle(Border::BORDER_MEDIUM);
+                $sheet->getStyle([2, ($rowStartPrintData - 1), 2, $rowEndPrintData - 1])->getBorders()->getRight()
+                    ->setBorderStyle(Border::BORDER_MEDIUM);
+                $sheet->getStyle([8, ($rowStartPrintData - 1), 8, $rowEndPrintData - 1])->getBorders()->getLeft()
+                    ->setBorderStyle(Border::BORDER_MEDIUM);
 
                 /* Format column table. */
                 if ($countData) {
@@ -145,6 +155,8 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
                     $sheet->getStyle([2, $rowStartPrintData, 2, $rowEndPrintData])->getAlignment()
                         ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                         ->setVertical(Alignment::VERTICAL_CENTER)->setWrapText(true);
+                    $sheet->getStyle([2, $rowStartPrintData, 2, $rowEndPrintData])->getBorders()->getRight()
+                        ->setBorderStyle(Border::BORDER_MEDIUM);
 
                     // Column "ランク".
                     $sheet->getStyle([3, $rowStartPrintData, 3, $rowEndPrintData])->getAlignment()
@@ -185,6 +197,8 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
                     $sheet->getStyle([8, $rowStartPrintData, 8, $rowEndPrintData])->getNumberFormat()
                         ->setFormatCode(NumberFormat::FORMAT_NUMBER)
                         ->setFormatCode('#,##0');
+                    $sheet->getStyle([8, $rowStartPrintData, 8, $rowEndPrintData])->getBorders()->getLeft()
+                        ->setBorderStyle(Border::BORDER_MEDIUM);
                 }
 
                 // Result calculation.
@@ -226,6 +240,15 @@ class SheetReportDailyMonth implements WithTitle, withEvents, FromView, withStyl
                 $sheet->getStyle('G' . ($rowEndPrintData + 6) . ':J' . ($rowEndPrintData + 8))->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_CENTER)
                     ->setVertical(Alignment::VERTICAL_BOTTOM);
+
+                /* Set break row. */
+                $sheet->getSheetView()->setView(SheetView::SHEETVIEW_PAGE_BREAK_PREVIEW);
+                $sheet->getPageSetup()
+                    ->setFitToPage(true)
+                    ->setFitToWidth(1)
+                    ->setOrientation(PageSetup::ORIENTATION_PORTRAIT)
+                    ->setHorizontalCentered(true)
+                    ->setVerticalCentered(false);
 
                 $sheet->setSelectedCell('A1');
             }
